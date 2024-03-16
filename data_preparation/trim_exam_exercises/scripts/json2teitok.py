@@ -20,7 +20,7 @@ def get_utterance(i, data):
         speaker = data['speaker'] 
     else:
         print(f"Speaker not defined for utterance no. {i}", file=sys.stderr)
-        speaker = ""
+        speaker = "SPEAKER_00"
     return f"""<u n="{i}" start="{data['start']}" end="{data['end']}" id="u-{i}" who="{speaker}">{data['text']}</u>"""
 
 parser = argparse.ArgumentParser()
