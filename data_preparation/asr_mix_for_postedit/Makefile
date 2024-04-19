@@ -1,15 +1,19 @@
 SHELL=/bin/bash
 
 DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26
-SRC_TRANSCRIPTS_DIR=$(DATA_DIR)/03.task2-3_trimmed_transcript
-MIXED_TRANSCRIPTS_DIR=$(DATA_DIR)/04.task2-3_mixed_transcripts
+SRC_DIR=$(DATA_DIR)/03.task2-3_trimmed_transcript
+TGT_DIR=$(DATA_DIR)/04.task2-3_mixed_transcripts
 
-all : $(MIXED_TRANSCRIPTS_DIR)/done
+all : $(TGT_DIR)/done
 
-$(MIXED_TRANSCRIPTS_DIR)/done :
+$(TGT_DIR)/done :
 	mkdir -p $(dir $@)
-	for f in $(SRC_TRANSCRIPTS_DIR)/whisperX-large-v2/*.xml; do \
+	for f in $(SRC_DIR)/whisperX-large-v2/*.xml; do \
 		f=`basename $$f`; \
-		python scripts/mix_content.py --seed $$f --fill-empty $(SRC_TRANSCRIPTS_DIR)/*/$$f > $(dir $@)/$$f; \
+		logf=$${f%.xml}.log; \
+		scripts/mix_content.py --seed $$f --fill-empty $(SRC_DIR)/*/$$f 2>&1 > $(dir $@)/$$f | tee $(dir $@)/$$logf; \
 	done
 	touch $@
+
+clean :
+	rm -rf $(TGT_DIR)

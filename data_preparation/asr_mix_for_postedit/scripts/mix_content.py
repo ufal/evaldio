@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import argparse
 import copy
 import logging
@@ -20,14 +22,14 @@ def select_xml_content(xml_files, fill_empty=False):
 
     # Iterate through "u" elements and select the content
     for u_tuple in zip(*u_elements):
-        n_value = u_tuple[0].attrib["n"]
-        if not all(u_elem.attrib["n"] == n_value for u_elem in u_tuple):
+        uid = u_tuple[0].attrib["id"]
+        if not all(u_elem.attrib["id"] == uid for u_elem in u_tuple):
             logging.error(f"Different 'u' elements: {u_tuple}")
 
         # Create a new "u" element for the output with a randomly selected content
         output_u_elem = copy.deepcopy(u_tuple[0])
         random_i = random.choice(range(len(u_tuple)))
-        logging.debug(f"The 'u' element with n={n_value} selected from {xml_files[random_i]}")
+        logging.info(f"{uid} selected from {xml_files[random_i]}")
         selected_text = u_tuple[random_i].text
         if fill_empty and not selected_text:
             selected_text = "???"
@@ -47,7 +49,7 @@ args = parser.parse_args()
 
 if __name__ == "__main__":
     # Configure the logging module
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
     logging.debug("Script started")
 
     # Setting the random seed
