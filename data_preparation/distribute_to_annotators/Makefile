@@ -2,7 +2,7 @@ SHELL=/bin/bash
 
 DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26
 SRC_DIR=$(DATA_DIR)/04.task2-3_mixed_transcripts
-TGT_DIR=$(DATA_DIR)/05.task2-3_mixed_for_annotators
+TGT_DIR=$(DATA_DIR)/05.task2-3_for_annotators
 
 SRC_FILES=$(SRC_DIR)/A2ML_{220919,221205}_*.xml
 
@@ -40,6 +40,7 @@ distrib_2024-03-16 :
 distrib_2024-04-19 :
 	make distribute ANNOTATORS="MH" SELECTION_RULE='$$$$((i+1+6))' TGT_DIR=$(TGT_DIR)/2024-04-19
 	make distribute ANNOTATORS="ZM KV LR ET AP" SELECTION_RULE='$$$$((i+1+7))' TGT_DIR=$(TGT_DIR)/2024-04-19
+	make distribute ANNOTATORS="ZM KV LR ET AP" SELECTION_RULE='$$$$((i+1+12))' TGT_DIR=$(TGT_DIR)/2024-04-19
 
 clean :
 	rm -rf $(TGT_DIR)
