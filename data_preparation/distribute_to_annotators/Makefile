@@ -15,7 +15,7 @@ SRC_PATTERN=\(.*\)_anonym_audio\.xml
 
 all : distrib_UJOP-CCE-A2-20240126
 
-distrib_UJOP-CCE-A2-20240126 : distrib_2024-03-16 distrib_2024-04-19
+distrib_UJOP-CCE-A2-20240126 : distrib_2024-03-16 distrib_2024-04-19 distrib_2024-05-02
 
 # the pilot distribution of recordings from UJOP
 distrib_2024-03-16 :
@@ -50,6 +50,38 @@ distrib_2024-04-19 :
 		TGT_DIR=05.task2-3_for_annotators/2024-04-19 \
 		ANNOTATORS="ZM KV LR ET AP" \
 		SELECTION_RULE='$$$$((i+1+12))'
+
+# the third distribution of recordings from UJOP that we are allowed to publish
+distrib_2024-05-02 :
+	make distribute \
+		DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_\{220919,221205\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-02 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+17))'
+	make distribute \
+		DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_\{220919,221205\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-02 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+18))'
+	# selecting from A2ML_{230724,230911}_*.json
+	make distribute \
+		DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-02 \
+		ANNOTATORS="KV ZM ET" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/ms/data/CoCzeFLA/exams/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-02 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+1))'
 
 distribute :
 	mkdir -p $(TGT_DIR_PATH)
