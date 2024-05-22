@@ -83,6 +83,29 @@ distrib_2024-05-02 :
 		ANNOTATORS="ET KV ZM" \
 		SELECTION_RULE='$$$$((i+1+1))'
 
+distrib_2024-05-22 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-22 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+4))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-22 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+9))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-05-22 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+14))'
+
 distribute :
 	mkdir -p $(TGT_DIR_PATH)
 	ls $(SRC_FILES_PATH) | shuffle --random_seed 1986 > $(TGT_DIR_PATH)/shuffled_srcfiles.txt
