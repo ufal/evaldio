@@ -106,6 +106,22 @@ distrib_2024-05-22 :
 		ANNOTATORS="AP ET KV LR ZM" \
 		SELECTION_RULE='$$$$((i+1+14))'
 
+distrib_2024-06-03 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-03 \
+		ANNOTATORS="AP" \
+		SELECTION_RULE='$$$$((i+1+19))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_\{230724,230911\}_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-03 \
+		ANNOTATORS="AP" \
+		SELECTION_RULE='$$$$((i+1+20))'
+
 distribute :
 	mkdir -p $(TGT_DIR_PATH)
 	ls $(SRC_FILES_PATH) | shuffle --random_seed 1986 > $(TGT_DIR_PATH)/shuffled_srcfiles.txt
