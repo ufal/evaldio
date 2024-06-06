@@ -54,25 +54,28 @@ def main():
     text_elem = doctree.find(".//text")
 
     # sorting utterances by their start times
-    u_elems_sorted = sorted(text_elem.findall("./u"), key=lambda elem: float(elem.get("start")))
+    u_elems = text_elem.findall("./u")
+    # no normalization needed for empty transcripts
+    if u_elems:
+        u_elems_sorted = sorted(u_elems, key=lambda elem: float(elem.get("start")))
 
-    # guessing speaker roles to rename the speakers
-    speaker_roles = guess_speaker_roles(u_elems_sorted)
-    
-    # clear all the utterances
-    text_elem.clear()
+        # guessing speaker roles to rename the speakers
+        speaker_roles = guess_speaker_roles(u_elems_sorted)
 
-    # insert them back sorted
-    for idx, u_elem in enumerate(u_elems_sorted, 1):
-        # remove other than specified attributes
-        for attr_name in u_elem.keys():
-            if attr_name not in ["start", "end", "who"]:
-                del u_elem.attrib[attr_name]
-        # set standard names for speakers, guessing the examiner by the content
-        u_elem.attrib["who"] = speaker_roles[u_elem.attrib["who"]]
-        # re-index IDs
-        u_elem.attrib["id"] = f"u-{idx}"
-        text_elem.append(u_elem)
+        # clear all the utterances
+        text_elem.clear()
+
+        # insert them back sorted
+        for idx, u_elem in enumerate(u_elems_sorted, 1):
+            # remove other than specified attributes
+            for attr_name in u_elem.keys():
+                if attr_name not in ["start", "end", "who"]:
+                    del u_elem.attrib[attr_name]
+            # set standard names for speakers, guessing the examiner by the content
+            u_elem.attrib["who"] = speaker_roles[u_elem.attrib["who"]]
+            # re-index IDs
+            u_elem.attrib["id"] = f"u-{idx}"
+            text_elem.append(u_elem)
 
     logging.debug("Printing the output XML file")
     doctree.write(sys.stdout, encoding="unicode", xml_declaration=True)
