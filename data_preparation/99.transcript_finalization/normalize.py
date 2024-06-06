@@ -29,7 +29,7 @@ def estimate_examiner_role(texts):
 def guess_speaker_roles(u_elems):
     utt_by_speakers = OrderedDict()
     for u_elem in u_elems:
-        utt_by_speakers.setdefault(u_elem.attrib["who"], []).append(u_elem.text)
+        utt_by_speakers.setdefault(u_elem.attrib["who"], []).append(u_elem.text or "")
     old_speakers = list(utt_by_speakers.keys())
     # a singler speaker is supposed to be the candidate
     assert len(old_speakers) >= 1

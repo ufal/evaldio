@@ -26,9 +26,19 @@ finalize_auto :
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
 
-finalize : $(TGT_FILES)
+finalize : $(TGT_FILES) rename
 
 $(TGT_DIR)/%.xml : $(SRC_DIR)/%.xml
 	cat $< | \
 		python3 normalize.py | \
 		xmllint --format - > $@
+
+rename :
+	cd $(TGT_DIR); \
+	for f in *.xml; do \
+		bf=`basename $$f`; \
+		newbf=`echo $$bf | sed 's/^\([A-Z]\+\)-\(.*\)-\(from_.*\.xml\)$$/\2-\1-\3/'`; \
+		if [ "$$bf" != "$$newbf" ]; then \
+			mv $$bf $$newbf; \
+		fi; \
+	done
