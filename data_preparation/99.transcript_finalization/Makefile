@@ -6,6 +6,7 @@ ROOT_DIR=../..
 
 SRC_BASEDIR=$(ROOT_DIR)/redmine_data/annotation/transcripts
 TGT_BASEDIR=$(ROOT_DIR)/redmine_data/final/transcripts
+FOR_ANNOT_BASEDIR=../../../../tmp/data_preparation/*/*/05.task2-3_for_annotators/*/
 DATA_TYPE=
 
 ifeq ($(DATA_TYPE),manual)
@@ -26,14 +27,26 @@ finalize_auto :
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
 
-finalize : $(TGT_FILES) rename
+finalize : clean $(TGT_FILES) uncover_source recname_first
 
 $(TGT_DIR)/%.xml : $(SRC_DIR)/%.xml
 	cat $< | \
 		python3 normalize.py | \
 		xmllint --format - > $@
 
-rename :
+uncover_source :
+	cd $(TGT_DIR); \
+	for f in *.xml; do \
+		bf=`basename $$f`; \
+		orig=`readlink $(FOR_ANNOT_BASEDIR)/$$bf`; \
+		if [ -n "$$orig" ]; then \
+			type=`if [[ $$orig == *'mixed'* ]]; then echo "mixed"; elif [[ $$orig == *'whisperX'* ]]; then echo "whisperX"; fi`; \
+			bf_from=`echo $$bf | sed "s/-[^-]\+\.xml/-from_$$type.xml/"`; \
+			mv $$bf $$bf_from; \
+		fi; \
+	done
+
+recname_first :
 	cd $(TGT_DIR); \
 	for f in *.xml; do \
 		bf=`basename $$f`; \
@@ -42,3 +55,6 @@ rename :
 			mv $$bf $$newbf; \
 		fi; \
 	done
+
+clean :
+	rm $(TGT_DIR)/*
