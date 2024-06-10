@@ -12,6 +12,9 @@ DATA_TYPE=
 ifeq ($(DATA_TYPE),manual)
 SRC_DIR=$(SRC_BASEDIR)/04.manual
 TGT_DIR=$(TGT_BASEDIR)/manual
+else ifeq ($(DATA_TYPE),before_review)
+SRC_DIR=$(SRC_BASEDIR)/03.under_review
+TGT_DIR=$(TGT_BASEDIR)/before_review
 else
 SRC_DIR=$(SRC_BASEDIR)/01.auto
 TGT_DIR=$(TGT_BASEDIR)/auto
@@ -24,10 +27,12 @@ TGT_FILES=$(SRC_FILES:$(SRC_DIR)/%.xml=$(TGT_DIR)/%.xml)
 
 finalize_auto :
 	$(MAKE) finalize DATA_TYPE=auto
+finalize_before_review :
+	$(MAKE) finalize DATA_TYPE=before_review
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
 
-finalize : clean $(TGT_FILES) uncover_source recname_first
+finalize : $(TGT_FILES) uncover_source recname_first
 
 $(TGT_DIR)/%.xml : $(SRC_DIR)/%.xml
 	cat $< | \
