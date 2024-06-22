@@ -6,7 +6,8 @@ ROOT_DIR=../..
 
 SRC_BASEDIR=$(ROOT_DIR)/redmine_data/annotation/transcripts
 TGT_BASEDIR=$(ROOT_DIR)/redmine_data/final/transcripts
-FOR_ANNOT_BASEDIR=../../../../tmp/data_preparation/*/*/05.task2-3_for_annotators/*/
+FOR_ANNOT_BASEDIR=../../../../tmp/data_preparation/*/*/05.task2-3_for_annotators/*
+MIXED_BASEDIR=../../tmp/data_preparation/*/*/04.task2-3_mixed_transcripts
 DATA_TYPE=
 
 ifeq ($(DATA_TYPE),manual)
@@ -27,8 +28,10 @@ TGT_FILES=$(SRC_FILES:$(SRC_DIR)/%.xml=$(TGT_DIR)/%.xml)
 
 finalize_auto :
 	$(MAKE) finalize DATA_TYPE=auto
+	$(MAKE) add_source_systems DATA_TYPE=auto
 finalize_before_review :
 	$(MAKE) finalize DATA_TYPE=before_review
+	$(MAKE) add_annotation_durations DATA_TYPE=before_review
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
 
@@ -59,6 +62,28 @@ recname_first :
 		if [ "$$bf" != "$$newbf" ]; then \
 			mv $$bf $$newbf; \
 		fi; \
+	done
+
+add_source_systems :
+	for f in $(TGT_DIR)/*-from_mixed.xml; do \
+		bf=`basename $$f`; \
+		fid=`echo $$bf | cut -f1 -d-`; \
+		python3 add_sources_to_mixed.py $(MIXED_BASEDIR)/$$fid*.log < $$f > $$f.with_sources; \
+		rm $$f; \
+		mv $$f.with_sources $$f; \
+	done
+
+USERFILE_PATH=users.xml
+ACTION_LOG_PATH=$(SRC_BASEDIR)/action.log
+
+add_annotation_durations :
+	# ignore the transcripts presumably already in progress
+	cat $(ACTION_LOG_PATH) | \
+		tail -n+11 | \
+		python3 add_annotation_times.py --author-only --userfile $(USERFILE_PATH) $(TGT_DIR)/*.xml
+	for f in $(TGT_DIR)/*.xml; do \
+		xmllint --format $$f > $$f.pp; \
+		mv $$f.pp $$f; \
 	done
 
 clean :
