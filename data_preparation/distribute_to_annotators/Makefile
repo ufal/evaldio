@@ -138,6 +138,80 @@ distrib_2024-06-05 :
 		ANNOTATORS="ZM" \
 		SELECTION_RULE='$$$$((i+1+22))'
 
+distrib_2024-06-07 :
+	echo "TODO"
+
+distrib_2024-06-14 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_221205_10_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-14 \
+		ANNOTATORS="AP" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_220919_02_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-14 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_230724_29_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-14 \
+		ANNOTATORS="KV" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_221205_04_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-14 \
+		ANNOTATORS="KV" \
+		SELECTION_RULE='$$$$((i+1))'
+
+distrib_2024-06-18 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_02_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-18 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_11_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-18 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_07_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-18 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.task2-3_trimmed_transcript/whisperX-large-v2 \
+		SRC_FILES=A2ML_221205_01_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-18 \
+		ANNOTATORS="AP" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_18_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-06-18 \
+		ANNOTATORS="LR" \
+		SELECTION_RULE='$$$$((i+1))'
+
+distribute_manual :
+	mkdir -p $(TGT_DIR_PATH)
+
+
 distribute :
 	mkdir -p $(TGT_DIR_PATH)
 	ls $(SRC_FILES_PATH) | shuffle --random_seed 1986 > $(TGT_DIR_PATH)/shuffled_srcfiles.txt
@@ -146,11 +220,8 @@ distribute :
 		cat $(TGT_DIR_PATH)/shuffled_srcfiles.txt | \
 		sed -n $(SELECTION_RULE)'p' | \
 		while read srcfile; do \
-			basefile=`basename $$srcfile`; \
-			tgtfile=$(TGT_DIR_PATH)/`echo $$basefile | \
-				sed 's|$(SRC_PATTERN)|'$${annotators[$$i]}'-\1-__HASHCODE__.xml|'`; \
-			hashcode=`echo "$$srcfile" | md5sum | cut -c1-10`; \
-			tgtfile=`echo $$tgtfile | sed "s/__HASHCODE__/$$hashcode/"`; \
+			tgt_bf=`./audio_to_transcript2annot_name.sh $$srcfile $${annotators[$$i]}`; \
+			tgtfile=$(TGT_DIR_PATH)/$$tgt_bf; \
 			ln -s $$srcfile $$tgtfile; \
 			echo -e "$$tgtfile\t$$srcfile" >> $(TGT_DIR_PATH)/map_table.tsv; \
 		done; \
