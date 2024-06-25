@@ -48,4 +48,6 @@ $(TGT_DIR)/%.json : $(SRC_DIR)/%.mp3
 		$<
 
 $(TGT_DIR)/%.xml : $(TGT_DIR)/%.json
-	python3 json2teitok.py $< > $@
+	python3 json2teitok.py $< | \
+		python3 normalize.py | \
+		xmllint --format - > $@
