@@ -22,6 +22,25 @@ def extract_speaker(l, annotation):
     value_list = [annotation[i]['speaker'] for i in l]
     return max(set(value_list), key = value_list.count)
 
+def sort_by_time(utterances):
+        return sorted(utterances, key=lambda x: x['start'])
+
+def concat_adjacent_speaker_utterances(utterances):
+    if len(utterances) == 0:
+        return []
+    new_utterances = [utterances[0].copy()]
+    new_utterances[-1]['original_utterances'] = [0]
+
+    for idx, u in enumerate(utterances[1:]):
+        if new_utterances[-1]['speaker'] == u['speaker']:
+            new_utterances[-1]['text'] += ' ' + u['text']
+            new_utterances[-1]['end'] = u['end']
+            new_utterances[-1]['original_utterances'].append(idx + 1)
+        else:
+            new_utterances.append(u.copy())
+            new_utterances[-1]['original_utterances'] = [idx + 1]
+    return new_utterances
+
 def group_alignments(alignments):
     G = nx.Graph()
     for a, b in alignments:
@@ -45,25 +64,6 @@ def group_alignments(alignments):
 class BioAligner:
     def __init__(self):
         pass
-
-    def sort_by_time(self, utterances):
-        return sorted(utterances, key=lambda x: x['start'])
-
-    def concat_adjacent_speaker_utterances(self, utterances):
-        if len(utterances) == 0:
-            return []
-        new_utterances = [utterances[0].copy()]
-        new_utterances[-1]['original_utterances'] = [0]
-
-        for idx, u in enumerate(utterances[1:]):
-            if new_utterances[-1]['speaker'] == u['speaker']:
-                new_utterances[-1]['text'] += ' ' + u['text']
-                new_utterances[-1]['end'] = u['end']
-                new_utterances[-1]['original_utterances'].append(idx + 1)
-            else:
-                new_utterances.append(u.copy())
-                new_utterances[-1]['original_utterances'] = [idx + 1]
-        return new_utterances
     
     def time_overlap(self, a, b) -> float:
         """
@@ -115,10 +115,10 @@ class BioAligner:
         return candidates[scores.index(max(scores))]
 
     def align_utterances(self, manual_utterances, other_utterances):
-        manual_utterances = self.sort_by_time(manual_utterances)
-        manual_utterances = self.concat_adjacent_speaker_utterances(manual_utterances)
+        manual_utterances = sort_by_time(manual_utterances)
+        manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
 
-        other_utterances = self.sort_by_time(other_utterances)
+        other_utterances = sort_by_time(other_utterances)
         for idx, u in enumerate(other_utterances):
             other_utterances[idx]['original_utterances'] = [idx]
 
@@ -148,7 +148,7 @@ class MatrixAligner:
         if time_overlap == 0:
             return 0
         lex_similarity = self.lexical_similarity_f(utt1['text'], utt2['text'])
-        return lex_similarity * time_overlap
+        return (lex_similarity + time_overlap) / 2
 
     def get_time_overlap(self, utt1, utt2):
         start1, end1 = utt1['start'], utt1['end']
@@ -221,16 +221,36 @@ class MatrixAligner:
     #             grouped_alignment.append(align)
     #     return grouped_alignment
 
-    def align_utterances(self, annot1, annot2, grouped=True):
-        overlap_matrix = np.zeros((len(annot1), len(annot2)))
-        for i, u1 in enumerate(annot1):
-            for j, u2 in enumerate(annot2):
+    def align_utterances(self, manual_utterances, other_utterances):
+        manual_utterances = sort_by_time(manual_utterances)
+        concat_manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
+
+        other_utterances = sort_by_time(other_utterances)
+        for idx, u in enumerate(other_utterances):
+            other_utterances[idx]['original_utterances'] = [idx]
+
+        overlap_matrix = np.zeros((len(concat_manual_utterances), len(other_utterances)))
+        for i, u1 in enumerate(concat_manual_utterances):
+            for j, u2 in enumerate(other_utterances):
                 overlap_matrix[i, j] = self.get_utterance_similarity(u1, u2)
 
         print_overlap_matrix(overlap_matrix)
+
+        nonzeros = np.nonzero(overlap_matrix)
+        nonzero_count_cols = np.count_nonzero(overlap_matrix, axis=0)
+        print("nonzero_count_cols", nonzero_count_cols)
+        for j in range(len(nonzero_count_cols)):
+            if nonzero_count_cols[j] > 2:
+                print(">2 AUTO: " + other_utterances[j]['text'])
+                i_list = [i for i, j2 in zip(nonzeros[0], nonzeros[1]) if j2 == j]
+                for i in i_list:
+                    print(f">2 MANUAL: [{overlap_matrix[i, j]}] " + " ".join([manual_utterances[k]['text'] for k in concat_manual_utterances[i]['original_utterances']]))
+                print()
+
         alignments = self._find_alignment_in_matrix(overlap_matrix)
         #self.print_overlap_matrix(alignmnents_to_matrix(alignments))
-        if not grouped:
-            return alignments
-        
-        return group_alignments(alignments)
+        alignments_in_orig = []
+        for a, b in alignments:
+            alignments_in_orig.append((concat_manual_utterances[a]['original_utterances'], other_utterances[b]['original_utterances']))
+
+        return group_alignments(alignments_in_orig)
