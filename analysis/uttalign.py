@@ -1,6 +1,7 @@
 from collections import defaultdict
 
 from Bio import pairwise2
+from Bio.pairwise2 import format_alignment
 import networkx as nx
 import numpy as np
 from scipy.optimize import linear_sum_assignment
@@ -59,7 +60,27 @@ def group_alignments(alignments):
         a = [int(node[2:]) for node in component if node.startswith('a')]
         b = [int(node[2:]) for node in component if node.startswith('b')]
         yield (tuple(sorted(a)), tuple(sorted(b)))
-    
+
+def align_texts(text1, text2):
+    text1 = utils.normalize_text(text1)
+    print(text1)
+    text2 = utils.normalize_text(text2)
+    print(text2)
+    if not text1 or not text2:
+        return 0, max(len(text1), len(text2)), None
+    alignments = pairwise2.align.globalxs(text1, text2, one_alignment_only=True, gap_char=['-'], open=-1, extend=-1)
+    print(alignments[0][0])
+    print(alignments[0][1])
+    print(format_alignment(*alignments[0]))
+
+    agree, disagree = 0, 0
+    for a, b in zip(alignments[0][0], alignments[0][1]):
+        if a == b:
+            agree += 1
+        else:
+            disagree += 1
+    return agree, disagree, alignments[0]
+
                      
 class BioAligner:
     def __init__(self):
@@ -114,13 +135,17 @@ class BioAligner:
             return None
         return candidates[scores.index(max(scores))]
 
-    def align_utterances(self, manual_utterances, other_utterances):
+    def align_utterances(self, manual_utterances, other_utterances, both_manual=False):
         manual_utterances = sort_by_time(manual_utterances)
         manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
 
         other_utterances = sort_by_time(other_utterances)
-        for idx, u in enumerate(other_utterances):
-            other_utterances[idx]['original_utterances'] = [idx]
+        concat_other_utterances = other_utterances
+        if both_manual:
+            concat_other_utterances = concat_adjacent_speaker_utterances(other_utterances)
+        else:
+            for idx, u in enumerate(other_utterances):
+                other_utterances[idx]['original_utterances'] = [idx]
 
         match_fn = lambda a, b: self.match_fn_with_threshold(a, b, threshold=0.0) # be more strict
         alignment = pairwise2.align.globalcx(manual_utterances, other_utterances, one_alignment_only=True, gap_char=[None], match_fn=match_fn)
@@ -135,7 +160,7 @@ class BioAligner:
                     al.extend(a['original_utterances'])
                 alignments.append((tuple(al), tuple(b['original_utterances'])))
 
-        return group_alignments(alignments)
+        return list(group_alignments(alignments))
 
 class MatrixAligner:
 
@@ -205,37 +230,27 @@ class MatrixAligner:
             m[i, j] = 1
         return m
 
-    # def _group_alignment(self, alignment):
-    #     ltr_alignment_dict = defaultdict(list)
-    #     rtl_alignment_dict = defaultdict(list)
-    #     for i, j in alignment:
-    #         ltr_alignment_dict[i].append(j)
-    #         rtl_alignment_dict[j].append(i)
-    #     grouped_alignment = []
-    #     for i, j_list in ltr_alignment_dict.items():
-    #         i_list = [i]
-    #         if len(j_list) == 1:
-    #             i_list = rtl_alignment_dict[j_list[0]]
-    #         align = (tuple(i_list), tuple(j_list))
-    #         if align not in grouped_alignment:
-    #             grouped_alignment.append(align)
-    #     return grouped_alignment
-
-    def align_utterances(self, manual_utterances, other_utterances):
+    def align_utterances(self, manual_utterances, other_utterances, both_manual=False):
         manual_utterances = sort_by_time(manual_utterances)
         concat_manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
 
         other_utterances = sort_by_time(other_utterances)
-        for idx, u in enumerate(other_utterances):
-            other_utterances[idx]['original_utterances'] = [idx]
+        concat_other_utterances = other_utterances
+        if both_manual:
+            concat_other_utterances = concat_adjacent_speaker_utterances(other_utterances)
+        else:
+            for idx, u in enumerate(other_utterances):
+                other_utterances[idx]['original_utterances'] = [idx]
 
-        overlap_matrix = np.zeros((len(concat_manual_utterances), len(other_utterances)))
+        overlap_matrix = np.zeros((len(concat_manual_utterances), len(concat_other_utterances)))
         for i, u1 in enumerate(concat_manual_utterances):
-            for j, u2 in enumerate(other_utterances):
+            for j, u2 in enumerate(concat_other_utterances):
                 overlap_matrix[i, j] = self.get_utterance_similarity(u1, u2)
 
         print_overlap_matrix(overlap_matrix)
 
+        # this is here just for debugging reasons
+        # it prints out the utterances that have more than 2 overlapping utterances
         nonzeros = np.nonzero(overlap_matrix)
         nonzero_count_cols = np.count_nonzero(overlap_matrix, axis=0)
         print("nonzero_count_cols", nonzero_count_cols)
@@ -251,6 +266,16 @@ class MatrixAligner:
         #self.print_overlap_matrix(alignmnents_to_matrix(alignments))
         alignments_in_orig = []
         for a, b in alignments:
-            alignments_in_orig.append((concat_manual_utterances[a]['original_utterances'], other_utterances[b]['original_utterances']))
+            alignments_in_orig.append((concat_manual_utterances[a]['original_utterances'], concat_other_utterances[b]['original_utterances']))
 
-        return group_alignments(alignments_in_orig)
+        return list(group_alignments(alignments_in_orig))
+
+
+# OBSOLETE CODE
+
+def concat_texts_by_speaker(utterances):
+    speakers = set([u['speaker'] for u in utterances])
+    texts = {}
+    for speaker in speakers:
+        texts[speaker] = ' '.join([u['text'] for u in utterances if u['speaker'] == speaker])
+    return speakers, texts
