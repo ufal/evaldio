@@ -21,6 +21,8 @@ def extract_text(l, annotation):
 
 def extract_speaker(l, annotation):
     value_list = [annotation[i]['speaker'] for i in l]
+    if not value_list:
+        return None
     return max(set(value_list), key = value_list.count)
 
 def sort_by_time(utterances):
@@ -113,7 +115,7 @@ class BioAligner:
         candidates = []
         for i in range(idx - 1, -1, -1):
             if alignment[0][i] != None:
-                candidates.append(alignment[0][i])
+                candidates.append(i)
             '''
             we need at least 2 utterances
             since the manual transcript is concatenated
@@ -124,12 +126,12 @@ class BioAligner:
 
         for i in range(idx + 1, len(alignment[0])):
             if alignment[0][i] != None:
-                candidates.append(alignment[0][i])
+                candidates.append(i)
             if len(candidates) > 3: # two utterances from the right side
                 break
 
         match_fn = lambda a, b: self.match_fn_with_threshold(a, b, threshold=0.5) # be less strict
-        scores = [match_fn(c, alignment[1][idx]) for c in candidates]
+        scores = [match_fn(alignment[0][c], alignment[1][idx]) for c in candidates]
 
         if len(scores) == 0 or max(scores) <= 0:
             return None
@@ -137,7 +139,10 @@ class BioAligner:
 
     def align_utterances(self, manual_utterances, other_utterances, both_manual=False):
         manual_utterances = sort_by_time(manual_utterances)
-        manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
+        concat_manual_utterances = concat_adjacent_speaker_utterances(manual_utterances)
+
+        if not len(other_utterances):
+            return [(tuple(u['original_utterances']), tuple()) for u in concat_manual_utterances]
 
         other_utterances = sort_by_time(other_utterances)
         concat_other_utterances = other_utterances
@@ -148,17 +153,28 @@ class BioAligner:
                 other_utterances[idx]['original_utterances'] = [idx]
 
         match_fn = lambda a, b: self.match_fn_with_threshold(a, b, threshold=0.0) # be more strict
-        alignment = pairwise2.align.globalcx(manual_utterances, other_utterances, one_alignment_only=True, gap_char=[None], match_fn=match_fn)
+        alignment = pairwise2.align.globalcx(concat_manual_utterances, concat_other_utterances, one_alignment_only=True, gap_char=[None], match_fn=match_fn)
 
         alignments = []
-        for idx, (a, b) in enumerate(zip(alignment[0][0], alignment[0][1])):
-            if b is not None:
-                al = []
-                if a is None:
-                    a = self.find_best_alignment_for_auto(alignment[0], idx)
-                if a is not None:
-                    al.extend(a['original_utterances'])
-                alignments.append((tuple(al), tuple(b['original_utterances'])))
+        found_for_auto = set()
+        # collect alignments
+        # if there is no auto utterance, we need to find the best alignment matching the manual utterance
+        for idx, (manual_utt, auto_utt) in enumerate(zip(alignment[0][0], alignment[0][1])):
+            if auto_utt is None:
+                continue
+            if manual_utt is None:
+                manual_utt_idx = self.find_best_alignment_for_auto(alignment[0], idx)
+                if manual_utt_idx is not None:
+                    manual_utt = alignment[0][0][manual_utt_idx]
+                    found_for_auto.add(manual_utt_idx)
+            alignments.append((tuple(manual_utt['original_utterances'] if manual_utt else []), tuple(auto_utt['original_utterances'])))
+        # add auto utterances for which we did not find a manual utterance as missing alignments
+        for idx, (manual_utt, auto_utt) in enumerate(zip(alignment[0][0], alignment[0][1])):
+            if auto_utt is not None:
+                continue
+            if idx in found_for_auto:
+                continue
+            alignments.append((tuple(manual_utt['original_utterances']), tuple([])))
 
         return list(group_alignments(alignments))
 
@@ -264,9 +280,26 @@ class MatrixAligner:
 
         alignments = self._find_alignment_in_matrix(overlap_matrix)
         #self.print_overlap_matrix(alignmnents_to_matrix(alignments))
+
+        aligned_manual, aligned_other = set(), set()
+        for manual_idx, other_idx in alignments:
+            aligned_manual.add(manual_idx)
+            aligned_other.add(other_idx)
+        for manual_idx in range(len(concat_manual_utterances)):
+            if manual_idx not in aligned_manual:
+                alignments.append((manual_idx, None))
+        for other_idx in range(len(concat_other_utterances)):
+            if other_idx not in aligned_other:
+                alignments.append((None, other_idx))
+
         alignments_in_orig = []
-        for a, b in alignments:
-            alignments_in_orig.append((concat_manual_utterances[a]['original_utterances'], concat_other_utterances[b]['original_utterances']))
+        for manual_idx, other_idx in alignments:
+            manual_utt, other_utt = [], []
+            if manual_idx is not None:
+                manual_utt = concat_manual_utterances[manual_idx]['original_utterances']
+            if other_idx is not None:
+                other_utt = concat_other_utterances[other_idx]['original_utterances']
+            alignments_in_orig.append((manual_utt, other_utt))
 
         return list(group_alignments(alignments_in_orig))
 

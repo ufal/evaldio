@@ -7,7 +7,8 @@ punct_normalizer = MosesPunctuationNormalizer('cs')
 
 def normalize_text(text, char_level=False):
     text = text.replace('\n', ' ')
-    text = punct_normalizer(text)
+    if text:
+        text = punct_normalizer(text)
     text = text.replace('-', '')
     text = text.replace('*', '')
     text = text.replace('\'', '')
