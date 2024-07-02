@@ -63,17 +63,17 @@ def group_alignments(alignments):
         b = [int(node[2:]) for node in component if node.startswith('b')]
         yield (tuple(sorted(a)), tuple(sorted(b)))
 
-def align_texts(text1, text2):
-    text1 = utils.normalize_text(text1)
-    print(text1)
-    text2 = utils.normalize_text(text2)
-    print(text2)
+def align_texts(text1, text2, char_level=False):
+    text1 = utils.normalize_text(text1, char_level=char_level)
+    #print(text1)
+    text2 = utils.normalize_text(text2, char_level=char_level)
+    #print(text2)
     if not text1 or not text2:
         return 0, max(len(text1), len(text2)), None
     alignments = pairwise2.align.globalxs(text1, text2, one_alignment_only=True, gap_char=['-'], open=-1, extend=-1)
-    print(alignments[0][0])
-    print(alignments[0][1])
-    print(format_alignment(*alignments[0]))
+    #print(alignments[0][0])
+    #print(alignments[0][1])
+    #print(format_alignment(*alignments[0]))
 
     agree, disagree = 0, 0
     for a, b in zip(alignments[0][0], alignments[0][1]):
