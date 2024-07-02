@@ -263,20 +263,20 @@ class MatrixAligner:
             for j, u2 in enumerate(concat_other_utterances):
                 overlap_matrix[i, j] = self.get_utterance_similarity(u1, u2)
 
-        print_overlap_matrix(overlap_matrix)
+        #print_overlap_matrix(overlap_matrix)
 
         # this is here just for debugging reasons
         # it prints out the utterances that have more than 2 overlapping utterances
-        nonzeros = np.nonzero(overlap_matrix)
-        nonzero_count_cols = np.count_nonzero(overlap_matrix, axis=0)
-        print("nonzero_count_cols", nonzero_count_cols)
-        for j in range(len(nonzero_count_cols)):
-            if nonzero_count_cols[j] > 2:
-                print(">2 AUTO: " + other_utterances[j]['text'])
-                i_list = [i for i, j2 in zip(nonzeros[0], nonzeros[1]) if j2 == j]
-                for i in i_list:
-                    print(f">2 MANUAL: [{overlap_matrix[i, j]}] " + " ".join([manual_utterances[k]['text'] for k in concat_manual_utterances[i]['original_utterances']]))
-                print()
+        # nonzeros = np.nonzero(overlap_matrix)
+        # nonzero_count_cols = np.count_nonzero(overlap_matrix, axis=0)
+        # print("nonzero_count_cols", nonzero_count_cols)
+        # for j in range(len(nonzero_count_cols)):
+        #     if nonzero_count_cols[j] > 2:
+        #         print(">2 AUTO: " + other_utterances[j]['text'])
+        #         i_list = [i for i, j2 in zip(nonzeros[0], nonzeros[1]) if j2 == j]
+        #         for i in i_list:
+        #             print(f">2 MANUAL: [{overlap_matrix[i, j]}] " + " ".join([manual_utterances[k]['text'] for k in concat_manual_utterances[i]['original_utterances']]))
+        #         print()
 
         alignments = self._find_alignment_in_matrix(overlap_matrix)
         #self.print_overlap_matrix(alignmnents_to_matrix(alignments))
