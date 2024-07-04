@@ -34,6 +34,7 @@ finalize_before_review :
 	$(MAKE) add_annotation_durations DATA_TYPE=before_review
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
+	$(MAKE) add_annotation_durations DATA_TYPE=manual
 
 finalize : $(TGT_FILES) uncover_source recname_first
 

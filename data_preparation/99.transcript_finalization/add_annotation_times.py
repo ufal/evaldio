@@ -92,12 +92,15 @@ def process_logrecords(log_records):
             duration_dict[filename][user] += duration
     return duration_dict
 
-def insert_time_to_xml(xmltree, duration_time, user=None):
+def insert_time_to_xml(xmltree, duration_time, user=None, clear=True):
     logging.debug(f"Inserting duration time {duration_time} for the user {user}.")
     header_e = xmltree.find('.//teiHeader')
     transcript_meta_e = header_e.find('./transcriptStmt')
     if transcript_meta_e is None:
         transcript_meta_e = ET.SubElement(header_e, 'transcriptStmt')
+    if clear:
+        for annot_duration_e in transcript_meta_e.findall('./annotDuration'):
+            transcript_meta_e.remove(annot_duration_e)
     annot_duration_e = ET.Element('annotDuration')
     if user:
         annot_duration_e.attrib["user"] = user
