@@ -91,11 +91,12 @@ class BioAligner:
     def time_overlap(self, a, b) -> float:
         """
         Return the overlap of two time intervals
-        if the intervals do not overlap, return the distance between them
+        if the intervals do not overlap, return the distance between them (always negative)
         """
-        if a['start'] > b['end'] or b['start'] > a['end']:
-            return min(a['end'], b['end']) - max(a['start'], b['start'])
-        return min(a['end'], b['end']) - max(a['start'], b['start'])
+        start1, end1 = a['start'], a['end']
+        start2, end2 = b['start'], b['end']
+        overlap = min(end1, end2) - max(start1, start2)
+        return overlap
 
     def text_score(self, a, b):
         a, b = utils.normalize_text(a['text'], char_level=True), utils.normalize_text(b['text'], char_level=True)
@@ -116,19 +117,14 @@ class BioAligner:
         for i in range(idx - 1, -1, -1):
             if alignment[0][i] != None:
                 candidates.append(i)
-            '''
-            we need at least 2 utterances
-            since the manual transcript is concatenated
-            we know the 2 utterances have different speakers
-            '''
-            if len(candidates) > 1:  
-                break
+                if alignment[0][i]['end'] - alignment[1][idx]['start'] < -5:
+                    break
 
         for i in range(idx + 1, len(alignment[0])):
             if alignment[0][i] != None:
                 candidates.append(i)
-            if len(candidates) > 3: # two utterances from the right side
-                break
+                if  alignment[0][i]['start'] - alignment[1][idx]['end'] > 5:
+                    break
 
         match_fn = lambda a, b: self.match_fn_with_threshold(a, b, threshold=0.5) # be less strict
         scores = [match_fn(alignment[0][c], alignment[1][idx]) for c in candidates]
