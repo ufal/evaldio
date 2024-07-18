@@ -208,6 +208,29 @@ distrib_2024-06-18 :
 		ANNOTATORS="LR" \
 		SELECTION_RULE='$$$$((i+1))'
 
+distrib_2024-07-04 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_06_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-07-04 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_07_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-07-04 \
+		ANNOTATORS="AP" \
+		SELECTION_RULE='$$$$((i+1))'
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=04.task2-3_mixed_transcripts \
+		SRC_FILES=A2ML_221205_16_*.xml \
+		TGT_DIR=05.task2-3_for_annotators/2024-07-04 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))'
+
 distribute_manual :
 	mkdir -p $(TGT_DIR_PATH)
 
