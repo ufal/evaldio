@@ -53,7 +53,7 @@ def parse_logfile(logfile, usermap=None):
         logfile_actions.append((time, user, action, filename))
     return logfile_actions
 
-def process_logrecords(log_records):
+def process_logrecords(log_records, include_guests=False):
     duration_dict = defaultdict(lambda: defaultdict(timedelta))
     transcript_starts = defaultdict(dict)
     for time, user, action, filename in log_records:
@@ -71,6 +71,11 @@ def process_logrecords(log_records):
                     logging.warning(f"[{time}] Saving file {filename}, which is not yet opened by {user}.")
                     continue
                 last_user = max(transcript_starts[filename].keys(), key=lambda x: transcript_starts[filename][x])
+                if not include_guests:
+                    time_start = transcript_starts[filename][last_user]
+                    duration = time - time_start
+                    logging.info(f"[{time}] Skipping the annotation session on {filename} by {last_user} that has timed out (duration = {str(duration)})")
+                    continue
                 logging.debug(f"[{time}] Saving file {filename} not by {user}, but {last_user}")
                 user = last_user
             time_start = transcript_starts[filename][user]
@@ -79,6 +84,7 @@ def process_logrecords(log_records):
             #    logging.warning(f"The user who opened and closed {filename} differ: {user_start} {user}")
             #    continue
             duration = time - time_start
+            # the following tries to fix the bug in the logging which logs time in the 12-hour format but does not include tha AM/PM tag
             if duration < timedelta():
                 logging.debug(f"TIME START: {time_start}")
                 logging.debug(f"TIME END: {time}")
@@ -100,11 +106,13 @@ def insert_time_to_xml(xmltree, duration_time, user=None, clear=True):
         transcript_meta_e = ET.SubElement(header_e, 'transcriptStmt')
     if clear:
         for annot_duration_e in transcript_meta_e.findall('./annotDuration'):
+            if annot_duration_e.attrib["user"] != user:
+                continue
             transcript_meta_e.remove(annot_duration_e)
     annot_duration_e = ET.Element('annotDuration')
     if user:
         annot_duration_e.attrib["user"] = user
-    annot_duration_e.text = str(duration_time)
+    annot_duration_e.text = str(duration_time.total_seconds())
     transcript_meta_e.append(annot_duration_e)
 
 def main():
@@ -115,6 +123,7 @@ def main():
     parser.add_argument('transcript_files', type=str, action="store", nargs="+", help="Transcripts to be extended with the annotation durations.")
     parser.add_argument('--userfile', type=str, help="Path to the file with users, their e-mails and acronyms, which are used in the filenames.")
     parser.add_argument('--author-only', default=False, action="store_true", help="Store only the annotation duration of the transcript's author (identified by the transcript's name)")
+    parser.add_argument('--include-guests', default=False, action="store_true", help="Do not exclude sessions that has timed out (logged under the guest user)")
     args = parser.parse_args()
 
     user_email2short = parse_userfile(args.userfile) if args.userfile else None
@@ -123,7 +132,7 @@ def main():
     log_records = parse_logfile(sys.stdin, usermap=user_email2short)
     #logging.debug(log_records)
 
-    durations = process_logrecords(log_records)
+    durations = process_logrecords(log_records, include_guests=args.include_guests)
     
     #for filename in durations:
     #    for user in durations[filename]:
