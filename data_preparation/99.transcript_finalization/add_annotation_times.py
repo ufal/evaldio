@@ -105,6 +105,8 @@ def insert_time_to_xml(xmltree, duration_time, user=None, clear=True):
         transcript_meta_e = ET.SubElement(header_e, 'transcriptStmt')
     if clear:
         for annot_duration_e in transcript_meta_e.findall('./annotDuration'):
+            if annot_duration_e.attrib["user"] != user:
+                continue
             transcript_meta_e.remove(annot_duration_e)
     annot_duration_e = ET.Element('annotDuration')
     if user:

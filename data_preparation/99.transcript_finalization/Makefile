@@ -9,13 +9,16 @@ TGT_BASEDIR=$(ROOT_DIR)/redmine_data/final/transcripts
 FOR_ANNOT_BASEDIR=../../../../tmp/data_preparation/*/*/05.task2-3_for_annotators/*
 MIXED_BASEDIR=../../tmp/data_preparation/*/*/04.task2-3_mixed_transcripts
 DATA_TYPE=
+AUTHOR_ONLY_FLAG=
 
 ifeq ($(DATA_TYPE),manual)
 SRC_DIR=$(SRC_BASEDIR)/04.manual
 TGT_DIR=$(TGT_BASEDIR)/manual
+AUTHOR_ONLY_FLAG=
 else ifeq ($(DATA_TYPE),before_review)
 SRC_DIR=$(SRC_BASEDIR)/03.under_review
 TGT_DIR=$(TGT_BASEDIR)/before_review
+AUTHOR_ONLY_FLAG=--author-only
 else
 SRC_DIR=$(SRC_BASEDIR)/01.auto
 TGT_DIR=$(TGT_BASEDIR)/auto
@@ -81,7 +84,7 @@ add_annotation_durations :
 	# ignore the transcripts presumably already in progress
 	cat $(ACTION_LOG_PATH) | \
 		tail -n+11 | \
-		python3 add_annotation_times.py --author-only --userfile $(USERFILE_PATH) $(TGT_DIR)/*.xml
+		python3 add_annotation_times.py $(AUTHOR_ONLY_FLAG) --userfile $(USERFILE_PATH) $(TGT_DIR)/*.xml
 	for f in $(TGT_DIR)/*.xml; do \
 		xmllint --format $$f > $$f.pp; \
 		mv $$f.pp $$f; \
