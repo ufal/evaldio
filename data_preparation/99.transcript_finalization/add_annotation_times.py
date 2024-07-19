@@ -84,6 +84,7 @@ def process_logrecords(log_records, include_guests=False):
             #    logging.warning(f"The user who opened and closed {filename} differ: {user_start} {user}")
             #    continue
             duration = time - time_start
+            # the following tries to fix the bug in the logging which logs time in the 12-hour format but does not include tha AM/PM tag
             if duration < timedelta():
                 logging.debug(f"TIME START: {time_start}")
                 logging.debug(f"TIME END: {time}")
@@ -111,7 +112,7 @@ def insert_time_to_xml(xmltree, duration_time, user=None, clear=True):
     annot_duration_e = ET.Element('annotDuration')
     if user:
         annot_duration_e.attrib["user"] = user
-    annot_duration_e.text = str(duration_time)
+    annot_duration_e.text = str(duration_time.total_seconds())
     transcript_meta_e.append(annot_duration_e)
 
 def main():
