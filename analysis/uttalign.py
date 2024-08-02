@@ -99,7 +99,9 @@ class BioAligner:
         return overlap
 
     def text_score(self, a, b):
-        a, b = utils.normalize_text(a['text'], char_level=True), utils.normalize_text(b['text'], char_level=True)
+        a = a['text'] if isinstance(a, dict) else a
+        b = b['text'] if isinstance(b, dict) else b
+        a, b = utils.normalize_text(a, char_level=True), utils.normalize_text(b, char_level=True)
         if len(a) == 0 or len(b) == 0:
             return 0
         alignment = pairwise2.align.globalms(a, b, one_alignment_only=True, gap_char=['-'], open=0, extend=0, match=1, mismatch=0)
@@ -171,6 +173,16 @@ class BioAligner:
             if idx in found_for_auto:
                 continue
             alignments.append((tuple(manual_utt['original_utterances']), tuple([])))
+
+
+        not_covered_manual = set(list(range(len(manual_utterances))))
+        for manual_utt, _ in alignments:
+            for manual_idx in manual_utt:
+                not_covered_manual.discard(manual_idx)
+
+        for manual_idx in not_covered_manual:
+            alignments.append((tuple([manual_idx]), tuple([])))
+        
 
         return list(group_alignments(alignments))
 
