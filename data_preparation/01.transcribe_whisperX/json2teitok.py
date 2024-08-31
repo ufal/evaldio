@@ -38,8 +38,9 @@ print(get_header(audio_filename))
 
 print("<text>")
 
-for i, seg in enumerate(data["segments"], 1):
-    print(get_utterance(i, seg))
+if "segments" in data:
+    for i, seg in enumerate(data["segments"], 1):
+        print(get_utterance(i, seg))
 
 print("</text>")
 print("</TEI>")

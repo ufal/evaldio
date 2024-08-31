@@ -231,9 +231,34 @@ distrib_2024-07-04 :
 		ANNOTATORS="ZM" \
 		SELECTION_RULE='$$$$((i+1))'
 
+distrib_2024-08-31 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-08-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-08-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+5))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-08-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+10))' \
+		TRANSCRIPT_TYPE=from_scratch
+
 distribute_manual :
 	mkdir -p $(TGT_DIR_PATH)
-
 
 distribute :
 	mkdir -p $(TGT_DIR_PATH)
@@ -243,7 +268,7 @@ distribute :
 		cat $(TGT_DIR_PATH)/shuffled_srcfiles.txt | \
 		sed -n $(SELECTION_RULE)'p' | \
 		while read srcfile; do \
-			tgt_bf=`./audio_to_transcript2annot_name.sh $$srcfile $${annotators[$$i]}`; \
+			tgt_bf=`./audio_to_transcript2annot_name.sh $$srcfile $${annotators[$$i]} $(TRANSCRIPT_TYPE)`; \
 			tgtfile=$(TGT_DIR_PATH)/$$tgt_bf; \
 			ln -s $$srcfile $$tgtfile; \
 			echo -e "$$tgtfile\t$$srcfile" >> $(TGT_DIR_PATH)/map_table.tsv; \
