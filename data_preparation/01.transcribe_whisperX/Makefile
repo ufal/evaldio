@@ -4,7 +4,7 @@ SHELL=/bin/bash
 
 ROOT_DIR=../..
 
-SRC_BASEDIR=$(ROOT_DIR)/data/exams
+SRC_BASEDIR=$(ROOT_DIR)/data/exams/src_audio
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/01.auto_transcript/whisperX-large-v2
 BATCH_PATH=
 
@@ -25,7 +25,7 @@ WHISPERX=. $(VENV)/bin/activate; whisperx
 #		export HF_TOKEN=???
 # 3. if "Killed", try asking for more memory by calling srun with --mem=50G (alternatively by calling whisperX with float32 replaced by float16, or large-v2 by large-v1, medium, small etc.)
 
-transcribe_all: transcribe_UJOP-CCE-A2_2024_01_26 transcribe_UJOP-CCE-A2_2024_04_24 transcribe_UJOP-CCE-B1_2024_05_21
+transcribe_all: transcribe_UJOP-CCE-A2_2024_01_26 transcribe_UJOP-CCE-A2_2024_04_24 transcribe_UJOP-CCE-B1_2024_05_21 transcribe_UJOP-CCE-A1_2024_06_11 transcribe_UJOP-CCE-B2_2024_09_23 transcribe_UJOP-CCE-B2_2024_09_23
 
 transcribe_UJOP-CCE-A2_2024_01_26:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-A2_2024_01_26
@@ -33,6 +33,12 @@ transcribe_UJOP-CCE-A2_2024_04_24:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-A2_2024_04_24
 transcribe_UJOP-CCE-B1_2024_05_21:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-B1_2024_05_21
+transcribe_UJOP-CCE-A1_2024_06_11:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-A1_2024_06_11
+transcribe_UJOP-CCE-B2_2024_09_23:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-B2_2024_09_23
+transcribe_UJOP-CCE-C1_2024_09_23:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-C1_2024_09_23
 
 transcribe_dir: $(TGT_FILES)
 $(TGT_DIR)/%.json : $(SRC_DIR)/%.mp3
