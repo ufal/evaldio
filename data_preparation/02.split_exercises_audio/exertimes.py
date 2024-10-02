@@ -11,7 +11,7 @@ import re
 import sys
 import xml.etree.ElementTree as ET
 
-EXER_REGEX = r'[uúUÚ]lo[hz]'
+EXER_REGEX = r'([uúUÚ]lo[hz]|úlovu)'
 NUMCARD_REGEXS = [r'([jJ]edna|1)', r'([dD]v[aě]|2)', r'([tT]ři|3)']
 NUMORD_REGEXS = [r'[Pp]rv', r'[Dd]ruh', r'[Tt]řet']
 EXER_END_REGEX_PARTS = [r'[Kk]onec', r'([uú]lo[zvh][ey]|důvěr)']
@@ -38,6 +38,8 @@ def find_exercise_starts_ends(u_elems_sorted):
     exer_offset = None
     exer_starts = []
     exer_ends = []
+
+    postponed_start = False
     
     for u_elem in u_elems_sorted:
 
@@ -49,29 +51,40 @@ def find_exercise_starts_ends(u_elems_sorted):
             else:
                 continue
 
+        if postponed_start:
+            postponed_start = False
+            exer_starts.append(u_elem)
+
+        is_end = False
         # search for the end of the exercise no. I, only if it has already started
         if len(exer_starts) > len(exer_ends) and matches_exer_end(u_elem.text, exer_offset + len(exer_ends)):
+            is_end = True
             exer_ends.append(u_elem)
-            continue
 
         # search for the start of the exercise no. I, unless it has already started
         if len(exer_starts) == len(exer_ends) and matches_exer(u_elem.text, exer_offset + len(exer_starts)):
+            # the end of the previous exercise and the start of the new exercise appear in the same utterance
+            # save the start time of the following utterance
+            if is_end:
+                postponed_start = True
+                continue
             exer_starts.append(u_elem)
         
     return exer_starts, exer_ends
 
 def interactive_debugging(exer_starts, exer_ends, total_start, total_end, filename=""):
     print(f"Start: {total_start}")
-    i = 0
     for i in range(len(exer_ends)):
         print(f"({i+1})\t[{exer_starts[i].attrib['start']:10}]\t{exer_starts[i].text}")
         print(f"   \t[{exer_ends[i].attrib['end']:10}]\t{exer_ends[i].text}")
     if len(exer_starts) > len(exer_ends):
+        i = len(exer_starts) - 1
         print(f"({i+1})\t[{exer_starts[i].attrib['start']:10}]\t{exer_starts[i].text}")
     print(f"End: {total_end}")
     
-    is_ok, comment = input("Is this OK (y/n) # comment? ").split("#")
-    if not is_ok.lower().startswith("y"):
+    answer = input("Is this OK (y/n) # comment? ")
+    if not answer.lower().startswith("y"):
+        _, comment = answer.split("#")
         print()
         print(f"[ERR]\t{filename}\t{comment}")
 
