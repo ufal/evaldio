@@ -17,12 +17,15 @@ TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 SRC_AUDIO_FILES=$(wildcard $(SRC_AUDIO_DIR)/*.mp3)
 SRC_TRANS_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(SRC_TRANS_DIR)/%.xml)
 TGT_MUTED_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(TGT_DIR)/%.muted.done)
+TGT_DELETED_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(TGT_DIR)/%.deleted.done)
 
 ######### COMMANDS #########
 
-$(TGT_DIR)/%.muted.done : $(SRC_AUDIO_DIR)/%.mp3 $(SRC_TRANS_DIR)/%.xml
+$(TGT_DIR)/%.muted.done : FLAG=
+$(TGT_DIR)/%.deleted.done : FLAG=--delete
+$(TGT_DIR)/%.muted.done $(TGT_DIR)/%.deleted.done : $(SRC_AUDIO_DIR)/%.mp3 $(SRC_TRANS_DIR)/%.xml
 	mkdir -p $(dir $@)
-	python3 speaker_ffmpeg_cmd.py $(word 2,$^) | \
+	python3 speaker_ffmpeg_cmd.py $(FLAG) $(word 2,$^) | \
 		while IFS=$$'\t' read -r speaker ffmpeg_cmd; do \
 			donef="$@"; \
 			outf=$${donef%.done}.speaker-$$speaker.mp3; \
@@ -31,3 +34,4 @@ $(TGT_DIR)/%.muted.done : $(SRC_AUDIO_DIR)/%.mp3 $(SRC_TRANS_DIR)/%.xml
 	touch $@
 
 speakers_muted : $(TGT_MUTED_FILES)
+speakers_deleted : $(TGT_DELETED_FILES)
