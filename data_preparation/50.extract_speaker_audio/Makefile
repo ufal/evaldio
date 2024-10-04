@@ -22,7 +22,7 @@ TGT_DELETED_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(TGT_DIR)/%.deleted.
 ######### COMMANDS #########
 
 $(TGT_DIR)/%.muted.done : FLAG=
-$(TGT_DIR)/%.deleted.done : FLAG=--delete
+$(TGT_DIR)/%.deleted.done : FLAG=--delete --join-neighbours
 $(TGT_DIR)/%.muted.done $(TGT_DIR)/%.deleted.done : $(SRC_AUDIO_DIR)/%.mp3 $(SRC_TRANS_DIR)/%.xml
 	mkdir -p $(dir $@)
 	python3 speaker_ffmpeg_cmd.py $(FLAG) $(word 2,$^) | \
