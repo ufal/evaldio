@@ -39,6 +39,16 @@ transcribe_UJOP-CCE-B2_2024_09_23:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-B2_2024_09_23
 transcribe_UJOP-CCE-C1_2024_09_23:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-C1_2024_09_23
+transcribe_UJOP-sample-2023_02_28:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/sample-2023_02_28
+transcribe_UJOP-sample-2023_04_21:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/sample-2023_04_21
+transcribe_NPI-sample-2023_02_28:
+	$(MAKE) transcribe_dir BATCH_PATH=NPI/sample-2023_02_28
+transcribe_NPI-sample-2023_06_30:
+	$(MAKE) transcribe_dir BATCH_PATH=NPI/sample-2023_06_30
+
+.PRECIOUS : $(TGT_DIR)/%.json
 
 transcribe_dir: $(TGT_FILES)
 $(TGT_DIR)/%.json : $(SRC_DIR)/%.mp3
