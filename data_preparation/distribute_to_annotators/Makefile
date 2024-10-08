@@ -283,6 +283,40 @@ distrib_2024-09-06 :
 		SELECTION_RULE='$$$$((i+1+21))' \
 		TRANSCRIPT_TYPE=from_scratch
 
+distrib_2024-10-04 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-10-04 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+24))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-10-04 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+29))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-10-04 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+34))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A2ML_\{220919,221205,230724,230911\}_??_01_*.xml \
+		TGT_DIR=05.for_annotators/2024-10-04 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+39))' \
+		TRANSCRIPT_TYPE=from_scratch
+
 distribute_manual :
 	mkdir -p $(TGT_DIR_PATH)
 
