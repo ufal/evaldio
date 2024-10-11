@@ -25,7 +25,16 @@ WHISPERX=. $(VENV)/bin/activate; whisperx
 #		export HF_TOKEN=???
 # 3. if "Killed", try asking for more memory by calling srun with --mem=50G (alternatively by calling whisperX with float32 replaced by float16, or large-v2 by large-v1, medium, small etc.)
 
-transcribe_all: transcribe_UJOP-CCE-A2_2024_01_26 transcribe_UJOP-CCE-A2_2024_04_24 transcribe_UJOP-CCE-B1_2024_05_21 transcribe_UJOP-CCE-A1_2024_06_11 transcribe_UJOP-CCE-B2_2024_09_23 transcribe_UJOP-CCE-B2_2024_09_23
+transcribe_all: transcribe_UJOP-CCE-A2_2024_01_26 \
+				transcribe_UJOP-CCE-A2_2024_04_24 \
+				transcribe_UJOP-CCE-B1_2024_05_21 \
+				transcribe_UJOP-CCE-A1_2024_06_11 \
+				transcribe_UJOP-CCE-B2_2024_09_23 \
+				transcribe_UJOP-CCE-C1_2024_09_23 \
+				transcribe_UJOP-sample-2023_02_28 \
+				transcribe_UJOP-sample-2023_04_21 \
+				transcribe_NPI-sample-2023_02_28 \
+				transcribe_NPI-sample-2023_06_30
 
 transcribe_UJOP-CCE-A2_2024_01_26:
 	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-A2_2024_01_26
