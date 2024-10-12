@@ -24,14 +24,12 @@ EXAM_PATTERN_WEIGHTS = [
 def filter_empty(u_elems):
     return [u_elem for u_elem in u_elems if u_elem.text]
 
-def estimate_examiner_role(texts, speaker):
+def estimate_examiner_role(texts):
     pattern_counts = [
         sum([re.search(pattern, t) is not None for t in texts]) * weight
         for pattern, weight in EXAM_PATTERN_WEIGHTS
     ]
-    #logging.debug(f"Pattern counts: {speaker} = {pattern_counts}")
     score = (sum(pattern_counts) / len(texts)) / (sum(weight for _, weight in EXAM_PATTERN_WEIGHTS) * len(pattern_counts))
-    #logging.debug(f"Score: {speaker} = {score}")
     return score
 
 def guess_speaker_roles(u_elems):
@@ -45,7 +43,7 @@ def guess_speaker_roles(u_elems):
         return {old_speakers[0]: "CAND_1"}
     name_assign = {}
     # find the examiner
-    examiner = max(old_speakers, key=lambda speaker: estimate_examiner_role(utt_by_speakers[speaker], speaker))
+    examiner = max(old_speakers, key=lambda speaker: estimate_examiner_role(utt_by_speakers[speaker]))
     name_assign[examiner] = "EXAM_1"
     old_speakers.remove(examiner)
     # remaining speakers are candidates
@@ -62,30 +60,33 @@ def main():
     text_elem = doctree.find(".//text")
 
     u_elems = text_elem.findall("./u")
-
-    # filter out empty utterances
-    u_elems = filter_empty(u_elems)
-
-    # sorting utterances by their start times
-    u_elems_sorted = sorted(u_elems, key=lambda elem: float(elem.get("start")))
-
-    # guessing speaker roles to rename the speakers
-    speaker_roles = guess_speaker_roles(u_elems_sorted)
     
-    # clear all the utterances
-    text_elem.clear()
+    # no normalization needed for empty transcripts
+    if u_elems:
 
-    # insert them back sorted
-    for idx, u_elem in enumerate(u_elems_sorted, 1):
-        # remove other than specified attributes
-        for attr_name in u_elem.keys():
-            if attr_name not in ["start", "end", "who"]:
-                del u_elem.attrib[attr_name]
-        # set standard names for speakers, guessing the examiner by the content
-        u_elem.attrib["who"] = speaker_roles[u_elem.attrib["who"]]
-        # re-index IDs
-        u_elem.attrib["id"] = f"u-{idx}"
-        text_elem.append(u_elem)
+        # filter out empty utterances
+        u_elems = filter_empty(u_elems)
+
+        # sorting utterances by their start times
+        u_elems_sorted = sorted(u_elems, key=lambda elem: float(elem.get("start")))
+
+        # guessing speaker roles to rename the speakers
+        speaker_roles = guess_speaker_roles(u_elems_sorted)
+
+        # clear all the utterances
+        text_elem.clear()
+
+        # insert them back sorted
+        for idx, u_elem in enumerate(u_elems_sorted, 1):
+            # remove other than specified attributes
+            for attr_name in u_elem.keys():
+                if attr_name not in ["start", "end", "who"]:
+                    del u_elem.attrib[attr_name]
+            # set standard names for speakers, guessing the examiner by the content
+            u_elem.attrib["who"] = speaker_roles[u_elem.attrib["who"]]
+            # re-index IDs
+            u_elem.attrib["id"] = f"u-{idx}"
+            text_elem.append(u_elem)
 
     logging.debug("Printing the output XML file")
     doctree.write(sys.stdout, encoding="unicode", xml_declaration=True)
