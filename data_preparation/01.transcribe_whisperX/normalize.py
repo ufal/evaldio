@@ -21,6 +21,9 @@ EXAM_PATTERN_WEIGHTS = [
     (r"[Oo]táz[ek]", 5),
 ]
 
+def filter_empty(u_elems):
+    return [u_elem for u_elem in u_elems if u_elem.text]
+
 def estimate_examiner_role(texts, speaker):
     pattern_counts = [
         sum([re.search(pattern, t) is not None for t in texts]) * weight
@@ -58,8 +61,13 @@ def main():
     doctree = ET.parse(sys.stdin)
     text_elem = doctree.find(".//text")
 
+    u_elems = text_elem.findall("./u")
+
+    # filter out empty utterances
+    u_elems = filter_empty(u_elems)
+
     # sorting utterances by their start times
-    u_elems_sorted = sorted(text_elem.findall("./u"), key=lambda elem: float(elem.get("start")))
+    u_elems_sorted = sorted(u_elems, key=lambda elem: float(elem.get("start")))
 
     # guessing speaker roles to rename the speakers
     speaker_roles = guess_speaker_roles(u_elems_sorted)
