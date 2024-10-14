@@ -32,7 +32,31 @@ def estimate_examiner_role(texts):
     score = (sum(pattern_counts) / len(texts)) / (sum(weight for _, weight in EXAM_PATTERN_WEIGHTS) * len(pattern_counts))
     return score
 
-def guess_speaker_roles(u_elems):
+def normalize_speaker_roles(u_elems):
+    for u_elem in u_elems:
+        # remove potentially leading or trailing whitespace from old speaker names
+        u_elem.attrib["who"] = u_elem.attrib["who"].strip()
+
+def guess_speaker_role_by_name(u_elems):
+    old_speakers = set([u_elem.attrib["who"] for u_elem in u_elems])
+    # do not assign speaker roles by name if the speaker names have only numerical indices
+    if all(re.match(r'^.*_\d\d$', speaker) for speaker in old_speakers):
+        return None
+    name_assign = {}
+    # assign examiner roles
+    exam_count = 0
+    cand_count = 0
+    for old_name in sorted(old_speakers):
+        # EXAM roles to the speaker names that end with t*
+        if re.match(r'^.*_t[^_]*$', old_name):
+            name_assign[old_name] = f"EXAM_{exam_count+1}"
+            exam_count += 1
+        else:
+            name_assign[old_name] = f"CAND_{cand_count+1}"
+            cand_count += 1
+    return name_assign
+
+def guess_speaker_roles_by_content(u_elems):
     utt_by_speakers = OrderedDict()
     for u_elem in u_elems:
         utt_by_speakers.setdefault(u_elem.attrib["who"], []).append(u_elem.text)
@@ -50,6 +74,15 @@ def guess_speaker_roles(u_elems):
     # their idx is assigned in the order they first appear in the transcript
     name_assign.update({old_name: f"CAND_{idx}" for idx, old_name in enumerate(old_speakers, 1)})
     return name_assign
+
+def guess_speaker_roles(u_elems):
+    # assign speaker roles
+    # first try by name
+    # if failed, assign by content
+    name_assign = guess_speaker_role_by_name(u_elems)
+    if name_assign:
+        return name_assign
+    return guess_speaker_roles_by_content(u_elems)
 
 def main():
     # Configure the logging module
@@ -69,6 +102,9 @@ def main():
 
         # sorting utterances by their start times
         u_elems_sorted = sorted(u_elems, key=lambda elem: float(elem.get("start")))
+
+        # normalize speaker roles
+        normalize_speaker_roles(u_elems_sorted)
 
         # guessing speaker roles to rename the speakers
         speaker_roles = guess_speaker_roles(u_elems_sorted)
