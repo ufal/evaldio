@@ -3,6 +3,7 @@ from collections import defaultdict
 from datetime import datetime, timedelta
 import logging
 import os
+import re
 import sys
 import xml.etree.ElementTree as ET
 
@@ -20,6 +21,8 @@ def transcript_path2name(path):
         name = f"{name_parts[1]}-{name_parts[0]}"
     else:
         name = f"{name_parts[0]}-{name_parts[1]}"
+    # rename the recordings of exercises 2 and 3 from the first batch of A2 so that the log records are aligned with the new names of their transcripts
+    name = re.sub(r'((220919|221205|230724|230911)_..)-', r'\1_02-', name)
     return name
 
 def parse_userfile(userfile_path):
