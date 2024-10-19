@@ -9,9 +9,8 @@ import xml.etree.ElementTree as ET
 def parse_arguments():
     parser = argparse.ArgumentParser()
     #parser.add_argument("input_xml", type=str, help="Input transcript in the TEITOK format.")
-    parser.add_argument("split_times", type=float, nargs='+', help="A list of timestamps at which the recording should be split.")
+    parser.add_argument("split_params", nargs='+', help="A list of split names interleaved by timestamps at which the recording should be split.")
     parser.add_argument("--output-prefix", type=str, help="Path prefix to store the results of the split.")
-    parser.add_argument("--part-name", type=str, default="part", help="Name of the part that is split.")
     args = parser.parse_args()
     return args
 
@@ -20,13 +19,12 @@ def belongs_to_split(u_elem, split_end_time):
     after_split_duration = float(u_elem.attrib["end"]) - split_end_time
     return before_split_duration >= after_split_duration
 
-def split_utterances_by_times(u_elems, times):
-    sorted_times = sorted(times)
+def split_utterances_by_times(u_elems, split_times):
     is_distributed_list = [False] * len(u_elems)
     u_elem_splits = []
     # iterate over the end times of the splits and distribute the utterances to them
     prev_time = 0
-    for time in sorted_times:
+    for time in split_times:
         u_elem_splits.append([])
         for i, u_elem in enumerate(u_elems):
             # skip utterances that have already been distributed
@@ -69,7 +67,6 @@ def rename_media_path(doctree, part_name):
 
 def adjust_annotation_duration(doctree, split_ratio):
     annot_duration_elems = doctree.findall(".//annotDuration")
-    logging.debug(f"Annot duration elements: {annot_duration_elems}")
     for annot_duration_elem in annot_duration_elems:
         new_duration = "{:.3f}".format(float(annot_duration_elem.text) * split_ratio)
         logging.debug(f"Changing the duration of the annotation from {annot_duration_elem.text} to {new_duration}.")
@@ -84,7 +81,7 @@ def replace_utt_elems(doctree, u_elem_split):
 def main():
     args = parse_arguments()
 
-    logging.basicConfig(level=logging.DEBUG)
+    logging.basicConfig(level=logging.INFO)
         
     # parse the input XML file
     logging.info(f"Parsing the input XML file from stdin.")
@@ -93,22 +90,22 @@ def main():
     u_elems = text_elem.findall("./u")
     
     # split the utterances by the specified times
-    logging.info(f"Splitting the transcript at times {args.split_times}.")
-    u_elem_splits = split_utterances_by_times(u_elems, args.split_times)
+    logging.info(f"Splitting the transcript at times {args.split_params}.")
+    split_times = [float(time) for time in args.split_params[1::2]]
+    u_elem_splits = split_utterances_by_times(u_elems, split_times)
 
     # count the split ratio
     split_ratio = count_split_ratio(u_elems, u_elem_splits)
     logging.debug(f"Split ratio: {split_ratio}")
 
     # deep-copy the original XML tree, replace the utterance elements, and write the new XML tree to the output directory
-    for idx, u_elem_split in enumerate(u_elem_splits):
+    for split_name, u_elem_split, split_weight in zip(args.split_params[0::2], u_elem_splits, split_ratio):
         doctree_split = copy.deepcopy(doctree)
-        split_suffix = f"{args.part_name}{idx+1}"
-        rename_media_path(doctree_split, split_suffix)
-        adjust_annotation_duration(doctree_split, split_ratio[idx])
+        rename_media_path(doctree_split, split_name)
+        adjust_annotation_duration(doctree_split, split_weight)
         replace_utt_elems(doctree_split, u_elem_split)
-        logging.info(f"Writing the split transcript to {args.output_prefix}.{split_suffix}.xml")
-        doctree_split.write(f"{args.output_prefix}.{split_suffix}.xml", encoding="utf-8", xml_declaration=True)
+        logging.info(f"Writing the split transcript to {args.output_prefix}.{split_name}.xml")
+        doctree_split.write(f"{args.output_prefix}.{split_name}.xml", encoding="utf-8", xml_declaration=True)
 
 if __name__ == "__main__":
     main()
