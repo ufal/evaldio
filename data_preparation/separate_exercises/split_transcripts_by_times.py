@@ -19,6 +19,10 @@ def belongs_to_split(u_elem, split_end_time):
     after_split_duration = float(u_elem.attrib["end"]) - split_end_time
     return before_split_duration >= after_split_duration
 
+def renumber_ids(u_elems):
+    for i, u_elem in enumerate(u_elems):
+        u_elem.attrib["id"] = f"u-{i+1}"
+
 def split_utterances_by_times(u_elems, split_times):
     is_distributed_list = [False] * len(u_elems)
     u_elem_splits = []
@@ -51,6 +55,9 @@ def split_utterances_by_times(u_elems, split_times):
             u_elem.attrib["end"] = "{:.3f}".format(float(u_elem.attrib["end"]) - prev_time)
             # add the utterance to the current split
             u_elem_splits[-1].append(u_elem)
+    # renumber the utterance IDs in each split
+    for u_elem_split in u_elem_splits:
+        renumber_ids(u_elem_split)
     return u_elem_splits
 
 def count_split_ratio(u_elems, u_elem_splits):
@@ -63,7 +70,7 @@ def count_split_ratio(u_elems, u_elem_splits):
 
 def rename_media_path(doctree, part_name):
     media_elem = doctree.find(".//media")
-    media_elem.attrib["url"] = f"{media_elem.attrib['url'][:-4]}.{part_name}.mp3"
+    media_elem.attrib["url"] = f"{media_elem.attrib['url'][:-4]}-{part_name}.mp3"
 
 def adjust_annotation_duration(doctree, split_ratio):
     annot_duration_elems = doctree.findall(".//annotDuration")
@@ -105,7 +112,7 @@ def main():
         adjust_annotation_duration(doctree_split, split_weight)
         replace_utt_elems(doctree_split, u_elem_split)
         logging.info(f"Writing the split transcript to {args.output_prefix}.{split_name}.xml")
-        doctree_split.write(f"{args.output_prefix}.{split_name}.xml", encoding="utf-8", xml_declaration=True)
+        doctree_split.write(f"{args.output_prefix}-{split_name}.xml", encoding="utf-8", xml_declaration=True)
 
 if __name__ == "__main__":
     main()
