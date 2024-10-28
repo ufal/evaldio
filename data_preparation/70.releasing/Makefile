@@ -23,8 +23,8 @@ release_A2_202410:
 copy : $(BATCH_PATH).exer_numbers.csv
 	mkdir -p $(TGT_DIR)
 	while read fid exer; do \
-		cp -v $(SRC_DIR)/$$fid*.$$exer.mp3 $(TGT_DIR); \
-		for f in $(SRC_DIR)/$$fid*.$$exer.xml; do \
+		cp -v $(SRC_DIR)/$$fid*-$$exer.mp3 $(TGT_DIR); \
+		for f in $(SRC_DIR)/$$fid*-$$exer.xml; do \
 			bf=`basename $$f`; \
 			echo "===== $$f ====="; \
 			python add_proper_tei_header.py $$f $(TGT_DIR)/$$bf; \

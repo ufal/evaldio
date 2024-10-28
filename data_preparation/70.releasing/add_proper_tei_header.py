@@ -147,7 +147,7 @@ def parse_info_from_filename(filename):
     # "AP" is the acronym of the annotator
     # "from_scratch" refers to the the source of pre-annotation, here there was no pre-annotation
     # "exer3" is the exercise number
-    match = re.match(r'(?P<level>[A-C][1-2])ML_(?P<rec_date>\d{6})_.*-(?P<annotator_short>\w{2})-(?P<type>\w+)\.exer(?P<exerno>[1-9])\.xml', basename)
+    match = re.match(r'(?P<level>[A-C][1-2])ML_(?P<rec_date>\d{6})_.*-(?P<annotator_short>\w{2})-(?P<type>\w+)-exer(?P<exerno>[1-9])\.xml', basename)
     if not match:
         return None
     info = match.groupdict()
