@@ -62,7 +62,7 @@ beep.mp3 :
 # for the time being, there must be a single split timestamp in each *.split_times.txt file
 $(TGT_DIR)/%.verify_split.done : $(SRC_DIR)/%_anonym_audio.mp3 $(TGT_DIR)/%.split_times.txt beep.mp3
 	mkdir -p $(TGT_DIR)
-	./verify_split.sh $(word 1,$^) $(word 2,$^) $(EXCERPT_HALFLENGTH) $(TGT_DIR)/$*
+	./verify_split.sh $(word 1,$^) $(word 2,$^) $(EXCERPT_HALFLENGTH) $(word 3,$^) $(TGT_DIR)/$*
 	touch $@
 
 ########### TEMPORARY RULES TO GENERATE SPLIT TIMES #############
