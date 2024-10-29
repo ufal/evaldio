@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<ttsettings>
+	
+	<!-- Definition of the languages to be used in the interface -->
+	<languages prefixed="1" default="en">
+		<options>
+		<item key="en" locale="en_UK.UTF-8" menu="EN" name="English"/>	
+		<item key="cs" locale="cs_CZ.UTF-8" menu="CS" name="Czech"/>	
+		</options>
+	</languages>
+	
+	<!-- Definition of the items to be displayed in the navigation menu -->
+	<menu title="[title]" link="index.php">	
+		<itemlist>
+			<item key="browser" display="Browse"/>
+			<item key="cqp" display="Search"/>
+            <item key="__TODO__" display="Download" target="repository"/>
+			<item type="separator"/>
+		</itemlist>
+	</menu>
+
+	<defaults lang="cs" fileview="text">
+	    <log actionlog="Resources/action.log" errorlog="Resources/error.log"/>
+	    <title display="Evaldio"/>
+	    <base foldername="evaldio" url="/services/teitok-live/evaldio/"/>
+	    <browser style="table"/>
+	</defaults>
+		
+	<!-- Definition of the CQP corpus created from the XML files -->
+	<cqp corpus="TT-EVALDIO" searchfolder="xmlfiles">	
+		<pattributes>
+			<item key="form" display="Written form"/>
+			<item key="lemma" display="Lemma"/>
+			<item key="upos" display="UD POS tag" type="select"/>
+			<item key="xpos" display="PDT POS"/>
+            <item key="feats" display="UD feats" type="udfeats"/>
+			<item key="deprel" display="Dependency relation" type="select" nosearch="1"/>
+			<item key="head" display="Dependency head" nosearch="1"/>
+		</pattributes>
+		<sattributes>
+            <item level="u" key="u" display="Utterance">
+                <item key="who" display="Speaker" xpath="./preceding-sibling::note[@type='speaker'][1]/text()" type="select"/>
+                <item key="role" display="Speaker role" xpath="@role" type="select"/>
+                <item key="start" display="Start" nosearch="1" xpath="@start"/>
+                <item key="end" display="End" nosearch="1" xpath="@end"/>
+            </item>
+
+            <item level="text" key="text" display="Filter Documents">
+                <item key="level" type="select" xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='cefr-level']" display="CEFR Level" sort="string"/>
+                <item key="exerno" type="select" xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='exercise-number']" display="Exercise number" sort="string"/>
+                <item key="preannot-source" type="select" xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='preannot-source']" display="Pre-annotation source" sort="string"/>
+            </item>
+
+		</sattributes>
+	<!--	<stats>
+			<item var="tokcnt" cql="[]" type="size" display="Token count"/>
+			<item var="cwcnt" cql="[pos='[ANVR].*']" type="size" display="Content words"/>
+			<item var="sent" cql="&lt;s&gt; []" type="size" display="Sentences"/>
+			<item var="formtypes"  cql="group Tokcnt match form" type="count" display="Token types"/>
+			<item var="lemmatypes"  cql="group Tokcnt match lemma" type="count" display="Lemma types"/>
+			<item var="cwtypes"  cql="group Cwcnt match lemma" type="count" display="Content word types"/>
+			<item var="ttrform"  calc="formtypes/tokcnt" type="calc" display="TTR on forms"/>
+			<item var="ttrlemma"  calc="cwtypes/cwcnt" type="calc" display="TTR on content words"/>
+			<item var="tlength"  calc="cwcnt/sent" type="calc" display="Avg. sentence length"/>
+			<item var="cwperc"  calc="100*cwcnt/tokcnt" type="calc" display="% of content words"/>
+		</stats>
+	-->
+	</cqp>
+
+	<xmlfile defaultform="pform" defaultview="interpret" xpath="//text" paged="0">
+		<pattributes>
+			<forms>
+				<item key="pform" display="Transcription"/>
+			</forms>
+            <tags>
+                <item key="upos" display="PoS"/>
+                <item key="xpos" display="Tag"/>
+                <item key="feats" display="Features" values="multi" multisep="|" type="udfeats"/>
+                <item key="lemma" display="Lemma"/>
+            </tags>
+		</pattributes>
+		<sattributes>
+			<item key="u" level="u" display="Utterance">
+    			<item key="who" display="Speaker"/>
+			</item>
+		</sattributes>
+	</xmlfile>
+	
+	<views>
+        <item key="deptree" display="Dependencies" xpcond="//s"/>
+        <item key="wavesurfer" display="Wavesurfer" xpcond="//u"/>
+	</views>
+
+	<!-- file uploads -->
+	<files>
+	    <item key="xml" display="TEI XML Files" folder="xmlfiles" extension="*.xml" description="XML Files in TEI format"/>
+	    <item key="audio" display="Audio Files" folder="Audio" extension="*.mp3" description="Audio Files (MP3)"/>
+	</files>
+	
+	<udpipe>
+		<parameters>
+		    <item restriction="//*" params="czech-ud" formtags="upos,xpos,feats,lemma" tagform="pform"/>
+		</parameters> 
+	</udpipe>
+
+<!-- The metadata -->
+    <teiheader>
+        <item xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='cefr-level']" cqp="level" display="CEFR Level"/>
+        <item xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='exercise-number']" cqp="exerno" display="Exercise number"/>
+        <item xpath="/TEI/teiHeader/profileDesc/textClass/keywords/term[@type='preannot-source']" cqp="preannot-source" display="Pre-annotation source"/>
+    </teiheader>
+
+	
+</ttsettings>
