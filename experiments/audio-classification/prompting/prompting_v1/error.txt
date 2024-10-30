@@ -1,0 +1,18 @@
+A2ML_230911_41_01_anonym_audio.simple.txt	A2	{"level": "B1"}assistant
+
+The candidate's responses demonstrate a good understanding of the language, but with some errors in grammar and vocabulary. They are able to hold a conversation and answer questions, but sometimes struggle to find the right words or express themselves clearly. Overall, their level of proficiency is around B1.
+A2ML_230724_26_01_anonym_audio.simple.txt	A2	{"level": "A2"}assistant
+
+The candidate's responses indicate a basic understanding of the language, but with significant errors in grammar, vocabulary, and pronunciation. The candidate struggles to form coherent sentences, uses incorrect verb tenses, and makes mistakes in word choice. The responses also suggest a limited range of vocabulary and a lack of fluency. Overall, the candidate's performance is consistent with a CEFR level of A2.
+A1ML_221219_03_02_anonym_audio.simple.txt	A1	{"level": "A2"}assistant
+
+The candidate's responses demonstrate a basic understanding of the language, but with some errors and limitations. They are able to communicate simple ideas and answer basic questions, but struggle with more complex language and grammar. The candidate's vocabulary is limited, and they often use simple sentence structures. Overall, the candidate's performance is consistent with a CEFR level of A2.
+A2ML_230911_36_01_anonym_audio.simple.txt	A2	{"level": "B1"}assistant
+
+The candidate's responses demonstrate a good understanding of the language, but there are some errors in grammar, vocabulary, and pronunciation. The candidate is able to hold a conversation and answer questions, but there are some hesitations and repetitions. The language is not always accurate, and the candidate struggles with some vocabulary and grammar rules. Overall, the candidate's level is around B1, as they are able to communicate effectively, but with some errors and limitations.
+A2ML_230724_22_01_anonym_audio.simple.txt	A2	{"level": "B1"}assistant
+
+The candidate's responses demonstrate a good understanding of the language and is able to express themselves clearly and coherently. They are able to use a range of vocabulary and grammatical structures, including the use of the present perfect tense and the ability to describe their family and daily activities. However, there are some minor errors in grammar and vocabulary, which suggests a level of B1.
+A1ML_221219_02_02_anonym_audio.simple.txt	A1	{"level": "B1"}assistant
+
+The candidate's response shows a good understanding of the situation and the questions being asked. They are able to respond coherently and use basic vocabulary and grammar correctly. However, there are some errors in pronunciation and grammar, such as the use of "Ehm" and "so" instead of "dobrý den" (good day), and the incorrect use of the word "pár" (pair) instead of "páry" (colors). Additionally, the candidate struggles with fluency and naturalness in their speech, which is a characteristic of a B1 level speaker. Overall, the candidate's performance is consistent with a B1 level.

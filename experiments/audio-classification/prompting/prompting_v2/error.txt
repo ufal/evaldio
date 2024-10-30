@@ -1,0 +1,303 @@
+A1ML_221219_02_02_anonym_audio.simple.txt	A1	{"level": "A1", "passed": false}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of passing the exam
+PASS_PROBABILITY = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript, exam_level):
+    # Simulate the exam
+    if random.random() < PASS_PROBABILITY:
+        return {"level": exam_level, "passed": True}
+    else:
+        # Estimate the CEFR level based on the transcript
+        # For simplicity, let's assume that the CEFR level is the lowest level that the candidate can understand
+        estimated_level = min(CEFR_LEVELS, key=lambda x: (x == 'A1', x == 'A2', x == 'B1', x == 'B2', x == 'C1'))
+        return {"level": estimated_level, "passed": False}
+
+# Define the transcript and exam level
+transcript = """
+CAND_1:  Teď budete dělat úlohu číslo tři.
+CAND_1: Podívejte se na kartu.
+CAND_1: Jsem vaše kamarádka.
+CAND_1: Já kupuju nové auto.
+CAND_1: Tu je moje auto.
+C
+A2ML_230724_29_01_anonym_audio.simple.txt	A2	{"level": "A1", "passed": false}assistant
+
+The candidate's responses indicate a significant number of errors in grammar, vocabulary, and pronunciation, which are characteristic of a beginner level (A1). The candidate's inability to respond correctly to simple questions, such as "Odkud jste?" (Where are you from?) and "Co jste dělala včera?" (What did you do yesterday?), suggests a lack of basic language skills. Additionally, the candidate's use of non-existent words, such as "Petatem" and "Jsem jedl v práci," further supports the assessment of an A1 level. Therefore, the candidate has failed the exam.
+A2ML_230911_32_01_anonym_audio.simple.txt	A2	{"level": "A1", "passed": false}assistant
+
+The candidate's responses indicate a lack of understanding of basic questions and a limited vocabulary. The candidate's grammar and sentence structure are also poor, with many errors. Based on this, I estimate the candidate's CEFR level to be A1. However, since the exam level is A2, the candidate has failed the exam.
+A2ML_230911_36_01_anonym_audio.simple.txt	A2	import random
+
+# Define the transcript
+transcript = [
+    "V úloze 1 budete odpovídat na moje otázky.",
+    "Odkud jste?",
+    "Jsem ze Syrie.",
+    "Jak dlouho bydlíte v České republice?",
+    "Bydlím v České republice 11 let.",
+    "A čím ráda cestujete?",
+    "Jak čím?",
+    "Jakým dopravním prostředkem ráda cestujete?",
+    "A proč?",
+    "Protože já mám ráda dlouhé cestovat a ráda slyším na hodbu.",
+    "Jaké jsou vaše kuníčky?",
+    "Ráda čtu knihy, ráda tancovám, ráda cestuju, ráda plávuju.",
+    "A co jste dělala o víkendu?",
+    "V Kendu jsem koupila věci a šla jsem na procházku s dětmi.",
+    "Co budete dělat v zimě?",
+    "V zimě budu pokračovat čestivou a taky budu pracovat jako očitelka.",
+    "Děkuji Vám, to je konec první úlohy."
+]
+
+# Define the exam level
+exam_level = "A2"
+
+# Define the function to estimate the CEFR level
+def estimate_level(transcript):
+    # Count the number of grammatical errors
+    errors = 0
+    for sentence in transcript:
+A2ML_230911_33_01_anonym_audio.simple.txt	A2	import random
+
+def evaluate_czech_proficiency(transcript, exam_level):
+    # Define the CEFR levels and their corresponding characteristics
+    cefr_levels = {
+        'A1': ['basic phrases', 'simple sentences', 'limited vocabulary'],
+        'A2': ['short sentences', 'common vocabulary', 'basic grammar'],
+        'B1': ['complex sentences', 'varied vocabulary', 'more complex grammar'],
+        'B2': ['long sentences', 'specialized vocabulary', 'advanced grammar'],
+        'C1': ['fluent speech', 'precise vocabulary', 'complex grammar']
+    }
+
+    # Define the failure rate
+    failure_rate = 0.05
+
+    # Evaluate the transcript
+    for level, characteristics in cefr_levels.items():
+        if all(any(word in transcript for word in characteristics) for characteristic in characteristics):
+            return {'level': level, 'passed': level >= exam_level}
+
+    # If the transcript does not match any of the CEFR levels, estimate the level
+    estimated_level = 'A2'  # Default estimated level
+    if random.random() < failure_rate:
+        estimated_level = 'A1'  # Fail the exam with 5% probability
+
+    return {'level': estimated_level, 'passed': estimated_level >= exam_level}
+
+# Test the function
+transcript = """
+CAND_1:  V úloze jedná budete odpovídat na moje otázky
+A1ML_221219_03_02_anonym_audio.simple.txt	A1	import random
+
+transcript = """
+CAND_1:  A teď budete dělat úlohu číslo tři.
+CAND_1: Tak.
+CAND_1: No rozhodně.
+CAND_1: Jsem vaše kamarádka.
+CAND_1: Já mám nového psa.
+CAND_1: To je můj pes.
+CAND_1: Vy se ptáte.
+CAND_1: Musíte udělat dvě otázky.
+CAND_1: Otázka číslo nula je příklad.
+CAND_1:  Kolik jen bude?
+CAND_1: Jen jeden rok.
+CAND_1: A otázku jen jedna.
+CAND_1: Co se jmenuje?
+CAND_1: Iben je Sevex.
+CAND_1: Hezký.
+CAND_1: Jaká barva to je?
+CAND_1:  Rex je hnědý.
+CAND_1: To je všechno.
+CAND_1: Děkuju Vám.
+CAND_1: Vaše zkouška koneční.
+"""
+
+def evaluate_transcript(transcript, level):
+    # Tokenize the transcript
+    tokens = transcript.split()
+
+    # Count the number of unique tokens
+    unique_tokens = len(set(tokens))
+
+    # Estimate the CEFR level based on the number of unique tokens
+    if unique_tokens < 50:
+        estimated_level = 'A1'
+A2ML_230724_22_01_anonym_audio.simple.txt	A2	import json
+
+transcript = """
+CAND_1:  V úloze 1 budete odpovídat na moje otázky.
+CAND_1: Co děláte?
+CAND_1: Já studuji na univerzitě.
+CAND_1: Jaká je vaše rodina?
+CAND_1: Prosím, popište.
+CAND_1: Moje rodina to je maminka, tatínek, sestra a babička.
+CAND_1: Co jste dělala včera?
+CAND_1: Včera jsem
+CAND_1:  Celý den odpočívalam a spalam.
+CAND_1: A co budete dělat příští víkend?
+CAND_1: Myslím, že půjdu někam na návštěvu.
+CAND_1: Děkuji vám a to je konec první úlohy.
+"""
+
+exam_level = "A2"
+
+# Tokenize the transcript
+tokens = transcript.split()
+
+# Count the number of tokens
+num_tokens = len(tokens)
+
+# Estimate the CEFR level based on the number of tokens
+if num_tokens < 50:
+    estimated_level = "A1"
+elif num_tokens < 100:
+    estimated_level = "A2"
+elif num_tokens < 150:
+    estimated_level = "B1"
+elif num_tokens < 200:
+    estimated_level = "B2"
+else:
+A2ML_230911_37_01_anonym_audio.simple.txt	A2	{"level": "A1", "passed": false}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "V úloze jedná budete odpovídat na moje otázky.",
+    "Pohud jste?",
+    "Jsem z Koreje.",
+    "Které jazyky umíte?",
+    "Umím trochu český, japonský, anglický a český.",
+    "Kdy jste se začal učit česky?",
+    "Začal jsem český",
+    "  V roce 2021.",
+    "Máte nějaké domácí zvíře?",
+    "No, mám.",
+    "Mám psa.",
+    "Co budete dělat dnes večer?",
+    "Dělám domácí uku.",
+    "  Večeřím s kamaradem.",
+    "Děkuji Vám.",
+    "To je konec první úlohy."
+]
+
+# Define the exam levels
+exam_levels = ["A2"]
+
+# Define the passing threshold
+passing_threshold = 0.95
+
+# Define the CEFR levels
+cefr_levels = ["A1", "A2", "B1", "B2", "C1"]
+
+# Function to estimate the CEFR level
+def estimate_cefr_level(transcript):
+    # Count the number of grammatically correct sentences
+    correct_sentences = sum(1 for sentence in transcript if sentence.count('.') == 1 and sentence.split('.')[-1
+A2ML_230724_25_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of failing the exam
+FAIL_PROBABILITY = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript, exam_level):
+    # Simulate the exam
+    if random.random() < FAIL_PROBABILITY:
+        # If the candidate fails the exam, estimate the CEFR level
+        # For simplicity, let's assume the estimated level is the same as the exam level
+        estimated_level = exam_level
+    else:
+        # If the candidate passes the exam, the estimated level is the same as the exam level
+        estimated_level = exam_level
+
+    # Return the result
+    return {"level": estimated_level, "passed": estimated_level == exam_level}
+
+# Define the transcript and exam level
+transcript = """
+EXAM_1:  V úloze jedná budete odpovídat na moje otázky.
+EXAM_1: Odkud jste?
+CAND_1: Jsem z Tajwanu.
+EXAM_1: Co se vám ve vaší zemi líbí?
+EXAM_1: Pomalu prosím.
+EXAM_1: Co se vám ve vaší zemi líbí
+A2ML_230724_23_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": false}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of passing the exam
+PASS_PROBABILITY = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript):
+    # Define the CEFR level thresholds
+    thresholds = {
+        'A1': 0.2,
+        'A2': 0.4,
+        'B1': 0.6,
+        'B2': 0.8,
+        'C1': 1.0
+    }
+
+    # Calculate the average sentence length
+    avg_sentence_length = sum(len(sentence.split()) for sentence in transcript) / len(transcript)
+
+    # Estimate the CEFR level based on the average sentence length
+    estimated_level = next((level for level, threshold in thresholds.items() if avg_sentence_length >= threshold), None)
+
+    return estimated_level
+
+# Define the function to determine if the candidate passed the exam
+def did_candidate_pass(estimated_level, exam_level):
+    # Check if the estimated level is greater than or equal to the exam level
+    if estimated_level >= exam_level:
+        # Check if the candidate passed the exam randomly
+        if random.random() < PASS_PROBABILITY:
+            return
+A2ML_230911_34_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_levels = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of failing the exam
+fail_probability = 0.05
+
+# Define the exam level
+exam_level = 'A2'
+
+# Define the candidate's transcript
+transcript = """
+CAND_1:  Úloze jedná budete odpovídat na moje otázky.
+CAND_1: Odkud jste?
+CAND_1: Jsem z Úskaz, Moskvy.
+CAND_1: Co se vám ve vaší zemi líbí?
+CAND_1: Myslím, že mi líbí kultúra a také tradiční jídlo.
+CAND_1:  A to je všechno.
+CAND_1: Co děláte?
+CAND_1: Co dělám?
+CAND_1: Kde?
+CAND_1: Jakou máte profesi?
+CAND_1: Pardon.
+CAND_1: Studuji.
+CAND_1: Studuji na univerzitě v Práze.
+CAND_1: Na Károlové univerzitě.
+CAND_1: Studuji česky taky.
+CAND_1: Co jste dělala dnes ráno?
+CAND_1:

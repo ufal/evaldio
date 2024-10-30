@@ -1,0 +1,428 @@
+A2ML_230724_28_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": false}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_levels = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of failing the exam
+fail_probability = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript, exam_level):
+    # Simulate the exam result
+    if random.random() < fail_probability:
+        # If the candidate fails the exam, estimate the CEFR level
+        # based on the transcript
+        if ' Nerozumím' in transcript:
+            return 'A1'
+        elif ' Červené vlasy' in transcript and ' Je veselá' in transcript and ' Je vysoká' in transcript:
+            return 'A2'
+        else:
+            return 'B1'
+    else:
+        # If the candidate passes the exam, return the exam level
+        return exam_level
+
+# Define the transcript and exam level
+transcript = """
+EXAM_1:  V úloze 1 budete odpovídat na moje otázky.
+EXAM_1: Odkud jste?
+CAND_1: Jsem z Rumunska.
+EXAM_1: Co je ve vaší zemi zajímavého?
+CAND_1: Myslím, že pro Čechy je zajímavé,
+A1ML_221219_03_02_anonym_audio.simple.txt	A1	{"level": "A1", "passed": false}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "A teď budete dělat úlohu číslo tři.",
+    "Tak.",
+    "No rozhodně.",
+    "Jsem vaše kamarádka.",
+    "Já mám nového psa.",
+    "To je můj pes.",
+    "Vy se ptáte.",
+    "Musíte udělat dvě otázky.",
+    "Otázka číslo nulo je příklad.",
+    "Kolik jen bude?",
+    "Jen jeden rok.",
+    "A otázku jen jedna.",
+    "Co se jmenuje?",
+    "Iben je Sevex.",
+    "Hezký.",
+    "Jaká barva to je?",
+    "Rex je hnědý.",
+    "To je všechno.",
+    "Děkuju Vám.",
+    "Vaše zkouška koneční."
+]
+
+# Define the exam levels
+exam_levels = ["A1", "A2", "B1", "B2", "C1"]
+
+# Define the function to estimate the CEFR level
+def estimate_level(transcript):
+    # Count the number of words
+    num_words = len(transcript)
+    
+    # Count the number of unique words
+    num_unique_words = len(set(transcript))
+    
+    # Estimate the CEFR level based on the number of words and unique words
+    if num_words < 50
+A1ML_221219_02_02_anonym_audio.simple.txt	A1	{"level": "A1", "passed": false}assistant
+
+import random
+
+# Define the transcript and exam level
+transcript = """
+CAND_1:  Teď budete dělat úlohu číslo tři.
+CAND_1: Podívejte se na kartu.
+CAND_1: Jsem vaše kamarádka.
+CAND_1: Já kupuju nové auto.
+CAND_1: Tu je moje auto.
+CAND_1: Vy se ptáte.
+CAND_1: Musíte udělat dvě otázky.
+CAND_1: Otázka nolá, tu je příklad.
+CAND_1:  Ehm... Dobrý den, ehm, so... Ehm... Ehm... Chceme... Chceme... Ehm...
+CAND_1:  kolik, chcete víc, kolik, víte, kolik stojí?
+CAND_1: To auto stojí dvěstě padesát tisíc korun.
+CAND_1: Jaká pár vás
+CAND_1:  Se vám líbí?
+CAND_1: To auto má bílou pádu.
+CAND_1: Líbí se mi bílá páda.
+CAND_1: Děkuji vám.
+CAND_1: To je všechno.
+"""
+exam_level = "A1"
+
+# Define the possible CEFR levels
+cefr_levels =
+A2ML_230724_25_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of failing the exam
+FAIL_PROBABILITY = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript, exam_level):
+    # Simulate the exam result
+    if random.random() < FAIL_PROBABILITY:
+        # If the candidate fails the exam, estimate the CEFR level
+        # based on the transcript
+        # For simplicity, let's assume the CEFR level is the average of the words in the transcript
+        words = transcript.split()
+        level = sum(CEFR_LEVELS.index(word[:2]) for word in words) / len(words)
+        return {'level': CEFR_LEVELS[int(level)], 'passed': False}
+    else:
+        # If the candidate passes the exam, return the exam level
+        return {'level': exam_level, 'passed': True}
+
+# Define the transcript and exam level
+transcript = "V úloze jedná budete odpovídat na moje otázky. Odkud jste? Jsem z Tajwanu. Co se vám ve vaší zemi líbí? Pomalu prosím. Co se vám ve vaší zemi líbí? Co je zajímav
+A2ML_230724_21_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "V úloze 1 budete odpovídat na moje otázky.",
+    "Odkud jste?",
+    "Já jsem z Ukrajina.",
+    "Do které země se chcete podívat?",
+    "Chci podívat na... Myslím, že... Itálie.",
+    "A proč Itálie?",
+    "Protože moje babička byla tam a vím, že tam jsou hodně dobře jedlo.",
+    "Kdy jste se narodila?",
+    "Narodila jsem se v Ivano-Frankivsku.",
+    "Které jazyky umíte?",
+    "Umím ukrajinský jazyk, anglický jazyk a trochu český jazyk.",
+    "Kdy jste se začala učit česky?",
+    "Začala jsem učit česky na univerzitě.",
+    "A který jazyk se chcete naučit?",
+    "Chci naučit...",
+    "Myslím, že Japonsky.",
+    "Co jste dělala dnes ráno?",
+    "Dnes ráno jsem vstala a měla jsem směr taky.",
+    "A co budete dělat příští víkend?",
+    "Příští víkend budu jít domů.",
+    "Děkuji Vám, to je konec první
+A2ML_230911_42_01_anonym_audio.simple.txt	A2	{"level": "A1", "passed": false}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "V úloze 1 budete odpovídat na moje otázky.",
+    "Odkud jste?",
+    "Ze Číny.",
+    "A co se vám ve vaší zemi líbí?",
+    "Líbí se mi Praha.",
+    "A co se vám líbí v Číně?",
+    "Co je zajímavého ve vaší zemi?",
+    "Moje země lípí.",
+    "Co se vám lípí ve vaší zemi?",
+    "Lípí se mi čina.",
+    "Měláte jaká je vaše profese?",
+    "Professor, teď nepracuji, protože se učím česky.",
+    "A jak dlouho se učíte česky?",
+    "Učím se česky 6 měsíců.",
+    "Co jste dělala o víkendu?",
+    "O víkendu chodím",
+    "A co budete dělat dnes večer?",
+    "Děkuji vám, to je konec první úlohy."
+]
+
+# Define the exam level
+exam_level = "A2"
+
+# Define the threshold for passing the exam
+threshold = 0.95
+
+# Calculate the number of errors
+errors = sum(1 for word in transcript if word.lower()!= word)
+
+# Calculate the percentage
+A2ML_230724_30_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": false}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "V úloze jedna budete odpovídat na moje otázky.",
+    "Odkud jste?",
+    "Jsem ze Zimbabwe.",
+    "A co vám líbí ve vaší zemi?",
+    "Tady nebo Zimbabwe?",
+    "Zimbabwe.",
+    "My jsme veselé lidi.",
+    "A tak moc ovoce, chutné ovoce.",
+    "A taky moc žira.",
+    "A co děláte?",
+    "Já jsem IT projektová manželka ve Foxconn.",
+    "Podobně.",
+    "A které jazyky umíte?",
+    "Jen anglicky.",
+    "Teď začínám česky a jedna a dva.",
+    "A jak dlouho se učíte česky?",
+    "Šest měsíc do jedna rok.",
+    "Proč studujete češtinu?",
+    "Protože mám dva děky.",
+    "Dcera je 15 let a syn je 10 let.",
+    "Škola tady je ve České republice.",
+    "Také pro integrace moje soused, kamarádi.",
+    "Taky práce.",
+    "Co jste dělala o víkendu?",
+    "O víkendu... One minute.",
+    "Čestovala moje
+A2ML_230911_34_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": false}assistant
+
+import random
+
+# Define the transcript
+transcript = """
+CAND_1:  Úloze jedná budete odpovídat na moje otázky.
+CAND_1: Odkud jste?
+CAND_1: Jsem z Úskaz, Moskvy.
+CAND_1: Co se vám ve vaší zemi líbí?
+CAND_1: Myslím, že mi líbí kultúra a také tradiční jídlo.
+CAND_1:  A to je všechno.
+CAND_1: Co děláte?
+CAND_1: Co dělám?
+CAND_1: Kde?
+CAND_1: Jakou máte profesi?
+CAND_1: Pardon.
+CAND_1: Studuji.
+CAND_1: Studuji na univerzitě v Práze.
+CAND_1: Na Károlové univerzitě.
+CAND_1: Studuji česky taky.
+CAND_1: Co jste dělala dnes ráno?
+CAND_1:  Dnes ráno dala domácí úkol pro češtky.
+CAND_1: Tak to je všechno, protože mám kursy češtiny.
+CAND_1: Co budete dělat zimně?
+CAND_1: Chtěla bych najít práce v Práze a taky budu
+C
+A2ML_230911_41_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": false}assistant
+
+import re
+
+# Define the transcript and exam level
+transcript = """EXAM_1:  v úloze jedná budete odpovídat na moje otázky.
+EXAM_1: Co děláte?
+EXAM_1: Jaká je vaše profesie?
+CAND_1: Jo, jo.
+CAND_1: Teď jsem studentka na Katlovní univerzitě, ale minulý čas jsem pracovala
+CAND_1:  jako maženka, managerka.
+EXAM_1: Kdy jste se začala učit česky?
+CAND_1: Ještě jedno prosím.
+EXAM_1: Jste se začala učit česky?
+CAND_1: Kdy?
+CAND_1: Ano.
+CAND_1: Učila jsem
+CAND_1:  Učila jsem se česky jeden rok.
+CAND_1: A co jste dělala o víkendu?
+CAND_1: Dělala.
+CAND_1: Dělala.
+CAND_1: O víkendu
+CAND_1:  Jsem nedělala nič.
+CAND_1: Odpočívala jsem, běhala jsem, vážila jsem.
+EXAM_1: A co budete dělat dnes večer?
+CAND_
+A2ML_230911_32_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the transcript and exam level
+transcript = """CAND_1:  V úloze 1 budete odpovídat na moje otázky.
+CAND_1: Odkud jste?
+CAND_1: Jsem z Turecka, z Istanbulu.
+CAND_1: Co je ve vaší zemi zajímavé?
+CAND_1: Všechno.
+CAND_1: Všechno zajímavé.
+CAND_1: Asi jazyk je nejzajímavější.
+CAND_1:  Pro mě čeština je moc těžká.
+CAND_1: Nemám nic podobného jako tureština.
+CAND_1: Máte nějaké domácí zvíře?
+CAND_1: Ano, mám.
+CAND_1: Bydlíme spolu jedenáct let.
+CAND_1: Jaké jsou vaše koníčky?
+CAND_1:  tajský box a tady asi pět let, už pět let hraju golf s manželem a hraju v Čechy.
+CAND_1: Děkuji.
+CAND_1: Ačto historickou knihu.
+CAND_1: Děkuji vám.
+CAND_1: To je konec první úlohy."""
+exam_level = "A2"
+
+# Split
+A2ML_230724_22_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the transcript and exam level
+transcript = [
+    "V úloze 1 budete odpovídat na moje otázky.",
+    "Co děláte?",
+    "Já studuji na univerzitě.",
+    "Jaká je vaše rodina?",
+    "Prosím, popište.",
+    "Moje rodina to je maminka, tatínek, sestra a babička.",
+    "Co jste dělala včera?",
+    "Včera jsem",
+    "  Celý den odpočívalam a spalam.",
+    "A co budete dělat příští víkend?",
+    "Myslím, že půjdu někam na návštěvu.",
+    "Děkuji vám a to je konec první úlohy."
+]
+exam_level = "A2"
+
+# Define the CEFR levels and their corresponding scores
+cefr_levels = {
+    "A1": 1,
+    "A2": 2,
+    "B1": 3,
+    "B2": 4,
+    "C1": 5
+}
+
+# Define the threshold for passing the exam
+passing_threshold = 0.95
+
+# Calculate the score based on the transcript
+score = 0
+for sentence in transcript:
+    if sentence.strip()!= "":
+        score += 1
+
+# Calculate
+A2ML_230911_36_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the transcript
+transcript = [
+    "V úloze 1 budete odpovídat na moje otázky.",
+    "Odkud jste?",
+    "Jsem ze Syrie.",
+    "Jak dlouho bydlíte v České republice?",
+    "Bydlím v České republice 11 let.",
+    "A čím ráda cestujete?",
+    "Jak čím?",
+    "Jakým dopravním prostředkem ráda cestujete?",
+    "A proč?",
+    "Protože já mám ráda dlouhé cestovat a ráda slyším na hodbu.",
+    "Jaké jsou vaše kuníčky?",
+    "Ráda čtu knihy, ráda tancovám, ráda cestuju, ráda plávuju.",
+    "A co jste dělala o víkendu?",
+    "V Kendu jsem koupila věci a šla jsem na procházku s dětmi.",
+    "Co budete dělat v zimě?",
+    "V zimě budu pokračovat čestivou a taky budu pracovat jako očitelka.",
+    "Děkuji Vám, to je konec první úlohy."
+]
+
+# Define the exam level
+exam_level = "A2"
+
+# Define the function to estimate the CEFR level
+def estimate_level(transcript):
+    # Count the number
+A2ML_230724_23_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the transcript
+transcript = """
+CAND_1:  V úloze 1 budete odpovídat na moje otázky.
+CAND_1: Odkud jste?
+CAND_1: Já jsem z Bosny.
+CAND_1: Co se vám ve vaší zemi líbí?
+CAND_1: Líbí se mi příroda, taky réka a lidi.
+CAND_1: Čím ráda cestujete?
+CAND_1: A proč?
+CAND_1: Autem.
+CAND_1:  nebo letadlem, že je to daleko a autem v mojej zemi, protože je všechno blízko.
+CAND_1: Které jazyky umíte?
+CAND_1: Umím srbštinu nebo božštinu a chorvatsky a anglicky.
+CAND_1:  A teď se učím česky.
+CAND_1: Jak dlouho se učíte česky?
+CAND_1: To je první rok se učím.
+CAND_1: Ale můj bratř žije tady.
+CAND_1: Já vím něco.
+CAND_1: A co jste dělala u víkendu?
+CAND_1: U víkendu jsme poj
+A2ML_230911_39_01_anonym_audio.simple.txt	A2	{"level": "A2", "passed": true}assistant
+
+import random
+
+# Define the CEFR levels
+CEFR_levels = ['A1', 'A2', 'B1', 'B2', 'C1']
+
+# Define the probability of failing the exam
+fail_probability = 0.05
+
+# Define the function to estimate the CEFR level
+def estimate_cefr_level(transcript, exam_level):
+    # Simulate the exam
+    if random.random() < fail_probability:
+        # If the candidate fails the exam, estimate the CEFR level
+        # based on the transcript
+        # For simplicity, let's assume the CEFR level is the average of the words in the transcript
+        words = transcript.split()
+        level = sum(CEFR_levels.index(word[:2]) for word in words) / len(words)
+        return {'level': CEFR_levels[int(level)], 'passed': False}
+    else:
+        # If the candidate passes the exam, return the exam level
+        return {'level': exam_level, 'passed': True}
+
+# Define the transcript and exam level
+transcript = """
+EXAM_1:  V úloze 1 budete odpovídat na moje otázky.
+EXAM_1: Odkud jste?
+CAND_1: Jsem z Ruska.
+EXAM_1: Kdy jste se přestěhoval do České republiky?
+CAND_
