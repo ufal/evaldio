@@ -84,13 +84,21 @@ TEI_HEADER_TEMPLATE = """
         <respStmt>
           <resp lang="en">Annotator</resp>
           <name>{annotator}</name>
-          <desc>Pre-annotation source: {preannot_source}.</desc>
+          <desc lang="en">Transcripts, time-alignment on the utterance level, assignment of speakers to utterances. Pre-annotation source: {preannot_source}.</desc>
         </respStmt>
       </annotation>
       <annotation>
         <respStmt>
           <resp lang="en">Reviewer</resp>
           <name>{reviewer}</name>
+          <desc lang="en">Review of the primary annotation</desc>
+        </respStmt>
+      </annotation>
+      <annotation>
+        <respStmt>
+          <resp lang="en">Linguistic annotation tool</resp>
+          <name>UDPipe 2, model: czech-pdt-ud-2.12-230717</name>
+          <desc lang="en">Tokenization, morphological analysis, lemmatization, and syntactic parsing</desc>
         </respStmt>
       </annotation>
     </annotationDecl>
@@ -105,6 +113,7 @@ TEI_HEADER_TEMPLATE = """
         <term type="cefr-level">{level}</term>
         <term type="task-number">{exerno}</term>
         <term type="preannot-source">{type}</term>
+        <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)</term>
       </keywords>
       <classCode scheme="custom">{level}.task{exerno}.{type}</classCode>
     </textClass>
