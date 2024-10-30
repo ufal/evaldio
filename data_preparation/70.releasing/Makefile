@@ -13,12 +13,16 @@ TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 
 RELEASE_DIR=~/public_html/evaldio/release
 
+RELEASE_NAME=Evaldio_Dataset-1.0
+
+FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
+
 DATE=$(shell date +%Y%m%d)
 
 ############ RULES ################
 
 release_A2_202410:
-	$(MAKE) clean copy_audio copy_finalize_annot zip deploy BATCH_PATH=release_A2_202410
+	$(MAKE) copy_audio copy_finalize_annot prepare zip deploy BATCH_PATH=release_A2_202410
 
 runparser.pl :
 	wget -O $@ https://gitlab.com/maartenes/TEITOK/-/raw/master/common/Scripts/runparser.pl?inline=false
@@ -30,6 +34,9 @@ copy_audio : $(BATCH_PATH).exer_numbers.csv
 	done < $<
 
 .PRECIOUS : $(TGT_DIR)/%.xml $(TGT_DIR)/%.xml.parsed $(TGT_DIR)/%.xml.tokenized
+
+$(TGT_DIR)/%.txt : $(SRC_DIR)/%.xml
+	$(FORMAT_SIMPLE_SCRIPT) < $< > $@
 
 $(TGT_DIR)/%.xml : $(TGT_DIR)/%.xml.with_header
 	xmllint --format - < $< > $@
@@ -55,24 +62,38 @@ copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 	mkdir -p $(TGT_DIR)
 	while read fid exer; do \
 		for f in $(SRC_DIR)/$$fid*-$$exer.xml; do \
-			bf=`basename $$f`; \
+			bf=`basename $$f .xml`; \
 			echo "===== $$f ====="; \
-			make $(TGT_DIR)/$$bf; \
+			make $(TGT_DIR)/$$bf.xml; \
+			make $(TGT_DIR)/$$bf.txt; \
 		done; \
 	done < $<
 
+prepare : README.md LICENSE.txt
+	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)
+	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/recordings
+	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
+	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
+	cp -v $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
+	cp -v $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
+	cp -v $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
+	cp -v $^ $(TGT_DIR)/$(RELEASE_NAME)
+
 zip :
-	cd $(TGT_BASEDIR) && \
-		zip -r $(BATCH_PATH).zip $(BATCH_PATH)
+	cd $(TGT_DIR) && \
+		zip -r $(RELEASE_NAME).zip $(RELEASE_NAME)
 
 deploy :
 	mkdir -p $(RELEASE_DIR)
-	cp -v $(TGT_DIR).zip $(RELEASE_DIR)/`basename $(TGT_DIR).zip .zip`_v$(DATE).zip
+	cp -v $(TGT_DIR)/$(RELEASE_NAME).zip $(RELEASE_DIR)/$(RELEASE_NAME)_v$(DATE).zip
 
 clean_soft :
 	rm -f $(TGT_DIR)/*.mp3
 	rm -f $(TGT_DIR)/*.xml $(TGT_DIR)/*.xml.with_header
+	rm -f $(TGT_DIR)/*.txt
 	rm -f $(TGT_DIR).zip
+	rm -f $(TGT_DIR)/$(RELEASE_NAME).zip
+	rm -rf $(TGT_DIR)/$(RELEASE_NAME)
 
 clean :
 	rm -rf $(TGT_DIR)
