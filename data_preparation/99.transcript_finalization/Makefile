@@ -43,7 +43,7 @@ finalize : $(TGT_FILES) uncover_source recname_first
 
 $(TGT_DIR)/%.xml : $(SRC_DIR)/%.xml
 	cat $< | \
-		python3 normalize.py | \
+		python3 ../01.transcribe_whisperX/normalize.py | \
 		xmllint --format - > $@
 
 uncover_source :
