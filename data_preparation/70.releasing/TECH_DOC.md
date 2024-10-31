@@ -4,12 +4,12 @@
 
 Databáze mluvených projevů nerodilých mluvčích češtiny zaměřená na jazykovou úroveň A2 (podle CEFR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Jazykový korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 
-**Umístění korpusu:**
+## Umístění korpusu
 
 Korpus je přístupný na platformě LINDAT/CLARIAH-CZ, která slouží jako repozitář jazykových dat. Data byla zpracována s využitím platformy TEITOK [XX]. 
 
 
-**Obsah korpusu:** 
+## Obsah korpusu
 
 Korpus obsahuje nahrávky mluvených projevů v celkovém rozsahu XX minut. Nahrávky zaznamenávají ústní část zkoušky CCE (Certifikovaná zkouška z češtiny pro cizince; http://ujop.cuni.cz/cce) na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). 
 
@@ -20,7 +20,7 @@ Každá nahrávka je opatřena manuálně vytvořeným přepisem. Přepisy záro
 K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
 
 
-**Struktura údajů:**
+## Struktura údajů
 
 **Repliky:** Manuální přepis mluveného projevu, členěný na repliky, s možností přehrát konkrétní úseky nahrávky.
 
@@ -30,8 +30,10 @@ K některým nahrávkám je připojeno více přepisů od různých anotátorů,
 
 **Waveform view:** Vizualizace zvukového signálu, s možností přehrát repliky včetně časových značek.
 
+Pro účely vyhledávaní a filtrování se vstupní soubory a jejich obsah indexuje do binárního formátu [Corpus Workbench](https://cwb.sourceforge.io). 
 
-**Práce s daty**
+
+## Práce s daty
 
 **Prohlížení (Browse):** Uživatelé mohou prohlížet jednotlivé záznamy, včetně přepisů, morfologických anotací, lemmatizace a syntaktických závislostí.
 
