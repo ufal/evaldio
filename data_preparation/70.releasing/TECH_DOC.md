@@ -4,12 +4,12 @@
 
 Databáze mluvených projevů nerodilých mluvčích češtiny zaměřená na jazykovou úroveň A2 (podle CEFR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Jazykový korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 
-**Umístění korpusu:**
+## Umístění korpusu
 
 Korpus je přístupný na platformě LINDAT/CLARIAH-CZ, která slouží jako repozitář jazykových dat. Data byla zpracována s využitím platformy TEITOK [XX]. 
 
 
-**Obsah korpusu:** 
+## Obsah korpusu
 
 Korpus obsahuje nahrávky mluvených projevů v celkovém rozsahu XX minut. Nahrávky zaznamenávají ústní část zkoušky CCE (Certifikovaná zkouška z češtiny pro cizince; http://ujop.cuni.cz/cce) na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). 
 
@@ -20,7 +20,7 @@ Každá nahrávka je opatřena manuálně vytvořeným přepisem. Přepisy záro
 K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
 
 
-**Struktura údajů:**
+## Struktura údajů
 
 **Repliky:** Manuální přepis mluveného projevu, členěný na repliky, s možností přehrát konkrétní úseky nahrávky.
 
@@ -30,8 +30,10 @@ K některým nahrávkám je připojeno více přepisů od různých anotátorů,
 
 **Waveform view:** Vizualizace zvukového signálu, s možností přehrát repliky včetně časových značek.
 
+Pro účely vyhledávaní a filtrování se vstupní soubory a jejich obsah indexuje do binárního formátu [Corpus Workbench](https://cwb.sourceforge.io). 
 
-**Práce s daty**
+
+## Práce s daty
 
 **Prohlížení (Browse):** Uživatelé mohou prohlížet jednotlivé záznamy, včetně přepisů, morfologických anotací, lemmatizace a syntaktických závislostí.
 
@@ -57,6 +59,7 @@ Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu 
 
 **Jak citovat:**
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR). Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php>.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR). Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Czech as Second Language Speech Dataset (Permanent Residency Applicants). Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php>.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Czech as Second Language Speech Dataset (Permanent Residency Applicants). Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency).
+
