@@ -1,0 +1,17 @@
+{'key': 'UJOP/sample-2023_02_28/04-npi-test-B1', 'filename': '04-npi-test-B1.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'UJOP/sample-2023_02_28/04-npi-test-B1', 'ORIG_LEVEL': 'B1', 'NORM_LEVEL': 'B1', 'HAS_RESIDENCE': '1', 'HAS_RESIDENCE_SCALE': '1', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': 'A2', 'HAS_RESIDENCE-predicted': {'0': 0.028625505045056343, '1': 0.9713745713233948}, 'NORM_LEVEL-predicted+prob': {'A1': 2.9387365262955427, 'A2': 4.714285410940647, 'B1': 1.3071736562997103, 'B2': 0.3792518684640527, 'C1': 2.660552663728595}}
+{'key': 'NPI/sample-2023_06_30/14-npi-test-uA2', 'filename': '14-npi-test-uA2.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'NPI/sample-2023_06_30/14-npi-test-uA2', 'ORIG_LEVEL': 'uA2', 'NORM_LEVEL': 'A1', 'HAS_RESIDENCE': '0', 'HAS_RESIDENCE_SCALE': '-1', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': 'A2', 'HAS_RESIDENCE-predicted': {'0': 0.03126191347837448, '1': 0.9687380790710449}, 'NORM_LEVEL-predicted+prob': {'A1': 0.21420374140143394, 'A2': 15.931031584739685, 'B1': 0.24734556023031473, 'B2': 0.250521769747138, 'C1': 0.356897197663784}}
+{'key': 'UJOP/sample-2023_04_21/07-npi-test-B1', 'filename': '07-npi-test-B1.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'UJOP/sample-2023_04_21/07-npi-test-B1', 'ORIG_LEVEL': 'B1', 'NORM_LEVEL': 'B1', 'HAS_RESIDENCE': '1', 'HAS_RESIDENCE_SCALE': '1', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': 'A2', 'HAS_RESIDENCE-predicted': {'0': 0.023375313729047775, '1': 0.9766246676445007}, 'NORM_LEVEL-predicted+prob': {'A1': 0.26885854732245207, 'A2': 4.69949746131897, 'B1': 0.22602521814405918, 'B2': 0.2864449257031083, 'C1': 2.519173961132765}}
+{'key': 'UJOP/CCE-A2_2024_04_24/A2ML_231215_68_02_anonym_audio', 'filename': 'A2ML_231215_68_02_anonym_audio.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'UJOP/CCE-A2_2024_04_24/A2ML_231215_68_02_anonym_audio', 'ORIG_LEVEL': 'A2', 'NORM_LEVEL': 'A2', 'HAS_RESIDENCE': '1', 'HAS_RESIDENCE_SCALE': '0', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': 'B1', 'HAS_RESIDENCE-predicted': {'0': 0.02317550964653492, '1': 0.9768244624137878}, 'NORM_LEVEL-predicted+prob': {'A1': 0.09644849691540003, 'A2': 2.506530314683914, 'B1': 3.2755450010299683, 'B2': 0.9949124176055193, 'C1': 0.12656378373503685}}
+{'key': 'UJOP/sample-2023_04_21/08-npi-test-C1', 'filename': '08-npi-test-C1.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'UJOP/sample-2023_04_21/08-npi-test-C1', 'ORIG_LEVEL': 'C1', 'NORM_LEVEL': 'C1', 'HAS_RESIDENCE': '1', 'HAS_RESIDENCE_SCALE': '3', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': 'B2', 'HAS_RESIDENCE-predicted': {'0': 0.044224582612514496, '1': 0.9557754397392273}, 'NORM_LEVEL-predicted+prob': {'A1': 1.497238650918007, 'A2': 1.3475302252918482, 'B1': 5.532937973737717, 'B2': 12.328627137467265, 'C1': 5.293665839359164}}
+              precision    recall  f1-score   support
+
+          A1       1.00      0.98      0.99        44
+          A2       0.98      0.99      0.98       126
+          B1       0.99      0.98      0.98        99
+          B2       0.98      1.00      0.99        44
+          C1       1.00      0.86      0.92         7
+
+    accuracy                           0.98       320
+   macro avg       0.99      0.96      0.97       320
+weighted avg       0.98      0.98      0.98       320
+

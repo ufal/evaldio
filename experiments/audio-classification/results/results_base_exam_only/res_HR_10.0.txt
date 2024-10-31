@@ -1,0 +1,10 @@
+{'key': 'NPI/sample-2023_06_30/14-npi-test-uA2', 'filename': '14-npi-test-uA2.deleted.speaker-EXAM_1.mp3', 'begin': 0, 'end': 320000, 'ID': 'NPI/sample-2023_06_30/14-npi-test-uA2', 'ORIG_LEVEL': 'uA2', 'NORM_LEVEL': 'A1', 'HAS_RESIDENCE': '0', 'HAS_RESIDENCE_SCALE': '-1', 'IS_EXAMINER': 1, 'NORM_LEVEL-predicted': {'A1': 0.012529359199106693, 'A2': 0.9377695918083191, 'B1': 0.01836412213742733, 'B2': 0.013916220515966415, 'C1': 0.01742079295217991}, 'HAS_RESIDENCE-predicted': '1', 'HAS_RESIDENCE-predicted+prob': {'0': 0.38301372714340687, '1': 16.616986215114594}}
+              precision    recall  f1-score   support
+
+           0       1.00      0.98      0.99        44
+           1       1.00      1.00      1.00       276
+
+    accuracy                           1.00       320
+   macro avg       1.00      0.99      0.99       320
+weighted avg       1.00      1.00      1.00       320
+
