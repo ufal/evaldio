@@ -11,7 +11,7 @@ BATCH_PATH=
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
 TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 
-RELEASE_DIR=~/public_html/evaldio/release
+RELEASE_DIR=$(ROOT_DIR)/public_html-release
 
 RELEASE_NAME=Evaldio_Dataset-1.0
 
@@ -74,9 +74,9 @@ prepare : README.md LICENSE.txt
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/recordings
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
-	cp -v $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
-	cp -v $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
-	cp -v $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
+	python copy_rename.py --verbose $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
+	python copy_rename.py --verbose $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
+	python copy_rename.py --verbose $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
 	cp -v $^ $(TGT_DIR)/$(RELEASE_NAME)
 
 zip :
