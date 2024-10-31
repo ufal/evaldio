@@ -14,11 +14,11 @@ def parse_args():
 
 def change_basename_mp3(basename):
     match = re.match(r'(?P<level>[A-C][1-2])ML_(?P<rec_date>\d{6})_(?P<examno>\d{2}).*-exer(?P<exerno>[1-9])\.mp3', basename)
-    return f'{match.group("level")}-{match.group("rec_date")}_{match.group("examno")}-task{match.group("exerno")}.mp3'
+    return f'UJOP-{match.group("level")}-{match.group("rec_date")}_{match.group("examno")}-task{match.group("exerno")}.mp3'
     
 def change_basename_other(basename):
     match = re.match(r'(?P<level>[A-C][1-2])ML_(?P<rec_date>\d{6})_(?P<examno>\d{2}).*-(?P<annotator_short>\w{2})-(?P<type>\w+)-exer(?P<exerno>[1-9])\.(?P<extension>\w+)', basename)
-    return f'{match.group("level")}-{match.group("rec_date")}_{match.group("examno")}-task{match.group("exerno")}-{match.group("type")}-{match.group("annotator_short")}.{match.group("extension")}'
+    return f'UJOP-{match.group("level")}-{match.group("rec_date")}_{match.group("examno")}-task{match.group("exerno")}-{match.group("type")}-{match.group("annotator_short")}.{match.group("extension")}'
 
 def main():
     args = parse_args()
