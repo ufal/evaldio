@@ -42,8 +42,6 @@ TEI_HEADER_TEMPLATE = """
 
     
     <publicationStmt>
-      <!-- <publisher>Ústav formální a aplikované lingvistiky</publisher>
-            <pubPlace>Prague, Czech Republic</pubPlace> -->
       <publisher>
         <orgName lang="cs">LINDAT/CLARIAH-CZ: Digitální výzkumná infrastruktura pro jazykové technologie, umění a humanitní vědy</orgName>
         <orgName lang="en">LINDAT/CLARIAH-CZ: Digital Research Infrastructure for Language Technologies, Arts and Humanities</orgName>
@@ -110,12 +108,12 @@ TEI_HEADER_TEMPLATE = """
     </langUsage>
     <textClass>
       <keywords scheme="custom">
+        <term type="exam-id">{examid}</term>
         <term type="cefr-level">{level}</term>
         <term type="task-number">{exerno}</term>
         <term type="preannot-source">{type}</term>
         <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)</term>
       </keywords>
-      <classCode scheme="custom">{level}.task{exerno}.{type}</classCode>
     </textClass>
   </profileDesc>
 </teiHeader>
