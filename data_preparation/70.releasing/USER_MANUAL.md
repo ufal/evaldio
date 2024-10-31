@@ -5,7 +5,7 @@
 
 **Úvod**
 
-Databáze byla vytvořena v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy za účelem podpory výuky, výzkumu a hodnocení jazykové kompetence nerodilých mluvčích češtiny, kteří usilují o trvalý pobyt v České republice. Cílem je poskytnout anonymizovaný, strukturovaný a snadno přístupný zdroj autentických mluvených dat pro lingvisty, pedagogy, studenty, veřejnost a vědeckou komunitu. Audionahrávky pro databázi poskytl Ústav jazykové a odborné přípravy Univerzity Karlovy (ujop.cuni.cz).
+Databáze byla vytvořena v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy za účelem podpory výuky, výzkumu a hodnocení jazykové kompetence nerodilých mluvčích češtiny, kteří usilují o trvalý pobyt v České republice. Cílem je poskytnout anonymizovaný, strukturovaný a snadno přístupný zdroj autentických mluvených dat pro lingvisty, pedagogy, studenty, veřejnost a vědeckou komunitu. Audionahrávky pro databázi poskytl [Ústav jazykové a odborné přípravy Univerzity Karlovy](ujop.cuni.cz) (ujop.cuni.cz).
 
 **Základní funkce databáze**
 
