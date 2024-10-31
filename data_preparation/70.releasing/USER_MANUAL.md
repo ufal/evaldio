@@ -36,7 +36,6 @@ Vznik databáze byl financován z prostředků Programu na podporu aplikovaného
 
 **Jak citovat:**
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR). Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php>.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR). Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Czech as Second Language Speech Dataset (Permanent Residency Applicants). Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php>.
-
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: Czech as Second Language Speech Dataset (Permanent Residency Applicants). Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency).
