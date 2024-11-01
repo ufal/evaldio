@@ -41,41 +41,44 @@ Formát TEITOK je XML formát, který plně odpovídá standardu Text Encoding I
 
 #### Hlavní obsah `<text>`
 Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
-- **`<u>`**: Každý `<u>` reprezentuje úsek projevu projevu a má atributy:
+- **`<u>`**: Každý element `<u>` reprezentuje úsek projevu projevu a má atributy:
    - `start` a `end`: Počáteční a koncový čas v sekundách.
    - `who`: Mluvčí (např. "EXAM_1" pro zkoušejícího a "CAND_1" pro kandidáta).
 - **`<s>`**: Každá věta je označena elementem `<s>`.
 - **`<tok>`**: Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.
 - **`<anon/>`**: Anonymizovaný úsek nahrávky.
-- **`<gap reason="unintelligible"/>**: Nesrozumitelný úsek nahrávky.
+- **`<gap reason="unintelligible"/>`**: Nesrozumitelný úsek nahrávky.
 
 ### Příprava souborů TEITOK
 Příprava souborů TEITOK probíhala v několika fázích:
 
-1. **Předběžná anotace**. Za účelem časové a finanční efektivity jsme porovnávali přímou ruční anotaci s post-editací výstupů systémů na automatické rozpoznávání řeči. Toto je rozlíšeno pomocí atributu `preannot-source`, jehož hodnota je jedna z nasledujících:
+1. **Předběžná anotace**. Porovnávali jsme přímou ruční anotaci s post-editací výstupů systémů pro automatické rozpoznávání řeči. Předběžná anotace je rozlišena pomocí atributu `preannot-source`, jehož hodnota může být:
     - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
     - `from_whisperX`: Předběžná anotace získaná pomocí systému WhisperX (CITE).
-    - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů 4 systémů na úrovni replik.
-Když není předběžná anotace prázdná, převedeme ji do základní verze formátu TEITOK.
-Na konci této fáze tak obsahuje přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
-2. **Manuální anotace**. Po nahrání súborů ji vykonávali zaškolené anotátorky vo webovém prostředí TEITOK. Manuální anotací vznikali nebo byli opraveny přepisy, přiřazení mluvčích k replikám a časové zarovnání s nahrávkou.
+    - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů čtyř systémů na úrovni replik.
+Když předběžná anotace nebyla prázdná, převedli jsme ji do základní verze formátu TEITOK.
+Na konci této fáze tak obsahovala přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
+2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vznikaly nebo se opravovaly přepisy, proběhlo přiřazení mluvčích k replikám a časové zarovnání s nahrávkou.
 3. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
-4. **Normalizace**. Automatická úprava přepisů, které se můžou po manuálním zpracování v prostředí TEITOK mírně lišit v techických detailech. Konkrétně v tomto kroce odstra§ujeme odchylky v jménech mluvčích, třídime repliky podle jejich počátečního času a přidělujeme replikám nové sekvenční ID.
-4. **Rozdělení na cvičení a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil k zveřejnění jenom vybraná cvičení. Ty jsme museli z nahrávek a jejich přepisů vystřihnout a v přepisech upravit časové značky, aby se zachovalo zarovnání replik v přepisu s nahrávkou.
-5. **Lingvistická anotace**. Až do tohoto momentu nejsou repliky v přepisech nijak dál strukturovány. V této fázi text rozdělíme na věty (element `<s>`) a věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy následně automaticky lingvisticky anotovány. Konkrétně je každému tokenu přirazeno lemma (atribut `lemma`), jazykovo specificá morfologická značka (atribut `xpos`), slovný druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`), odkaz na ID rodiče dle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`). Pro lingvistickou anotaci včetně tokenizace jsme použili nástroj UDPipe 2 (CITE), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu.I když tokenizaci a automatickou lingvistickou anotaci je možné přidat přímo v prostředí TEITOK, my jsme tak dělali samostatně. Metoda tokenizace v prostředí TEITOK se totiž liší od tokenizace, která je optimální pro UDPipe, což následně způsobovalo chyby v spojení těchot dvou kroků.
-6. **Doplnění TEI hlavičky**. V závěru na základě všech dostupných metadat doplníme hlavičku tak, aby odpovídala standardům TEI.
+4. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky v jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
+5. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou.
+6. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
+
+Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj UDPipe 2 (CITE), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
+
+
+9. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
 
 Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
 
 
 
 ### Dotazování, vyhledávání a filtrování
-Rychlé dotazování, vyhledávaní a filtrace jsou umožněny integrovaným procesorem dotazů CQP.
-CQP je klíčová komponenta sady nástrojů IMS Open Corpus Workbench (CWB).
-Korpusy ve formátu XML převádí do binární podoby a efektivně je indexuje.
-Na dotazování v indexovaných korpusech slouží jazyk CQL, který je roky zavedeným standardem v korpusové lingvistice.
-Pro zjednodušení formulace dotazů TEITOK nabízí i tzv. Query builder, kde může uživatel specifikovat svůj dotaz vyplněním položek formuláře.
-Výsledek dotazu vrácen z CQP je následně zpracován pomocí TEITOKu a v přehledné formě je zobrazen užívateli.
+Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným procesorem dotazů CQP, klíčovou komponentou sady nástrojů IMS Open Corpus Workbench (CWB).
+CQP převádí korpusy ve formátu XML do binární podoby a efektivně je indexuje.
+Dotazování v indexovaných korpusech probíhá pomocí jazyka CQL, který je standardem v korpusové lingvistice. 
+TEITOK také nabízí Query builder, kde může uživatel specifikovat dotaz vyplněním formuláře. 
+Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě.
 
 Databáze je dostupná na platformě LINDAT/CLARIAH-CZ.
 
