@@ -87,7 +87,7 @@ Databáze je dostupná na platformě LINDAT/CLARIAH-CZ.
 
 Korpus obsahuje nahrávky zaznamenávající ústní část zkoušky CCE (Certifikovaná zkouška z češtiny pro cizince; http://ujop.cuni.cz/cce) na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). 
 
-Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ujop.cuni.cz), který audio nahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob). 
+Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ujop.cuni.cz), který audionahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob). 
 
 Každá nahrávka je opatřena manuálně vytvořeným přepisem. Přepisy zároveň obsahují i ručně přiřazené časové značky, které spojují repliky s konkrétními úseky nahrávky. Součástí anotace je také manuální označení jednotlivých mluvčích.
 
@@ -109,7 +109,7 @@ Vznik databáze byl financován z prostředků Programu na podporu aplikovaného
 
 ### Poděkování
 
-Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu jazykové a odborné přípravy Univerzity Karlovy za poskytnutí audio dat a za jejich finální kontrolu.
+Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu jazykové a odborné přípravy Univerzity Karlovy za poskytnutí audiodat a za jejich finální kontrolu.
 
 
 ### Jak citovat
@@ -117,32 +117,3 @@ Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu 
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)_. Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
 
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Czech as Second Language Speech Dataset (Permanent Residency Applicants)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency).
-
-
-========
-
-
-
-
-
-## Struktura údajů
-
-**Repliky:** Manuální přepis mluveného projevu, členěný na repliky, s možností přehrát konkrétní úseky nahrávky.
-
-**Mluvčí:** Manuální označení: EXAM_1 (zkoušející), CAND_1 (kandidát).
-
-**Anotace:** Každý slovní tvar je opatřen automatickou anotaci slovních druhů a morfologickými značkami. Korpus byl také automaticky lemmatizován a obsahuje syntaktickou anotaci (závislostní stromy).
-
-**Waveform view:** Vizualizace zvukového signálu, s možností přehrát repliky včetně časových značek.
-
-
-
-
-## Práce s daty
-
-**Prohlížení (Browse):** Uživatelé mohou prohlížet jednotlivé záznamy, včetně přepisů, morfologických anotací, lemmatizace a syntaktických závislostí.
-
-**Vyhledávání (Search):** Uživatelé mohou zadávat dotazy ve formátu CQL (Corpus WorkBench Query Language) pro vyhledávání specifických slovních tvarů, lemmat a sekvencí slov.
-
-
-
