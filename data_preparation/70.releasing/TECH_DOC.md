@@ -1,6 +1,89 @@
 # Technická dokumentace
 **Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)**
 
+========
+
+Databáze je integrována do systému TEITOK (CITE).
+
+## TEITOK
+
+TEITOK je framework, který slouží na vytváření, zpravování a zveřejňování anotovaných korpusů.
+Jeho webové prostředí je implementováno v kombinaci jazyků PHP a Javascript.
+
+### Příprava a uložení dat
+Korpus v TEITOKu sestává z kolekce souborů ve formátu TEITOK, obsahující veškeré přepisy a anotace, včetně metadat.
+Kromě toho obsahuje i nahrávky ve formátu MP3, které jsou s jednotlivými soubory s přepisy provázany.
+Formát TEITOK je XML formát, který plně odpovída standardu Text Encoding Initiative (TEI, CITE).
+Jediným rozdílem je mírně odlišným přístup k tokenizaci.
+
+Struktura TEITOK souborů je nasledovná:
+
+#### Hlavička s metadaty `<teiHeader>`
+1. **`<fileDesc>`** – Popis souboru
+    - **`<titleStmt>`**: Obsahuje název souboru a informace o autorech a anotátorech
+    - **`<editionStmt>`**: Obsahuje číslo verze
+    - **`<publicationStmt>`**: Publikační detaily, např. vydavatel, datum vydání a licence
+    - **`<sourceDesc>`**: Popis zdrojové nahrávky a odkaz k ní
+
+2. **`<encodingDesc>`** – Popis kódování
+    - **`<projectDesc>`**: Stručný popis projektu, v rámci něhož data vznikla.
+    - **`<annotationDecl>`**: Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace)
+
+3. **`<profileDesc>`** – Profil textu
+    - **`<langUsage>`**: Použitý jazyk, zde čeština
+    - **`<textClass>`**: Metadata dokumentu:
+       - `database`: Název databáze.
+       - `exam-id`: Identifikátor zkoušky.
+       - `cefr-level`: Úroveň podle CEFR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně A2.
+       - `task-number`: Číslo úlohy.
+       - `preannot-source`: Zdroj předběžné anotace.
+       - `annotator`: Kód anotátora.
+       - `canonical`: Hodnota `1` značí kanonický přepis.
+
+#### Hlavní obsah `<text>`
+Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí `<u>` elementů:
+- **`<u>`**: Každý `<u>` reprezentuje úsek projevu s atributy:
+   - `start` a `end`: Počáteční a koncový čas v sekundách.
+   - `who`: Mluvčí, přičemž "EXAM_1" (případně "EXAM_2", atd.) označuje zkoušejícího a "CAND_1" kandidáta.
+- **`<s>`**: Každá věta je označena elementem `<s>`.
+- **`<tok>`**: Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.
+- **`<anon/>`**: Anonymizovaný úsek nahrávky.
+- **`<gap reason="unintelligible"/>**: Nesrozumitelný úsek nahrávky.
+
+Příprava TEITOK souborů probíhala v několika fázích:
+
+1. **Předběžná anotace**. Za účelem časové a finanční efektivity jsme porovnávali přímou ruční anotaci s post-editací výstupů systémů na automatické rozpoznávání řeči. Toto je rozlíšeno pomocí atributu `preannot-source`, jehož hodnota je jedna z nasledujících:
+    - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
+    - `from_whisperX`: Předběžná anotace získaná pomocí systému WhisperX (CITE).
+    - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů 4 systémů na úrovni replik.
+Když není předběžná anotace prázdná, převedeme ji do základní verze formátu TEITOK.
+Na konci této fáze tak obsahuje přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
+2. **Manuální anotace**. Po nahrání súborů ji vykonávali zaškolené anotátorky vo webovém prostředí TEITOK. Manuální anotací vznikali nebo byli opraveny přepisy, přiřazení mluvčích k replikám a časové zarovnání s nahrávkou.
+3. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
+4. **Normalizace**. Automatická úprava přepisů, které se můžou po manuálním zpracování v prostředí TEITOK mírně lišit v techických detailech. Konkrétně v tomto kroce odstra§ujeme odchylky v jménech mluvčích, třídime repliky podle jejich počátečního času a přidělujeme replikám nové sekvenční ID.
+4. **Rozdělení na cvičení a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil k zveřejnění jenom vybraná cvičení. Ty jsme museli z nahrávek a jejich přepisů vystřihnout a v přepisech upravit časové značky, aby se zachovalo zarovnání replik v přepisu s nahrávkou.
+5. **Lingvistická anotace**. Až do tohoto momentu nejsou repliky v přepisech nijak dál strukturovány. V této fázi text rozdělíme na věty (element `<s>`) a věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy následně automaticky lingvisticky anotovány. Konkrétně je každému tokenu přirazeno lemma (atribut `lemma`), jazykovo specificá morfologická značka (atribut `xpos`), slovný druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`), odkaz na ID rodiče dle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`). Pro lingvistickou anotaci včetně tokenizace jsme použili nástroj UDPipe 2 (CITE), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu.I když tokenizaci a automatickou lingvistickou anotaci je možné přidat přímo v prostředí TEITOK, my jsme tak dělali samostatně. Metoda tokenizace v prostředí TEITOK se totiž liší od tokenizace, která je optimální pro UDPipe, což následně způsobovalo chyby v spojení těchot dvou kroků.
+6. **Doplnění TEI hlavičky**. V závěru na základě všech dostupných metadat doplníme hlavičku tak, aby odpovídala standardům TEI.
+
+Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
+
+
+
+### Dotazování, vyhledávání a filtrování
+Rychlé dotazování, vyhledávaní a filtrace jsou umožněny integrovaným procesorem dotazů CQP.
+CQP je klíčová komponenta sady nástrojů IMS Open Corpus Workbench (CWB).
+Korpusy ve formátu XML převádí do binární podoby a efektivně je indexuje.
+Na dotazování v indexovaných korpusech slouží jazyk CQL, který je roky zavedeným standardem v korpusové lingvistice.
+Pro zjednodušení formulace dotazů TEITOK nabízí i tzv. Query builder, kde může uživatel specifikovat svůj dotaz vyplněním položek formuláře.
+Výsledek dotazu vrácen z CQP je následně zpracován pomocí TEITOKu a v přehledné formě je zobrazen užívateli.
+
+Databáze je dostupná na platformě LINDAT/CLARIAH-CZ.
+
+
+
+
+========
+
 
 Databáze mluvených projevů nerodilých mluvčích češtiny zaměřená na jazykovou úroveň A2 (podle CEFR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Jazykový korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 
