@@ -13,14 +13,14 @@ Databáze byla vytvořena v Ústavu formální a aplikované lingvistiky Matemat
 
 Každá replika obsahuje časovou značku a označení mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
 
-**Zobrazení anotací:** Kliknutím na „audio“ přehrajete repliku; kliknutím na „PoS“ zobrazíte slovní druhy, na „tag“ morfologické tagy, na „features“ podrobné morfologické informace a na „lemma“ lemmata. Anotace morfologie a lemmatizace byly provedeny automaticky.
+**Zobrazení anotací:** Kliknutím na „audio“ přehrajete repliku; kliknutím na „PoS“ zobrazíte slovní druhy, na „tag“ morfologické tagy, na „features“ podrobné morfologické informace a na „lemma“ základní tvary slov. Anotace morfologie a lematizace byly provedeny automaticky.
 
 **Waveform view:** Zobrazuje zvukový signál a umožňuje přehrání jednotlivých replik.
 
 **Dependencies:** Kliknutím na repliky zobrazíte syntaktickou anotaci – automaticky vytvořené závislostní stromy s možností zobrazit detaily pomocí myši.
 
 
-**2. Vyhledávání:** Pomocí tlačítka „Search“ lze vyhledávat v korpusu dotazy ve formátu CQL.
+**2. Vyhledávání:** Pomocí tlačítka „Search“ lze vyhledávat v korpusu dotazy ve formátu CQL (Corpus Query Language).
 
 Např. dotaz [lemma="otázka"] [pos="A.*"] hledá tvary slova „otázka“ následované adjektivem.
 
