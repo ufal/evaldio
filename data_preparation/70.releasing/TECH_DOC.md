@@ -7,50 +7,50 @@ Databáze je integrována do systému TEITOK (CITE).
 
 ## TEITOK
 
-TEITOK je framework, který slouží na vytváření, zpravování a zveřejňování anotovaných korpusů.
-Jeho webové prostředí je implementováno v kombinaci jazyků PHP a Javascript.
+TEITOK je framework pro vytváření, správu a zveřejňování anotovaných korpusů. 
+Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.
 
 ### Příprava a uložení dat
-Korpus v TEITOKu sestává z kolekce souborů ve formátu TEITOK, obsahující veškeré přepisy a anotace, včetně metadat.
-Kromě toho obsahuje i nahrávky ve formátu MP3, které jsou s jednotlivými soubory s přepisy provázany.
-Formát TEITOK je XML formát, který plně odpovída standardu Text Encoding Initiative (TEI, CITE).
-Jediným rozdílem je mírně odlišným přístup k tokenizaci.
+Korpus v TEITOKu sestává z kolekce souborů ve formátu TEITOK, které obsahují veškeré přepisy a anotace včetně metadat. 
+Kromě toho obsahuje i nahrávky ve formátu MP3, které jsou provázány s jednotlivými soubory s přepisy. 
+Formát TEITOK je XML formát, který plně odpovídá standardu Text Encoding Initiative (TEI, CITE), s mírně odlišným přístupem k tokenizaci.
 
-Struktura TEITOK souborů je nasledovná:
+### Struktura souborů TEITOK
 
 #### Hlavička s metadaty `<teiHeader>`
 1. **`<fileDesc>`** – Popis souboru
-    - **`<titleStmt>`**: Obsahuje název souboru a informace o autorech a anotátorech
-    - **`<editionStmt>`**: Obsahuje číslo verze
-    - **`<publicationStmt>`**: Publikační detaily, např. vydavatel, datum vydání a licence
-    - **`<sourceDesc>`**: Popis zdrojové nahrávky a odkaz k ní
+    - **`<titleStmt>`**: Obsahuje název souboru a informace o autorech a anotátorech.
+    - **`<editionStmt>`**: Obsahuje číslo verze.
+    - **`<publicationStmt>`**: Publikační detaily, jako je vydavatel, datum vydání a licence.
+    - **`<sourceDesc>`**: Popis zdrojové nahrávky a odkaz na ni.
 
 2. **`<encodingDesc>`** – Popis kódování
     - **`<projectDesc>`**: Stručný popis projektu, v rámci něhož data vznikla.
-    - **`<annotationDecl>`**: Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace)
+    - **`<annotationDecl>`**: Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace).
 
 3. **`<profileDesc>`** – Profil textu
-    - **`<langUsage>`**: Použitý jazyk, zde čeština
+    - **`<langUsage>`**: Použitý jazyk (čeština).
     - **`<textClass>`**: Metadata dokumentu:
        - `database`: Název databáze.
        - `exam-id`: Identifikátor zkoušky.
-       - `cefr-level`: Úroveň podle CEFR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně A2.
+       - `cefr-level`: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně A2.
        - `task-number`: Číslo úlohy.
        - `preannot-source`: Zdroj předběžné anotace.
        - `annotator`: Kód anotátora.
        - `canonical`: Hodnota `1` značí kanonický přepis.
 
 #### Hlavní obsah `<text>`
-Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí `<u>` elementů:
-- **`<u>`**: Každý `<u>` reprezentuje úsek projevu s atributy:
+Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
+- **`<u>`**: Každý `<u>` reprezentuje úsek projevu projevu a má atributy:
    - `start` a `end`: Počáteční a koncový čas v sekundách.
-   - `who`: Mluvčí, přičemž "EXAM_1" (případně "EXAM_2", atd.) označuje zkoušejícího a "CAND_1" kandidáta.
+   - `who`: Mluvčí (např. "EXAM_1" pro zkoušejícího a "CAND_1" pro kandidáta).
 - **`<s>`**: Každá věta je označena elementem `<s>`.
 - **`<tok>`**: Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.
 - **`<anon/>`**: Anonymizovaný úsek nahrávky.
 - **`<gap reason="unintelligible"/>**: Nesrozumitelný úsek nahrávky.
 
-Příprava TEITOK souborů probíhala v několika fázích:
+### Příprava souborů TEITOK
+Příprava souborů TEITOK probíhala v několika fázích:
 
 1. **Předběžná anotace**. Za účelem časové a finanční efektivity jsme porovnávali přímou ruční anotaci s post-editací výstupů systémů na automatické rozpoznávání řeči. Toto je rozlíšeno pomocí atributu `preannot-source`, jehož hodnota je jedna z nasledujících:
     - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
