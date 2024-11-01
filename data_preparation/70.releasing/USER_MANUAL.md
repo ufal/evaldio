@@ -9,28 +9,35 @@ Databáze byla vytvořena v Ústavu formální a aplikované lingvistiky Matemat
 
 ## Základní funkce databáze
 
-**1. Prohlížení záznamů:** Umožňuje prohlížet přepisy jednotlivých replik, poslech příslušných zvukových nahrávek a jejich vizualizaci.
+**1. Prohlížení záznamů:** Databáze umožňuje prohlížet přepisy replik a poslech zvukových nahrávek.
 
-Po kliknutí na „zobraz položky“ se objeví seznam souborů. Kliknutím na určitý soubor jej otevřeme v režimu waveform view. Kliknutím na „text view“ v dolní části stránky se přepneme do režimu, který umožňuje zobrazit morfologickou annotaci a lemmatizaci (tlačítka pro zobrazení těchto anotací jsou nahoře) i anotaci závislostních stromů (tlačítko "dependencies" v dolní části stránky).
+**Zobrazení záznamů:** 
+
+Po kliknutí na _zobraz položky_ se objeví seznam souborů. Kliknutím na konkrétní soubor se tento soubor otevře v režimu **waveform view**, v němž je možné přehrávat jednotlivé repliky. Pro přepnutí do **text view** klikněte na tlačítko v dolní části stránky. Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. Tlačítka pro zobrazení těchto anotací se nacházejí nahoře a obsahují:
+
+    PoS: Zobrazí slovní druhy.
+    
+    Tag: Ukáže morfologické tagy.
+    
+    Features: Poskytne podrobné morfologické informace.
+    
+    Lemma: Zobrazí základní tvary slov.
+
 
 Každá replika obsahuje časovou značku a označení mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
 
-**Zobrazení anotací:** Kliknutím na „PoS“ zobrazíte slovní druhy, na „tag“ morfologické tagy, na „features“ podrobné morfologické informace a na „lemma“ základní tvary slov. Anotace morfologie a lematizace byly provedeny automaticky.
-
-**Waveform view:** Zobrazuje zvukový signál a umožňuje přehrání jednotlivých replik.
-
-**Dependencies:** Kliknutím na repliky zobrazíte syntaktickou anotaci – automaticky vytvořené závislostní stromy s možností zobrazit detaily pomocí myši.
+**Zobrazení syntaktické anotace:** Klikněte na tlačítko _dependencies_ v dolní části stránky. Kliknutím na repliky se zobrazí automaticky vytvořené závislostní stromy s možností zobrazení detailů pomocí myši.
 
 
-**2. Vyhledávání:** Pomocí tlačítka „hledat“ lze vyhledávat v korpusu dotazy ve formátu CQL (Corpus Query Language).
+**2. Vyhledávání:** Vyhledávání v korpusu lze provádět pomocí tlačítka _hledat_, které umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language).
 
-Např. dotaz [upos = "NUM.*"] [lemma = "otázka"] hledá tvary slova „otázka“, jimž předchází číslovka.
+    Příklad dotazu: [upos = "NUM.*"] [lemma = "otázka"] hledá tvary slova _otázka_, jimž předchází číslovka.
+    
+    Query builder: Umožňuje vyhledávat podle slovních druhů, lemmat nebo konkrétních slovních tvarů či jejich částí.
 
-Pomocí „query builderu“ lze vyhledávat podle slovních druhů, lemmat nebo konkrétních slovních tvarů či jejich částí.
+V základním nastavení vyhledáváme v celém korpusu, který může obsahovat k jedné nahrávce vícečetné přepisy. Chcete-li vyhledávat pouze v části korpusu s jedním přepisem ke každé nahrávce, je třeba hledání omezit na tzv. kanonický korpus. 
 
-V základním nastavení vyhledáváme v celém korpusu, v němž jsou u některých nahrávek přítomny vícečetné přepisy. Chceme-li vyhledávat jen v té části korpusu, která k jedné nahrávce obsahuje právě jeden přepis, je třeba hledání omezit na tzv. kanonický korpus.
-
-Např. [lemma = "situace"] :: match.text_canonical = "1" vyhledává lemma „situace“ v kanonickém korpusu.
+    Příklad pro kanonický korpus: [lemma = "situace"] :: match.text_canonical = "1" vyhledává lemma _situace_ v kanonickém korpusu.
 
 
 **3. Stahování:** Celý korpus, či jeho části, je možné stáhnout ve formátu XML pro offline práci a podrobnější analýzu.
