@@ -10,14 +10,16 @@ Databáze je integrována do systému TEITOK.
 [TEITOK](http://teitok.corpuswiki.org/) je framework pro vytváření, správu a zveřejňování anotovaných korpusů. 
 Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.
 Pro náš projekt, který kombinuje nahrávky mluveného projevu a jejich přepisy, je stěžejní funkcionalita prostředí TEITOK, která umožňuje [vytvářet, zobrazovat a upravovat přepisy nahrávek](http://www.teitok.org/index.php?action=help&id=wavesurfer).
-K práci se samotnou nahrávkou TEITOK využívá Jvascript knihovnu [wavesurfer](http://wavesurfer-js.org/).
+K práci se samotnou nahrávkou TEITOK využívá Javascript knihovnu [wavesurfer](http://wavesurfer-js.org/).
 
-### Příprava a uložení dat
-Korpus v TEITOKu sestává z kolekce souborů ve formátu TEITOK, které obsahují veškeré přepisy a anotace včetně metadat. 
-Kromě toho obsahuje i nahrávky ve formátu MP3, které jsou provázány s jednotlivými soubory s přepisy. 
-Formát TEITOK je XML formát, který plně odpovídá standardu Text Encoding Initiative (TEI, CITE), s mírně odlišným přístupem k tokenizaci.
+### Uložení dat
+Dáta korpusu jsou v prostředí TEITOK primárně uloženy ve formě souborů.
+V našem případě jsou to nahrávky ve formátu MP3, ale hlavní části jsou soubory ve formátu TEITOK.
+Ty jsou s nahrávkou provázany, přičemž obsahují veškeré přepisy a anotace včetně metadat.
 
 ### Struktura souborů TEITOK
+Formát TEITOK je XML formát, který plně odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), s mírně odlišným přístupem k tokenizaci.
+Struktura TEITOK souborů v naši databázi je nasledující:
 
 #### Hlavička s metadaty `<teiHeader>`
 1. **`<fileDesc>`** – Popis souboru
