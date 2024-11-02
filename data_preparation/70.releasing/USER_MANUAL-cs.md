@@ -12,32 +12,33 @@ Kliknutím na konkrétní soubor se tento soubor zobrazí.
 
 ## Zobrazení souboru
 Umožňuje prohlížet přepisy jednotlivých replik spolu s anotací a metadaty a poslouchat příslušné zvukové nahrávky.
-Charakter zobrazených informací se liší od zvoleného režimu zobrazení.
+Charakter zobrazených informací se liší od zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným přepisem.
 
 ### Režim Text view
 Základní režim zobrazení, který se objeví po otevření souboru.
+V horní části obrazovky se zobrazuje hlavička s názvem přepisu a několika zvolenými metadaty.
+V spodní části se zobrazuje samotný přepis po replikách.
+Každá replika je uvozena označením mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
+
+Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci.
+Pro konkrétní token se tato anotace kontextově zobrazi po najetí kurzorem nad daný token.
+Je však možné zobrazit vybraný atribut i pro všechny tokeny v přepisu.
+Pro tento účel slouží ovládací prvky nahoře pod hlavičkou, které obsahují naseldující tlačítka:
+- PoS: Zobrazí slovní druhy.
+- Tag: Ukáže morfologické tagy.
+- Features: Poskytne podrobné morfologické informace.
+- Lemma: Zobrazí základní tvary slov.
 
 ### Režim Waveform view
-V horní části obrazovky se spolu s grafem signálu zvolené nahrávky zobrazujou i ovládací prvky pro její přehrávání.
-Po ní se zobrazují přepisy jednotlivých replik.
+V horní části obrazovky se zobrazí rozšířený ovládací prvek pro přehrávání nahrávky, který ukazuje i graf signálu (tzv. waveform).
+Pod ním se zobrazují přepisy jednotlivých replik.
 Kliknutím na repliku se zvolená replika přehraje.
 
 ### Režim Dependencies
-
-
- Pro přepnutí do **Text view** klikněte na tlačítko v dolní části stránky. Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. Tlačítka pro zobrazení těchto anotací se nacházejí nahoře a obsahují:
-
-PoS: Zobrazí slovní druhy.
-    
-Tag: Ukáže morfologické tagy.
-    
-Features: Poskytne podrobné morfologické informace.
-    
-Lemma: Zobrazí základní tvary slov.
-
-Každá replika obsahuje časovou značku a označení mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
-
-**Zobrazení syntaktické anotace:** Klikněte na tlačítko _Dependencies_ v dolní části stránky. Kliknutím na repliky se zobrazí automaticky vytvořené závislostní stromy s možností zobrazení detailů pomocí myši.
+Zobrazuje syntaktickou anotaci.
+Kliknutím na konkrétní repliku se zobrazí automaticky vytvořený závislostní strom s možností zobrazení detailů pomocí myši.
+Napravo nahoře od stromu se nachází tlačítko ≡ pro další možnosti zobrazení stromu.
+Je tak možné uzly uspořádat podle slovosledu, zobrazit interpunkci nebo obrázek stromu uložit ve formátu SVG.
 
 ## Filtrování záznamů
 
