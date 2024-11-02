@@ -4,11 +4,28 @@ Základní funkce databáze zahrnuje prohlížení záznamů s různymi způsoby
 Databáze umožňuje korpus stáhnout vcelku i po vybraných záznamech.
 
 ## Prohlížení záznamů
-Umožňuje prohlížet přepisy jednotlivých replik, poslech příslušných zvukových nahrávek a jejich vizualizaci (Waveform view).
+Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj. soubory transkriptů), které jsou v databázi uloženy.
+Pro každý soubor s transkriptem, tabulka kromě názvu souboru zobrazuje v dalších sloupcech úroveň a identifikátor zkoušky, čislo úlohy, zdroj předběžné anotace, kód anotátora a jestli je přepis pro danou nahrávku kanonický.
+Soubory v tabulce je možné setřídit podle hodnot vybraného sloupce.
+Záznamy v tabulce je možné i filtrovat na základě libovolného podřetězce v jméně souboru po zadání tohoto podřetězce do textového pole "Search:" vpravo nad tabulkou.
+Kliknutím na konkrétní soubor se tento soubor zobrazí.
 
-**Zobrazení záznamů:** 
+## Zobrazení souboru
+Umožňuje prohlížet přepisy jednotlivých replik spolu s anotací a metadaty a poslouchat příslušné zvukové nahrávky.
+Charakter zobrazených informací se liší od zvoleného režimu zobrazení.
 
-Po kliknutí na _Zobraz položky_ se objeví seznam souborů. Kliknutím na konkrétní soubor se tento soubor otevře v režimu **Waveform view**, v němž je možné přehrávat jednotlivé repliky (kliknutím na repliku). Pro přepnutí do **Text view** klikněte na tlačítko v dolní části stránky. Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. Tlačítka pro zobrazení těchto anotací se nacházejí nahoře a obsahují:
+### Režim Text view
+Základní režim zobrazení, který se objeví po otevření souboru.
+
+### Režim Waveform view
+V horní části obrazovky se spolu s grafem signálu zvolené nahrávky zobrazujou i ovládací prvky pro její přehrávání.
+Po ní se zobrazují přepisy jednotlivých replik.
+Kliknutím na repliku se zvolená replika přehraje.
+
+### Režim Dependencies
+
+
+ Pro přepnutí do **Text view** klikněte na tlačítko v dolní části stránky. Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. Tlačítka pro zobrazení těchto anotací se nacházejí nahoře a obsahují:
 
 PoS: Zobrazí slovní druhy.
     
