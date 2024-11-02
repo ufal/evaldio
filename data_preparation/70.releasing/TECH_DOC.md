@@ -1,8 +1,9 @@
 # Technická dokumentace
 **Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)**
 
-Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
+Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Korpus obsahuje nahrávky zaznamenávající ústní část [Certifikované zkoušky z češtiny pro cizince](http://ujop.cuni.cz/cce) na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Náhravky jsme opatřili jejich přepisy a bohatou lingvistickou anotací. K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
 
+Korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 Databáze je integrována do systému TEITOK, který je spravován na platformě [LINDAT/CLARIAH-CZ](https://lindat.cz/).
 
 ## TEITOK
@@ -63,12 +64,13 @@ Příprava souborů TEITOK probíhala v několika fázích:
 Když předběžná anotace nebyla prázdná, převedli jsme ji do základní verze formátu TEITOK.
 Na konci této fáze tak obsahovala přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
 2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely nebo se opravovaly přepisy, přiřazovaly mluvčích k replikám a pomocí časových značek zarovnávaly repliky s nahrávkou.
-3. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
-4. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky v jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
-5. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro střihání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
-6. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
+Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
+4. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
+5. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky v jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
+6. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro střihání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
+7. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
 Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
-7. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
+8. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
 
 Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
 
@@ -80,19 +82,7 @@ TEITOK také nabízí Query builder, kde může uživatel specifikovat dotaz vyp
 Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě.
 Výsledky dotazů je možné stáhnout v XML formátu.
 
-## Obsah korpusu
 
-Korpus obsahuje nahrávky zaznamenávající ústní část zkoušky CCE (Certifikovaná zkouška z češtiny pro cizince; http://ujop.cuni.cz/cce) na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). 
-
-Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ujop.cuni.cz), který audionahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob). 
-
-Každá nahrávka je opatřena manuálně vytvořeným přepisem. Přepisy zároveň obsahují i ručně přiřazené časové značky, které spojují repliky s konkrétními úseky nahrávky. Součástí anotace je také manuální označení jednotlivých mluvčích.
-
-Každý slovní tvar je opatřen automatickou anotaci slovních druhů a morfologickými značkami. Korpus byl také automaticky lemmatizován a obsahuje syntaktickou anotaci (závislostní stromy).
-
-Pro účely vyhledávaní a filtrování se vstupní soubory a jejich obsah indexuje do binárního formátu [Corpus Workbench](https://cwb.sourceforge.io). 
-
-K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
 
 ### Licence
 
