@@ -3,7 +3,7 @@
 
 Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 
-Databáze je integrována do systému TEITOK.
+Databáze je integrována do systému TEITOK, který je spravován na platformě [LINDAT/CLARIAH-CZ](https://lindat.cz/).
 
 ## TEITOK
 
@@ -72,17 +72,13 @@ Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2
 
 Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
 
-
-
 ### Dotazování, vyhledávání a filtrování
-Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným procesorem dotazů CQP, klíčovou komponentou sady nástrojů IMS Open Corpus Workbench (CWB).
+Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným [procesorem dotazů CQP](https://cwb.sourceforge.io/files/CQP_Manual.pdf), klíčovou komponentou sady nástrojů [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/).
 CQP převádí korpusy ve formátu XML do binární podoby a efektivně je indexuje.
-Dotazování v indexovaných korpusech probíhá pomocí jazyka CQL, který je standardem v korpusové lingvistice. 
+Dotazování v indexovaných korpusech probíhá pomocí jazyka [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf), který je standardem v korpusové lingvistice. 
 TEITOK také nabízí Query builder, kde může uživatel specifikovat dotaz vyplněním formuláře. 
 Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě.
 Výsledky dotazů je možné stáhnout v XML formátu.
-
-Databáze je dostupná na platformě LINDAT/CLARIAH-CZ.
 
 ## Obsah korpusu
 
