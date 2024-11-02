@@ -3,13 +3,14 @@
 
 Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, je výsledkem projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Korpus je zveřejněn jako specializovaná veřejná databáze a je volně dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
 
-
-Databáze je integrována do systému TEITOK (CITE).
+Databáze je integrována do systému TEITOK.
 
 ## TEITOK
 
-TEITOK je framework pro vytváření, správu a zveřejňování anotovaných korpusů. 
+[TEITOK](http://teitok.corpuswiki.org/) je framework pro vytváření, správu a zveřejňování anotovaných korpusů. 
 Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.
+Pro náš projekt, který kombinuje nahrávky mluveného projevu a jejich přepisy, je stěžejní funkcionalita prostředí TEITOK, která umožňuje [vytvářet, zobrazovat a upravovat přepisy nahrávek](http://www.teitok.org/index.php?action=help&id=wavesurfer).
+K práci se samotnou nahrávkou TEITOK využívá Jvascript knihovnu [wavesurfer](http://wavesurfer-js.org/).
 
 ### Příprava a uložení dat
 Korpus v TEITOKu sestává z kolekce souborů ve formátu TEITOK, které obsahují veškeré přepisy a anotace včetně metadat. 
