@@ -56,20 +56,18 @@ Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pom
 ### Příprava souborů TEITOK
 Příprava souborů TEITOK probíhala v několika fázích:
 
-1. **Předběžná anotace**. Porovnávali jsme přímou ruční anotaci s post-editací výstupů systémů pro automatické rozpoznávání řeči. Předběžná anotace je rozlišena pomocí atributu `preannot-source`, jehož hodnota může být:
+1. **Předběžná anotace**. V rámci výzkumu spojeného s vytvářením databáze jsme porovnávali přímou ruční anotaci s manuální post-editací výstupů systémů pro automatické rozpoznávání řeči. Manuální anotace tak může vycházet z automaticky připravené předběžné anotace. Zdroj předběžné anotace rozlišujeme pomocí atributu `preannot-source`, jehož hodnota může být:
     - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
-    - `from_whisperX`: Předběžná anotace získaná pomocí systému WhisperX (CITE).
+    - `from_whisperX`: Předběžná anotace získaná pomocí systému [WhisperX](https://github.com/m-bain/whisperX).
     - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů čtyř systémů na úrovni replik.
 Když předběžná anotace nebyla prázdná, převedli jsme ji do základní verze formátu TEITOK.
 Na konci této fáze tak obsahovala přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
-2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vznikaly nebo se opravovaly přepisy, proběhlo přiřazení mluvčích k replikám a časové zarovnání s nahrávkou.
+2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely nebo se opravovaly přepisy, přiřazovaly mluvčích k replikám a pomocí časových značek zarovnávaly repliky s nahrávkou.
 3. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
 4. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky v jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
-5. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou.
+5. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro střihání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
 6. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
-
-Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj UDPipe 2 (CITE), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
-
+Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
 7. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
 
 Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
