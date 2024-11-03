@@ -52,13 +52,20 @@ Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Nap
 >
 > pro nalezení tvarů slova _otázka_, jimž předchází číslovka
     
-Query builder: Umožňuje vyhledávat podle slovních druhů, lemmat nebo konkrétních slovních tvarů či jejich částí.
+Pro usnadnění vyhledávání rozhraní nabízí TEITOK nástroj pro sestavování dotazů, který umožňuje snadno definovat jednoduché dotazy v CQL pomocí formuláře.
+Stačí kliknout na ikonu _query builder_, definovat svůj dotaz a kliknout na tlačítko _Create query_, čímž se dotaz vloží do textového pole CQL, kde můžete dotaz případně ručně upravit.
 
-V základním nastavení vyhledáváme v celém korpusu, který může obsahovat k jedné nahrávce vícečetné přepisy. Chcete-li vyhledávat pouze v části korpusu s jedním přepisem ke každé nahrávce, je třeba hledání omezit na tzv. kanonický korpus. 
+V základním nastavení TEITOK vyhledává v celém korpusu, který může obsahovat k jedné nahrávce vícečetné přepisy.
+Chcete-li vyhledávat pouze v části korpusu s jedním přepisem ke každé nahrávce, je třeba hledání omezit na tzv. kanonické přepisy.
+Např.
 
-    Příklad dotazu pro kanonický korpus: [lemma = "situace"] :: match.text_canonical = "1" vyhledává lemma _situace_ v kanonickém korpusu.
-
+> `[lemma = "situace"] :: match.text_canonical = "1"`
+>
+>  vyhledává lemma _situace_ jenom v kanonických přepisech.
 
 ## Stahování
-Celý korpus, či jeho části, je možné stáhnout ve formátu XML pro offline práci a podrobnější analýzu.
+Celý korpus včetně nahrávek a dokumentace je možno stáhnout z hlavního menu vlevo.
+
+Stáhnout je možné i konkrétní přepis, a to v režimu _Text view_ kliknutím na tlačítko _Download XML_ v dolní části stránky.
+Pro stáhnutí čistého textu přepisu bez anotací klikněte na tlačítko _Download text_.
 
