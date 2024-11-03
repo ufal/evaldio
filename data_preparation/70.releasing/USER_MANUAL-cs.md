@@ -40,13 +40,17 @@ Kliknutím na konkrétní repliku se zobrazí automaticky vytvořený závislost
 Napravo nahoře od stromu se nachází tlačítko ≡ pro další možnosti zobrazení stromu.
 Je tak možné uzly uspořádat podle slovosledu, zobrazit interpunkci nebo obrázek stromu uložit ve formátu SVG.
 
-## Filtrování záznamů
-
+## Filtrování záznamů přes kategorie
+Po kliknutí na tlačítko _Kategorie_ v levém hlavním menu je možné filtrovat přepisy na základě hodnot jednotlivých kategorií.
+Je tak možné si např. zobrazit seznam jenom kanonických přepisů nebo přepisů od konkrétní anotátora. 
 
 ## Vyhledávání
-Vyhledávání v korpusu lze provádět pomocí tlačítka _Hledat_, které umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language).
+Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po klinutí na tlačítko _Hledat_ v levém hlavním menu.
+Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Např.
 
-    Příklad dotazu: [upos = "NUM.*"] [lemma = "otázka"] hledá tvary slova _otázka_, jimž předchází číslovka.
+> `[upos = "NUM.*"] [lemma = "otázka"]`
+>
+> pro nalezení tvarů slova _otázka_, jimž předchází číslovka
     
 Query builder: Umožňuje vyhledávat podle slovních druhů, lemmat nebo konkrétních slovních tvarů či jejich částí.
 
