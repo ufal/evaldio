@@ -65,5 +65,3 @@ Pokud chcete vyhledávat pouze v té části korpusu, v níž je ke každé nahr
 Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního menu vlevo.
 
 Konkrétní přepis lze stáhnout v režimu _Text view_ kliknutím na tlačítko _Download XML_ umístěné v dolní části stránky.
-
-Pro stažení čistého textu přepisu bez anotací klikněte na tlačítko _Download text_.
