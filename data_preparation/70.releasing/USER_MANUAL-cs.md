@@ -1,48 +1,46 @@
 # Uživatelská příručka
 
-Základní funkce databáze zahrnuje prohlížení záznamů s různymi způsoby jejich zobrazení, filtrování záznamů přes různe kategorie a komplexní vyhledávaní v obsahu databáze.
-Databáze umožňuje korpus stáhnout vcelku i po vybraných záznamech.
+Základní funkce databáze zahrnuje prohlížení záznamů s různými způsoby jejich zobrazení, filtrování záznamů podle různých kategorií a komplexní vyhledávání v obsahu databáze. 
+Databáze rovněž umožňuje stáhnout korpus jako celek nebo stáhnout vybrané záznamy.
 
 ## Prohlížení záznamů
-Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj. soubory transkriptů), které jsou v databázi uloženy.
-Pro každý soubor s transkriptem, tabulka kromě názvu souboru zobrazuje v dalších sloupcech úroveň a identifikátor zkoušky, čislo úlohy, zdroj předběžné anotace, kód anotátora a jestli je přepis pro danou nahrávku kanonický.
-Soubory v tabulce je možné setřídit podle hodnot vybraného sloupce.
-Záznamy v tabulce je možné i filtrovat na základě libovolného podřetězce v jméně souboru po zadání tohoto podřetězce do textového pole "Search:" vpravo nad tabulkou.
-Kliknutím na konkrétní soubor se tento soubor zobrazí.
+Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj. soubory transkriptů) uložené v databázi. 
+Pro každý soubor s transkriptem tabulka kromě názvu souboru zobrazuje v dalších sloupcích úroveň a identifikátor zkoušky, číslo úlohy, zdroj předběžné anotace, kód anotátora a informaci o tom, zda je přepis pro danou nahrávku kanonický.
+Soubory v tabulce je možné třídit podle hodnot vybraného sloupce. 
+Záznamy lze také filtrovat na základě libovolného podřetězce v názvu souboru zadáním tohoto podřetězce do textového pole "Search:" umístěného vpravo nad tabulkou. Kliknutím na konkrétní soubor se tento soubor zobrazí.
 
 ## Zobrazení souboru
-Umožňuje prohlížet přepisy jednotlivých replik spolu s anotací a metadaty a poslouchat příslušné zvukové nahrávky.
-Charakter zobrazených informací se liší od zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným přepisem.
+Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s anotacemi a metadaty a také poslouchat příslušné zvukové nahrávky. 
+Charakter zobrazených informací se liší podle zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným přepisem.
 
-### Režim Text view
-Základní režim zobrazení, který se objeví po otevření souboru.
-V horní části obrazovky se zobrazuje hlavička s názvem přepisu a několika zvolenými metadaty.
-V spodní části se zobrazuje samotný přepis po replikách.
-Každá replika je uvozena označením mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
+### Režim Text View
+Toto je základní režim zobrazení, který se objeví po otevření souboru. 
+V horní části obrazovky se nachází hlavička s názvem přepisu a vybranými metadaty. 
+V dolní části je zobrazen samotný přepis, rozdělený na repliky. 
+Každá replika je označena identifikátorem mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
 
-Tento režim umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci.
-Pro konkrétní token se tato anotace kontextově zobrazi po najetí kurzorem nad daný token.
-Je však možné zobrazit vybraný atribut i pro všechny tokeny v přepisu.
-Pro tento účel slouží ovládací prvky nahoře pod hlavičkou, které obsahují naseldující tlačítka:
+Tento režim rovněž umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. 
+Po najetí kurzorem na konkrétní token se zobrazí příslušná anotace v kontextu. 
+Pro zobrazení vybraného atributu pro všechny tokeny v přepisu lze využít ovládací prvky umístěné pod hlavičkou, které obsahují následující tlačítka:
 - PoS: Zobrazí slovní druhy.
 - Tag: Ukáže morfologické tagy.
 - Features: Poskytne podrobné morfologické informace.
 - Lemma: Zobrazí základní tvary slov.
 
-### Režim Waveform view
-V horní části obrazovky se zobrazí rozšířený ovládací prvek pro přehrávání nahrávky, který ukazuje i graf signálu (tzv. waveform).
-Pod ním se zobrazují přepisy jednotlivých replik.
-Kliknutím na repliku se zvolená replika přehraje.
+### Režim Waveform View
+V horní části obrazovky se nachází rozšířený ovládací prvek pro přehrávání nahrávky, který zobrazuje graf signálu (tzv. waveform).
+Pod ním jsou zobrazeny přepisy jednotlivých replik.
+Kliknutím na konkrétní repliku se tato replika přehraje.
 
 ### Režim Dependencies
-Zobrazuje syntaktickou anotaci.
-Kliknutím na konkrétní repliku se zobrazí automaticky vytvořený závislostní strom s možností zobrazení detailů pomocí myši.
-Napravo nahoře od stromu se nachází tlačítko ≡ pro další možnosti zobrazení stromu.
-Je tak možné uzly uspořádat podle slovosledu, zobrazit interpunkci nebo obrázek stromu uložit ve formátu SVG.
+Tento režim zobrazuje syntaktickou anotaci.
+Po kliknutí na konkrétní repliku se zobrazí automaticky vygenerovaný závislostní strom, u nějž je možné zobrazit detaily pomocí myši.
+Vpravo nahoře od stromu se nachází tlačítko ≡ pro další možnosti zobrazení stromu.
+Je tak možné uspořádat uzly podle slovosledu, zobrazit interpunkci nebo uložit obrázek stromu ve formátu SVG.
 
 ## Filtrování záznamů přes kategorie
 Po kliknutí na tlačítko _Kategorie_ v levém hlavním menu je možné filtrovat přepisy na základě hodnot jednotlivých kategorií.
-Je tak možné si např. zobrazit seznam jenom kanonických přepisů nebo přepisů od konkrétní anotátora. 
+Například je tak možné zobrazit si pouze seznam kanonických přepisů nebo přepisů od konkrétního anotátora. 
 
 ## Vyhledávání
 Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po klinutí na tlačítko _Hledat_ v levém hlavním menu.
@@ -52,20 +50,20 @@ Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Nap
 >
 > pro nalezení tvarů slova _otázka_, jimž předchází číslovka
     
-Pro usnadnění vyhledávání rozhraní nabízí TEITOK nástroj pro sestavování dotazů, který umožňuje snadno definovat jednoduché dotazy v CQL pomocí formuláře.
-Stačí kliknout na ikonu _query builder_, definovat svůj dotaz a kliknout na tlačítko _Create query_, čímž se dotaz vloží do textového pole CQL, kde můžete dotaz případně ručně upravit.
 
-V základním nastavení TEITOK vyhledává v celém korpusu, který může obsahovat k jedné nahrávce vícečetné přepisy.
-Chcete-li vyhledávat pouze v části korpusu s jedním přepisem ke každé nahrávce, je třeba hledání omezit na tzv. kanonické přepisy.
-Např.
+Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL prostřednictvím formuláře. 
+Stačí kliknout na ikonu _query builder_, definovat svůj dotaz a poté stisknout tlačítko _Create query_, čímž se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.
+
+V základním nastavení TEITOK provádí vyhledávání v celém korpusu, který může obsahovat k jedné nahrávce více přepisů. 
+Pokud chcete vyhledávat pouze v té části korpusu, v níž je ke každé nahrávce přiřazený jen jediný přepis, je nutné omezit hledání na tzv. kanonické přepisy. Např.
 
 > `[lemma = "situace"] :: match.text_canonical = "1"`
 >
 >  vyhledává lemma _situace_ jenom v kanonických přepisech.
 
 ## Stahování
-Celý korpus včetně nahrávek a dokumentace je možno stáhnout z hlavního menu vlevo.
+Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního menu vlevo.
 
-Stáhnout je možné i konkrétní přepis, a to v režimu _Text view_ kliknutím na tlačítko _Download XML_ v dolní části stránky.
-Pro stáhnutí čistého textu přepisu bez anotací klikněte na tlačítko _Download text_.
+Konkrétní přepis lze stáhnout v režimu _Text view_ kliknutím na tlačítko _Download XML_ umístěné v dolní části stránky.
 
+Pro stažení čistého textu přepisu bez anotací klikněte na tlačítko _Download text_.
