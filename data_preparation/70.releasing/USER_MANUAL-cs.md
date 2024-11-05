@@ -14,7 +14,7 @@ Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s anotacemi
 Charakter zobrazených informací se liší podle zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným přepisem.
 
 ### Režim Text View
-Toto je základní režim zobrazení, který se objeví po otevření souboru. 
+Text View je základní režim zobrazení, který se objeví po otevření souboru. 
 V horní části obrazovky se nachází hlavička s názvem přepisu a vybranými metadaty. 
 V dolní části je zobrazen samotný přepis, rozdělený na repliky. 
 Každá replika je označena identifikátorem mluvčího (EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
@@ -48,7 +48,7 @@ Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Nap
 
 > `[upos = "NUM.*"] [lemma = "otázka"]`
 >
-> pro nalezení tvarů slova _otázka_, jimž předchází číslovka
+> pro nalezení tvarů slova _otázka_, jimž předchází číslovka.
     
 
 Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL prostřednictvím formuláře. 
