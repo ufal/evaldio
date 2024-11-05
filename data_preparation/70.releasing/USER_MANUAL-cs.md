@@ -52,7 +52,7 @@ Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Nap
     
 
 Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL prostřednictvím formuláře. 
-Stačí kliknout na ikonu _query builder_, definovat svůj dotaz a poté stisknout tlačítko _Create query_, čímž se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.
+Stačí kliknout na ikonu _Query builder_, definovat svůj dotaz a poté stisknout tlačítko _Create query_, čímž se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.
 
 V základním nastavení TEITOK provádí vyhledávání v celém korpusu, který může obsahovat k jedné nahrávce více přepisů. 
 Pokud chcete vyhledávat pouze v té části korpusu, v níž je ke každé nahrávce přiřazený jen jediný přepis, je nutné omezit hledání na tzv. kanonické přepisy. Např.
