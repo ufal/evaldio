@@ -43,7 +43,7 @@ Formát TEITOK je formát XML, který plně odpovídá standardu [Text Encoding 
 
 #### Hlavní obsah `<text>`
 Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
-- **`<u>`**: Každý element `<u>` reprezentuje úsek projevu projevu a má atributy:
+- **`<u>`**: Každý element `<u>` reprezentuje úsek projevu a má atributy:
    - `start` a `end`: Počáteční a koncový čas v sekundách.
    - `who`: Mluvčí (např. "EXAM_1" pro zkoušejícího a "CAND_1" pro kandidáta).
 - **`<s>`**: Každá věta je označena elementem `<s>`.
@@ -58,10 +58,11 @@ Příprava souborů TEITOK probíhala v několika fázích:
     - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
     - `from_whisperX`: Předběžná anotace získaná pomocí systému [WhisperX](https://github.com/m-bain/whisperX).
     - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů čtyř systémů na úrovni replik.
+
 Když předběžná anotace nebyla prázdná, převedli jsme ji do základní verze formátu TEITOK.
 Na konci této fáze tak obsahovala přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
 2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely nebo opravovaly přepisy, přiřazovaly mluvčí k replikám a pomocí časových značek zarovnávaly repliky s nahrávkou.
-Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
+Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl. Některé anotátorky z opatrnosti anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
 4. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
 5. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
 6. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro stříhání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
