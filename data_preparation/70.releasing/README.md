@@ -8,7 +8,7 @@ Some recordings are accompanied by multiple transcriptions from different annota
 
 The corpus is published as a specialized public database aimed at providing a structured and easily accessible source of authentic spoken data for linguists, educators, students, the scientific community, and the general public.
 
-The language corpus was created at the [Institute of Formal and Applied Linguistics at the Faculty of Mathematics and Physics, Charles University](https://ufal.mff.cuni.cz/) to support teaching, research, and assessment of language competence among non-native speakers of Czech as part of the project [_Automated Speech Scoring in Czech_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
+The corpus was created at the [Institute of Formal and Applied Linguistics at the Faculty of Mathematics and Physics, Charles University](https://ufal.mff.cuni.cz/) to support teaching, research, and assessment of language competence among non-native speakers of Czech as part of the project [_Automated Speech Scoring in Czech_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
 Audio recordings were provided by the [Institute for Language and Preparatory Studies, Charles University](https://ujop.cuni.cz/UJOPEN-1.html) (ujop.cuni.cz).
 
 ## Documentation
