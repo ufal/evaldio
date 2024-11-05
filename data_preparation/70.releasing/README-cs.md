@@ -33,5 +33,3 @@ Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu 
 ## Jak citovat
 
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)_. Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
-
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency).
