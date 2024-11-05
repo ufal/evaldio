@@ -26,7 +26,7 @@ The database was funded by the Programme to Support Applied Research in the Area
 
 ## Special Thanks
 
-The authors of the database sincerely thank PhDr. Pavel Pečený, Ph.D., from the Institute for Language and Preparatory Studies, Charles University for providing audio data and for their final review.
+The authors of the database sincerely thank PhDr. Pavel Pečený, Ph.D., from the Institute for Language and Preparatory Studies, Charles University for providing audio data.
 
 ## How to Cite
 
