@@ -9,7 +9,7 @@ Upon entering the corpus, all records (i.e., transcript files) stored in the dat
 The database allows users to view the transcripts of individual turns along with annotations and metadata, and to listen to the corresponding audio recordings. The nature of the displayed information varies according to the selected display mode, which can be switched at the bottom of the page below the transcript.
 
 ### Text View Mode
-This is the basic display mode that appears upon opening a file. At the top of the screen is a header with the title of the transcript and selected metadata. The transcript itself is displayed at the bottom, divided into turns. Each turn is marked with the speaker's identifier (EXAM_1 for the examiner and CAND_1 for the candidate).
+Text View is the basic display mode that appears upon opening a file. At the top of the screen is a header with the title of the transcript and selected metadata. The transcript itself is displayed at the bottom, divided into turns. Each turn is marked with the speaker's identifier (EXAM_1 for the examiner and CAND_1 for the candidate).
 
 This mode also allows users to view automatic morphological annotation and lemmatization. Hovering the cursor over a specific token will display the corresponding annotation in context. To display a selected attribute for all tokens in the transcript, controls located below the header can be used, which include the following buttons:
 - PoS: Displays parts of speech.
@@ -33,7 +33,7 @@ Searching within the corpus can be done on a page that appears after clicking th
 >
 > to find forms of the word _otázka_ that are preceded by a numeral.
 
-To facilitate searching, the TEITOK interface provides a query builder tool. This tool allows users to easily define simple queries in CQL through a form. Just click the _query builder_ icon, define your query, and then press the _Create query_ button, which inserts the query into the CQL text box where it can be further edited if needed.
+To facilitate searching, the TEITOK interface provides a query builder tool. This tool allows users to easily define simple queries in CQL through a form. Just click the _Query builder_ icon, define your query, and then press the _Create query_ button, which inserts the query into the CQL text box where it can be further edited if needed.
 
 By default, TEITOK searches the entire corpus, which may contain multiple transcripts for a single recording. If you want to search only in the part of the corpus where each recording has only a single associated transcript, you must restrict the search to so-called canonical transcripts. For example:
 
