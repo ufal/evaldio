@@ -27,7 +27,7 @@ Vznik databáze byl financován z prostředků Programu na podporu aplikovaného
 
 ## Poděkování
 
-Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu jazykové a odborné přípravy Univerzity Karlovy za poskytnutí audiodat a za jejich finální kontrolu.
+Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu jazykové a odborné přípravy Univerzity Karlovy za poskytnutí audiodat.
 
 
 ## Jak citovat
