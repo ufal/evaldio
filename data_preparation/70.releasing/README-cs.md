@@ -1,13 +1,13 @@
 # Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)
 
-Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, obsahuje nahrávky zaznamenávající ústní část [Certifikované zkoušky z češtiny pro cizince](http://ujop.cuni.cz/cce) na úrovni A2.
+Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice, obsahuje nahrávky zaznamenávající ústní část [Certifikované zkoušky z češtiny pro cizince](http://ujop.cuni.cz/cce).
 Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím).
 Kromě nahrávek korpus obsahuje také jejich přepisy, které jsou opatřeny bohatou lingvistickou anotací.
 K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
 
 Korpus je zveřejněn jako specializovaná veřejná databáze s cílem poskytnout strukturovaný a snadno přístupný zdroj autentických mluvených dat pro lingvisty, pedagogy, studenty, vědeckou komunitu a širokou veřejnost.
 
-Jazykový korpus a databáze byly vytvořeny v [Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy](https://ufal.mff.cuni.cz/) za účelem podpory výuky, výzkumu a hodnocení jazykové kompetence nerodilých mluvčích češtiny v rámci projektu [_Automatické hodnocení mluveného projevu v češtině_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
+Jazykový korpus byl vytvořen v [Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy](https://ufal.mff.cuni.cz/) za účelem podpory výuky, výzkumu a hodnocení jazykové kompetence nerodilých mluvčích češtiny v rámci projektu [_Automatické hodnocení mluveného projevu v češtině_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
 Audionahrávky pro databázi poskytl [Ústav jazykové a odborné přípravy Univerzity Karlovy](https://ujop.cuni.cz/) (ujop.cuni.cz).
 
 ## Dokumentace
