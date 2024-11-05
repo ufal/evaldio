@@ -1,6 +1,6 @@
 # Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)
 
-The language corpus of spoken performances by non-native speakers of Czech is focused on A2 level (according to the CEFR), which is required for the granting of permanent residency in the Czech Republic. 
+Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic) is the language corpus of spoken performances by non-native speakers of Czech is focused on A2 level (according to the CEFR), which is required for the granting of permanent residency in the Czech Republic. 
 It includes recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce). 
 The recordings consist of dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). 
 In addition to the recordings, the corpus also contains their transcriptions, which are richly linguistically annotated. 
