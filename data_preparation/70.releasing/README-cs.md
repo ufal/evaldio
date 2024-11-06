@@ -10,6 +10,16 @@ Korpus je zveřejněn jako specializovaná veřejná databáze s cílem poskytno
 Jazykový korpus byl vytvořen v [Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy](https://ufal.mff.cuni.cz/) za účelem podpory výuky, výzkumu a hodnocení jazykové kompetence nerodilých mluvčích češtiny v rámci projektu [_Automatické hodnocení mluveného projevu v češtině_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
 Audionahrávky poskytl [Ústav jazykové a odborné přípravy Univerzity Karlovy](https://ujop.cuni.cz/) (ujop.cuni.cz).
 
+## Statistiky
+
+|             | Všechny | Kanonické  |
+| ---------------------------------- |
+| Nahrávky    |   63    |            |
+| Transkripty |   106   |    63      |
+| Repliky     | 4 773   | 2 888      |
+| Tokeny      | 33 267  | 20 035     |
+
+
 ## Dokumentace
 
 - [Uživatelská příručka](USER_MANUAL-cs.md)
