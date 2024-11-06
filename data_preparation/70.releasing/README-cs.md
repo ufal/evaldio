@@ -3,7 +3,7 @@
 Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR) je jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice. Obsahuje nahrávky zaznamenávající ústní část [Certifikované zkoušky z češtiny pro cizince](http://ujop.cuni.cz/cce).
 Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím).
 Kromě nahrávek korpus obsahuje také jejich přepisy, které jsou opatřeny bohatou lingvistickou anotací.
-K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu. 
+K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu.
 
 Korpus je zveřejněn jako specializovaná veřejná databáze s cílem poskytnout strukturovaný a snadno přístupný zdroj autentických mluvených dat pro lingvisty, pedagogy, studenty, vědeckou komunitu a širokou veřejnost.
 
@@ -12,10 +12,13 @@ Audionahrávky poskytl [Ústav jazykové a odborné přípravy Univerzity Karlov
 
 ## Statistiky
 
+Databáze obsahuje 63 nahrávek zachycujících stejný počet zkoušek a stejný počet nerodilých mluvčích.
+Celková délka všech nahrávek je 3h 15min 40s.
+Tabulka níže ukazuje statistiky přepisů, přičemž pro každou nahrávku byl vybrán právě jeden kanonický přepis.
+
 |             | Všechny | Kanonické  |
-| ---------------------------------- |
-| Nahrávky    |   63    |            |
-| Transkripty |   106   |    63      |
+| ------------|--------:|-----------:|
+| Soubory     |   106   |    63      |
 | Repliky     | 4 773   | 2 888      |
 | Tokeny      | 33 267  | 20 035     |
 
