@@ -1,0 +1,334 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Evaldio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Cousine:400|Roboto:300,400,400italic,700,700italic|Roboto+Condensed:400,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='//lindat.mff.cuni.cz/services/teitok-live/themes/lindat/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/services/teitok/css/common.css" />
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/services/teitok/css/view.css" />
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/aai/discojuice/discojuice.css" />
+
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/aai/discojuice/discojuice.css" />
+  <link rel="stylesheet" type="text/css" href="/services/teitok/css/media-dark.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/services/teitok/Scripts/teitok.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/services/teitok/css/xmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="Resources/xmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/services/teitok/css/htmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="Resources/htmlstyles.css" media="screen">
+
+<!-- plug-ins dependencies -->
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="//lindat.mff.cuni.cz/aai/discojuice/discojuice-2.1.en.min.js"></script>
+<script type="text/javascript" src="//lindat.mff.cuni.cz/aai/aai.js"></script>
+<script type="text/javascript" src="//lindat.mff.cuni.cz/services/teitok/ufal/idp.js"></script>
+<!-- --------------------- -->
+
+</head>
+<body>
+
+
+<div class="lindat-common2 lindat-common-header">
+<header data-version="3.0.5" data-build="05eff1186f12528f221a63b021c7b7dc81301429">
+    <nav class="lindat-navbar lindat-navbar-expand-lg lindat-justify-content-between lindat-navbar-dark ">
+        <div class="lindat-block lindat-block--clariah-theme-branding">
+            <a href="https://lindat.mff.cuni.cz/" class="lindat-navbar-brand lindat-d-flex lindat-align-items-center " aria-label="">
+                <img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" width="auto" height="53" style="height: 53px !important;" alt="LINDAT/CLARIAH-CZ logo" class="" />
+            </a>
+        </div>
+        <button class="lindat-navbar-toggler" type="button" data-toggle="collapse" data-target=".lindat-navbar-collapse" aria-controls="lindat-navbar-collapse" aria-expanded="false" aria-label="Toggle navigation"
+                onclick="this.parentNode.querySelector('.lindat-navbar-toggler+div.lindat-collapse.lindat-navbar-collapse').classList.toggle('lindat-show')">
+            <span class="lindat-navbar-toggler-icon"></span>
+        </button>
+        <div class="lindat-collapse lindat-navbar-collapse">
+            <div class="">
+                <div class="lindat-block lindat-block--clariah-theme-main-menu">
+                    <ul class="lindat-nav lindat-navbar-nav">
+                        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.cz/#search" class="lindat-nav-link "
+                                    
+                                    
+                                    >Search</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en" class="lindat-nav-link "
+                                    
+                                    
+                                    >Catalogue</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.cz/#education" class="lindat-nav-link "
+                                    
+                                    
+                                    >Education</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.cz/#projects" class="lindat-nav-link "
+                                    
+                                    
+                                    >Projects</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.cz/#tools" class="lindat-nav-link "
+                                    
+                                    
+                                    >Tools</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item ">
+              <a href="https://lindat.cz/en/services" class="lindat-nav-link "
+                                    
+                                    
+                                    >Services</a>
+              
+          </li>
+        
+          <li class="lindat-nav-item lindat-dropdown">
+              <a href="https://lindat.cz/" class="lindat-nav-link lindat-dropdown-toggle"
+                                     data-toggle="dropdown"
+                                     onclick="this.parentNode.querySelector('.lindat-dropdown-toggle+div.lindat-dropdown-menu').classList.toggle('lindat-show'); return false;"
+                                    >About</a>
+              <div class="lindat-dropdown-menu">
+               <a href="https://lindat.cz/partners" class="lindat-dropdown-item">Partners</a>
+            
+               <a href="https://lindat.cz/files/mission-en.pdf" class="lindat-dropdown-item">Mission Statement</a>
+            
+               <a href="https://www.clarin.eu/" class="lindat-dropdown-item">CLARIN</a>
+            
+               <a href="https://www.dariah.eu/" class="lindat-dropdown-item">DARIAH</a>
+            
+               <a href="https://lindat.cz/integration" class="lindat-dropdown-item">Service integrations</a>
+            
+               <a href="https://lindat.cz/partnership" class="lindat-dropdown-item">Project partnerships</a>
+            </div>
+          </li>
+        
+                    </ul>
+                </div>
+            </div>
+            <div class="lindat-block lindat-block--clariah-theme-account-menu">
+                <ul class="lindat-nav lindat-navbar-nav">
+                    <li class="lindat-nav-item" id="margin-filler"></li>
+                    <li class="lindat-nav-item  ">
+                        <a class="lindat-nav-link lindat-nav-link-dariah" href="https://www.dariah.eu/"><img src="https://lindat.mff.cuni.cz/images/dariah-eu.png" alt="DARIAH logo" /></a>
+                    </li>
+                    <li class="lindat-nav-item  ">
+                        <a class="lindat-nav-link lindat-nav-link-clarin" href="https://www.clarin.eu/"><img src="https://lindat.mff.cuni.cz/images/clarin.png" alt="CLARIN logo" /></a>
+                    </li>
+                </ul>
+            </div>
+            <slot name="languageswitcher"></slot>
+        </div>
+    </nav>
+</header>
+</div>
+    
+
+
+<div id="localization-bar"></div>
+<div id="content">
+        	<div id='menubox'>
+        				<p class='header main'><a href='http://lindat.mff.cuni.cz/services/teitok/index.php'>TEITOK</a></p>
+			<ul style='text-align: left' class='teitok'>
+			<li><a href='index.php?action=login'>Login</a></li>
+			<li><a href='http://lindat.mff.cuni.cz/services/teitok/index.php?action=corplist'>Available Corpora</a></li>
+			</ul>
+			<div stle='margin-top: 0px; margin-bottom: 20px;'><span class=langon>EN</span> | <span class=langoff><a href='/services/teitok-live/evaldio/cs/index.php?action=db_residency'>CS</a></span></div><p class='header'><a href='index.php'>Evaldio</a></p><ul style='text-align: left'><li><a href='index.php?action=databases'>Databases</a><li><a href='index.php?action=browser'>Browse</a><li><a href='index.php?action=cqp'>Search</a><li><a target="repository" href='http://hdl.handle.net/11234/1-5731'>Download</a></ul><ul style='text-align: left'><li><a href='index.php?action=login' >Login</a></ul><hr style='opacity: 0.5; margin-top: 40px;'><p id=powby style='opacity: 0.5; font-size: smaller;'><span onClick="window.open('http://www.teitok.org/index.php', 'teitok');">Powered by <span style='font-family: Courier;'>&lt;TEI:TOK&gt;</span></span><br><span onClick="window.open('http://www.teitok.org/index.php?action=credits', 'teitok');">Maarten Janssen, 2014-</a></p>
+        	</div>
+    <div id="main">
+		<h1>Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)</h1>
+<p><span style="font-size: 11pt; font-family: 'arial', sans-serif; color: #000000; background-color: transparent; font-weight: 400; font-style: normal; font-variant: normal; text-decoration: none; vertical-align: baseline; white-space: pre-wrap;">The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project <em>Automated Speech Scoring in Czech</em> (DH23P03OVV037).</span></p>
+<p>Rysov&aacute; Kateřina, Nov&aacute;k Michal, Rysov&aacute; Magdal&eacute;na, Pol&aacute;k Peter, Bojar Ondřej: <em>Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)</em>. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW <a href="https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency" rel="nofollow">https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency</a>.</p>
+<p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28trval&yacute;+pobyt+v+ČR%29">Enter Corpus</a></p>
+	</div>
+</div>
+
+</div>
+
+
+
+<div class="lindat-common2 lindat-common-footer">
+ <footer data-version="3.0.5" data-build="05eff1186f12528f221a63b021c7b7dc81301429">
+    
+      <div id="about-lindat">
+        <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
+        <ul>
+          
+          <li><a href="https://lindat.cz/files/mission-en.pdf">Mission Statement</a></li>
+          
+          <li><a href="https://lindat.cz/ab">Advisory Board</a></li>
+          
+          <li><a href="https://lindat.cz/events">Events</a></li>
+          
+          <li><a href="https://www.clarin.eu/">CLARIN Participation</a></li>
+          
+          <li><a href="https://www.dariah.eu/">DARIAH Participation</a></li>
+          <br/>
+          <li><a href="https://lindat.cz/faq-repository">FAQ</a></li>
+          
+          <li><a href="mailto:lindat-help@ufal.mff.cuni.cz">Helpdesk</a></li>
+          
+          <li><a href="https://lindat.cz/user_feedback">User Feedback Form</a></li>
+          <br/>
+          <li><a href="https://lindat.cz/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
+          
+        </ul>
+      </div>
+      
+      <div id="about-partners">
+        <h4><a href="https://lindat.cz/partners">Partners</a></h4>
+        <ul>
+          
+            <li>Charles University
+                <ul>
+                    
+          <li><a href="https://lindat.cz/partners/mff-uk">Faculty <i>of</i> Mathematics <i>and</i> Physics</a></li>
+          
+          <li><a href="https://lindat.cz/partners/ff-uk">Faculty <i>of</i> Arts</a></li>
+          
+                </ul>
+            </li>
+          
+            <li>Masaryk University
+                <ul>
+                    
+          <li><a href="https://lindat.cz/partners/ff-mu">Faculty <i>of</i> Arts</a></li>
+          
+          <li><a href="https://lindat.cz/partners/fi-mu">Faculty  <i>of</i> Informatics</a></li>
+          
+                </ul>
+            </li>
+          
+            <li>University of West Bohemia
+                <ul>
+                    
+          <li><a href="https://lindat.cz/partners/zcu">Faculty <i>of</i> Applied Sciences</a></li>
+          
+                </ul>
+            </li>
+          
+            <li>Czech Academy of Sciences
+                <ul>
+                    
+          <li><a href="https://lindat.cz/partners/ujc">Czech Language Institute</a></li>
+          
+          <li><a href="https://lindat.cz/partners/knav">Library <i>of</i> Academy</a></li>
+          
+          <li><a href="https://lindat.cz/partners/hu">Institute <i>of</i> History</a></li>
+          
+          <li><a href="https://lindat.cz/partners/flu">Institute <i>of</i> Philosophy</a></li>
+          
+                </ul>
+            </li>
+          
+            <li>Archives, Libraries and Galleries
+                <ul>
+                    
+          <li><a href="https://lindat.cz/partners/nk">National Library <i>of the Czech Republic</i></a></li>
+          
+          <li><a href="https://lindat.cz/partners/mzk">Moravian Library <i>in Brno</i></a></li>
+          
+          <li><a href="https://lindat.cz/partners/ng">National Gallery Prague</a></li>
+          
+          <li><a href="https://lindat.cz/partners/nfa">National Film Archive</a></li>
+          
+                </ul>
+            </li>
+          
+        </ul>
+      </div>
+      
+      <div id="about-website">
+        <h4><a href="https://lindat.cz/services">Services</a></h4>
+        <ul>
+          
+          <li><a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a></li>
+          
+          <li><a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a></li>
+          
+          <li><a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a></li>
+          
+        </ul>
+      </div>
+      
+
+    <div id="badges-a">
+        <a href="https://www.clarin.eu/content/certified-centres"><img src="https://lindat.mff.cuni.cz/images/b-centre.png" alt="CLARIN CENTRE B" /></a>
+        <a href="https://www.clarin.eu/content/knowledge-centres"><img src="https://lindat.mff.cuni.cz/images/k-centre.png" alt="CLARIN CENTRE K" style="filter:brightness(0.88)" /></a>
+        <a href="https://www.coretrustseal.org/wp-content/uploads/2019/08/LINDAT-CLARIN.pdf"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification" /></a>
+    </div>
+
+    <div id="badges-b">
+        <a href="https://twitter.com/lindatclariahcz">Follow us on Twitter <img src="https://lindat.mff.cuni.cz/images/twitter-circular.svg" alt="Link to Profile" /></a>
+        <a href="https://lindat.cz/user/login"><img src="https://lindat.mff.cuni.cz/sites/default/files/LINDAT-CLARIAH-cz-gray_0.svg" alt="Home Page" /></a>
+    </div>
+
+    <div id="ack-msmt">
+        THE LINDAT/CLARIAH-CZ PROJECT (LM2018101; formerly LM2010013, LM2015071) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&#160;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
+    </div>
+    <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by <a href="https://creativecommons.org/licenses/by/3.0/">CC 3.0 BY</a></div>
+    <div id="ack-ufal">website © 2022 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+    
+  <!-- TRACKING CODE -->
+
+  <script type="text/javascript">
+    //<![CDATA[
+    
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    // main LINDAT/CLARIAH-CZ tracker
+    ga('create', 'UA-27008245-2', 'cuni.cz');
+    ga('send', 'pageview');
+      
+    //]]>
+  </script>
+
+  <!-- Piwik LINDAT/CLARIAH-CZ tracker -->
+  <script type="text/javascript">
+    //<![CDATA[
+    
+    var _paq = _paq || [];
+    _paq.push(["setDocumentTitle", document.domain + "/" + document.title]);
+    _paq.push(["setCookieDomain", "*.mff.cuni.cz"]);
+    _paq.push(["setDomains", ["*.mff.cuni.cz"]]);
+    _paq.push(['setCustomVariable', 1, "source", "common-theme", "page"]);
+    _paq.push(['trackPageView']);
+    _paq.push(['enableLinkTracking']);
+    (function() {
+      var u='//lindat.mff.cuni.cz/piwik/';
+      _paq.push(['setTrackerUrl', u+'piwik.php']);
+      _paq.push(['setSiteId', 2]);
+      var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+      g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+    })();
+      
+    //]]>
+  </script>
+  <noscript><p><img src="//lindat.mff.cuni.cz/piwik/piwik.php?idsite=2" style="border:0;" alt="" /></p></noscript>
+  <!-- End Piwik Code -->
+  <!-- End TRACKING CODE -->
+      
+</footer>
+</div>
+    
+
+
+
+</body>
+</html>
