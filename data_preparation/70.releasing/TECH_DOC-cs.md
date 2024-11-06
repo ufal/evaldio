@@ -13,13 +13,11 @@ Pro náš projekt, který kombinuje nahrávky mluveného projevu a jejich přepi
 K práci se samotnou nahrávkou TEITOK využívá Javascript knihovnu [wavesurfer](http://wavesurfer-js.org/).
 
 ### Uložení dat
-Dáta korpusu jsou v prostředí TEITOK primárně uloženy ve formě souborů.
-V našem případě jsou to nahrávky ve formátu MP3, ale hlavní části jsou soubory ve formátu TEITOK.
-Ty jsou s nahrávkou provázany, přičemž obsahují veškeré přepisy a anotace včetně metadat.
+Data korpusu jsou v prostředí TEITOK primárně uložena ve formě souborů.
+V tomto případě se jedná o nahrávky ve formátu MP3, hlavní části jsou však soubory ve formátu TEITOK, které obsahují všechny přepisy a anotace včetně metadat. Tyto soubory jsou navzájem provázány s odpovídajícími nahrávkami.
 
 ### Struktura souborů TEITOK
-Formát TEITOK je XML formát, který plně odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), s mírně odlišným přístupem k tokenizaci.
-Struktura TEITOK souborů v naši databázi je nasledující:
+Formát TEITOK je formát XML, který plně odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), avšak s mírně odlišným přístupem k tokenizaci. Struktura TEITOK souborů v naší databázi je následující:
 
 #### Hlavička s metadaty `<teiHeader>`
 1. **`<fileDesc>`** – Popis souboru
@@ -45,7 +43,7 @@ Struktura TEITOK souborů v naši databázi je nasledující:
 
 #### Hlavní obsah `<text>`
 Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
-- **`<u>`**: Každý element `<u>` reprezentuje úsek projevu projevu a má atributy:
+- **`<u>`**: Každý element `<u>` reprezentuje úsek projevu a má atributy:
    - `start` a `end`: Počáteční a koncový čas v sekundách.
    - `who`: Mluvčí (např. "EXAM_1" pro zkoušejícího a "CAND_1" pro kandidáta).
 - **`<s>`**: Každá věta je označena elementem `<s>`.
@@ -60,23 +58,30 @@ Příprava souborů TEITOK probíhala v několika fázích:
     - `from_scratch`: Kompletně manuální anotace, t.j. předběžná anotace je prázdná.
     - `from_whisperX`: Předběžná anotace získaná pomocí systému [WhisperX](https://github.com/m-bain/whisperX).
     - `from_mixed`: Předběžná anotace získaná náhodným kombinovaním výstupů čtyř systémů na úrovni replik.
+
 Když předběžná anotace nebyla prázdná, převedli jsme ji do základní verze formátu TEITOK.
 Na konci této fáze tak obsahovala přepisy rozdělené do replik (elementy `<u>`), přiřazení mluvčích k replikám (atribut `who`) a časové zarovnání s nahrávkou (atributy `start` a `end`).
-2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely nebo se opravovaly přepisy, přiřazovaly mluvčích k replikám a pomocí časových značek zarovnávaly repliky s nahrávkou.
-Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl. Někteří anotátoři z opatrnosti anonymizovali i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
-4. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
-5. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky v jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
-6. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro střihání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
-7. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
-Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
-8. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
 
-Všechy nástroje a skripty (převažně v jazycích Python 3 a BASH) jsou k dispozici ve [verejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
+2. **Manuální anotace**. Po nahrání souborů provedly zaškolené anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely nebo opravovaly přepisy, přiřazovaly mluvčí k replikám a pomocí časových značek zarovnávaly repliky s nahrávkou.
+Nahrávky byly anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl. Některé anotátorky z opatrnosti anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
+
+3. **Revize**. Ruční kontrola manuálních anotací spoluautorkou databáze.
+
+4. **Normalizace**. Automatická úprava přepisů, která odstraní odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nové sekvenční ID.
+
+5. **Rozdělení na úlohy a selekce**. Poskytovatel nahrávek (ÚJOP UK) povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro stříhání nahrávky jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
+
+6. **Lingvistická anotace**. Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (element `<s>`) a následně věty na tokeny (elemety `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma (atribut `lemma`), jazykově specifická morfologická značka (atribut `xpos`), slovní druh a morfologické vlastnosti dle kategorizace projektu [Universal Dependencies](https://universaldependencies.org/) (atributy `upos` a `feats`). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut `head`) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut `deprel`).
+Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu. Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.
+
+7. **Doplnění hlavičky TEI**. Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.
+
+Všechy nástroje a skripty (převážně v jazycích Python 3 a BASH) jsou k dispozici ve [veřejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
 
 ### Dotazování, vyhledávání a filtrování
 Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným [procesorem dotazů CQP](https://cwb.sourceforge.io/files/CQP_Manual.pdf), klíčovou komponentou sady nástrojů [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/).
 CQP převádí korpusy ve formátu XML do binární podoby a efektivně je indexuje.
 Dotazování v indexovaných korpusech probíhá pomocí jazyka [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf), který je standardem v korpusové lingvistice. 
-TEITOK také nabízí Query builder, kde může uživatel specifikovat dotaz vyplněním formuláře. 
+TEITOK také nabízí Query builder, v němž může uživatel specifikovat dotaz vyplněním formuláře. 
 Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě.
-Výsledky dotazů je možné stáhnout v XML formátu.
+Výsledky dotazů je možné stáhnout ve formátu XML.
