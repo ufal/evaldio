@@ -17,6 +17,11 @@ RELEASE_NAME=Evaldio_Dataset-1.0
 
 FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
 
+CANONICAL=
+ifeq ($(CANONICAL),1)
+CANONICAL_FLAG=--canonical
+endif
+
 DATE=$(shell date +%Y%m%d)
 
 ############ RULES ################
@@ -42,7 +47,7 @@ $(TGT_DIR)/%.xml : $(TGT_DIR)/%.xml.with_header
 	xmllint --format - < $< > $@
 
 $(TGT_DIR)/%.xml.with_header : $(TGT_DIR)/%.xml.parsed
-	python add_proper_tei_header.py $< $@
+	python add_proper_tei_header.py $(CANONICAL_FLAG) $< $@
 
 $(TGT_DIR)/%.xml.parsed : $(TGT_DIR)/%.xml.tokenized
 	cp $< $@
@@ -60,12 +65,22 @@ $(TGT_DIR)/%.xml.specstr_replaced : $(SRC_DIR)/%.xml
 
 copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 	mkdir -p $(TGT_DIR)
+	RANDOM=2024; \
 	while read fid exer; do \
+		annot_count=`ls $(SRC_DIR)/$$fid*-$$exer.xml | wc -l`; \
+		rand_i=$$((RANDOM % $$annot_count)); \
+		i=0; \
 		for f in $(SRC_DIR)/$$fid*-$$exer.xml; do \
+			if [ $$i -eq $$rand_i ]; then \
+				canonical=1; \
+			else \
+				canonical=0; \
+			fi; \
 			bf=`basename $$f .xml`; \
 			echo "===== $$f ====="; \
-			make $(TGT_DIR)/$$bf.xml; \
+			make $(TGT_DIR)/$$bf.xml CANONICAL=$$canonical; \
 			make $(TGT_DIR)/$$bf.txt; \
+			i=$$((i+1)); \
 		done; \
 	done < $<
 

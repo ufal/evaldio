@@ -39,7 +39,6 @@ TEI_HEADER_TEMPLATE = """
     <editionStmt>
       <edition>{pub_version}</edition>
     </editionStmt>
-
     
     <publicationStmt>
       <publisher>
@@ -108,11 +107,13 @@ TEI_HEADER_TEMPLATE = """
     </langUsage>
     <textClass>
       <keywords scheme="custom">
+        <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)</term>
         <term type="exam-id">{examid}</term>
         <term type="cefr-level">{level}</term>
         <term type="task-number">{exerno}</term>
         <term type="preannot-source">{type}</term>
-        <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)</term>
+        <term type="annotator">{annotator_short}</term>
+        <term type="canonical">{canonical:d}</term>
       </keywords>
     </textClass>
   </profileDesc>
@@ -140,6 +141,7 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('input', help='Path to the input file')
     parser.add_argument('output', help='Path to the output file')
+    parser.add_argument('--canonical', action='store_true', help='The annotation is canonical')
     parser.add_argument('--pub-date', type=str, default='2024-10-31', help='Publication date')
     parser.add_argument('--pub-version', type=str, default='1.0', help='Publication version')
     parser.add_argument('--handle-uri', type=str, default='http://hdl.handle.net/11234/1-5731', help='Handle URI')
@@ -185,7 +187,7 @@ def add_info_from_file_content(info, doctree):
     info['reviewer'] = ANNOTATOR_NAMES[review_duration_elems[0].attrib.get('user') if review_duration_elems else 'MR']
 
 def add_info_from_args(info, args):
-    for name in ['handle_uri', 'pub_version', 'rec_inst', 'rec_inst_en', 'rec_inst_short']:
+    for name in ['handle_uri', 'pub_version', 'rec_inst', 'rec_inst_en', 'rec_inst_short', 'canonical']:
         info[name] = getattr(args, name)
     info['pub_date'] = datetime.strptime(args.pub_date, '%Y-%m-%d')
 
