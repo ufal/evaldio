@@ -11,6 +11,16 @@ The corpus is published as a specialized public database aimed at providing a st
 The corpus was created at the [Institute of Formal and Applied Linguistics at the Faculty of Mathematics and Physics, Charles University](https://ufal.mff.cuni.cz/) to support teaching, research, and assessment of language competence among non-native speakers of Czech as part of the project [_Automated Speech Scoring in Czech_](https://ufal.mff.cuni.cz/automated-speech-scoring-czech).
 Audio recordings were provided by the [Institute for Language and Preparatory Studies, Charles University](https://ujop.cuni.cz/UJOPEN-1.html) (ujop.cuni.cz).
 
+## Statistics
+
+The database contains 63 recordings, capturing the same number of tests and the same number of non-native speakers. The total length of all recordings is 3h 15min 40s. The table below shows the transcription statistics, with one canonical transcription selected for each recording.
+
+|             | All     | Canonical  |
+| ------------|--------:|-----------:|
+| Files       |   106   |    63      |
+| Utterances  | 4,773   | 2,888      |
+| Tokens      | 33,267  | 20,035     |
+
 ## Documentation
 
 - [User Manual](USER_MANUAL.md)
