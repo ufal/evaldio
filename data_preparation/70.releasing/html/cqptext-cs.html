@@ -150,8 +150,11 @@
         	</div>
     <div id="main">
 		<p>Zadejte vyhled&aacute;vac&iacute; dotaz ve form&aacute;tu CQL (Corpus WorkBench Query Language) do textov&eacute;ho pole v&yacute;&scaron;e pro prohled&aacute;n&iacute; korpusu. Syntax CQL využ&iacute;v&aacute; intuitivn&iacute; syst&eacute;m pro definov&aacute;n&iacute; vlastnost&iacute; hledan&yacute;ch slov, např&iacute;klad:</p>
-<p>[upos="NUM.*"] [lemma="ot&aacute;zka"]</p>
+<p><code>[upos = "NUM.*"] [lemma = "ot&aacute;zka"]</code></p>
 <p>T&iacute;mto způsobem vyhled&aacute;te tvary slova <em>ot&aacute;zka</em>, jimž předch&aacute;z&iacute; č&iacute;slovka. Dal&scaron;&iacute; informace o jazyce CQL naleznete <a href="http://cwb.sourceforge.net/documentation.php">zde</a>.</p>
+<p dir="auto">V z&aacute;kladn&iacute;m nastaven&iacute; TEITOK prov&aacute;d&iacute; vyhled&aacute;v&aacute;n&iacute; v cel&eacute;m korpusu, kter&yacute; může obsahovat k jedn&eacute; nahr&aacute;vce v&iacute;ce přepisů. Pokud chcete vyhled&aacute;vat pouze v t&eacute; č&aacute;sti korpusu, v n&iacute;ž je ke každ&eacute; nahr&aacute;vce přiřazen&yacute; jen jedin&yacute; přepis, je nutn&eacute; omezit hled&aacute;n&iacute; na tzv. kanonick&eacute; přepisy. Např.</p>
+<p dir="auto"><code>[lemma = "situace"] :: match.text_canonical = "1"</code></p>
+<p dir="auto">vyhled&aacute;v&aacute; lemma <em>situace</em> jenom v kanonick&yacute;ch přepisech.</p>
 <p>Pro usnadněn&iacute; vyhled&aacute;v&aacute;n&iacute; rozhran&iacute; nab&iacute;z&iacute; n&aacute;stroj pro sestavov&aacute;n&iacute; dotazů (query builder), kter&yacute; umožňuje snadno definovat jednoduch&eacute; dotazy v CQL. Stač&iacute; kliknout na ikonu pro sestavov&aacute;n&iacute; dotazů, otevř&iacute;t n&aacute;stroj, definovat svůj dotaz a kliknout na tlač&iacute;tko &bdquo;Vytvořit dotaz&ldquo;, č&iacute;mž se dotaz vlož&iacute; do textov&eacute;ho pole CQL, kter&eacute; můžete př&iacute;padně ručně upravit, nebo jednodu&scaron;e stisknout tlač&iacute;tko pro vyhled&aacute;v&aacute;n&iacute;.</p>
 	</div>
 </div>

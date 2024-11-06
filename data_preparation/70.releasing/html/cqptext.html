@@ -151,7 +151,10 @@
     <div id="main">
 		<p>Type in a search query in the CQL (Corpus WorkBench Query Language) format in the text box above to search in the corpus. The CQL syntax uses an intuitive system of defining properties of words you are looking for, as in for instance:</p>
 <div style="font-size: 11pt; padding-left: 20px;">[upos="NUM.*"] [lemma="ot&aacute;zka"]</div>
-<p>will search for any form of the word <em>ot&aacute;zka</em> preceded by a numeral. More information about the CQL language can be found <a href="http://cwb.sourceforge.net/documentation.php">here</a></p>
+<p>will search for any form of the word <em>ot&aacute;zka</em> preceded by a numeral. More information about the CQL language can be found <a href="http://cwb.sourceforge.net/documentation.php">here</a>.</p>
+<p dir="auto">By default, TEITOK searches the entire corpus, which may contain multiple transcripts for a single recording. If you want to search only in the part of the corpus where each recording has only a single associated transcript, you must restrict the search to so-called canonical transcripts. For example:</p>
+<p dir="auto"><code>[lemma = "situace"] :: match.text_canonical = "1"</code></p>
+<p dir="auto">searches for the lemma <em>situace</em> only in canonical transcripts.</p>
 <p>To facilitate searching, the interface provides a query builder which provides an easy way to define simple queries in CQL. Just click on the query builder icon to open the query builder, define your query, and click on the <button type="button">Create query</button> button to insert that query in the CQL query box, after which you can modify it by hand if needed, or simply hit search.</p>
 <p>You can use to Query Builder to just search for documents &ndash; you do this by not providing any token restrictions, which will make the system interpret the query as a search for document.</p>
 <hr />
