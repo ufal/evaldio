@@ -28,8 +28,8 @@ Tabulka níže ukazuje statistiky přepisů, přičemž pro každou nahrávku by
 
 ## Dokumentace (k databázi)
 
-- [Uživatelská příručka](USER_MANUAL-cs.md)
-- [Technická dokumentace](TECH_DOC-cs.md)
+- [Uživatelská příručka](docs/USER_MANUAL-cs.md)
+- [Technická dokumentace](docs/TECH_DOC-cs.md)
 
 ## Licence
 

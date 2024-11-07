@@ -27,8 +27,8 @@ The table below shows the transcription statistics, with one canonical transcrip
 
 ## Documentation (of the database)
 
-- [User Manual](USER_MANUAL.md)
-- [Technical Documentation](TECH_DOC.md)
+- [User Manual](docs/USER_MANUAL.md)
+- [Technical Documentation](docs/TECH_DOC.md)
 
 ## License
 

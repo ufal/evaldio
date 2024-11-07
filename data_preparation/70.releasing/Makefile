@@ -84,15 +84,17 @@ copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 		done; \
 	done < $<
 
-prepare : README.md LICENSE.txt
+prepare : LICENSE.txt lindat/README.md lindat/README-cs.md USER_MANUAL.md USER_MANUAL-cs.md TECH_DOC.md TECH_DOC-cs.md
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)
+	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/docs
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/recordings
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
 	python copy_rename.py --verbose $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
 	python copy_rename.py --verbose $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
 	python copy_rename.py --verbose $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
-	cp -v $^ $(TGT_DIR)/$(RELEASE_NAME)
+	cp -v LICENSE.txt lindat/README.md lindat/README-cs.md $(TGT_DIR)/$(RELEASE_NAME)
+	cp -v USER_MANUAL.md USER_MANUAL-cs.md TECH_DOC.md TECH_DOC-cs.md $(TGT_DIR)/$(RELEASE_NAME)/docs
 
 zip :
 	cd $(TGT_DIR) && \
