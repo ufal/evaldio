@@ -13,7 +13,7 @@ Audio recordings were provided by the [Institute for Language and Preparatory St
 
 ## Statistics
 
-The database contains 63 recordings, capturing the same number of tests and the same number of non-native speakers. The total length of all recordings is 3h 15min 40s. The table below shows the transcription statistics, with one canonical transcription selected for each recording.
+The database contains 63 recordings. The total length of all recordings is 3h 15min 40s. The table below shows the transcription statistics, with one canonical transcription selected for each recording.
 
 |             | All     | Canonical  |
 | ------------|--------:|-----------:|
