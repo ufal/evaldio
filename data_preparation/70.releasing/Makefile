@@ -13,7 +13,7 @@ TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 
 RELEASE_DIR=$(ROOT_DIR)/public_html-release
 
-RELEASE_NAME=Evaldio_Dataset-1.0
+RELEASE_NAME=EvaldioData-1.0
 
 FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
 
