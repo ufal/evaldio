@@ -1,0 +1,307 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{technickuxe1-dokumentace}{%
+\section{Technická dokumentace}\label{technickuxe1-dokumentace}}
+
+Jazykový korpus mluvených projevů nerodilých mluvčích češtiny zaměřený
+na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého
+pobytu v České republice, je výsledkem projektu realizovaného v Ústavu
+formální a aplikované lingvistiky Matematicko-fyzikální fakulty
+Univerzity Karlovy. Korpus obsahuje nahrávky zaznamenávající ústní část
+\href{http://ujop.cuni.cz/cce}{Certifikované zkoušky z češtiny pro
+cizince} na úrovni A2. Nahrávky zahrnují dialogy mezi zkoušejícím
+(rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Náhravky
+jsme opatřili jejich přepisy a bohatou lingvistickou anotací. K některým
+nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje
+srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při
+převodu mluvené řeči do psaného textu.
+
+Korpus je zveřejněn jako specializovaná veřejná databáze a je volně
+dostupný široké veřejnosti, vědecké komunitě, pedagogům a studentům.
+Databáze je integrována do systému TEITOK, který je spravován na
+platformě \href{https://lindat.cz/}{LINDAT/CLARIAH-CZ}.
+
+\hypertarget{teitok}{%
+\subsection{TEITOK}\label{teitok}}
+
+\href{http://teitok.corpuswiki.org/}{TEITOK} je framework pro vytváření,
+správu a zveřejňování anotovaných korpusů. Jeho webové rozhraní je
+implementováno v kombinaci jazyků PHP a JavaScript. Pro náš projekt,
+který kombinuje nahrávky mluveného projevu a jejich přepisy, je stěžejní
+funkcionalita prostředí TEITOK, která umožňuje
+\href{http://www.teitok.org/index.php?action=help\&id=wavesurfer}{vytvářet,
+zobrazovat a upravovat přepisy nahrávek}. K práci se samotnou nahrávkou
+TEITOK využívá Javascript knihovnu
+\href{http://wavesurfer-js.org/}{wavesurfer}.
+
+\hypertarget{uloux17eenuxed-dat}{%
+\subsubsection{Uložení dat}\label{uloux17eenuxed-dat}}
+
+Data korpusu jsou v prostředí TEITOK primárně uložena ve formě souborů.
+V tomto případě se jedná o nahrávky ve formátu MP3, hlavní části jsou
+však soubory ve formátu TEITOK, které obsahují všechny přepisy a anotace
+včetně metadat. Tyto soubory jsou navzájem provázány s odpovídajícími
+nahrávkami.
+
+\hypertarget{struktura-souborux16f-teitok}{%
+\subsubsection{Struktura souborů
+TEITOK}\label{struktura-souborux16f-teitok}}
+
+Formát TEITOK je formát XML, který plně odpovídá standardu
+\href{https://www.tei-c.org/}{Text Encoding Initiative (TEI)}, avšak s
+mírně odlišným přístupem k tokenizaci. Struktura TEITOK souborů v naší
+databázi je následující:
+
+\hypertarget{hlaviux10dka-s-metadaty-teiheader}{%
+\paragraph{\texorpdfstring{Hlavička s metadaty
+\texttt{\textless{}teiHeader\textgreater{}}}{Hlavička s metadaty \textless teiHeader\textgreater{}}}\label{hlaviux10dka-s-metadaty-teiheader}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{\texttt{\textless{}fileDesc\textgreater{}}} -- Popis souboru
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}titleStmt\textgreater{}}}: Obsahuje název
+    souboru a informace o autorech a anotátorech.
+  \item
+    \textbf{\texttt{\textless{}editionStmt\textgreater{}}}: Obsahuje
+    číslo verze.
+  \item
+    \textbf{\texttt{\textless{}publicationStmt\textgreater{}}}:
+    Publikační detaily, jako je vydavatel, datum vydání a licence.
+  \item
+    \textbf{\texttt{\textless{}sourceDesc\textgreater{}}}: Popis
+    zdrojové nahrávky a odkaz na ni.
+  \end{itemize}
+\item
+  \textbf{\texttt{\textless{}encodingDesc\textgreater{}}} -- Popis
+  kódování
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}projectDesc\textgreater{}}}: Stručný
+    popis projektu, v rámci něhož data vznikla.
+  \item
+    \textbf{\texttt{\textless{}annotationDecl\textgreater{}}}: Detaily o
+    jednotlivých krocích anotace (primární, revize, lingvistická
+    anotace).
+  \end{itemize}
+\item
+  \textbf{\texttt{\textless{}profileDesc\textgreater{}}} -- Profil textu
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}langUsage\textgreater{}}}: Použitý jazyk
+    (čeština).
+  \item
+    \textbf{\texttt{\textless{}textClass\textgreater{}}}: Metadata
+    dokumentu:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{database}: Název databáze.
+    \item
+      \texttt{exam-id}: Identifikátor zkoušky.
+    \item
+      \texttt{cefr-level}: Úroveň podle SERR. Tato databáze obsahuje
+      výhradně nahrávky zkoušek úrovně A2.
+    \item
+      \texttt{task-number}: Číslo úlohy.
+    \item
+      \texttt{preannot-source}: Zdroj předběžné anotace.
+    \item
+      \texttt{annotator}: Kód anotátora.
+    \item
+      \texttt{canonical}: Hodnota \texttt{1} značí kanonický přepis.
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{hlavnuxed-obsah-text}{%
+\paragraph{\texorpdfstring{Hlavní obsah
+\texttt{\textless{}text\textgreater{}}}{Hlavní obsah \textless text\textgreater{}}}\label{hlavnuxed-obsah-text}}
+
+Sekce \texttt{\textless{}text\textgreater{}} obsahuje jednotlivé úseky
+mluveného projevu strukturované pomocí elementů
+\texttt{\textless{}u\textgreater{}}: -
+\textbf{\texttt{\textless{}u\textgreater{}}}: Každý element
+\texttt{\textless{}u\textgreater{}} reprezentuje úsek projevu a má
+atributy: - \texttt{start} a \texttt{end}: Počáteční a koncový čas v
+sekundách. - \texttt{who}: Mluvčí (např. ``EXAM\_1'' pro zkoušejícího a
+``CAND\_1'' pro kandidáta). -
+\textbf{\texttt{\textless{}s\textgreater{}}}: Každá věta je označena
+elementem \texttt{\textless{}s\textgreater{}}. -
+\textbf{\texttt{\textless{}tok\textgreater{}}}: Elementy tokenů, jejichž
+atributy popisují lemma, slovní druh, morfologické rysy a syntaktický
+vztah. - \textbf{\texttt{\textless{}anon/\textgreater{}}}: Anonymizovaný
+úsek nahrávky. -
+\textbf{\texttt{\textless{}gap\ reason="unintelligible"/\textgreater{}}}:
+Nesrozumitelný úsek nahrávky.
+
+\hypertarget{pux159uxedprava-souborux16f-teitok}{%
+\subsubsection{Příprava souborů
+TEITOK}\label{pux159uxedprava-souborux16f-teitok}}
+
+Příprava souborů TEITOK probíhala v několika fázích:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Předběžná anotace}. V rámci výzkumu spojeného s vytvářením
+  databáze jsme porovnávali přímou ruční anotaci s manuální post-editací
+  výstupů systémů pro automatické rozpoznávání řeči. Manuální anotace
+  tak může vycházet z automaticky připravené předběžné anotace. Zdroj
+  předběžné anotace rozlišujeme pomocí atributu
+  \texttt{preannot-source}, jehož hodnota může být:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{from\_scratch}: Kompletně manuální anotace, t.j. předběžná
+    anotace je prázdná.
+  \item
+    \texttt{from\_whisperX}: Předběžná anotace získaná pomocí systému
+    \href{https://github.com/m-bain/whisperX}{WhisperX}.
+  \item
+    \texttt{from\_mixed}: Předběžná anotace získaná náhodným
+    kombinovaním výstupů čtyř systémů na úrovni replik.
+  \end{itemize}
+\end{enumerate}
+
+Když předběžná anotace nebyla prázdná, převedli jsme ji do základní
+verze formátu TEITOK. Na konci této fáze tak obsahovala přepisy
+rozdělené do replik (elementy \texttt{\textless{}u\textgreater{}}),
+přiřazení mluvčích k replikám (atribut \texttt{who}) a časové zarovnání
+s nahrávkou (atributy \texttt{start} a \texttt{end}).
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\item
+  \textbf{Manuální anotace}. Po nahrání souborů provedly zaškolené
+  anotátorky manuální anotaci v prostředí TEITOK, během níž vytvářely
+  nebo opravovaly přepisy, přiřazovaly mluvčí k replikám a pomocí
+  časových značek zarovnávaly repliky s nahrávkou. Nahrávky byly
+  anonymizovány v souladu s požadavky Ústavu jazykové a odborné přípravy
+  Univerzity Karlovy (ÚJOP UK), který audionahrávky pro korpus poskytl.
+  Některé anotátorky z opatrnosti anonymizovaly i údaje, které
+  anonymizovány být nemusely (např. smyšlená jména osob).
+\item
+  \textbf{Revize}. Ruční kontrola manuálních anotací spoluautorkou
+  databáze.
+\item
+  \textbf{Normalizace}. Automatická úprava přepisů, která odstraní
+  odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a
+  přidělí replikám nové sekvenční ID.
+\item
+  \textbf{Rozdělení na úlohy a selekce}. Poskytovatel nahrávek (ÚJOP UK)
+  povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek
+  vystřihnout a upravit časové značky v přepisech, aby se zachovalo
+  zarovnání replik v přepisu s nahrávkou. Pro stříhání nahrávky jsme
+  použili nástroj \href{https://www.ffmpeg.org/}{FFmpeg}.
+\item
+  \textbf{Lingvistická anotace}. Až do této fáze nebyly repliky v
+  přepisech dále strukturovány. V této fázi jsme text rozdělili na věty
+  (element \texttt{\textless{}s\textgreater{}}) a následně věty na
+  tokeny (elemety \texttt{\textless{}tok\textgreater{}}). Na úrovni
+  tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu
+  je přiděleno lemma (atribut \texttt{lemma}), jazykově specifická
+  morfologická značka (atribut \texttt{xpos}), slovní druh a
+  morfologické vlastnosti dle kategorizace projektu
+  \href{https://universaldependencies.org/}{Universal Dependencies}
+  (atributy \texttt{upos} a \texttt{feats}). Dále je každému tokenu
+  přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe
+  (atribut \texttt{head}) a typ závislosti tokenu ve vztahu k jeho
+  rodiči (atribut \texttt{deprel}). Pro lingvistickou anotaci, včetně
+  tokenizace, jsme použili nástroj
+  \href{https://ufal.mff.cuni.cz/udpipe/2}{UDPipe 2}, konkrétně model
+  \texttt{czech-pdt-ud-2.12-230717} pro češtinu. Ačkoli je možné
+  provádět tokenizaci a automatickou lingvistickou anotaci přímo v
+  prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem
+  je, že metoda tokenizace v prostředí TEITOK se liší od té, která je
+  optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování
+  těchto dvou kroků.
+\item
+  \textbf{Doplnění hlavičky TEI}. Na závěr jsme doplnili hlavičku podle
+  všech dostupných metadat, aby odpovídala standardům TEI.
+\end{enumerate}
+
+Všechy nástroje a skripty (převážně v jazycích Python 3 a BASH) jsou k
+dispozici ve \href{https://github.com/ufal/evaldio}{veřejném repozitáři
+projektu} v adresáři \texttt{data\_preparation}.
+
+\hypertarget{dotazovuxe1nuxed-vyhleduxe1vuxe1nuxed-a-filtrovuxe1nuxed}{%
+\subsubsection{Dotazování, vyhledávání a
+filtrování}\label{dotazovuxe1nuxed-vyhleduxe1vuxe1nuxed-a-filtrovuxe1nuxed}}
+
+Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným
+\href{https://cwb.sourceforge.io/files/CQP_Manual.pdf}{procesorem dotazů
+CQP}, klíčovou komponentou sady nástrojů
+\href{https://cwb.sourceforge.io/}{IMS Open Corpus Workbench (CWB)}. CQP
+převádí korpusy ve formátu XML do binární podoby a efektivně je
+indexuje. Dotazování v indexovaných korpusech probíhá pomocí jazyka
+\href{https://www.cambridge.org/sketch/help/userguides/CQL\%20Help\%201.3.pdf}{CQL},
+který je standardem v korpusové lingvistice. TEITOK také nabízí Query
+builder, v němž může uživatel specifikovat dotaz vyplněním formuláře.
+Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a
+zobrazen uživateli v přehledné formě. Výsledky dotazů je možné stáhnout
+ve formátu XML.
+
+\end{document}

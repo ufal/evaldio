@@ -1,0 +1,320 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{technical-documentation}{%
+\section{Technical Documentation}\label{technical-documentation}}
+
+The language corpus of spoken performances by non-native speakers of
+Czech, focused on the A2 language level (according to the CEFR),
+required for obtaining permanent residency in the Czech Republic, is the
+result of a project implemented at the Institute of Formal and Applied
+Linguistics of the Faculty of Mathematics and Physics, Charles
+University. The corpus contains recordings capturing the oral part of
+the
+\href{https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce}{Czech
+Language Certificate Exam} at the A2 level. The recordings include
+dialogues between the examiner (a native speaker) and the candidate (a
+non-native speaker). We have provided transcriptions of the recordings,
+enriched with extensive linguistic annotations. Some recordings are
+accompanied by multiple transcriptions from different annotators,
+allowing for comparisons of various transcriptions of the same recording
+and the assessment of the degree of agreement when converting spoken
+language into written text.
+
+The corpus is published as a specialized public database and is freely
+accessible to the general public, the scientific community, educators,
+and students. The database is integrated into the TEITOK system, managed
+on the \href{https://lindat.cz/}{LINDAT/CLARIAH-CZ} platform.
+
+\hypertarget{teitok}{%
+\subsection{TEITOK}\label{teitok}}
+
+\href{http://teitok.corpuswiki.org/}{TEITOK} is a framework for
+creating, managing, and publishing annotated corpora. Its web interface
+is implemented using a combination of PHP and JavaScript. For our
+project, which combines recordings of spoken speech and their
+transcriptions, the key functionality of the TEITOK environment allows
+us to
+\href{http://www.teitok.org/index.php?action=help\&id=wavesurfer}{create,
+display, and edit recordings' transcriptions}. To work with the
+recordings themselves, TEITOK utilizes the JavaScript library
+\href{http://wavesurfer-js.org/}{wavesurfer}.
+
+\hypertarget{data-storage}{%
+\subsubsection{Data Storage}\label{data-storage}}
+
+The corpus data is primarily stored in the TEITOK environment in the
+form of files. In this case, the recordings are in MP3 format, while the
+main components are TEITOK format files, which contain all
+transcriptions and annotations, including metadata. These files are
+interconnected with the corresponding recordings.
+
+\hypertarget{structure-of-teitok-files}{%
+\subsubsection{Structure of TEITOK
+Files}\label{structure-of-teitok-files}}
+
+The TEITOK format is an XML format that fully complies with the
+\href{https://www.tei-c.org/}{Text Encoding Initiative (TEI)} standards,
+but with a slightly different approach to tokenization. The structure of
+TEITOK files in our database is as follows:
+
+\hypertarget{header-with-metadata-teiheader}{%
+\paragraph{\texorpdfstring{Header with Metadata
+\texttt{\textless{}teiHeader\textgreater{}}}{Header with Metadata \textless teiHeader\textgreater{}}}\label{header-with-metadata-teiheader}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{\texttt{\textless{}fileDesc\textgreater{}}} -- File
+  description
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}titleStmt\textgreater{}}}: Contains the
+    title of the file and information about authors and annotators.
+  \item
+    \textbf{\texttt{\textless{}editionStmt\textgreater{}}}: Contains
+    version number.
+  \item
+    \textbf{\texttt{\textless{}publicationStmt\textgreater{}}}:
+    Publication details, such as publisher, release date, and license.
+  \item
+    \textbf{\texttt{\textless{}sourceDesc\textgreater{}}}: Description
+    of the source recording and a link to it.
+  \end{itemize}
+\item
+  \textbf{\texttt{\textless{}encodingDesc\textgreater{}}} -- Description
+  of encoding
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}projectDesc\textgreater{}}}: A brief
+    description of the project under which the data was created.
+  \item
+    \textbf{\texttt{\textless{}annotationDecl\textgreater{}}}: Details
+    of the individual annotation steps (primary, revision, linguistic
+    annotation).
+  \end{itemize}
+\item
+  \textbf{\texttt{\textless{}profileDesc\textgreater{}}} -- Profile of
+  the text
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \textbf{\texttt{\textless{}langUsage\textgreater{}}}: Language used
+    (Czech).
+  \item
+    \textbf{\texttt{\textless{}textClass\textgreater{}}}: Document
+    metadata:
+
+    \begin{itemize}
+    \tightlist
+    \item
+      \texttt{database}: Database name.
+    \item
+      \texttt{exam-id}: Exam identifier.
+    \item
+      \texttt{cefr-level}: CEFR level. This database contains recordings
+      exclusively from A2 level exams.
+    \item
+      \texttt{task-number}: Task number.
+    \item
+      \texttt{preannot-source}: Source of preliminary annotation.
+    \item
+      \texttt{annotator}: Annotator code.
+    \item
+      \texttt{canonical}: A value of \texttt{1} indicates a canonical
+      transcription.
+    \end{itemize}
+  \end{itemize}
+\end{enumerate}
+
+\hypertarget{main-content-text}{%
+\paragraph{\texorpdfstring{Main Content
+\texttt{\textless{}text\textgreater{}}}{Main Content \textless text\textgreater{}}}\label{main-content-text}}
+
+The \texttt{\textless{}text\textgreater{}} section contains individual
+segments of spoken speech structured using
+\texttt{\textless{}u\textgreater{}} elements: -
+\textbf{\texttt{\textless{}u\textgreater{}}}: Each
+\texttt{\textless{}u\textgreater{}} element represents a segment of
+speech and has attributes: - \texttt{start} and \texttt{end}: Start and
+end time in seconds. - \texttt{who}: Speaker (e.g., ``EXAM\_1'' for the
+examiner and ``CAND\_1'' for the candidate). -
+\textbf{\texttt{\textless{}s\textgreater{}}}: Each sentence is marked
+with the \texttt{\textless{}s\textgreater{}} element. -
+\textbf{\texttt{\textless{}tok\textgreater{}}}: Token elements whose
+attributes describe lemma, part of speech, morphological features, and
+syntactic relations. - \textbf{\texttt{\textless{}anon/\textgreater{}}}:
+Anonymized segment of the recording. -
+\textbf{\texttt{\textless{}gap\ reason="unintelligible"/\textgreater{}}}:
+Unintelligible segment of the recording.
+
+\hypertarget{preparation-of-teitok-files}{%
+\subsubsection{Preparation of TEITOK
+Files}\label{preparation-of-teitok-files}}
+
+The preparation of TEITOK files took place in several phases:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Preliminary Annotation}. In the research associated with the
+  creation of the database, we compared direct manual annotation with
+  manual post-editing of outputs from automatic speech recognition
+  systems. Thus, manual annotation may be based on automatically
+  prepared preliminary annotation. The source of the preliminary
+  annotation is distinguished using the \texttt{preannot-source}
+  attribute, which can have the following values:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \texttt{from\_scratch}: Completely manual annotation, i.e., the
+    preliminary annotation is empty.
+  \item
+    \texttt{from\_whisperX}: Preliminary annotation obtained using the
+    \href{https://github.com/m-bain/whisperX}{WhisperX} system.
+  \item
+    \texttt{from\_mixed}: Preliminary annotation obtained by randomly
+    combining outputs from four systems at the level of utterances. When
+    the preliminary annotation was not empty, we converted it into the
+    basic version of the TEITOK format. At the end of this phase, the
+    transcriptions contained segments divided into utterances (the
+    \texttt{\textless{}u\textgreater{}} elements), assignment of
+    speakers to utterances (the \texttt{who} attribute), and time
+    alignment with the recording (the \texttt{start} and \texttt{end}
+    attributes).
+  \end{itemize}
+\item
+  \textbf{Manual Annotation}. After uploading the files, trained
+  annotators performed manual annotation in the TEITOK environment,
+  during which they created or corrected transcriptions, assigned
+  speakers to utterances, and aligned utterances with the recording
+  using timestamps. The recordings were anonymized in accordance with
+  the requirements of the Institute for Language and Preparatory Studies
+  of Charles University (ILPS CU), which provided the audio recordings
+  for the corpus. Some annotators, out of caution, anonymized even data
+  that did not need to be anonymized (e.g., fictitious names).
+\item
+  \textbf{Revision}. Manual review of the manual annotations by a
+  co-author of the database.
+\item
+  \textbf{Normalization}. Automatic adjustment of transcriptions that
+  removes discrepancies in speaker names, orders utterances according to
+  start time, and assigns new sequential IDs to utterances.
+\item
+  \textbf{Segmentation by Tasks and Selection}. The provider of the
+  recordings (ILPS CU) permitted the publication of only selected tasks.
+  We had to cut these from the recordings and adjust timestamps in the
+  transcriptions to preserve the alignment of utterances in the
+  transcription with the recording. We used the
+  \href{https://www.ffmpeg.org/}{FFmpeg} tool for cutting the
+  recordings.
+\item
+  \textbf{Linguistic Annotation}. Until this phase, the utterances in
+  the transcriptions had not been further structured. In this phase, we
+  divided the text into sentences (the
+  \texttt{\textless{}s\textgreater{}} element) and then into tokens (the
+  \texttt{\textless{}tok\textgreater{}} elements). At the token level,
+  the transcriptions are automatically linguistically annotated. Each
+  token is assigned a lemma (the \texttt{lemma} attribute),
+  language-specific morphological tag (the \texttt{xpos} attribute),
+  part of speech, and morphological properties according to the
+  categorization of the
+  \href{https://universaldependencies.org/}{Universal Dependencies}
+  project (the \texttt{upos} and \texttt{feats} attributes).
+  Additionally, each token is assigned a reference to the parent ID
+  according to dependency syntax rules (the \texttt{head} attribute) and
+  the type of dependency of the token in relation to its parent (the
+  \texttt{deprel} attribute). For linguistic annotation, including
+  tokenization, we used the
+  \href{https://ufal.mff.cuni.cz/udpipe/2}{UDPipe 2} tool, specifically
+  the model \texttt{czech-pdt-ud-2.12-230717} for Czech. Although it is
+  possible to perform tokenization and automatic linguistic annotation
+  directly in the TEITOK environment, we carried out this process
+  separately. The reason is that the tokenization method in the TEITOK
+  environment differs from the one optimized for UDPipe, which could
+  lead to errors when combining these two steps.
+\item
+  \textbf{Completion of the TEI Header}. Finally, we supplemented the
+  header according to all available metadata to comply with TEI
+  standards.
+\end{enumerate}
+
+All tools and scripts (primarily in Python 3 and BASH) are available in
+the \href{https://github.com/ufal/evaldio}{public repository of the
+project} in the \texttt{data\_preparation} directory.
+
+\hypertarget{querying-searching-and-filtering}{%
+\subsubsection{Querying, Searching, and
+Filtering}\label{querying-searching-and-filtering}}
+
+Rapid querying, searching, and filtering are enabled by the integrated
+\href{https://cwb.sourceforge.io/files/CQP_Manual.pdf}{CQP Query
+Processor}, a key component of the
+\href{https://cwb.sourceforge.io/}{IMS Open Corpus Workbench (CWB)}
+toolkit. CQP converts XML-formatted corpora into binary format and
+efficiently indexes them. Querying in indexed corpora is conducted using
+the
+\href{https://www.cambridge.org/sketch/help/userguides/CQL\%20Help\%201.3.pdf}{CQL}
+language, which is a standard in corpus linguistics. TEITOK also offers
+a Query Builder, in which users can specify a query by filling out a
+form. The results of the query returned from CQP are subsequently
+processed using TEITOK and presented to the user in a clear format.
+Query results can be downloaded in XML format.
+
+\end{document}

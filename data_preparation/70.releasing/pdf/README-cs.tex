@@ -1,0 +1,152 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{databuxe1ze-mluvenuxfdch-projevux16f-v-ux10deux161tinux11b-jako-cizuxedm-jazyce-trvaluxfd-pobyt-v-ux10dr}{%
+\section{Databáze mluvených projevů v češtině jako cizím jazyce (trvalý
+pobyt v
+ČR)}\label{databuxe1ze-mluvenuxfdch-projevux16f-v-ux10deux161tinux11b-jako-cizuxedm-jazyce-trvaluxfd-pobyt-v-ux10dr}}
+
+Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v
+ČR) je jazykový korpus mluvených projevů nerodilých mluvčích češtiny
+zaměřený na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení
+trvalého pobytu v České republice. Obsahuje nahrávky zaznamenávající
+ústní část \href{http://ujop.cuni.cz/cce}{Certifikované zkoušky z
+češtiny pro cizince}. Nahrávky zahrnují dialogy mezi zkoušejícím
+(rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Kromě
+nahrávek korpus obsahuje také jejich přepisy, které jsou opatřeny
+bohatou lingvistickou anotací. K některým nahrávkám je připojeno více
+přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže
+nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného
+textu.
+
+Korpus je zveřejněn jako specializovaná veřejná databáze s cílem
+poskytnout strukturovaný a snadno přístupný zdroj autentických mluvených
+dat pro lingvisty, pedagogy, studenty, vědeckou komunitu a širokou
+veřejnost.
+
+Jazykový korpus byl vytvořen v \href{https://ufal.mff.cuni.cz/}{Ústavu
+formální a aplikované lingvistiky Matematicko-fyzikální fakulty
+Univerzity Karlovy} za účelem podpory výuky, výzkumu a hodnocení
+jazykové kompetence nerodilých mluvčích češtiny v rámci projektu
+\href{https://ufal.mff.cuni.cz/automated-speech-scoring-czech}{\emph{Automatické
+hodnocení mluveného projevu v češtině}}. Audionahrávky poskytl
+\href{https://ujop.cuni.cz/}{Ústav jazykové a odborné přípravy
+Univerzity Karlovy} (ujop.cuni.cz).
+
+\hypertarget{statistiky}{%
+\subsection{Statistiky}\label{statistiky}}
+
+Databáze obsahuje 63 nahrávek. Zachycuje 41 zkoušek a stejný počet
+nerodilých mluvčích. Celková délka všech nahrávek je 3h 18min 40s.
+Tabulka níže ukazuje statistiky přepisů, přičemž pro každou nahrávku byl
+vybrán právě jeden kanonický přepis.
+
+\begin{longtable}[]{@{}lrr@{}}
+\toprule
+& Všechny & Kanonické\tabularnewline
+\midrule
+\endhead
+Soubory & 106 & 63\tabularnewline
+Repliky & 4 773 & 2 888\tabularnewline
+Tokeny & 33 267 & 20 035\tabularnewline
+\bottomrule
+\end{longtable}
+
+\hypertarget{dokumentace}{%
+\subsection{Dokumentace}\label{dokumentace}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{USER_MANUAL-cs.md}{Uživatelská příručka}
+\item
+  \href{TECH_DOC-cs.md}{Technická dokumentace}
+\end{itemize}
+
+\hypertarget{licence}{%
+\subsection{Licence}\label{licence}}
+
+Korpus je zveřejněn pod licencí CC BY-NC-SA 4.0.
+
+\hypertarget{financovuxe1nuxed}{%
+\subsection{Financování}\label{financovuxe1nuxed}}
+
+Vznik databáze byl financován z prostředků Programu na podporu
+aplikovaného výzkumu v oblasti národní a kulturní identity na léta 2023
+až 2030 (NAKI III) Ministerstva kultury ČR v rámci projektu
+\emph{Automatické hodnocení mluveného projevu v češtině}
+(DH23P03OVV037).
+
+\hypertarget{podux11bkovuxe1nuxed}{%
+\subsection{Poděkování}\label{podux11bkovuxe1nuxed}}
+
+Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu
+jazykové a odborné přípravy Univerzity Karlovy za poskytnutí audiodat.
+
+\hypertarget{jak-citovat}{%
+\subsection{Jak citovat}\label{jak-citovat}}
+
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar
+Ondřej: \emph{Databáze mluvených projevů v češtině jako cizím jazyce
+(trvalý pobyt v ČR)}. Ústav formální a aplikované lingvistiky MFF UK,
+Praha 2024. Dostupná z WWW
+\url{https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency}.
+
+\end{document}

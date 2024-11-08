@@ -1,0 +1,168 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\author{}
+\date{}
+
+\begin{document}
+
+\hypertarget{uux17eivatelskuxe1-pux159uxedruux10dka}{%
+\section{Uživatelská
+příručka}\label{uux17eivatelskuxe1-pux159uxedruux10dka}}
+
+Základní funkce databáze zahrnuje prohlížení záznamů s různými způsoby
+jejich zobrazení, filtrování záznamů podle různých kategorií a komplexní
+vyhledávání v obsahu databáze. Databáze rovněž umožňuje stáhnout korpus
+jako celek nebo stáhnout vybrané záznamy.
+
+\hypertarget{prohluxedux17eenuxed-zuxe1znamux16f}{%
+\subsection{Prohlížení
+záznamů}\label{prohluxedux17eenuxed-zuxe1znamux16f}}
+
+Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj.
+soubory transkriptů) uložené v databázi. Pro každý soubor s transkriptem
+tabulka kromě názvu souboru zobrazuje v dalších sloupcích úroveň a
+identifikátor zkoušky, číslo úlohy, zdroj předběžné anotace, kód
+anotátora a informaci o tom, zda je přepis pro danou nahrávku kanonický.
+Soubory v tabulce je možné třídit podle hodnot vybraného sloupce.
+Záznamy lze také filtrovat na základě libovolného podřetězce v názvu
+souboru zadáním tohoto podřetězce do textového pole ``Search''
+umístěného vpravo nad tabulkou. Kliknutím na konkrétní soubor se tento
+soubor zobrazí.
+
+\hypertarget{zobrazenuxed-souboru}{%
+\subsection{Zobrazení souboru}\label{zobrazenuxed-souboru}}
+
+Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s
+anotacemi a metadaty a také poslouchat příslušné zvukové nahrávky.
+Charakter zobrazených informací se liší podle zvoleného režimu
+zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným
+přepisem.
+
+\hypertarget{reux17eim-text-view}{%
+\subsubsection{Režim Text View}\label{reux17eim-text-view}}
+
+Text View je základní režim zobrazení, který se objeví po otevření
+souboru. V horní části obrazovky se nachází hlavička s názvem přepisu a
+vybranými metadaty. V dolní části je zobrazen samotný přepis, rozdělený
+na repliky. Každá replika je označena identifikátorem mluvčího (EXAM\_1
+pro zkoušejícího a CAND\_1 pro kandidáta).
+
+Tento režim rovněž umožňuje zobrazit automatickou morfologickou anotaci
+a lemmatizaci. Po najetí kurzorem na konkrétní token se zobrazí
+příslušná anotace v kontextu. Pro zobrazení vybraného atributu pro
+všechny tokeny v přepisu lze využít ovládací prvky umístěné pod
+hlavičkou, které obsahují následující tlačítka: - PoS: Zobrazí slovní
+druhy. - Tag: Ukáže morfologické tagy. - Features: Poskytne podrobné
+morfologické informace. - Lemma: Zobrazí základní tvary slov.
+
+\hypertarget{reux17eim-waveform-view}{%
+\subsubsection{Režim Waveform View}\label{reux17eim-waveform-view}}
+
+V horní části obrazovky se nachází rozšířený ovládací prvek pro
+přehrávání nahrávky, který zobrazuje graf signálu (tzv. waveform). Pod
+ním jsou zobrazeny přepisy jednotlivých replik. Kliknutím na konkrétní
+repliku se tato replika přehraje.
+
+\hypertarget{reux17eim-dependencies}{%
+\subsubsection{Režim Dependencies}\label{reux17eim-dependencies}}
+
+Tento režim zobrazuje syntaktickou anotaci. Po kliknutí na konkrétní
+repliku se zobrazí automaticky vygenerovaný závislostní strom, u nějž je
+možné zobrazit detaily pomocí myši. Vpravo nahoře od stromu se nachází
+tlačítko $\equiv$ pro další možnosti zobrazení stromu. Je tak možné uspořádat
+uzly podle slovosledu, zobrazit interpunkci nebo uložit obrázek stromu
+ve formátu SVG.
+
+\hypertarget{filtrovuxe1nuxed-zuxe1znamux16f-pux159es-kategorie}{%
+\subsection{Filtrování záznamů přes
+kategorie}\label{filtrovuxe1nuxed-zuxe1znamux16f-pux159es-kategorie}}
+
+Po kliknutí na tlačítko \emph{Kategorie} v levém hlavním menu je možné
+filtrovat přepisy na základě hodnot jednotlivých kategorií. Například je
+tak možné zobrazit si pouze seznam kanonických přepisů nebo přepisů od
+konkrétního anotátora.
+
+\hypertarget{vyhleduxe1vuxe1nuxed}{%
+\subsection{Vyhledávání}\label{vyhleduxe1vuxe1nuxed}}
+
+Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po
+klinutí na tlačítko \emph{Hledat} v levém hlavním menu. Stránka umožňuje
+zadávat dotazy ve formátu CQL (Corpus Query Language). Např.
+
+\begin{quote}
+\texttt{{[}upos\ =\ "NUM.*"{]}\ {[}lemma\ =\ "otázka"{]}}
+
+pro nalezení tvarů slova \emph{otázka}, jimž předchází číslovka.
+\end{quote}
+
+Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování
+dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL
+prostřednictvím formuláře. Stačí kliknout na ikonu \emph{Query builder},
+definovat svůj dotaz a poté stisknout tlačítko \emph{Create query}, čímž
+se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.
+
+V základním nastavení TEITOK provádí vyhledávání v celém korpusu, který
+může obsahovat k jedné nahrávce více přepisů. Pokud chcete vyhledávat
+pouze v té části korpusu, v níž je ke každé nahrávce přiřazený jen
+jediný přepis, je nutné omezit hledání na tzv. kanonické přepisy. Např.
+
+\begin{quote}
+\texttt{{[}lemma\ =\ "situace"{]}\ ::\ match.text\_canonical\ =\ "1"}
+
+vyhledává lemma \emph{situace} jenom v kanonických přepisech.
+\end{quote}
+
+\hypertarget{stahovuxe1nuxed}{%
+\subsection{Stahování}\label{stahovuxe1nuxed}}
+
+Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního
+menu vlevo.
+
+Konkrétní přepis lze stáhnout v režimu \emph{Text view} kliknutím na
+tlačítko \emph{Download XML} umístěné v dolní části stránky.
+
+\end{document}
