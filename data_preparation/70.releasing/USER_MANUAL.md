@@ -1,4 +1,4 @@
-# User Manual
+# Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic): User Manual
 
 The basic functions of the database include browsing records with various display options, filtering records by different categories, and performing complex searches within the database content. The database also allows users to download the entire corpus or selected records.
 
