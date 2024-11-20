@@ -46,7 +46,9 @@ The entire corpus, including recordings and documentation, can be downloaded fro
 
 A specific transcript can be downloaded in _Text view_ mode by clicking the _Download XML_ button located at the bottom of the page.
 
-## Acknowledgment
+## How to Cite
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
 
+## Acknowledgment
 The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
 
