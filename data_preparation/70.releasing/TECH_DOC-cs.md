@@ -85,3 +85,6 @@ Dotazování v indexovaných korpusech probíhá pomocí jazyka [CQL](https://ww
 TEITOK také nabízí Query builder, v němž může uživatel specifikovat dotaz vyplněním formuláře. 
 Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě.
 Výsledky dotazů je možné stáhnout ve formátu XML.
+
+### Dedikace
+Vznik databáze byl financován z prostředků Programu na podporu aplikovaného výzkumu v oblasti národní a kulturní identity na léta 2023 až 2030 (NAKI III) Ministerstva kultury ČR v rámci projektu _Automatické hodnocení mluveného projevu v češtině_ (DH23P03OVV037).
