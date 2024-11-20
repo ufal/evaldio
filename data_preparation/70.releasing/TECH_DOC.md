@@ -1,4 +1,4 @@
-# Technical Documentation
+# Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic): Technical Documentation
 
 The language corpus of spoken performances by non-native speakers of Czech, focused on the A2 language level (according to the CEFR), required for obtaining permanent residency in the Czech Republic, is the result of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The corpus contains recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce) at the A2 level. The recordings include dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). We have provided transcriptions of the recordings, enriched with extensive linguistic annotations. Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcriptions of the same recording and the assessment of the degree of agreement when converting spoken language into written text.
 
@@ -66,4 +66,8 @@ All tools and scripts (primarily in Python 3 and BASH) are available in the [pub
 ### Querying, Searching, and Filtering
 Rapid querying, searching, and filtering are enabled by the integrated [CQP Query Processor](https://cwb.sourceforge.io/files/CQP_Manual.pdf), a key component of the [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/) toolkit. CQP converts XML-formatted corpora into binary format and efficiently indexes them. Querying in indexed corpora is conducted using the [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf) language, which is a standard in corpus linguistics. TEITOK also offers a Query Builder, in which users can specify a query by filling out a form. The results of the query returned from CQP are subsequently processed using TEITOK and presented to the user in a clear format. Query results can be downloaded in XML format.
 
+## How to Cite
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
 
+## Acknowledgment
+The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
