@@ -70,3 +70,4 @@ Konkrétní přepis lze stáhnout v režimu _Text view_ kliknutím na tlačítko
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)_. Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
 
 ## Dedikace
+Vznik databáze byl financován z prostředků Programu na podporu aplikovaného výzkumu v oblasti národní a kulturní identity na léta 2023 až 2030 (NAKI III) Ministerstva kultury ČR v rámci projektu _Automatické hodnocení mluveného projevu v češtině_ (DH23P03OVV037).
