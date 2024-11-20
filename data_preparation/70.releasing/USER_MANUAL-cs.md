@@ -65,3 +65,8 @@ Pokud chcete vyhledávat pouze v té části korpusu, v níž je ke každé nahr
 Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního menu vlevo.
 
 Konkrétní přepis lze stáhnout v režimu _Text view_ kliknutím na tlačítko _Download XML_ umístěné v dolní části stránky.
+
+## Jak citovat
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)_. Ústav formální a aplikované lingvistiky MFF UK, Praha 2024. Dostupná z WWW [https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/cs/index.php?action=db_residency).
+
+## Dedikace
