@@ -1,4 +1,4 @@
-# Uživatelská příručka
+# Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR): uživatelská příručka
 
 Základní funkce databáze zahrnuje prohlížení záznamů s různými způsoby jejich zobrazení, filtrování záznamů podle různých kategorií a komplexní vyhledávání v obsahu databáze. 
 Databáze rovněž umožňuje stáhnout korpus jako celek nebo stáhnout vybrané záznamy.
