@@ -45,3 +45,8 @@ By default, TEITOK searches the entire corpus, which may contain multiple transc
 The entire corpus, including recordings and documentation, can be downloaded from the main menu on the left.
 
 A specific transcript can be downloaded in _Text view_ mode by clicking the _Download XML_ button located at the bottom of the page.
+
+## Acknowledgment
+
+The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
+
