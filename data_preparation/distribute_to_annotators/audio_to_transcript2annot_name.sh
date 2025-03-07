@@ -3,7 +3,7 @@
 src_f=$1
 annotator=$2
 transcripttype=$3
-src_pattern='\(.*\)_anonym_audio\(_video\)\?\.xml'
+src_pattern='\(.*\)_anonym_.*\.xml'
 
 if [ -z "$transcripttype" ]; then
     transcripttype=`echo "$src_f" | md5sum | cut -c1-10`

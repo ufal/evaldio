@@ -317,6 +317,90 @@ distrib_2024-10-04 :
 		SELECTION_RULE='$$$$((i+1+39))' \
 		TRANSCRIPT_TYPE=from_scratch
 
+distrib_2025-01-31 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-01-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-01-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+5))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-01-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+10))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-01-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+15))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-01-31 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+20))' \
+		TRANSCRIPT_TYPE=from_scratch
+
+distrib_2025-03-07 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-03-07 \
+		ANNOTATORS="AP ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+25))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-03-07 \
+		ANNOTATORS="ET KV LR ZM" \
+		SELECTION_RULE='$$$$((i+1+30))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-03-07 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+34))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-03-07 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+37))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_23*.xml \
+		TGT_DIR=05.for_annotators/2025-03-07 \
+		ANNOTATORS="ET KV ZM" \
+		SELECTION_RULE='$$$$((i+1+40))' \
+		TRANSCRIPT_TYPE=from_scratch
+
 distribute_manual :
 	mkdir -p $(TGT_DIR_PATH)
 
