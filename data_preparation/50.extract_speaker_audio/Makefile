@@ -4,15 +4,10 @@ SHELL=/bin/bash
 
 ROOT_DIR=../..
 
-
-SRC_AUDIO_BASEDIR=$(ROOT_DIR)/data/exams/src_audio
-SRC_TRANS_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/01.auto_transcript/whisperX-large-v2
-TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/50.extract_speaker_audio/whisperX-large-v2
 BATCH_PATH=
-
-SRC_AUDIO_DIR=$(SRC_AUDIO_BASEDIR)/$(BATCH_PATH)
-SRC_TRANS_DIR=$(SRC_TRANS_BASEDIR)/$(BATCH_PATH)
-TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
+SRC_AUDIO_DIR=$(ROOT_DIR)/data/exams/src_audio/$(BATCH_PATH)
+SRC_TRANS_DIR=$(ROOT_DIR)/tmp/data_preparation/$(BATCH_PATH)/01.auto_transcript/whisperX-large-v2
+TGT_DIR=$(ROOT_DIR)/tmp/data_preparation/$(BATCH_PATH)/50.extract_speaker_audio/whisperX-large-v2
 
 SRC_AUDIO_FILES=$(wildcard $(SRC_AUDIO_DIR)/*.mp3)
 SRC_TRANS_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(SRC_TRANS_DIR)/%.xml)
