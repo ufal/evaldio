@@ -4,12 +4,9 @@ SHELL=/bin/bash
 
 ROOT_DIR=../..
 
-SRC_BASEDIR=$(ROOT_DIR)/data/exams/src_audio
-TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/01.auto_transcript/whisperX-large-v2
+SRC_DIR=$(ROOT_DIR)/data/exams/src_audio/$(BATCH_PATH)
+TGT_DIR=$(ROOT_DIR)/tmp/data_preparation/$(BATCH_PATH)/01.auto_transcript/whisperX-large-v2
 BATCH_PATH=
-
-SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
-TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 
 SRC_FILES=$(wildcard $(SRC_DIR)/*.mp3)
 TGT_FILES=$(SRC_FILES:$(SRC_DIR)/%.mp3=$(TGT_DIR)/%.xml)
@@ -25,11 +22,13 @@ WHISPERX=. $(VENV)/bin/activate; whisperx
 #		export HF_TOKEN=???
 # 3. if "Killed", try asking for more memory by calling srun with --mem=50G (alternatively by calling whisperX with float32 replaced by float16, or large-v2 by large-v1, medium, small etc.)
 
-transcribe_all: transcribe_UJOP-CCE-A2_2024_01_26 \
+transcribe_all: transcribe_UJOP-CCE-A1_2024_06_11 \
+				transcribe_UJOP-CCE-A2_2024_01_26 \
 				transcribe_UJOP-CCE-A2_2024_04_24 \
+				transcribe_UJOP-CCE-A2_older_2025_02_17 \
 				transcribe_UJOP-CCE-B1_2024_05_21 \
-				transcribe_UJOP-CCE-A1_2024_06_11 \
 				transcribe_UJOP-CCE-B2_2024_09_23 \
+				transcribe_UJOP-CCE-B2_2025_02_10 \
 				transcribe_UJOP-CCE-C1_2024_09_23 \
 				transcribe_UJOP-sample-2023_02_28 \
 				transcribe_UJOP-sample-2023_04_21 \
@@ -56,6 +55,10 @@ transcribe_NPI-sample-2023_02_28:
 	$(MAKE) transcribe_dir BATCH_PATH=NPI/sample-2023_02_28
 transcribe_NPI-sample-2023_06_30:
 	$(MAKE) transcribe_dir BATCH_PATH=NPI/sample-2023_06_30
+transcribe_UJOP-CCE-B2_2025_02_10:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-B2_2025_02_10
+transcribe_UJOP-CCE-A2_older_2025_02_17:
+	$(MAKE) transcribe_dir BATCH_PATH=UJOP/CCE-A2_older_2025_02_17
 
 .PRECIOUS : $(TGT_DIR)/%.json
 
