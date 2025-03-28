@@ -1,21 +1,26 @@
 SHELL=/bin/bash
 
-BASE_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A2_2024_01_26
+####### DIR VARIABLES #######
 
-SPLIT_AUDIO_DIR=$(BASE_DIR)/02.split_audio
-NULL_TRANSCRIPT_DIR=$(BASE_DIR)/03.auto_transcripts/null
+ROOT_DIR=../..
 
-ALL_SRC_FILES=$(wildcard $(SPLIT_AUDIO_DIR)/*.mp3)
-ALL_TGT_FILES=$(ALL_SRC_FILES:$(SPLIT_AUDIO_DIR)/%.mp3=$(NULL_TRANSCRIPT_DIR)/%.xml)
+BATCH_PATH=
+SRC_AUDIO_DIR=$(ROOT_DIR)/data/exams/src_audio/$(BATCH_PATH)
+TGT_NULL_TRANSCRIPT_DIR=$(ROOT_DIR)/tmp/data_preparation/$(BATCH_PATH)/03.auto_transcripts/null
 
-all : $(ALL_TGT_FILES)
+SRC_AUDIO_FILES=$(wildcard $(SRC_AUDIO_DIR)/*.mp3)
+TGT_NULL_TRANSCRIPT_FILES=$(SRC_AUDIO_FILES:$(SRC_AUDIO_DIR)/%.mp3=$(TGT_NULL_TRANSCRIPT_DIR)/%.xml)
 
-$(NULL_TRANSCRIPT_DIR)/%.json : $(SPLIT_AUDIO_DIR)/%.mp3
+######### COMMANDS #########
+
+all : $(TGT_NULL_TRANSCRIPT_FILES)
+
+$(TGT_NULL_TRANSCRIPT_DIR)/%.json : $(SRC_AUDIO_DIR)/%.mp3
 	mkdir -p $(dir $@)
 	echo "{}" > $@
 
 JSON2TEITOK=../01.transcribe_whisperX/json2teitok.py
 
-$(NULL_TRANSCRIPT_DIR)/%.xml : $(NULL_TRANSCRIPT_DIR)/%.json
+$(TGT_NULL_TRANSCRIPT_DIR)/%.xml : $(TGT_NULL_TRANSCRIPT_DIR)/%.json
 	mkdir -p $(dir $@)
 	python3 $(JSON2TEITOK) $< > $@
