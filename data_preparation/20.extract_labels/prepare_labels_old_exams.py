@@ -29,16 +29,6 @@ CONFIG = {
     },
 }
 
-def bugfix_for_A1_max_scores(max_scores):
-    # remove the trailing "?" from the max values if present
-    for key in max_scores.index:
-        if isinstance(max_scores[key], str):
-            max_scores[key] = max_scores[key].replace('?', '')
-    # from the 3rd column on, shift the values to the right by 1
-    max_scores.iloc[3:] = max_scores.iloc[2:-1].values
-    max_scores.iloc[2] = 1
-
-
 def process_data(data, exam_type):
     if exam_type == 'A2_older':
         # transform the total_percentage to a float
@@ -50,16 +40,14 @@ def process_data(data, exam_type):
     # delete the "exam_origname" column
     data.drop(columns=['exam_origname'], inplace=True)
 
-    # extract the first row which contains the maximum scores and remove it from the data
-    max_scores = data.iloc[0].copy()
-    data.drop(index=0, inplace=True)
-    # bugfix for A1 table
-    if exam_type == 'A1':
-        bugfix_for_A1_max_scores(max_scores)
-
     # recast all "_score" columns to Int64 to allow for null values
     score_column = data.columns[data.columns.str.endswith('_score')]
     data[score_column] = data[score_column].astype('Int64')
+
+    # extract the first row which contains the maximum scores and remove it from the data
+    max_scores = data.iloc[0]
+    #print(f'Maximum scores: {max_scores}')
+    data.drop(index=0, inplace=True)
 
     # add new columns with percentage values calculated from the scores normalized to the maximum scores
     for key in data.columns:
@@ -68,6 +56,12 @@ def process_data(data, exam_type):
         # calculate the percentage value
         new_key = key.replace('_score', '_perc')
         data[new_key] = data[key] / int(max_scores[key])
+
+        # locate the values of the new column that are not in the range [0, 1] and warn the user
+        if not data[new_key].between(0, 1).all():
+            print(f'Warning: the values of the column {new_key} are not in the range [0, 1]')
+            # print the values that are not in the range [0, 1]
+            print(data.loc[~data[new_key].between(0, 1), ['exam_id', 'evaluator_id', new_key]])
 
 def get_json_filename(exam_id, audio_dir, output_dir):
     for f in os.listdir(audio_dir):
@@ -92,7 +86,15 @@ if args.exam_type not in CONFIG:
     exit(1)
 
 # Load the data from the CSV file
-data = pandas.read_csv(args.labels_csv, sep="\t", names=CONFIG[args.exam_type]['column_names'], skiprows=CONFIG[args.exam_type]['header_rows'])
+data = pandas.read_csv(
+    args.labels_csv,
+    sep="\t",
+    names=CONFIG[args.exam_type]['column_names'],
+    skiprows=CONFIG[args.exam_type]['header_rows'],
+    index_col=False
+)
+
+#print(data)
 
 process_data(data, args.exam_type)
 
@@ -101,7 +103,8 @@ grouped_data = data.groupby('exam_id')
 
 # Output each row to a separate JSON file in the output directory
 for exam_id, group in grouped_data:
-    evaluations = [row.to_dict() for _, row in group.iterrows()]
+    # create a list of evaluations for each evaluator but do not include the exam_id
+    evaluations = [row.drop(['exam_id']).to_dict() for _, row in group.iterrows()]
     #print(evaluations)
     # Create the average evaluation dictionary by averaging the scores across all evaluations
     avg_evaluation = {}
@@ -111,6 +114,7 @@ for exam_id, group in grouped_data:
         avg_evaluation[key] = group[key].mean()
     # Create the output dictionary
     out_dict = {
+        'exam_id': exam_id,
         'evaluations': evaluations,
         'avg': avg_evaluation,
     }

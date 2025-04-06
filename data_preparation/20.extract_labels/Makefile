@@ -12,14 +12,14 @@ BATCH=
 ####### PARAMS #######
 
 PARAMS_UJOP/CCE-A1_2024_06_11 :=       LEVEL=A1        INPUT_XLSX=$(SRC_BASEDIR)/UJOP/UJOP_hodnoceni_nahravek_12_2_2025.xlsx
-PARAMS_UJOP/CCE-A2_2024_01_26 :=       LEVEL=A2        INPUT_CSV=$(SRC_BASEDIR)/UJOP/UJOP_hodnoceni_nahravek_12_2_2025.A2.csv
-PARAMS_UJOP/CCE-A2_2024_04_24 :=       LEVEL=A2        INPUT_CSV=$(SRC_BASEDIR)/UJOP/UJOP_hodnoceni_nahravek_12_2_2025.A2.csv
+PARAMS_UJOP/CCE-A2_2024_01_26 :=       LEVEL=A2        INPUT_XLSX=$(SRC_BASEDIR)/UJOP/UJOP_hodnoceni_nahravek_12_2_2025.xlsx
+PARAMS_UJOP/CCE-A2_2024_04_24 :=       LEVEL=A2        INPUT_XLSX=$(SRC_BASEDIR)/UJOP/UJOP_hodnoceni_nahravek_12_2_2025.xlsx
 PARAMS_UJOP/CCE-A2_older_2025_02_17 := LEVEL=A2_older  INPUT_CSV=$(SRC_BASEDIR)/UJOP/Hodnoceni_nahravek_starsi_kriteria_NAKI.csv
 
 
 ####### TARGETS #######
 
-extract :
+jsons :
 	make $(TGT_BASEDIR)/$(BATCH)/20.extract_labels/done $(PARAMS_$(BATCH))
 
 csv :
@@ -44,7 +44,7 @@ $(TGT_BASEDIR)/%/20.extract_labels/level.csv : $(TGT_BASEDIR)/%/20.extract_label
 		patch $@ data_patches/$(LEVEL).patch; \
 	fi
 
-$(TGT_BASEDIR)/%/20.extract_labels/done : $(TGT_BASEDIR)/%/20.extract_labels/$(LEVEL).csv $(SRC_BASEDIR)/%
+$(TGT_BASEDIR)/%/20.extract_labels/done : $(TGT_BASEDIR)/%/20.extract_labels/level.csv $(SRC_BASEDIR)/%
 	mkdir -p $(dir $@)
 	python3 prepare_labels_old_exams.py --exam-type $(LEVEL) --audio-dir $(word 2,$^) $(word 1,$^) $(dir $@)
 	touch $@
@@ -52,4 +52,4 @@ $(TGT_BASEDIR)/%/20.extract_labels/done : $(TGT_BASEDIR)/%/20.extract_labels/$(L
 clean :
 	rm -rf $(TGT_BASEDIR)/$(BATCH)/20.extract_labels
 
-.SECONDARY: $(TGT_BASEDIR)/%/20.extract_labels/$(LEVEL).csv
+.SECONDARY: $(TGT_BASEDIR)/$(BATCH)/20.extract_labels/level.csv
