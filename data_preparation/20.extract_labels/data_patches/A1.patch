@@ -1,0 +1,20 @@
+--- ../../tmp/data_preparation/UJOP/CCE-A1_2024_06_11/20.extract_labels/level.csv	2025-04-06 12:55:22.000000000 +0200
++++ ../../tmp/data_preparation/UJOP/CCE-A1_2024_06_11/20.extract_labels/level.patched.csv	2025-04-06 13:01:34.000000000 +0200
+@@ -1,7 +1,7 @@
+ Unnamed: 0	Unnamed: 1	Unnamed: 2	Ú1.1	Ú1.2	L+G	Fonologická kompetence	Ú2.1	Ú2.2	"Sociolingv.
+ kompetence"	L+G.1	Fonologická kompetence.1	Ú3.1	Ú3.2	Unnamed: 14
+ 			1	2	3	4	5	6	7	8	9	10	11	
+-původní název	kód	Hodnotitel	2?	2	2?	2	2	1	2	1	1	1	17	
++původní název	kód	Hodnotitel	1	2	2	2	2	2	1	2	1	1	1	17	
+ A1ML_221219_01_Thi Na (Lola)_video	A1ML_221219_01	J1	1	2	0	0	1	2	0	0	1	1	0	8.0
+ A1ML_221219_02_Trinh Huy (Tomáš)_video	A1ML_221219_02	J1	1	2	1	1	2	2	1	1	0	1	0	12.0
+ A1ML_221219_03_Kanami_video	A1ML_221219_03	J1	1	2	1	1	2	2	1	1	1	0	0	12.0
+@@ -10,7 +10,7 @@
+ A1ML_221219_06_Raúl Noe_audio	A1ML_221219_06	J1	1	2	1	1	2	2	1	0	0	1	1	12.0
+ A1ML_230414_01_Huong_video	A1ML_230414_01	J1	1	2	1	0	1	1	1	0	0	1	1	9.0
+ A1ML_230414_03_Pintai_video	A1ML_230414_03	J1	1	2	2	2	2	2	1	1	1	1	1	16.0
+-A1ML_230414_04_Antonia_video	A1ML_230414_04	J1	1	2	2	2	2	2	1	1	2	1	1	17.0
++A1ML_230414_04_Antonia_video	A1ML_230414_04	J1	1	2	2	2	2	2	1	2	1	1	1	17.0
+ A1ML_230414_05_Azar_video	A1ML_230414_05	J1	1	2	1	2	2	2	1	2	1	1	0	15.0
+ A1ML_230414_06_Rumi_video	A1ML_230414_06	J1	1	2	2	2	2	2	1	2	1	0	0	15.0
+ A1ML_230414_07_Yuliia_video	A1ML_230414_07	J1	1	2	1	1	2	2	1	2	0	1	1	14.0
