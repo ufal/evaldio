@@ -27,9 +27,42 @@ CONFIG = {
                  'total_phoninter', 'total_score', 'total_percentage'],
         'header_rows': 1,
     },
+    'B1': {
+        'column_names': ['exam_origname', 'exam_id', 'evaluator_id',
+           'ex1_imgdescr_score', 'ex1_response_score', 'ex1_lexical_score', 'ex1_grammar_score',
+           'ex2_narrat_score', 'ex2_response_score', 'ex2_lexical_score', 'ex2_grammar_score',
+           'ex3_commgoal_score', 'ex3_interact_score', 'ex3_lexical_score', 'ex3_grammar_score',
+           'total_phonol_score', 'total_score'],
+        'header_rows': 2,
+    },
 }
 
-def process_data(data, exam_type):
+OVERALL_CONFIG = {
+    'column_idx' : [0, 4, 5, 14],
+    'column_names': ['exam_split_id', 'level', 'etalon_perc', 'etalon_score'],
+}
+
+def process_overall_data(data, level):
+    # Extract the relevant columns
+    data = data.iloc[:, OVERALL_CONFIG['column_idx']]
+    # Rename the columns
+    data.columns = OVERALL_CONFIG['column_names']
+    # Discard all the rows that do not match the selected level
+    data = data[data['level'] == level]
+    # Add the exam_id column which is derived from the exam_split_id column and drop the exam_split_id column
+    data['exam_id'] = data['exam_split_id'].astype(str).apply(lambda x: "_".join(x.split("_")[0:3]))
+    data.drop(columns=['exam_split_id'], inplace=True)
+    # Group the data by exam_id, keeping just the first row
+    # Warn if there are multiple rows for the same exam_id
+    # Set the 'exam_id' row to be the index of the new table
+    grouped_data = data.groupby('exam_id')
+    #duplicates = grouped_data.filter(lambda x: len(x) > 1)
+    #print(f'Warning: there are {len(duplicates)} duplicates in the overall data')
+    #print(duplicates)
+    data = grouped_data.first()
+    return data
+
+def process_detailed_data(data, exam_type):
     if exam_type == 'A2_older':
         # transform the total_percentage to a float
         data['total_percentage'] = data['total_percentage'].replace('%', '').astype(float)/100
@@ -78,31 +111,37 @@ parser.add_argument('labels_csv', type=str, help='The path to the CSV file conta
 parser.add_argument('output_dir', type=str, help='The directory to output the JSON files to')
 parser.add_argument('--audio-dir', type=str, help='The directory containing the audio files')
 parser.add_argument('--exam-type', type=str, default='A2_older', help='The type of exam to prepare the labels for')
+parser.add_argument('--overall-csv', type=str, help='The path to the CSV file containing the overall scores')
 args = parser.parse_args()
-
 
 if args.exam_type not in CONFIG:
     print(f'Invalid exam type: {args.exam_type}')
     exit(1)
 
+overall_dict = {}
+if args.overall_csv:
+    # Load the data from the CSV file
+    overall_data = pandas.read_csv(
+        args.overall_csv,
+        sep="\t",
+        index_col=False
+    )
+    overall_data = process_overall_data(overall_data, args.exam_type)
+    overall_dict = overall_data.to_dict(orient='index')
+
 # Load the data from the CSV file
-data = pandas.read_csv(
+detailed_data = pandas.read_csv(
     args.labels_csv,
     sep="\t",
     names=CONFIG[args.exam_type]['column_names'],
     skiprows=CONFIG[args.exam_type]['header_rows'],
     index_col=False
 )
-
 #print(data)
+process_detailed_data(detailed_data, args.exam_type)
 
-process_data(data, args.exam_type)
-
-# Group data by exam_id
-grouped_data = data.groupby('exam_id')
-
-# Output each row to a separate JSON file in the output directory
-for exam_id, group in grouped_data:
+# Try to output each row in the overall data associated with the selected level as a separate JSON file
+for exam_id, group in detailed_data.groupby('exam_id'):
     # create a list of evaluations for each evaluator but do not include the exam_id
     evaluations = [row.drop(['exam_id']).to_dict() for _, row in group.iterrows()]
     #print(evaluations)
@@ -112,12 +151,41 @@ for exam_id, group in grouped_data:
         if key in ['evaluator_id', 'exam_id']:
             continue
         avg_evaluation[key] = group[key].mean()
+    # Add the etalon scores and percs to the average evaluation dictionary if available
+    if exam_id in overall_dict:
+        avg_evaluation['etalon_perc'] = overall_dict[exam_id]['etalon_perc']
+        avg_evaluation['etalon_score'] = overall_dict[exam_id]['etalon_score']
+        # delete the record indexed by exam_id from the overall_dict
+        del overall_dict[exam_id]
     # Create the output dictionary
     out_dict = {
         'exam_id': exam_id,
         'evaluations': evaluations,
         'avg': avg_evaluation,
     }
+    # Output the labels to the JSON file
+    # The filename of the JSON file is determined by the files in the audio_dir
+    # If there are multiple files of the same exam (different parts), the same JSON file is used for all of them
+    # This also ensures that the JSON file is created only if the audio file exists
+    for output_file in get_json_filename(exam_id, args.audio_dir, args.output_dir):
+        with open(output_file, 'w') as f:
+            json.dump(out_dict, f, indent=4)
+
+# Process any exam_ids in the overall_dict that are not in the detailed data
+for exam_id in overall_dict:
+    avg_evaluation = {}
+    avg_evaluation['etalon_perc'] = overall_dict[exam_id]['etalon_perc']
+    avg_evaluation['etalon_score'] = overall_dict[exam_id]['etalon_score']
+    # Create the output dictionary
+    out_dict = {
+        'exam_id': exam_id,
+        'evaluations': [],
+        'avg': avg_evaluation,
+    }
+    # Output the labels to the JSON file
+    # The filename of the JSON file is determined by the files in the audio_dir
+    # If there are multiple files of the same exam (different parts), the same JSON file is used for all of them
+    # This also ensures that the JSON file is created only if the audio file exists
     for output_file in get_json_filename(exam_id, args.audio_dir, args.output_dir):
         with open(output_file, 'w') as f:
             json.dump(out_dict, f, indent=4)
