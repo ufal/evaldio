@@ -24,9 +24,10 @@ CONFIG = {
     },
     'A2_older': {
         'column_names': ['exam_id', 'evaluator_id',
-                 'ex1_response', 'ex1_lexical', 'ex1_grammar',
-                 'ex2_response', 'ex2_questions', 'ex2_lexical', 'ex2_grammar',
-                 'total_phoninter', 'total_score', 'total_percentage'],
+                 'ex1_response_score', 'ex1_lexical_score', 'ex1_grammar_score',
+                 'ex2_response_score', 'ex2_questions_score', 'ex2_lexical_score', 'ex2_grammar_score',
+                 'total_phoninter_score', 'total_score', 'total_perc'],
+        'max_scores': [3, 3, 3, 3, 3, 3, 3, 4, 25],
         'header_rows': 1,
         'threshold': 0.6,
     },
@@ -67,24 +68,24 @@ def process_overall_data(data, level):
     return data
 
 def process_detailed_data(data, exam_type):
-    if exam_type == 'A2_older':
-        # transform the total_percentage to a float
-        data['total_percentage'] = data['total_percentage'].replace('%', '').astype(float)/100
-        # append a new column with a boolean value indicating if the candidate passed the exam (total_percentage >= 0.6)
-        data['result'] = data['total_percentage'] >= 0.6
-        return
-
     # delete the "exam_origname" column
-    data.drop(columns=['exam_origname'], inplace=True)
+    if 'exam_origname' in data.columns:
+        data.drop(columns=['exam_origname'], inplace=True)
 
     # recast all "_score" columns to Int64 to allow for null values
     score_column = data.columns[data.columns.str.endswith('_score')]
     data[score_column] = data[score_column].astype('Int64')
 
-    # extract the first row which contains the maximum scores and remove it from the data
-    max_scores = data.iloc[0]
-    #print(f'Maximum scores: {max_scores}')
-    data.drop(index=0, inplace=True)
+    max_scores = None
+    if exam_type == 'A2_older':
+        # max scores are not available in the detailed data
+        filter_score_names = (name for name in CONFIG[exam_type]['column_names'] if name.endswith('_score'))
+        max_scores = {score_name: CONFIG[exam_type]['max_scores'][i] for i, score_name in enumerate(filter_score_names)}
+    else:
+        # extract the first row which contains the maximum scores and remove it from the data
+        max_scores = data.iloc[0]
+        #print(f'Maximum scores: {max_scores}')
+        data.drop(index=0, inplace=True)
 
     # add new columns with percentage values calculated from the scores normalized to the maximum scores
     for key in data.columns:
@@ -92,7 +93,8 @@ def process_detailed_data(data, exam_type):
             continue
         # calculate the percentage value
         new_key = key.replace('_score', '_perc')
-        data[new_key] = data[key] / int(max_scores[key])
+        if not new_key in data.columns:
+            data[new_key] = data[key] / int(max_scores[key])
 
         # locate the values of the new column that are not in the range [0, 1] and warn the user
         if not data[new_key].between(0, 1).all():
@@ -172,7 +174,8 @@ for exam_id, group in detailed_data.groupby('exam_id'):
     #print(evaluations)
     # Create the average evaluation dictionary by averaging the scores across all evaluations
     avg_evaluation = collect_average_evaluations(group, overall_dict.get(exam_id), threshold=CONFIG[args.exam_type]['threshold'])
-    del overall_dict[exam_id]
+    if exam_id in overall_dict:
+        del overall_dict[exam_id]
     # Create the output dictionary
     out_dict = {
         'exam_id': exam_id,
