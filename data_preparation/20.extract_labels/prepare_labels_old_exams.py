@@ -11,6 +11,7 @@ CONFIG = {
             'ex3_criterion1_score', 'ex3_criterion2_score',
             'total_score'],
         'header_rows': 2,
+        'threshold': 0.47,
     },
     'A2': {
         'column_names': ['exam_origname', 'exam_id', 'evaluator_id',
@@ -19,6 +20,7 @@ CONFIG = {
            'ex3_questions_score', 'ex3_lexgram_score',
            'total_interact_score', 'total_cohesion_score', 'total_phonol_score', 'total_score'],
         'header_rows': 3,
+        'threshold': 0.6,
     },
     'A2_older': {
         'column_names': ['exam_id', 'evaluator_id',
@@ -26,6 +28,7 @@ CONFIG = {
                  'ex2_response', 'ex2_questions', 'ex2_lexical', 'ex2_grammar',
                  'total_phoninter', 'total_score', 'total_percentage'],
         'header_rows': 1,
+        'threshold': 0.6,
     },
     'B1': {
         'column_names': ['exam_origname', 'exam_id', 'evaluator_id',
@@ -34,6 +37,7 @@ CONFIG = {
            'ex3_commgoal_score', 'ex3_interact_score', 'ex3_lexical_score', 'ex3_grammar_score',
            'total_phonol_score', 'total_score'],
         'header_rows': 2,
+        'threshold': 0.62,
     },
 }
 
@@ -96,6 +100,27 @@ def process_detailed_data(data, exam_type):
             # print the values that are not in the range [0, 1]
             print(data.loc[~data[new_key].between(0, 1), ['exam_id', 'evaluator_id', new_key]])
 
+def collect_average_evaluations(detailed_row, overall_row, threshold=0.6):
+    avg_evaluation = {}
+    if detailed_row is not None:
+        for key in detailed_row.columns:
+            if key in ['evaluator_id', 'exam_id']:
+                continue
+            avg_evaluation[key] = detailed_row[key].mean()
+    # Add the etalon scores and percs to the average evaluation dictionary if available
+    if overall_row is not None:
+        avg_evaluation['etalon_perc'] = overall_row['etalon_perc']
+        avg_evaluation['etalon_score'] = overall_row['etalon_score']
+    # Add the result by comparing the etalon_perc (or total_perc if n/a or is NaN) with the threshold
+    score = avg_evaluation.get('etalon_perc')
+    if score is None or pandas.isna(score):
+        score = avg_evaluation.get('total_perc')
+        if score is None or pandas.isna(score):
+            score = 0
+    avg_evaluation['result'] = bool(score >= threshold)
+    return avg_evaluation
+
+
 def get_json_filename(exam_id, audio_dir, output_dir):
     for f in os.listdir(audio_dir):
         # Skip files that don't start with the exam_id
@@ -146,17 +171,8 @@ for exam_id, group in detailed_data.groupby('exam_id'):
     evaluations = [row.drop(['exam_id']).to_dict() for _, row in group.iterrows()]
     #print(evaluations)
     # Create the average evaluation dictionary by averaging the scores across all evaluations
-    avg_evaluation = {}
-    for key in group.columns:
-        if key in ['evaluator_id', 'exam_id']:
-            continue
-        avg_evaluation[key] = group[key].mean()
-    # Add the etalon scores and percs to the average evaluation dictionary if available
-    if exam_id in overall_dict:
-        avg_evaluation['etalon_perc'] = overall_dict[exam_id]['etalon_perc']
-        avg_evaluation['etalon_score'] = overall_dict[exam_id]['etalon_score']
-        # delete the record indexed by exam_id from the overall_dict
-        del overall_dict[exam_id]
+    avg_evaluation = collect_average_evaluations(group, overall_dict.get(exam_id), threshold=CONFIG[args.exam_type]['threshold'])
+    del overall_dict[exam_id]
     # Create the output dictionary
     out_dict = {
         'exam_id': exam_id,
@@ -173,9 +189,7 @@ for exam_id, group in detailed_data.groupby('exam_id'):
 
 # Process any exam_ids in the overall_dict that are not in the detailed data
 for exam_id in overall_dict:
-    avg_evaluation = {}
-    avg_evaluation['etalon_perc'] = overall_dict[exam_id]['etalon_perc']
-    avg_evaluation['etalon_score'] = overall_dict[exam_id]['etalon_score']
+    avg_evaluation = collect_average_evaluations(None, overall_dict[exam_id], threshold=CONFIG[args.exam_type]['threshold'])
     # Create the output dictionary
     out_dict = {
         'exam_id': exam_id,
