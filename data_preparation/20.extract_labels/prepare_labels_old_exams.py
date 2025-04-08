@@ -20,6 +20,7 @@ CONFIG = {
            'ex3_questions_score', 'ex3_lexgram_score',
            'total_interact_score', 'total_cohesion_score', 'total_phonol_score', 'total_score'],
         'header_rows': 3,
+        # the threshold is just estimate, not confirmed by UJOP
         'threshold': 0.6,
     },
     'A2_older': {
@@ -38,6 +39,15 @@ CONFIG = {
            'ex3_commgoal_score', 'ex3_interact_score', 'ex3_lexical_score', 'ex3_grammar_score',
            'total_phonol_score', 'total_score'],
         'header_rows': 2,
+        'threshold': 0.62,
+    },
+    'B2': {
+        'column_names': ['exam_origname', 'exam_id', 'evaluator_id',
+           'ex1_criterion1_score', 'ex1_criterion2_score', 'ex1_criterion3_score', 'ex1_organization_score', 'ex1_ptn_score', 'ex1_wordord_score', 'ex1_lexical1_score', 'ex1_lexical2_score', 'ex1_grammar_score',
+           'ex2_criterion1_score', 'ex2_criterion2_score', 'ex2_criterion3_score', 'ex2_organization_score', 'ex2_ptn_score', 'ex2_wordord_score', 'ex2_lexical1_score', 'ex2_lexical2_score', 'ex2_grammar_score',
+           'total_phonol1_score', 'total_phonol2_score', 'total_score'],
+        'header_rows': 2,
+        # the threshold is just estimate, not confirmed by UJOP
         'threshold': 0.62,
     },
 }
@@ -164,7 +174,6 @@ detailed_data = pandas.read_csv(
     skiprows=CONFIG[args.exam_type]['header_rows'],
     index_col=False
 )
-#print(data)
 process_detailed_data(detailed_data, args.exam_type)
 
 # Try to output each row in the overall data associated with the selected level as a separate JSON file
