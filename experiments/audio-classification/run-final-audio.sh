@@ -1,50 +1,32 @@
 
-# for h5_file in "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True" \
-#                "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_2.5" \
-#                 "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_5.0" \
-#                 "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_10.0" \
-#                 "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_1.5" \
-#                 "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_1.0" 
-# do
-#     for fold in 0 1 2 3 4 5 6 7 8 9
-#     do
-#         for lr in 1e-5
-#         do
-#             for accumulation_steps in 4
-#             do
-#                 for rdrop in 0.0
-#                 do
-#                     for dropout in 0.1
-#                     do
-#                         sbatch run.sh $lr $accumulation_steps $rdrop $dropout $fold $h5_file 6
-#                     done
-#                 done
-#             done
-#         done
-#     done
-# done
 
-
-
-for h5_file in  "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_2.5" 
-    #"data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True" \
-            #    "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_2.5" \
-            #     "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_5.0" \
-            #     "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_10.0" \
-            #     "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_1.5" \
-            #     "data/v_deleted+sr_16000+dur_20.0+min_dur_10.0+ex_True+shuf_1.0" 
+# lr=$1
+# accumulation_steps=$2
+# batch_size=$3
+# dropout=$4
+# fold=$5
+# h5_file=$6
+# max_epochs=$7
+# export CUDA_VISIBLE_DEVICES=3
+for h5_file in "data/sr_16000+dur_20.0+min_5.0+exam_False.h5"
 do
-    for fold in 0 1 2 3 4 5 6 7 8 9
+    for fold in 0 1 2 3 4 5 6 7 8 9 
     do
-        for lr in 1e-5
+        for lr in 1e-05
         do
             for accumulation_steps in 4
             do
-                for rdrop in 0.0
+                for batch_size in 4
                 do
                     for dropout in 0.1
                     do
-                        sbatch run.sh $lr $accumulation_steps $rdrop $dropout $fold $h5_file 6 "--examiner_only"
+                        for max_epochs in 6
+                        do
+                            for r_drop in 300 #0.1 0.3 0.5
+                            do
+                                sbatch run.sh $lr $accumulation_steps $batch_size $dropout $fold $h5_file $max_epochs false $r_drop
+                            done
+                        done
                     done
                 done
             done
