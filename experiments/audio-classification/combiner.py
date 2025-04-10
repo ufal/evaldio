@@ -53,7 +53,10 @@ def predict(lines, attr):
     return predictions
 
 def print_eval(predictions, truths, figure_file):
-
+    print("Predictions:")
+    print(predictions)
+    print("Truths:")
+    print(truths)
     report = classification_report(truths, predictions, output_dict=False)
     print(report)
 
@@ -64,7 +67,7 @@ def print_eval(predictions, truths, figure_file):
 
     plt.xlabel('Predicted')
     plt.ylabel('Truth')
-    plt.savefig(figure_file, format="pdf", bbox_inches='tight')
+    plt.savefig(figure_file, bbox_inches='tight')
 
 
 def main(args):
@@ -78,8 +81,8 @@ def main(args):
         if line[args.attribute.replace("-predicted", "")] != line[args.attribute] and line[args.attribute.replace("-predicted", "")] != 'EXAM':
             print(line)
 
-    truths = [line[args.attribute.replace("-predicted", "")] for line in predictions.values()]
-    predictions = [line[args.attribute] for line in predictions.values()]
+    truths = [str(line[args.attribute.replace("-predicted", "")]).lower() for line in predictions.values()]
+    predictions = [line[args.attribute].lower() for line in predictions.values()]
     print_eval(predictions, truths, args.confusion_matrix)
     
 if __name__ == "__main__":
