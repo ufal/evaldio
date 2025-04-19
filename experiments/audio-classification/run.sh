@@ -2,30 +2,28 @@
 
 #SBATCH -p gpu-ms,gpu-troja
 #SBATCH -G 1
-#SBATCH -C "gpuram24G|gpuram40G|gpuram48G|gpuram95G"
+#SBATCH -C "gpuram40G|gpuram48G|gpuram95G"
 #SBATCH --mem=40G
 #SBATCH --cpus-per-task=4
 #SBATCH --exclude=dll-4gpu3
 
 lr=$1
 accumulation_steps=$2
-rdrop=$3
+batch_size=$3
 dropout=$4
 fold=$5
 h5_file=$6
 max_epochs=$7
-examiner_only=$8
-
-if [ -z "$examiner_only" ]; then
-    examiner_only=""
+train_last_layer=$8
+if [ "$train_last_layer" = "true" ]; then
+    train_last_layer="--train_last_layer"
+    train_last_layer_str="+train_last_layer_true"
+else
+    train_last_layer=""
 fi
+r_drop=$9
 
-exam_only_str=""
-if [ $examiner_only == "--examiner_only" ]; then
-    exam_only_str="+examiner_only"
-fi
-
-ex_name="${h5_file}+lr_${lr}+accumulation_steps_${accumulation_steps}+r_drop_${rdrop}+dropout_${dropout}+fold_${fold}${exam_only_str}"
+ex_name="+dataset_${h5_file##*/}+folds_10+fold_${fold}+lr_${lr}+batch_size_${batch_size}+accumulation_steps_${accumulation_steps}+dropout_${dropout}+max_epochs_${max_epochs}${train_last_layer_str}+rdrop_${r_drop}"
 
 ex_folder="runs/${ex_name}/version_*/checkpoints/last.ckpt"
 ls $ex_folder
@@ -37,24 +35,15 @@ if ls ${ex_folder} 1> /dev/null 2>&1; then
 fi
 
 srun python run.py \
-    --train_folds ../datalists/fold_0.20241008.tsv \
-    ../datalists/fold_1.20241008.tsv \
-    ../datalists/fold_2.20241008.tsv \
-    ../datalists/fold_3.20241008.tsv \
-    ../datalists/fold_4.20241008.tsv \
-    ../datalists/fold_5.20241008.tsv \
-    ../datalists/fold_6.20241008.tsv \
-    ../datalists/fold_7.20241008.tsv \
-    ../datalists/fold_8.20241008.tsv \
-    ../datalists/fold_9.20241008.tsv \
-    --dev_folds ../datalists/fold_${fold}.20241008.tsv \
-    --test_folds ../datalists/fold_${fold}.20241008.tsv \
-    --h5_file ${h5_file}.h5 \
-    --batch_size 4 \
+    --num_folds 10 \
+    --dev_fold $fold \
+    --test_fold $fold \
+    --h5_file $h5_file \
+    --batch_size $batch_size \
     --accumulation_steps $accumulation_steps \
     --lr $lr \
     --max_epochs $max_epochs \
-    --r_drop $rdrop \
     --experiment_name $ex_name \
     --dropout $dropout \
-    $predict $examiner_only
+    --r_drop $r_drop \
+    $predict $train_last_layer
