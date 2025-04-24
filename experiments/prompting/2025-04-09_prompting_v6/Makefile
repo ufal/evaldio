@@ -1,10 +1,13 @@
 SHELL=/bin/bash
 
+TRANSCRIPT_TYPE=whisperX-large-v2
+#TRANSCRIPT_TYPE=manual.before_review
+
 BATCH=
 BATCH_STR=$(subst $(BATCH),/,-)
-TRANSCRIPTS_DIR=../../../tmp/data_preparation/$(BATCH)/01.auto_transcript/whisperX-large-v2
+TRANSCRIPTS_DIR=../../../tmp/data_preparation/$(BATCH)/01.auto_transcript/$(TRANSCRIPT_TYPE)
 LABELS_DIR=../../../tmp/data_preparation/$(BATCH)/20.extract_labels
-OUTPUT_DIR=results
+OUTPUT_DIR=results.$(TRANSCRIPT_TYPE)
 
 SEEDS=42 1986 2025
 
@@ -20,7 +23,7 @@ ALL_BATCHES=UJOP/CCE-A1_2024_06_11 \
 
 all :
 	for batch in $(ALL_BATCHES); do \
-		$(MAKE) prompt_batch BATCH=$$batch; \
+		$(MAKE) prompt_batch BATCH=$$batch TRANSCRIPT_TYPE=$(TRANSCRIPT_TYPE); \
 	done
 
 prompt_batch : $(OUTPUT_DIR)/$(BATCH)/llama3.txt $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt 
@@ -30,6 +33,8 @@ $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt : MODEL=LLM3-AMD-MI210.deepseek-r1:70
 $(OUTPUT_DIR)/$(BATCH)/llama3.txt $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt :
 	mkdir -p $(dir $@)
 	for labels in $(LABELS_DIR)/*.json; do \
-		transcript=$(TRANSCRIPTS_DIR)/`basename $$labels .json`.simple.txt; \
-		python3 prompt.py -m $(MODEL) -r $(SEEDS) -- $$transcript $$labels; \
+		examid=`basename $$labels | sed 's|_anonym.*||'`; \
+		for transcript in $(TRANSCRIPTS_DIR)/$$examid{_,-}*; do \
+			python3 prompt.py -m $(MODEL) -r $(SEEDS) -- $$transcript $$labels; \
+		done; \
 	done > $@

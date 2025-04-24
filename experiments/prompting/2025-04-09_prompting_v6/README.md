@@ -14,3 +14,5 @@ It should only output True=pass or False=fail.
 ## Variations
 
 * (2024-04-23) LLM is prompted 3-times using different random seeds: 42, 1986, 2025
+* (2024-04-24) possible to run the oracle experiment on manual transcripts (TRANSCRIPT_TYPE=whisperX-large-v2 vs. TRANSCRIPT_TYPE=manual.before_review)
+
