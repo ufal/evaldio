@@ -1,0 +1,54 @@
+--- ../../tmp/data_preparation/UJOP/CCE-B2_2024_09_23/20.extract_labels/overall.csv	2025-04-08 15:03:46.000000000 +0200
++++ ../../tmp/data_preparation/UJOP/CCE-A2_2024_01_26/20.extract_labels/overall.csv.new	2025-04-24 13:54:25.000000000 +0200
+@@ -65,8 +65,8 @@
+ A2ML_221205_16	A2ML_221205_16_Ecaterina_video	A2ML_221205_16_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.982608695652174	2024-01-26	trénovací a testovací	ano úloha 2 i 3	ano	ano	ano	ano		
+ A2ML_221205_17	A2ML_221205_17_Serhii_video	A2ML_221205_17_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.860869565217391	2024-01-26	trénovací a testovací	ano úloha 2 i 3	ano	ano	ano	ano		
+ A2ML_221205_18	A2ML_221205_18_Yurii_video	A2ML_221205_18_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.91304347826087	2024-01-26	trénovací a testovací	ano úloha 2 i 3		ano	ano			
+-A2ML_230724_19	A2ML_230724_19_01_Matthew_video	A2ML_230724_19_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2		2024-05-21	trénovací a testovací	zatím ne	ano	ano	ano	ano	1.0	9.6349
+-A2ML_230724_19	A2ML_230724_19_02_Matthew_video	A2ML_230724_19_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2		2024-05-21	trénovací a testovací	zatím ne	ano	ano	ano	ano	1.0	9.6349
++A2ML_230724_19	A2ML_230724_19_01_Matthew_video	A2ML_230724_19_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.5071	2024-05-21	trénovací a testovací	zatím ne	ano	ano	ano	ano	1.0	9.6349
++A2ML_230724_19	A2ML_230724_19_02_Matthew_video	A2ML_230724_19_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.5071	2024-05-21	trénovací a testovací	zatím ne	ano	ano	ano	ano	1.0	9.6349
+ A2ML_230724_20	A2ML_230724_20_Victoria_video	A2ML_230724_20_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.404394736842105	2024-01-26	trénovací a testovací	zatím ne	ano	ano	ano	ano	2.0	7.6835
+ A2ML_230724_21	A2ML_230724_21_Anžhelika_video	A2ML_230724_21_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.808905263157895	2024-01-26	trénovací a testovací	zatím ne	ano	ano	ano	ano	3.0	15.3692
+ A2ML_230724_22	A2ML_230724_22_Irina_video	A2ML_230724_22_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	A2	0.750663157894737	2024-01-26	trénovací a testovací	zatím ne	ano	ano	ano	ano	4.0	14.2626
+@@ -255,13 +255,13 @@
+ B2ML_220511_01	B2ML_220511_01_Sofiia_video	B2ML_220511_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.768424242424243	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	1.0	25.358
+ B2ML_220511_02	B2ML_220511_02_Vitalina_video	B2ML_220511_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.879636363636364	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	2.0	29.028
+ B2ML_220511_03	B2ML_220511_03_Iuliia_video	B2ML_220511_03_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.811878787878788	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	3.0	26.792
+-B2ML_220511_04	B2ML_220511_04a_Valeriia_Abramova_video	B2ML_220511_04_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2					ano	ano	ano	ano	4.0	28.672
+-B2ML_220511_04	B2ML_220511_04b_Valeriia_Abramova_video	B2ML_220511_04b_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	4.0	28.672
++B2ML_220511_04	B2ML_220511_04a_Valeriia_Abramova_video	B2ML_220511_04_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.868848485				ano	ano	ano	ano	4.0	28.672
++B2ML_220511_04	B2ML_220511_04b_Valeriia_Abramova_video	B2ML_220511_04b_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.868848485	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	4.0	28.672
+ B2ML_220511_05	B2ML_220511_05_Lada_video	B2ML_220511_05_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.858666666666667	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	5.0	28.336
+ B2ML_220511_06	B2ML_220511_06_Stanislav_video	B2ML_220511_06_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano		
+-B2ML_220511_07	B2ML_220511_07_01_Anastassiya_Subacheva	B2ML_220511_07_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	ano, úloha 1	ano	ano	ano	ano	6.0	24.36
+-B2ML_220511_07	B2ML_220511_07_02_Anastassiya_Subacheva	B2ML_220511_07_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	6.0	24.36
+-B2ML_220511_07	B2ML_220511_07b_Anastassiya_Subacheva	B2ML_220511_07_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2					ano	ano	ano	ano	6.0	24.36
++B2ML_220511_07	B2ML_220511_07_01_Anastassiya_Subacheva	B2ML_220511_07_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.738181818	2024-09-23	trénovací a testovací	ano, úloha 1	ano	ano	ano	ano	6.0	24.36
++B2ML_220511_07	B2ML_220511_07_02_Anastassiya_Subacheva	B2ML_220511_07_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.738181818	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	6.0	24.36
++B2ML_220511_07	B2ML_220511_07b_Anastassiya_Subacheva	B2ML_220511_07_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.738181818				ano	ano	ano	ano	6.0	24.36
+ B2ML_220511_08	B2ML_220511_08_Anastasiia_Boldyrieva	B2ML_220511_08_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.796666666666667	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	7.0	26.29
+ B2ML_230112_01	B2ML_230112_01_Maryia_video		Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.460363636363636				ano	ano			8.0	15.192
+ B2ML_230112_02	B2ML_230112_02_Kyungjin_video		Certifikovaná zkouška z češtiny pro cizince (CCE)	B2					ano	ano				
+@@ -273,8 +273,8 @@
+ B2ML_230511_04	B2ML_230511_04_Viola_video	B2ML_230511_04_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.378909090909091	2024-09-23	trénovací a testovací	zatím ne			ano	ano	12.0	12.504
+ B2ML_230511_05	B2ML_230511_05_Anna_video	B2ML_230511_05_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.571575757575758	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	13.0	18.862
+ B2ML_230511_06	B2ML_230511_06_Oleksii_P_video	B2ML_230511_06_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.594727272727273	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	14.0	19.626
+-B2ML_230511_07	B2ML_230511_07_01_Olena_video	B2ML_230511_07_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	ano, úloha 1	ano	ano	ano	ano	15.0	30.194
+-B2ML_230511_07	B2ML_230511_07_02_Olena_video	B2ML_230511_07_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	15.0	30.194
++B2ML_230511_07	B2ML_230511_07_01_Olena_video	B2ML_230511_07_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.914969697	2024-09-23	trénovací a testovací	ano, úloha 1	ano	ano	ano	ano	15.0	30.194
++B2ML_230511_07	B2ML_230511_07_02_Olena_video	B2ML_230511_07_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.914969697	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	15.0	30.194
+ B2ML_230511_08	B2ML_230511_08_Bohdan_video	B2ML_230511_08_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.731090909090909	2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano	16.0	24.126
+ B2ML_230511_09	B2ML_230511_09_Olzas_video		Certifikovaná zkouška z češtiny pro cizince (CCE)	B2					ne	ne	ne	ne		
+ B2ML_230511_10	B2ML_230511_010_Kateryna_video	B2ML_230511_10_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne			ano	ano		
+@@ -285,8 +285,8 @@
+ B2ML_230511_15	B2ML_230511_015_Xeniya_video	B2ML_230511_15_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano		
+ B2ML_230512_01	B2ML_230512_01_Timur_video	B2ML_230512_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne				ano		
+ B2ML_230512_02	B2ML_230512_02_Camilo_Adrian_video	B2ML_230512_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne			ano	ano		
+-B2ML_230512_03	B2ML_230512_03_01_Daria_video	B2ML_230512_03_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne		ano		ano	21.0	21.126
+-B2ML_230512_03	B2ML_230512_03_02_Daria_video	B2ML_230512_03_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	ano, úloha 2		ano		ano	21.0	21.126
++B2ML_230512_03	B2ML_230512_03_01_Daria_video	B2ML_230512_03_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.640181818	2024-09-23	trénovací a testovací	zatím ne		ano		ano	21.0	21.126
++B2ML_230512_03	B2ML_230512_03_02_Daria_video	B2ML_230512_03_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.640181818	2024-09-23	trénovací a testovací	ano, úloha 2		ano		ano	21.0	21.126
+ B2ML_230512_04	B2ML_230512_04_01_Marko_video	B2ML_230512_04_01_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	zatím ne	ano	ano	ano	ano		
+ B2ML_230512_04	B2ML_230512_04_02_Marko_video	B2ML_230512_04_02_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2		2024-09-23	trénovací a testovací	ano, úloha 2	ano	ano	ano	ano		
+ B2ML_230512_05	B2ML_230512_05_Alisa_video	B2ML_230512_05_anonym_audio	Certifikovaná zkouška z češtiny pro cizince (CCE)	B2	0.576606060606061	2024-09-23	trénovací a testovací	zatím ne		ano		ano	22.0	19.028

@@ -58,6 +58,9 @@ $(TGT_BASEDIR)/%/20.extract_labels/level.csv : $(TGT_BASEDIR)/%/20.extract_label
 
 $(TGT_BASEDIR)/%/20.extract_labels/overall.csv : $(TGT_BASEDIR)/%/20.extract_labels/fixed.xlsx
 	python3 xlsx_to_csv.py --sheet seznam_ukazek $< $@
+	if [ -f data_patches/overall.patch ]; then \
+		patch $@ data_patches/overall.patch; \
+	fi
 
 ############# EXTRACTING LABELS TO JSON FILES ############
 
