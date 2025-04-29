@@ -34,7 +34,8 @@ $(OUTPUT_DIR)/$(BATCH)/llama3.txt $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt :
 	mkdir -p $(dir $@)
 	for labels in $(LABELS_DIR)/*.json; do \
 		examid=`basename $$labels | sed 's|_anonym.*||'`; \
-		for transcript in $(TRANSCRIPTS_DIR)/$$examid{_,-}*; do \
+		transcript_list=`find $(TRANSCRIPTS_DIR) -regex ".*/$$examid[_-].*" | sort`; \
+		for transcript in $$transcript_list; do \
 			python3 prompt.py -m $(MODEL) -r $(SEEDS) -- $$transcript $$labels; \
 		done; \
 	done > $@

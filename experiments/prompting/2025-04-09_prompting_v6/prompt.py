@@ -96,7 +96,8 @@ Your answer:
 
     logging.info(f"<PROMPT>{prompt}</PROMPT>")
 
-    outputs = []
+    label_json = json.load(open(args.exam_labels_path))
+
     for i, seed in enumerate(args.seeds, 1):
 
         logging.info(f"Run {i}: seed={seed}")
@@ -114,12 +115,14 @@ Your answer:
         output = instruct_model_api(
             model=args.model, model_args=model_args, prompt=prompt
         )
-        outputs.append(output.passed)
 
-
-    label_json = json.load(open(args.exam_labels_path))
-    
-    print("\t".join([true_level, exam_transcript_file, str(label_json["avg"]["result"])] + [str(x) for x in outputs]))
+        print("\t".join([
+            true_level,
+            exam_transcript_file,
+            str(label_json["avg"]["result"]),
+            str(seed),
+            str(output.passed),
+        ]))
 
 if __name__ == "__main__":
     main()
