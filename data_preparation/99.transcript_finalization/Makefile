@@ -35,8 +35,10 @@ finalize_auto :
 finalize_before_review :
 	$(MAKE) finalize DATA_TYPE=before_review
 	$(MAKE) add_annotation_durations DATA_TYPE=before_review
+	$(MAKE) rename_3digit_ords DATA_TYPE=before_review
 finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
+#	$(MAKE) add_recording_info DATA_TYPE=manual
 	$(MAKE) add_annotation_durations DATA_TYPE=manual
 
 finalize : $(TGT_FILES) uncover_source recname_first
@@ -68,6 +70,15 @@ recname_first :
 		fi; \
 	done
 
+rename_3digit_ords :
+	cd $(TGT_DIR); \
+	ls *.xml | grep '_[0-9]\{3\}[-_]' | while read bf; do \
+		newbf=`echo $$bf | sed 's/_0\([0-9][0-9][-_]\)/_\1/'`; \
+		if [ "$$bf" != "$$newbf" ]; then \
+			mv $$bf $$newbf; \
+		fi; \
+	done
+
 add_source_systems :
 	for f in $(TGT_DIR)/*-from_mixed.xml; do \
 		bf=`basename $$f`; \
@@ -76,6 +87,16 @@ add_source_systems :
 		rm $$f; \
 		mv $$f.with_sources $$f; \
 	done
+
+add_recording_info :
+	for f in $(TGT_DIR)/*.xml; do \
+		bf=`basename $$f`; \
+		fid=`echo $$bf | cut -f1 -d-`; \
+		python3 add_recording_info.py --duration 200 < $$f > $$f.with_recinfo; \
+		rm $$f; \
+		mv $$f.with_recinfo $$f; \
+	done
+
 
 USERFILE_PATH=users.xml
 ACTION_LOG_PATH=$(SRC_BASEDIR)/action.log
