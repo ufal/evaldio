@@ -83,7 +83,7 @@ def evaluate_and_plot_selected(ax, df, level=None, modelid=None):
 
     # plot the boxplot
     #sns.stripplot(x="truth", y="prediction", data=data, ax=ax, jitter=True, alpha=0.5)
-    sns.boxplot(x="avg.etalon_perc", y="prediction", orient="y", order=[True, False], data=df, ax=ax, color='lightblue', fliersize=0, width=0.5)
+    sns.boxplot(x="avg.etalon_perc", y="prediction", orient="y", order=[True, False], data=df, ax=ax)
     if level is not None and level in THRESHOLDS:
         # add a vertical line at the threshold
         ax.axvline(THRESHOLDS[level], color='red', linestyle='--')
@@ -116,7 +116,6 @@ def evaluate_all(df, output_file):
     fig, axs = plt.subplots(len(levels), len(modelids), figsize=(15, 10))
     # set figsize
     fig.subplots_adjust(hspace=0.4, wspace=0.4)
-
     
     for i, level in enumerate(levels):
         for j, modelid in enumerate(modelids):
