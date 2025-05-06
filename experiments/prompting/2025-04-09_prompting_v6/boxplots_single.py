@@ -67,6 +67,10 @@ def read_labels(exam_labels_paths):
     for exam_labels_path in exam_labels_paths:
         df_labels1 = pd.read_csv(exam_labels_path, sep="\t")
         df_labels = pd.concat([df_labels, df_labels1], ignore_index=True)
+    
+    # set etalon_perc for all items: use total_perc if etalon_perc is undef
+    df_labels["avg.etalon_perc"] = df_labels["avg.etalon_perc"].combine_first(df_labels["avg.total_perc"])
+
     return df_labels
 
 def evaluate_and_plot_selected(ax, df, level=None, modelid=None):
@@ -77,14 +81,9 @@ def evaluate_and_plot_selected(ax, df, level=None, modelid=None):
     if level is not None:
         df = df[df["level"] == level]
 
-    # get the predictions and truths
-    predictions = [str(x) for x in df["prediction"].tolist()]
-    truths = df["avg.etalon_perc"].combine_first(df["avg.total_perc"]).tolist()
-    data = {"truth": truths, "prediction": predictions}
-
     # plot the boxplot
     #sns.stripplot(x="truth", y="prediction", data=data, ax=ax, jitter=True, alpha=0.5)
-    sns.boxplot(x="truth", y="prediction", order=["True", "False"], data=data, ax=ax, color='lightblue', fliersize=0, width=0.5)
+    sns.boxplot(x="avg.etalon_perc", y="prediction", orient="y", order=[True, False], data=df, ax=ax, color='lightblue', fliersize=0, width=0.5)
     if level is not None and level in THRESHOLDS:
         # add a vertical line at the threshold
         ax.axvline(THRESHOLDS[level], color='red', linestyle='--')
