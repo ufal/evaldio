@@ -24,6 +24,8 @@ class LLMOutput(BaseModel):
 def get_true_level(filename):
     if 'A1' in filename:
         return 'A1'
+    if 'A2_older' in filename:
+        return 'A2_older'
     if 'A2' in filename:
         return 'A2'
     if 'B1' in filename:
