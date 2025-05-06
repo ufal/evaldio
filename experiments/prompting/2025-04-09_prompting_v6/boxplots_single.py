@@ -157,4 +157,6 @@ if __name__ == '__main__':
         df.to_csv(args.output_tsv, sep="\t", index=False)
 
     # print the confusion matrices to PDF
-    evaluate_all(df, args.output_pdf)
+    if args.output_pdf:
+        evaluate_all(df, args.output_pdf)
+    
