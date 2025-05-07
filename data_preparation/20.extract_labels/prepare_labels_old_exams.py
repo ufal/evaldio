@@ -20,8 +20,7 @@ CONFIG = {
            'ex3_questions_score', 'ex3_lexgram_score',
            'total_interact_score', 'total_cohesion_score', 'total_phonol_score', 'total_score'],
         'header_rows': 3,
-        # the threshold is just estimate, not confirmed by UJOP
-        'threshold': 0.6,
+        'threshold': 0.51,
     },
     'A2_older': {
         'column_names': ['exam_id', 'evaluator_id',
