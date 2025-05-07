@@ -1,5 +1,3 @@
-#!/bin/python
-
 import argparse
 import os
 
@@ -16,16 +14,15 @@ from transformers import AutoFeatureExtractor
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--root_dir", type=str, default="runs")
-    parser.add_argument("--num_folds", type=int, default=10)
-    parser.add_argument("--dev_fold", type=int, required=True)
-    parser.add_argument("--test_fold", type=int, required=True)
+    parser.add_argument("--train_folds", type=str, nargs="+", required=True)
+    parser.add_argument("--dev_folds", type=str, nargs="+", required=True)
+    parser.add_argument("--test_folds", type=str, nargs="+", required=True)
+    parser.add_argument("--h5_file", type=str, required=True)
     parser.add_argument("--batch_size", type=int, default=32)
     parser.add_argument("--num_workers", type=int, default=4)
-    parser.add_argument("--h5_file", type=str, required=True)
     parser.add_argument(
-        "--attributes", type=str, nargs="+", default=["ex1_response",  "ex1_lexical",  "ex1_grammar",  "ex2_response",  "ex2_questions",  "ex2_lexical",  "ex2_grammar",  "ex12_phoninter",  "result", ]
+        "--attributes", type=str, nargs="+", default=["NORM_LEVEL", "HAS_RESIDENCE"]
     )
-    parser.add_argument("--attribute_types", type=str, nargs="+", default=["ordinal", "ordinal", "ordinal", "ordinal", "ordinal", "ordinal", "ordinal", "ordinal", "binary"])
     parser.add_argument("--max_epochs", type=int, default=1)
     parser.add_argument("--hf_model", type=str, default="facebook/wav2vec2-xls-r-300m")
     parser.add_argument("--lr", type=float, default=1e-4)
@@ -36,21 +33,20 @@ def main():
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--ckpt_path", type=str, default=None)
     parser.add_argument("--examiner_only", action="store_true")
-    parser.add_argument("--train_last_layer", action="store_true")
     args = parser.parse_args()
 
     feature_extractor = AutoFeatureExtractor.from_pretrained(args.hf_model)
 
     dataset = AudioClassificationModule(
-        dataset_file="data/labels.json",
-        num_folds=args.num_folds,
-        dev_fold=args.dev_fold,
-        test_fold=args.test_fold,
+        train_folds=args.train_folds,
+        dev_folds=args.dev_folds,
+        test_folds=args.test_folds,
         h5_file=args.h5_file,
         batch_size=args.batch_size,
         num_workers=args.num_workers,
         attributes=args.attributes,
         processor=feature_extractor,
+        examiner_only=args.examiner_only,
     )
     dataset.setup('test')
 
@@ -77,7 +73,6 @@ def main():
             class_names=args.attributes,
             class_value_names=[list(dataset.test_dataset.all_values[attr].keys()) for attr in args.attributes],
             dropout=args.dropout,
-            tranin_last_layer=args.train_last_layer,
         )
 
         checkpoint_callback = ModelCheckpoint(
@@ -85,7 +80,7 @@ def main():
             monitor='epoch',#"val_class_NORM_LEVEL_macro avg_f1-score",
             save_last=True,
             mode="max",
-            save_top_k=1,
+            save_top_k=4,
         )
 
         logger = CSVLogger(args.root_dir, name=args.experiment_name)

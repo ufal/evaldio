@@ -9,7 +9,7 @@ from transformers import AutoModel
 
 
 class AudioClassificationModel(pl.LightningModule):
-    def __init__(self, hf_model: str, num_classes: List[int], r_drop: float = 0.0, lr: float = 1e-4, class_names:List[str] = None, class_value_names: List[List[str]] = None, dropout: float = 0.1, tranin_last_layer: bool = False):
+    def __init__(self, hf_model: str, num_classes: List[int], r_drop: float = 0.0, lr: float = 1e-4, class_names:List[str] = None, class_value_names: List[List[str]] = None, dropout: float = 0.1):
         super().__init__()
         self.model = AutoModel.from_pretrained(hf_model, hidden_dropout=dropout, attention_dropout=dropout, feat_proj_dropout=dropout)
         self.model.freeze_feature_encoder()
@@ -26,12 +26,6 @@ class AudioClassificationModel(pl.LightningModule):
 
         self.outputs = [[] for _ in num_classes]
         self.truths = [[] for _ in num_classes]
-
-        if tranin_last_layer:
-            for param in self.model.parameters():
-                param.requires_grad = False
-            for param in self.model.encoder.layers[-1].parameters():
-                param.requires_grad = True
 
     def forward(self, input_values, attention_mask=None):
         assert attention_mask is not None or not self.has_attention_mask
@@ -119,21 +113,18 @@ class AudioClassificationModel(pl.LightningModule):
         try:
             from sklearn.metrics import classification_report
             for idx, (p, t) in enumerate(zip(predictions, truths)):
-                try:
-                    class_name = idx
-                    if self.class_names is not None:
-                        class_name = self.class_names[idx]
-                    report = classification_report(t, p, output_dict=False, target_names=self.class_value_names[idx] if self.class_value_names is not None else None)
-                    print(report)
-                    report = classification_report(t, p, output_dict=True, target_names=self.class_value_names[idx] if self.class_value_names is not None else None)
-                    for key, value in report.items():
-                        if key == "accuracy":
-                            self.log(f"{step_name}_class_{class_name}_accuracy", value, prog_bar=False)
-                        else:
-                            for metric, metric_value in value.items():
-                                self.log(f"{step_name}_class_{class_name}_{key}_{metric}", metric_value, prog_bar=False)
-                except:
-                    pass
+                class_name = idx
+                if self.class_names is not None:
+                    class_name = self.class_names[idx]
+                report = classification_report(t, p, output_dict=False, target_names=self.class_value_names[idx] if self.class_value_names is not None else None)
+                print(report)
+                report = classification_report(t, p, output_dict=True, target_names=self.class_value_names[idx] if self.class_value_names is not None else None)
+                for key, value in report.items():
+                    if key == "accuracy":
+                        self.log(f"{step_name}_class_{class_name}_accuracy", value, prog_bar=False)
+                    else:
+                        for metric, metric_value in value.items():
+                            self.log(f"{step_name}_class_{class_name}_{key}_{metric}", metric_value, prog_bar=False)
         except:
             pass
 
