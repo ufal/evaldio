@@ -6,6 +6,7 @@ from matplotlib import pyplot as plt
 #from sklearn.metrics import classification_report
 from sklearn.metrics import precision_recall_fscore_support
 from sklearn.metrics import confusion_matrix
+from sklearn.metrics import cohen_kappa_score
 import seaborn as sns
 
 RESULT_FILE_DETAILS = {
@@ -96,14 +97,17 @@ def evaluate_and_plot_selected(ax, df, level=None, modelid=None):
     ax.set_title(title, fontsize=14, fontweight='bold')
 
     # calculate precision, recall, f1-score, and support and print it below the plot
-    #scores = precision_recall_fscore_support(truths, predictions, average=None)
-    #text = ''
-    #for i, scorename in enumerate(['precision', 'recall', 'f1-score', 'support']):
-    #    if scorename == 'support':
-    #        text += f"{scorename}: {scores[i][0]}   {scores[i][1]}\n"
-    #    else:
-    #        text += f"{scorename}: {scores[i][0]:.2f}   {scores[i][1]:.2f}\n"
-    #ax.text(0.5, -0.4, text, ha='center', va='center', transform=ax.transAxes)
+    truths = df["avg.etalon_perc"].apply(lambda x: 1 if x >= THRESHOLDS.get(level, 0.5) else 0).tolist()
+    predictions = df["prediction"].tolist()
+    scores = precision_recall_fscore_support(truths, predictions, average=None)
+    text = ''
+    for i, scorename in enumerate(['precision', 'recall', 'f1-score', 'support']):
+        if scorename == 'support':
+            text += f"{scorename}: {scores[i][0]}   {scores[i][1]}\n"
+        else:
+            text += f"{scorename}: {scores[i][0]:.2f}   {scores[i][1]:.2f}\n"
+    text += f"QWK: {cohen_kappa_score(truths, predictions, weights='quadratic'):.2f}\n"
+    ax.text(0.5, -10, text, ha='center', va='center', transform=ax.transAxes)
     
 
 def evaluate_all(df, output_file):
@@ -138,7 +142,7 @@ if __name__ == '__main__':
     # read the result files
     df = read_inputs(args.result_files, args.randseeds_as_cols)
     # aggregate the predictions produced by different seeds
-    df = df.groupby(["level", "transcript_file", "modelid"]).agg(lambda x: x.mode()[0]).reset_index()
+    # df = df.groupby(["level", "transcript_file", "modelid"]).agg(lambda x: x.mode()[0]).reset_index()
 
     # filter the df by datalist
     if args.datalist:
