@@ -96,14 +96,14 @@ def evaluate_and_plot_selected(ax, df, level=None, modelid=None):
     # calculate precision, recall, f1-score, and support and print it below the plot
     truths = df["avg.etalon_perc"].apply(lambda x: 1 if x >= THRESHOLDS.get(level, 0.5) else 0).tolist()
     predictions = df["pred.total_score"].apply(lambda x: 1 if x >= THRESHOLDS.get(level, 0.5)*100 else 0).tolist()
-    scores = precision_recall_fscore_support(truths, predictions, average=None)
+    scores = precision_recall_fscore_support(truths, predictions, labels=[0, 1], average=None)
     text = ''
     for i, scorename in enumerate(['precision', 'recall', 'f1-score', 'support']):
         if scorename == 'support':
             text += f"{scorename}: {scores[i][0]}   {scores[i][1]}\n"
         else:
             text += f"{scorename}: {scores[i][0]:.2f}   {scores[i][1]:.2f}\n"
-    text += f"QWK: {cohen_kappa_score(truths, predictions, weights='quadratic'):.2f}\n"
+    text += f"QWK: {cohen_kappa_score(truths, predictions, weights='quadratic', labels=[0, 1]):.2f}\n"
     ax.text(0.5, -0.4, text, ha='center', va='center', transform=ax.transAxes)
     
 
