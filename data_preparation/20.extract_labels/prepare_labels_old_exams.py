@@ -184,6 +184,9 @@ for exam_id, group in detailed_data.groupby('exam_id'):
     avg_evaluation = collect_average_evaluations(group, overall_dict.get(exam_id), threshold=CONFIG[args.exam_type]['threshold'])
     if exam_id in overall_dict:
         del overall_dict[exam_id]
+    # HACK: change the exam_id name for the particular exam, I do not know what "b" means there but it has to be there to match the recording's name
+    if exam_id == "B2ML_220511_04":
+        exam_id = "B2ML_220511_04b"
     # Create the output dictionary
     out_dict = {
         'exam_id': exam_id,
