@@ -11,8 +11,15 @@ import requests
 
 API_KEY = os.environ.get('AI_UFAL_TOKEN')
 
+PASS_THRESHOLD = {
+    "A1": 47,
+    "A2": 60,
+    "B1": 62,
+    "B2": 62,
+}
+
 class LLMOutput(BaseModel):
-    passed: bool
+    score: float
  
 def get_true_level(filename):
     if 'A1' in filename:
@@ -87,9 +94,12 @@ def main():
     true_level = get_true_level(exam_transcript_file)
 
     prompt = f"""
-You are an expert evaluator of spoken Czech proficiency according to the Common European Framework of Reference for Languages (CEFR). Based on the automatically generated transcript of an oral exam conducted by the examiners EXAM_*, estimate whether the candidate CAND_1 passes or fails the exam.
+You are an expert evaluator of spoken Czech proficiency according to the Common European Framework of Reference for Languages (CEFR).
+Based on the automatically generated transcript of an oral exam for proficiency at the {true_level} level conducted by the examiners EXAM_*, estimate how many points the candidate CAND_1 earns from the exam.
+The scoring is based on the holistic scoring method, where the candidate's performance is evaluated as a whole, rather than focusing on individual aspects of language use. The score is given in the range from 0 to 100 points. The examiners are allowed to give partial points.
+The candidate passes the exam if they score at least {PASS_THRESHOLD[true_level]} points.
 
-This is the transcript of the oral exam for proficiency at the {true_level} level:
+This is the transcript of the oral exam:
 
 {transcript}
 
@@ -99,6 +109,11 @@ Your answer:
     logging.info(f"<PROMPT>{prompt}</PROMPT>")
 
     label_json = json.load(open(args.exam_labels_path))
+
+    gold_score = label_json["avg"].get("etalon_perc")
+    if gold_score is None:
+        gold_score = label_json["avg"].get("total_perc")
+    logging.info(f"Gold score: {gold_score}")
 
     for i, seed in enumerate(args.seeds, 1):
 
@@ -117,13 +132,15 @@ Your answer:
         output = instruct_model_api(
             model=args.model, model_args=model_args, prompt=prompt
         )
-
+    
         print("\t".join([
-            true_level,
+            true_level, 
             exam_transcript_file,
+            str(gold_score),
             str(label_json["avg"]["result"]),
             str(seed),
-            str(output.passed),
+            f"{output.score:.2f}",
+            str(output.score >= PASS_THRESHOLD[true_level]),
         ]))
 
 if __name__ == "__main__":

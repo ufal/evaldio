@@ -551,6 +551,51 @@ distrib_2025-04-19 :
 		SELECTION_RULE='$$$$((i+1+23))' \
 		TRANSCRIPT_TYPE=from_scratch
 
+distrib_2025-05-02 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-05-02 \
+		ANNOTATORS="ZM LR" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-05-02 \
+		ANNOTATORS="ZM LR" \
+		SELECTION_RULE='$$$$((i+1+2))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-05-02 \
+		ANNOTATORS="ZM LR" \
+		SELECTION_RULE='$$$$((i+1+4))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-05-02 \
+		ANNOTATORS="ZM LR" \
+		SELECTION_RULE='$$$$((i+1+6))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-05-02 \
+		ANNOTATORS="ZM LR" \
+		SELECTION_RULE='$$$$((i+1+8))' \
+		TRANSCRIPT_TYPE=from_scratch
+
+# TODO: distrib_2025-04-19 selection rules not finished yet; distrib_2025-05-02 jumped to B2 to get some B2 annotation before submitting the paper
+
+
 distribute_manual :
 	mkdir -p $(TGT_DIR_PATH)
 

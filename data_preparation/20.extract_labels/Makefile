@@ -77,6 +77,16 @@ $(TGT_BASEDIR)/%/20.extract_labels/done : $(TGT_BASEDIR)/%/20.extract_labels/lev
 	python3 prepare_labels_old_exams.py --exam-type $(LEVEL) --audio-dir $(word 3,$^) --overall-csv $(word 2,$^) $(word 1,$^) $(dir $@)
 	touch $@
 
+############ COLLECTING JSON FILES TO A HARMONIZED TSV ############
+
+labels :
+	$(MAKE) $(TGT_BASEDIR)/$(BATCH)/20.extract_labels/labels.tsv $(PARAMS_$(BATCH))
+
+$(TGT_BASEDIR)/%/20.extract_labels/labels.tsv : $(TGT_BASEDIR)/%/20.extract_labels/done
+	mkdir -p $(dir $@)
+	python collect_jsons.py $(dir $<) $@
+	touch $@
+
 ########## CLEANING UP ##########
 
 clean :

@@ -1,15 +1,12 @@
 SHELL=/bin/bash
 
-TRANSCRIPT_TYPE=whisperX-large-v2
-#TRANSCRIPT_TYPE=manual.before_review
-
 BATCH=
 BATCH_STR=$(subst $(BATCH),/,-)
-TRANSCRIPTS_DIR=../../../tmp/data_preparation/$(BATCH)/01.auto_transcript/$(TRANSCRIPT_TYPE)
+TRANSCRIPTS_DIR=../../../tmp/data_preparation/$(BATCH)/01.auto_transcript/whisperX-large-v2
 LABELS_DIR=../../../tmp/data_preparation/$(BATCH)/20.extract_labels
-OUTPUT_DIR=results.$(TRANSCRIPT_TYPE)
+OUTPUT_DIR=results
 
-SEEDS=42 1986 2025
+SEEDS=42
 
 ALL_BATCHES=UJOP/CCE-A1_2024_06_11 \
             UJOP/CCE-A2_2024_01_26 \
@@ -21,21 +18,25 @@ ALL_BATCHES=UJOP/CCE-A1_2024_06_11 \
 # no labels for C1 so far
 #			UJOP/CCE-C1_2024_09_23
 
-all :
+all_llama :
 	for batch in $(ALL_BATCHES); do \
-		$(MAKE) prompt_batch BATCH=$$batch TRANSCRIPT_TYPE=$(TRANSCRIPT_TYPE); \
+		$(MAKE) prompt_batch_llama BATCH=$$batch; \
 	done
 
-prompt_batch : $(OUTPUT_DIR)/$(BATCH)/llama3.txt $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt 
+all_deepseek :
+	for batch in $(ALL_BATCHES); do \
+		$(MAKE) prompt_batch_deepseek BATCH=$$batch; \
+	done
+
+prompt_batch_llama : $(OUTPUT_DIR)/$(BATCH)/llama3.txt
+prompt_batch_deepseek : $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt 
 
 $(OUTPUT_DIR)/$(BATCH)/llama3.txt : MODEL=LLM3-AMD-MI210.llama3.3:latest
 $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt : MODEL=LLM3-AMD-MI210.deepseek-r1:70b
 $(OUTPUT_DIR)/$(BATCH)/llama3.txt $(OUTPUT_DIR)/$(BATCH)/deepseek-r1-70b.txt :
 	mkdir -p $(dir $@)
 	for labels in $(LABELS_DIR)/*.json; do \
-		examid=`basename $$labels | sed 's|_anonym.*||'`; \
-		transcript_list=`find $(TRANSCRIPTS_DIR) -regex ".*/$$examid[_-].*" | sort`; \
-		for transcript in $$transcript_list; do \
-			python3 prompt.py -m $(MODEL) -r $(SEEDS) -- $$transcript $$labels; \
-		done; \
+		base=`basename $$labels .json`; \
+		transcript=$(TRANSCRIPTS_DIR)/$$base.simple.txt; \
+		python3 prompt.py -m $(MODEL) -r $(SEEDS) -o $(dir $@)/$$base -- $$transcript; \
 	done > $@
