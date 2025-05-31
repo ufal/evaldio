@@ -109,6 +109,7 @@ def parse_args():
     #parser.add_argument("--do_sample", "-s", help="Use sampling instead of greedy decoding", action="store_true")
 
     parser.add_argument("--json-out", "-o", help="Path to save the outputs of the LLM", type=str)
+    parser.add_argument("--dry-run", "-d", help="If set, the script will not run the LLM, but only collect all results", action="store_true")
 
     parser.add_argument("exam_transcript_path", help="path to the exam transcript", type=str)
     args = parser.parse_args()
@@ -173,10 +174,13 @@ Your answer:
             json_out_path = f"{args.json_out}.model={model_name(args.model)}.seed={seed}.json"
             if os.path.exists(json_out_path):
                 logging.info(f"Output already exists, loading: {json_out_path}")
-                with open(json_out_path, "r") as f:
-                    output = LLMOutput.model_validate(json.load(f))
+                try:
+                    with open(json_out_path, "r") as f:
+                        output = LLMOutput.model_validate(json.load(f))
+                except json.JSONDecodeError as e:
+                    output = None
     
-        if output is None:
+        if output is None and not args.dry_run:
             #continue
             output = instruct_model_api(
                 model=args.model, model_args=model_args, prompt=prompt
@@ -187,17 +191,18 @@ Your answer:
                 with open(json_out_path, "w") as f:
                     json.dump(output.model_dump(), f, indent=2)
                 logging.info(f"Output saved to {json_out_path}")
-    
-        print("\t".join([
-            true_level, 
-            exam_transcript_file,
-            str(seed),
-            f"{calculate_holistic_score(output):.2f}",
-            f"{average_trait_scores(output)['task_fulfillment']:.2f}",
-            f"{average_trait_scores(output)['interaction']:.2f}",
-            f"{average_trait_scores(output)['lexical_resource']:.2f}",
-            f"{average_trait_scores(output)['grammatical_accuracy']:.2f}",
-        ]))
+
+        if output:
+            print("\t".join([
+                true_level,
+                exam_transcript_file,
+                str(seed),
+                f"{calculate_holistic_score(output):.2f}",
+                f"{average_trait_scores(output)['task_fulfillment']:.2f}",
+                f"{average_trait_scores(output)['interaction']:.2f}",
+                f"{average_trait_scores(output)['lexical_resource']:.2f}",
+                f"{average_trait_scores(output)['grammatical_accuracy']:.2f}",
+            ]))
 
 if __name__ == "__main__":
     main()
