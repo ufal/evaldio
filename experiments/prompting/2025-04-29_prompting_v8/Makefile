@@ -6,7 +6,8 @@ TRANSCRIPTS_DIR=../../../tmp/data_preparation/$(BATCH)/01.auto_transcript/whispe
 LABELS_DIR=../../../tmp/data_preparation/$(BATCH)/20.extract_labels
 OUTPUT_DIR=results
 
-SEEDS=42
+#SEEDS=42 1986 2025 1998 2655 
+SEEDS=42 1986
 
 ALL_BATCHES=UJOP/CCE-A1_2024_06_11 \
             UJOP/CCE-A2_2024_01_26 \

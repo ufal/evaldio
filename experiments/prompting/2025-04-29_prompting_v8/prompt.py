@@ -2,12 +2,21 @@
  
 import os
 import argparse
+import inspect
 import json
 import logging
 import random
+import sys
 
 from pydantic import BaseModel
 from ollama import Client
+
+currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
+parentdir = os.path.dirname(currentdir)
+commondir = os.path.join(parentdir, "2025-04-09_prompting_v6")
+sys.path.insert(0, commondir)
+
+from common import get_true_level, model_name
 
 API_KEY = os.environ.get('AI_UFAL_TOKEN')
 
@@ -24,24 +33,6 @@ class ExerciseAssessment(BaseModel):
 
 class LLMOutput(BaseModel):
     exercises: list[ExerciseAssessment]
-
-def get_true_level(filename):
-    if 'A1' in filename:
-        return 'A1'
-    if 'A2' in filename:
-        return 'A2'
-    if 'B1' in filename:
-        return 'B1'
-    if 'B2' in filename:
-        return 'B2'
-    if 'C1' in filename:
-        return 'C1'
-    assert False, f"Unknown level in filename {filename}"
-
-def model_name(model):
-    for model_str in ["llama3", "deepseek"]:
-        if model_str in model:
-            return model_str
 
 def instruct_model_api(model, model_args, prompt):
     API_URL = f"https://ai.ufal.mff.cuni.cz/ollama"
@@ -84,8 +75,9 @@ def average_trait_scores(llm_output):
         avg_scores["lexical_resource"] += exercise.lexical_resource.score
         avg_scores["grammatical_accuracy"] += exercise.grammatical_accuracy.score
 
-    for trait in avg_scores:
-        avg_scores[trait] /= num_exercises
+    if num_exercises > 0:
+        for trait in avg_scores:
+            avg_scores[trait] /= num_exercises
 
     return avg_scores
 
@@ -93,11 +85,14 @@ def calculate_holistic_score(llm_output):
     # Calculate the holistic score based on the scores of the exercises
     total_score = 0
     num_exercises = len(llm_output.exercises)
+
+    if num_exercises == 0:
+        return 0.0
     
     for exercise in llm_output.exercises:
         total_score += (exercise.task_fulfillment.score + exercise.interaction.score +
                         exercise.lexical_resource.score + exercise.grammatical_accuracy.score) / 4
-
+    
     holistic_score = total_score / num_exercises
     return holistic_score
 
@@ -133,10 +128,11 @@ def main():
     logging.info(f"Processing transcript: {exam_transcript_path}")
     transcript = open(exam_transcript_path).read().strip()
     exam_transcript_file = os.path.basename(exam_transcript_path)
-    true_level = get_true_level(exam_transcript_file)
+    true_level = get_true_level(exam_transcript_path, for_prompt=False)
+    true_level_for_prompt = get_true_level(exam_transcript_path, for_prompt=True)
 
     prompt = f"""
-You are an expert evaluator of spoken Czech proficiency, using the Common European Framework of Reference for Languages (CEFR). Assess the performance of a candidate (CAND_1) in an oral {true_level}-level Czech exam based on the provided transcript. The exam is divided into multiple exercises. Each exercise must be evaluated separately.
+You are an expert evaluator of spoken Czech proficiency, using the Common European Framework of Reference for Languages (CEFR). Assess the performance of a candidate (CAND_1) in an oral {true_level_for_prompt}-level Czech exam based on the provided transcript. The exam is divided into multiple exercises. Each exercise must be evaluated separately.
 
 For each exercise, evaluate the candidate on the following four traits: 
  * Task Fulfillment: to what extent does the candidate accomplish the communicative goal of the exercise?
