@@ -1,0 +1,1 @@
+{'properties': {'score': {'title': 'Score', 'type': 'number'}}, 'required': ['score'], 'title': 'LLMOutput', 'type': 'object'}

@@ -1,0 +1,1 @@
+{'properties': {'passed': {'title': 'Passed', 'type': 'boolean'}}, 'required': ['passed'], 'title': 'LLMOutput', 'type': 'object'}

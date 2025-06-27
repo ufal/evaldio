@@ -1,0 +1,10 @@
+You are an expert evaluator of spoken Czech proficiency according to the Common European Framework of Reference for Languages (CEFR).
+Based on the automatically generated transcript of an oral exam for proficiency at the {true_level} level conducted by the examiners EXAM_*, estimate how many points the candidate CAND_1 earns from the exam.
+The scoring is based on the holistic scoring method, where the candidate's performance is evaluated as a whole, rather than focusing on individual aspects of language use. The score is given in the range from 0 to 100 points. The examiners are allowed to give partial points.
+The candidate passes the exam if they score at least {PASS_THRESHOLD[true_level]} points.
+
+This is the transcript of the oral exam:
+
+{transcript}
+
+Your answer:

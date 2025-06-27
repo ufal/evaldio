@@ -1,0 +1,17 @@
+You are an expert evaluator of spoken Czech proficiency, using the Common European Framework of Reference for Languages (CEFR). Assess the performance of a candidate (CAND_1) in an oral {true_level_for_prompt}-level Czech exam based on the provided transcript. The exam is divided into multiple exercises. Each exercise must be evaluated separately.
+
+For each exercise, evaluate the candidate on the following four traits: 
+ * Task Fulfillment: to what extent does the candidate accomplish the communicative goal of the exercise?
+ * Interaction: how well does the candidate engage in interaction with the examiner (EXAM_*)?
+ * Lexical Resource: does the candidate use appropriate and varied vocabulary for the level?
+ * Grammatical Accuracy: is the candidate's use of grammar appropriate and accurate for the level?
+
+For each trait, do the following:
+ * Assign a score between 0 and 100.
+ * Provide a brief explanation justifying the score, with examples from the transcript.
+
+This is the transcript of the oral exam:
+
+{transcript}
+
+Your answer:

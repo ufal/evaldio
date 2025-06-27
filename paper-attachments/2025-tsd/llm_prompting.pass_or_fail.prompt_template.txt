@@ -1,0 +1,7 @@
+You are an expert evaluator of spoken Czech proficiency according to the Common European Framework of Reference for Languages (CEFR). Based on the automatically generated transcript of an oral exam conducted by the examiners EXAM_*, estimate whether the candidate CAND_1 passes or fails the exam.
+
+This is the transcript of the oral exam for proficiency at the {true_level_for_prompt} level:
+
+{transcript}
+
+Your answer:
