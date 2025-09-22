@@ -593,6 +593,58 @@ distrib_2025-05-02 :
 		SELECTION_RULE='$$$$((i+1+8))' \
 		TRANSCRIPT_TYPE=from_scratch
 
+distrib_2025-07-22 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1+4))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1+8))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1+12))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1+16))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_24*.xml \
+		TGT_DIR=05.for_annotators/2025-07-22 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1+20))' \
+		TRANSCRIPT_TYPE=from_scratch
+	
+
+
 # TODO: distrib_2025-04-19 selection rules not finished yet; distrib_2025-05-02 jumped to B2 to get some B2 annotation before submitting the paper
 
 
