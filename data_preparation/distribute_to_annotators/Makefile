@@ -644,8 +644,121 @@ distrib_2025-07-22 :
 		TRANSCRIPT_TYPE=from_scratch
 	
 
+distrib_2025-09-23 :
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+10))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+12))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+14))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+16))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+18))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2025_02_10 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="ET AP" \
+		SELECTION_RULE='$$$$((i+1+20))' \
+		TRANSCRIPT_TYPE=from_scratch
+	# CCE-B2_2025_02_10 finished
+	# switching to CCE-B2_2024_09_23
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1+2))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1+4))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1+6))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1+8))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="LR ZM" \
+		SELECTION_RULE='$$$$((i+1+10))' \
+		TRANSCRIPT_TYPE=from_scratch
+	# switching to CCE-C1_2024_09_23
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-C1_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=C1ML_*.xml \
+		TGT_DIR=05.for_annotators/2025-09-23 \
+		ANNOTATORS="AP ET LR ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
 
-# TODO: distrib_2025-04-19 selection rules not finished yet; distrib_2025-05-02 jumped to B2 to get some B2 annotation before submitting the paper
+
+# TODO: UJOP/CCE-A1_2024_06_11/A1ML_*.xml (distrib_2025-04-19) selection rules not finished yet;
+# TODO: UJOP/CCE-B2_2025_02_10/B2ML_*.xml (distrib_2025-05-02) jumped to B2 to get some B2 annotation before submitting the paper
+# TODO: UJOP/CCE-B1_2024_05_21/B1ML_24*.xml (distrib_2025-07-22) selection rules not finished yet;
+# TODO: UJOP/CCE-B2_2024_09_23/B2ML_*.xml (distrib_2025-09-23) selection rules not finished yet;
+# TODO: UJOP/CCE-C1_2024_09_23/C1ML_*.xml (distrib_2025-09-23) selection rules not finished yet;
 
 
 distribute_manual :
