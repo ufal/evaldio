@@ -28,6 +28,12 @@ def parse_args():
     parser.add_argument("recording1", type=Path, help="First MP3 recording.")
     parser.add_argument("recording2", type=Path, help="Second MP3 recording.")
     parser.add_argument(
+        "--mode",
+        choices=("general", "contained"),
+        default="general",
+        help="Detection strategy (default: general).",
+    )
+    parser.add_argument(
         "--threshold",
         type=float,
         default=DEFAULT_THRESHOLD,
@@ -90,6 +96,32 @@ def best_alignment(first, second):
     correlation = np.concatenate((correlation[-(second.size - 1) :], correlation[: first.size]))
     lag = int(np.argmax(correlation)) - (second.size - 1)
     return lag
+
+
+def best_contained_alignment(longer, shorter):
+    """Return the offset and correlation of the shorter signal in the longer one."""
+    if shorter.size > longer.size:
+        raise ValueError("The first signal must be at least as long as the second.")
+
+    longer = longer - np.mean(longer)
+    shorter = shorter - np.mean(shorter)
+    short_norm = np.linalg.norm(shorter)
+    if short_norm == 0:
+        return 0, 0.0
+
+    correlation = np.correlate(longer, shorter, mode="valid")
+    squared = longer * longer
+    cumulative = np.concatenate(([0.0], np.cumsum(squared)))
+    window_norm = np.sqrt(cumulative[shorter.size :] - cumulative[:-shorter.size])
+    denominator = window_norm * short_norm
+    normalized = np.divide(
+        correlation,
+        denominator,
+        out=np.zeros_like(correlation),
+        where=denominator != 0,
+    )
+    offset = int(np.argmax(normalized))
+    return offset, float(normalized[offset])
 
 
 def frame_correlation(first, second):
@@ -161,16 +193,32 @@ def main():
     first = read_audio(args.recording1)
     second = read_audio(args.recording2)
     sample_rate = DEFAULT_SAMPLE_RATE
-    lag = best_alignment(first, second)
-    segments = find_segments(
-        first,
-        second,
-        lag,
-        sample_rate,
-        args.frame_seconds,
-        args.hop_seconds,
-        args.threshold,
-    )
+    if args.mode == "contained":
+        if first.size >= second.size:
+            offset, score = best_contained_alignment(first, second)
+            segments = (
+                [(offset, offset + second.size, 0, second.size)]
+                if score >= args.threshold
+                else []
+            )
+        else:
+            offset, score = best_contained_alignment(second, first)
+            segments = (
+                [(0, first.size, offset, offset + first.size)]
+                if score >= args.threshold
+                else []
+            )
+    else:
+        lag = best_alignment(first, second)
+        segments = find_segments(
+            first,
+            second,
+            lag,
+            sample_rate,
+            args.frame_seconds,
+            args.hop_seconds,
+            args.threshold,
+        )
 
     print(f"Overlap detected: {'yes' if segments else 'no'}")
     for index, (first_start, first_end, second_start, second_end) in enumerate(segments, 1):
