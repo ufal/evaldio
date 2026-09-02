@@ -109,7 +109,16 @@ def best_contained_alignment(longer, shorter):
     if short_norm == 0:
         return 0, 0.0
 
-    correlation = np.correlate(longer, shorter, mode="valid")
+    size = longer.size + shorter.size - 1
+    fft_size = 1 << (size - 1).bit_length()
+    full_correlation = np.fft.irfft(
+        np.fft.rfft(longer, fft_size) * np.conj(np.fft.rfft(shorter, fft_size)),
+        fft_size,
+    )
+    full_correlation = np.concatenate(
+        (full_correlation[-(shorter.size - 1) :], full_correlation[: longer.size])
+    )
+    correlation = full_correlation[shorter.size - 1 : longer.size]
     squared = longer * longer
     cumulative = np.concatenate(([0.0], np.cumsum(squared)))
     window_norm = np.sqrt(cumulative[shorter.size :] - cumulative[:-shorter.size])
