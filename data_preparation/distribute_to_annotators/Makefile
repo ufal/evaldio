@@ -930,6 +930,76 @@ distrib_2026-03-25 :
 		SELECTION_RULE='$$$$((i+1+54))' \
 		TRANSCRIPT_TYPE=from_scratch
 
+distrib_2026-09-08 :
+	# redistributing B1 exams to publish which have not been finished by KV
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_230221_01_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B1_2024_05_21 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B1ML_230221_05_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="LR" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	# manually selecting untranscribed A1 exams allowed to be released by UJOP
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A1_2024_06_11 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A1ML_221219_03_01_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A1_2024_06_11 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A1ML_230414_07_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-A1_2024_06_11 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=A1ML_230414_09_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	# manually selecting untranscribed B2 exams allowed to be released by UJOP
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_220511_07_01_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="LR" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_230511_07_01_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ZM" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	make distribute \
+		DATA_DIR=/lnet/work/projects/evaldio/tmp/data_preparation/UJOP/CCE-B2_2024_09_23 \
+		SRC_DIR=03.auto_transcripts/null \
+		SRC_FILES=B2ML_230512_15_anonym_audio.xml \
+		TGT_DIR=05.for_annotators/2026-09-08 \
+		ANNOTATORS="ET" \
+		SELECTION_RULE='$$$$((i+1))' \
+		TRANSCRIPT_TYPE=from_scratch
+	
+
 # TODO: UJOP/CCE-A1_2024_06_11/A1ML_*.xml (distrib_2025-04-19) selection rules not finished yet;
 # TODO: UJOP/CCE-B2_2024_09_23/B2ML_*.xml (distrib_2025-09-23) selection rules not finished yet;
 
