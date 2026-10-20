@@ -40,6 +40,7 @@ finalize_manual :
 	$(MAKE) finalize DATA_TYPE=manual
 #	$(MAKE) add_recording_info DATA_TYPE=manual
 	$(MAKE) add_annotation_durations DATA_TYPE=manual
+	$(MAKE) rename_3digit_ords DATA_TYPE=manual
 
 finalize : $(TGT_FILES) uncover_source recname_first
 
