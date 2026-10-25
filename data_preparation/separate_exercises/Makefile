@@ -25,7 +25,7 @@ TGT_ANNOT_DONE_FILES=$(SPLIT_TIME_FILES:$(TGT_DIR)/%.split_times.txt=$(TGT_DIR)/
 
 split_audio : $(TGT_AUDIO_DONE_FILES)
 
-$(TGT_DIR)/%.audio_split.done : $(SRC_DIR)/%_anonym_audio.mp3 $(TGT_DIR)/%.split_times.txt
+$(TGT_DIR)/%.audio_split.done : $(SRC_DIR)/%_anonym_*.mp3 $(TGT_DIR)/%.split_times.txt
 	mkdir -p $(TGT_DIR)
 	./split_audio_by_times.sh $(word 1,$^) $(word 2,$^) $(dir $@)
 	touch $@
@@ -72,7 +72,8 @@ $(TGT_DIR)/%.verify_split.done : $(SRC_DIR)/%_anonym_audio.mp3 $(TGT_DIR)/%.spli
 release_A2_202410.split_times.csv : release_A2_202410.split_time_ranges.csv
 	python3 time_ranges_to_times.py < $< > $@
 
-$(TGT_DIR)/split_times.done : release_A2_202410.split_times.csv
+$(TGT_DIR)/split_times.done : $(BATCH_PATH).split_times.csv
+	mkdir -p $(TGT_DIR)
 	cat $< | while read fid split_info; do \
 		echo "$$split_info" | sed 's/ /\n/g' > $(dir $@)/$$fid.split_times.txt; \
 	done
