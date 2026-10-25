@@ -60,7 +60,7 @@ beep.mp3 :
 	ffmpeg -f lavfi -i "sine=frequency=1000:duration=0.05" $@
 
 # for the time being, there must be a single split timestamp in each *.split_times.txt file
-$(TGT_DIR)/%.verify_split.done : $(SRC_DIR)/%_anonym_audio.mp3 $(TGT_DIR)/%.split_times.txt beep.mp3
+$(TGT_DIR)/%.verify_split.done : $(SRC_DIR)/%_anonym_*.mp3 $(TGT_DIR)/%.split_times.txt beep.mp3
 	mkdir -p $(TGT_DIR)
 	./verify_split.sh $(word 1,$^) $(word 2,$^) $(EXCERPT_HALFLENGTH) $(word 3,$^) $(TGT_DIR)/$*
 	touch $@
