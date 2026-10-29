@@ -8,12 +8,15 @@ SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/70.releasing
 BATCH_PATH=
 
+
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
 TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 
 RELEASE_DIR=$(ROOT_DIR)/public_html-release
 
 RELEASE_NAME=EvaldioData-1.0
+
+TEMPL_DIR=templates/$(RELEASE_NAME)
 
 FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
 
@@ -84,7 +87,7 @@ copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 		done; \
 	done < $<
 
-prepare : LICENSE.txt lindat/README.md lindat/README-cs.md USER_MANUAL.md USER_MANUAL-cs.md TECH_DOC.md TECH_DOC-cs.md
+prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md $(TEMPL_DIR)/docs/USER_MANUAL.md $(TEMPL_DIR)/docs/USER_MANUAL-cs.md $(TEMPL_DIR)/docs/TECH_DOC.md $(TEMPL_DIR)/docs/TECH_DOC-cs.md
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/docs
 	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/recordings
@@ -93,8 +96,15 @@ prepare : LICENSE.txt lindat/README.md lindat/README-cs.md USER_MANUAL.md USER_M
 	python copy_rename.py --verbose $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
 	python copy_rename.py --verbose $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
 	python copy_rename.py --verbose $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
-	cp -v LICENSE.txt lindat/README.md lindat/README-cs.md $(TGT_DIR)/$(RELEASE_NAME)
-	cp -v USER_MANUAL.md USER_MANUAL-cs.md TECH_DOC.md TECH_DOC-cs.md $(TGT_DIR)/$(RELEASE_NAME)/docs
+	cp -v LICENSE.txt \
+		  $(TEMPL_DIR)/docs/README.md \
+		  $(TEMPL_DIR)/docs/README-cs.md \
+		  $(TGT_DIR)/$(RELEASE_NAME)
+	cp -v $(TEMPL_DIR)/docs/USER_MANUAL.md \
+		  $(TEMPL_DIR)/docs/USER_MANUAL-cs.md \
+		  $(TEMPL_DIR)/docs/TECH_DOC.md \
+		  $(TEMPL_DIR)/docs/TECH_DOC-cs.md \
+		  $(TGT_DIR)/$(RELEASE_NAME)/docs
 
 zip :
 	cd $(TGT_DIR) && \
