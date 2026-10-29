@@ -6,7 +6,7 @@ ROOT_DIR=../..
 
 SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/src_audio
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
-SRC_ANNOT_BASEDIR=$(ROOT_DIR)/redmine_data/final/transcripts/before_review
+SRC_ANNOT_BASEDIR=$(ROOT_DIR)/redmine_data/final/transcripts/manual
 BATCH_PATH=
 
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
