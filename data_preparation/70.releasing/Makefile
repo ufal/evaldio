@@ -6,15 +6,26 @@ ROOT_DIR=../..
 
 SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/70.releasing
+POOL_BASEDIR=$(TGT_BASEDIR)/pool
 BATCH_PATH=
 
 
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
-TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
+TGT_DIR=$(POOL_BASEDIR)/$(BATCH_PATH)
 
 RELEASE_DIR=$(ROOT_DIR)/public_html-release
 
 RELEASE_NAME=EvaldioData-1.0
+
+ifeq ($(RELEASE_NAME),$(BATCH_PATH))
+PREPARE_POOL_DIRS=$(TGT_DIR)
+else ifneq ($(filter EvaldioData-%,$(RELEASE_NAME)),)
+PREPARE_POOL_DIRS=$(POOL_BASEDIR)/*
+else
+$(error RELEASE_NAME must equal BATCH_PATH or match EvaldioData-*)
+endif
+
+RELEASE_TGT_DIR=$(TGT_BASEDIR)/$(RELEASE_NAME)
 
 TEMPL_DIR=templates/$(RELEASE_NAME)
 
@@ -88,40 +99,39 @@ copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 	done < $<
 
 prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md $(TEMPL_DIR)/docs/USER_MANUAL.md $(TEMPL_DIR)/docs/USER_MANUAL-cs.md $(TEMPL_DIR)/docs/TECH_DOC.md $(TEMPL_DIR)/docs/TECH_DOC-cs.md
-	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)
-	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/docs
-	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/recordings
-	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
-	mkdir -p $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
-	python copy_rename.py --verbose $(TGT_DIR)/*.mp3 $(TGT_DIR)/$(RELEASE_NAME)/recordings
-	python copy_rename.py --verbose $(TGT_DIR)/*.xml $(TGT_DIR)/$(RELEASE_NAME)/annotations/teitok
-	python copy_rename.py --verbose $(TGT_DIR)/*.txt $(TGT_DIR)/$(RELEASE_NAME)/annotations/simple
+	mkdir -p $(RELEASE_TGT_DIR)/docs
+	mkdir -p $(RELEASE_TGT_DIR)/recordings
+	mkdir -p $(RELEASE_TGT_DIR)/annotations/teitok
+	mkdir -p $(RELEASE_TGT_DIR)/annotations/simple
+	python copy_rename.py --verbose $(PREPARE_POOL_DIRS)/*.mp3 $(RELEASE_TGT_DIR)/recordings
+	python copy_rename.py --verbose $(PREPARE_POOL_DIRS)/*.xml $(RELEASE_TGT_DIR)/annotations/teitok
+	python copy_rename.py --verbose $(PREPARE_POOL_DIRS)/*.txt $(RELEASE_TGT_DIR)/annotations/simple
 	cp -v LICENSE.txt \
 		  $(TEMPL_DIR)/docs/README.md \
 		  $(TEMPL_DIR)/docs/README-cs.md \
-		  $(TGT_DIR)/$(RELEASE_NAME)
+		  $(RELEASE_TGT_DIR)
 	cp -v $(TEMPL_DIR)/docs/USER_MANUAL.md \
 		  $(TEMPL_DIR)/docs/USER_MANUAL-cs.md \
 		  $(TEMPL_DIR)/docs/TECH_DOC.md \
 		  $(TEMPL_DIR)/docs/TECH_DOC-cs.md \
-		  $(TGT_DIR)/$(RELEASE_NAME)/docs
+		  $(RELEASE_TGT_DIR)/docs
 
 zip :
-	cd $(TGT_DIR) && \
+	cd $(TGT_BASEDIR) && \
 		zip -r $(RELEASE_NAME).zip $(RELEASE_NAME)
 
 deploy :
 	mkdir -p $(RELEASE_DIR)
-	cp -v $(TGT_DIR)/$(RELEASE_NAME).zip $(RELEASE_DIR)/$(RELEASE_NAME)_v$(DATE).zip
+	cp -v $(TGT_BASEDIR)/$(RELEASE_NAME).zip $(RELEASE_DIR)/$(RELEASE_NAME)_v$(DATE).zip
 
 clean_soft :
 	rm -f $(TGT_DIR)/*.mp3
 	rm -f $(TGT_DIR)/*.xml $(TGT_DIR)/*.xml.with_header
 	rm -f $(TGT_DIR)/*.txt
-	rm -f $(TGT_DIR).zip
-	rm -f $(TGT_DIR)/$(RELEASE_NAME).zip
-	rm -rf $(TGT_DIR)/$(RELEASE_NAME)
+	rm -f $(TGT_BASEDIR)/$(RELEASE_NAME).zip
+	rm -rf $(RELEASE_TGT_DIR)
 
 clean :
-	rm -rf $(TGT_DIR)
-	rm -f $(TGT_DIR).zip
+	@if [ -n "$(BATCH_PATH)" ]; then rm -rf $(TGT_DIR); fi
+	rm -f $(TGT_BASEDIR)/$(RELEASE_NAME).zip
+	rm -rf $(RELEASE_TGT_DIR)
