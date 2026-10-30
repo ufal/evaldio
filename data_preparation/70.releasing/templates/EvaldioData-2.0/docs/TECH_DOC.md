@@ -1,6 +1,6 @@
-# Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic): Technical Documentation
+# Database of Spoken Czech as a Foreign Language (A1, A2, B1, B2): Technical Documentation
 
-The language corpus of spoken performances by non-native speakers of Czech, focused on the A2 language level (according to the CEFR), required for obtaining permanent residency in the Czech Republic, is the result of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The corpus contains recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce) at the A2 level. The recordings include dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). We have provided transcriptions of the recordings, enriched with extensive linguistic annotations. Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcriptions of the same recording and the assessment of the degree of agreement when converting spoken language into written text.
+The language corpus of spoken performances by non-native speakers of Czech, focused on the A1, A2, B1 and B2 language levels (according to the CEFR) is the result of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The corpus contains recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce). The recordings include dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). We have provided transcriptions of the recordings, enriched with extensive linguistic annotations. Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcriptions of the same recording and the assessment of the degree of agreement when converting spoken language into written text.
 
 The corpus is published as a specialized public database and is freely accessible to the general public, the scientific community, educators, and students. The database is integrated into the TEITOK system, managed on the [LINDAT/CLARIAH-CZ](https://lindat.cz/) platform.
 
@@ -30,7 +30,7 @@ The TEITOK format is an XML format that fully complies with the [Text Encoding I
     - **`<textClass>`**: Document metadata:
        - `database`: Database name.
        - `exam-id`: Exam identifier.
-       - `cefr-level`: CEFR level. This database contains recordings exclusively from A2 level exams.
+       - `cefr-level`: CEFR level. This database contains recordings exclusively from A1, A2, B1 and B2 level exams.
        - `task-number`: Task number.
        - `preannot-source`: Source of preliminary annotation.
        - `annotator`: Annotator code.
