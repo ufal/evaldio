@@ -9,8 +9,8 @@ TEI_HEADER_TEMPLATE = """
 <teiHeader>
   <fileDesc>
     <titleStmt>
-      <title lang="cs">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR), zkouška {examid}, úloha {exerno}, přepis {annotator_short}</title>
-      <title lang="en">Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic), Exam {examid}, Task {exerno}, Transcript {annotator_short}</title>
+      <title lang="cs">Databáze mluvených projevů v češtině jako cizím jazyce ({subtitle_cs}), zkouška {examid}, úloha {exerno}, přepis {annotator_short}</title>
+      <title lang="en">Database of Spoken Czech as a Foreign Language ({subtitle_en}), Exam {examid}, Task {exerno}, Transcript {annotator_short}</title>
       <respStmt>
         <resp lang="en">Authors and maintainers</resp>
         <name>Kateřina Rysová</name>
@@ -107,7 +107,7 @@ TEI_HEADER_TEMPLATE = """
     </langUsage>
     <textClass>
       <keywords scheme="custom">
-        <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce (trvalý pobyt v ČR)</term>
+        <term type="database">Databáze mluvených projevů v češtině jako cizím jazyce ({subtitle_cs})</term>
         <term type="exam-id">{examid}</term>
         <term type="cefr-level">{level}</term>
         <term type="task-number">{exerno}</term>
@@ -129,6 +129,7 @@ ANNOTATOR_NAMES = {
     'MH': 'Martina Hulešová',
     'KR': 'Kateřina Rysová',
     'MR': 'Magdaléna Rysová',
+    'MN': 'Michal Novák',
 }
 
 PREANNOT_SOURCE_NAMES = {
@@ -137,14 +138,21 @@ PREANNOT_SOURCE_NAMES = {
     'from_mixed': 'multiple ASR systems (annotator post-edited ASR output)',
 }
 
+SUBTITLES = {
+    'A1': ['úroveň A1', 'A1 level'],
+    'A2': ['trvalý pobyt v ČR', 'Permanent Residency in the Czech Republic'],
+    'B1': ['občanství v ČR', 'Citizenship in the Czech Republic'],
+    'B2': ['úroveň B2', 'B2 level'],
+}
+
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('input', help='Path to the input file')
     parser.add_argument('output', help='Path to the output file')
     parser.add_argument('--canonical', action='store_true', help='The annotation is canonical')
-    parser.add_argument('--pub-date', type=str, default='2024-10-31', help='Publication date')
-    parser.add_argument('--pub-version', type=str, default='1.0', help='Publication version')
-    parser.add_argument('--handle-uri', type=str, default='http://hdl.handle.net/11234/1-5731', help='Handle URI')
+    parser.add_argument('--pub-date', type=str, default='2026-10-31', help='Publication date')
+    parser.add_argument('--pub-version', type=str, default='2.0', help='Publication version')
+    parser.add_argument('--handle-uri', type=str, default='http://hdl.handle.net/11234/1-6310', help='Handle URI')
     parser.add_argument('--rec-inst', type=str, default='Ústav jazykové a odborné přípravy Univerzity Karlovy', help='Name of the institution that made the recording')
     parser.add_argument('--rec-inst-en', type=str, default='Institute of Language and Preparatory Studies of Charles University', help='Name of the institution that made the recording in English')
     parser.add_argument('--rec-inst-short', type=str, default='ÚJOP', help='Short name of the institution that made the recording')
@@ -168,6 +176,8 @@ def add_info_from_filename(info, filename):
     info['examid'] = f"{info['rec_inst_short']}-{info['level']}-{info['rec_date']}_{info['examno']}"
     info['rec_date'] = datetime.strptime(info['rec_date'], '%y%m%d')
     info['preannot_source'] = PREANNOT_SOURCE_NAMES[info['type']]
+    info['subtitle_cs'] = SUBTITLES[info['level']][0]
+    info['subtitle_en'] = SUBTITLES[info['level']][1]
 
 def add_info_from_file_content(info, doctree):
     # add the recording path and duration
@@ -180,7 +190,7 @@ def add_info_from_file_content(info, doctree):
     assert len(annot_primary_duration_elems) <= 1, f"Expected at most one primary annotation duration, got {len(annot_primary_duration_elems)}"
     info['annot_duration'] = annot_primary_duration_elems[0].text if annot_primary_duration_elems else None
     info['annot_duration_approx'] = bool(annot_primary_duration_elems[0].attrib.get('approx', '0')) if annot_primary_duration_elems else None
-    review_duration_elems = [elem for elem in annot_duration_elems if elem.attrib.get('user') != info['annotator_short']]
+    review_duration_elems = [elem for elem in annot_duration_elems if elem.attrib.get('user') not in [info['annotator_short'], "MN"]]
     assert len(review_duration_elems) <= 1, f"Expected at most one review annotation duration, got {len(review_duration_elems)}"
     info['review_duration'] = review_duration_elems[0].text if review_duration_elems else None
     info['review_duration_approx'] = bool(review_duration_elems[0].attrib.get('approx', '0')) if review_duration_elems else None
