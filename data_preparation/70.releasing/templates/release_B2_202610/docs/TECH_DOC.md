@@ -30,7 +30,7 @@ The TEITOK format is an XML format that fully complies with the [Text Encoding I
     - **`<textClass>`**: Document metadata:
        - `database`: Database name.
        - `exam-id`: Exam identifier.
-       - `cefr-level`: CEFR level. This database contains recordings exclusively from A2 level exams.
+       - `cefr-level`: CEFR level. This database contains recordings exclusively from B2 level exams.
        - `task-number`: Task number.
        - `preannot-source`: Source of preliminary annotation.
        - `annotator`: Annotator code.
