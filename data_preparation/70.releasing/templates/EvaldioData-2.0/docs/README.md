@@ -1,11 +1,11 @@
-# EvaldioData 1.0
+# EvaldioData 2.0
 
-EvaldioData 1.0 is the language corpus of spoken performances by non-native speakers of Czech.
+EvaldioData 2.0 is the language corpus of spoken performances by non-native speakers of Czech.
 It includes recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce). 
 The recordings consist of dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). 
 In addition to the recordings, the corpus also contains their transcriptions, which are richly linguistically annotated. 
 Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcripts of the same recording and evaluations of the degree of consistency in converting spoken language into written text.
-The current version focuses on the A2 level (according to the CEFR), which is required for the granting of permanent residency in the Czech Republic.
+The current version focuses on the A1, A2, B1 and B2 levels (according to the CEFR).
 
 The corpus is available also as a [specialized public database](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/index.php) aimed at providing a structured and easily accessible source of authentic spoken data for linguists, educators, students, the scientific community, and the general public.
 
