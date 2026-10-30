@@ -1,11 +1,11 @@
-# EvaldioData 1.0
+# EvaldioData 2.0
 
-EvaldioData 1.0 je jazykový korpus mluvených projevů nerodilých mluvčích češtiny.
+EvaldioData 2.0 je jazykový korpus mluvených projevů nerodilých mluvčích češtiny.
 Obsahuje nahrávky zaznamenávající ústní část [Certifikované zkoušky z češtiny pro cizince](http://ujop.cuni.cz/cce).
 Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím).
 Kromě nahrávek korpus obsahuje také jejich přepisy, které jsou opatřeny bohatou lingvistickou anotací.
 K některým nahrávkám je připojeno více přepisů od různých anotátorů, což umožňuje srovnání různých přepisů téže nahrávky a vyhodnocení míry shody při převodu mluvené řeči do psaného textu.
-Aktuální verze je zaměřená na jazykovou úroveň A2 (podle SERR), požadovanou pro udělení trvalého pobytu v České republice.
+Aktuální verze je zaměřená na jazykové úrovně A1, A2, B1 a B2 (podle SERR).
 
 Korpus je rovněž dostupný jako [specializovaná veřejná databáze](https://lindat.mff.cuni.cz/services/teitok-live/evaldio/index.php) s cílem poskytnout strukturovaný a snadno přístupný zdroj autentických mluvených dat pro lingvisty, pedagogy, studenty, vědeckou komunitu a širokou veřejnost.
 
