@@ -44,4 +44,12 @@ The authors of the database sincerely thank PhDr. Pavel Pečený, Ph.D., from th
 
 ## How to Cite
 
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _EvaldioData 2.0_. LINDAT/CLARIAH-CZ digital library at the Institute of Formal and Applied Linguistics (ÚFAL), Prague 2026. Available from WWW http://hdl.handle.net/11234/1-5731.
+
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
+
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2026. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_citizenship.
+
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (A1)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2026. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_a1.
+
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (B2)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2026. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_b2.
