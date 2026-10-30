@@ -35,7 +35,7 @@ Formát TEITOK je formát XML, který plně odpovídá standardu [Text Encoding 
     - **`<textClass>`**: Metadata dokumentu:
        - `database`: Název databáze.
        - `exam-id`: Identifikátor zkoušky.
-       - `cefr-level`: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně A2.
+       - `cefr-level`: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně A1.
        - `task-number`: Číslo úlohy.
        - `preannot-source`: Zdroj předběžné anotace.
        - `annotator`: Kód anotátora.
