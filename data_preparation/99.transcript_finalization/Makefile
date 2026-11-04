@@ -77,6 +77,7 @@ rename_3digit_ords :
 		newbf=`echo $$bf | sed 's/_0\([0-9][0-9][-_]\)/_\1/'`; \
 		if [ "$$bf" != "$$newbf" ]; then \
 			mv $$bf $$newbf; \
+			sed -i 's/\(media url=.*\)_0\([0-9][0-9][-_]\)/\1_\2/' $$newbf; \
 		fi; \
 	done
 
