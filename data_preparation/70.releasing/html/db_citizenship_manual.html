@@ -102,26 +102,32 @@
 			<p class='header'><a href='index.php'>Evaldio</a></p><ul style='text-align: left'><li><a href='index.php?action=databases'>Databases</a><li><a href='index.php?action=browser'>Browse</a><li><a href='index.php?action=cqp'>Search</a><li><a target="repository" href='http://hdl.handle.net/11234/1-6310'>Download</a></ul><hr><ul style='text-align: left'><li><a href='http://quest.ms.mff.cuni.cz/teitok-dev/teitok/corplist/index.php'>DEV Home</a></ul><hr style='opacity: 0.5; margin-top: 40px;'><p id=powby style='opacity: 0.5; font-size: smaller;'><span onClick="window.open('http://www.teitok.org/index.php', 'teitok');">Powered by <span style='font-family: Courier;'>&lt;TEI:TOK&gt;</span></span><br><span onClick="window.open('http://www.teitok.org/index.php?action=credits', 'teitok');">Maarten Janssen, 2014-</a></p>
         	</div>
     <div id="main">
-		<h1 id="database-of-spoken-czech-as-a-foreign-language-permanent-residency-in-the-czech-republic">Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic): User Manual</h1>
+<h1 id="database-of-spoken-czech-as-a-foreign-language-citizenship-in-the-czech-republic-user-manual">Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic): User Manual</h1>
 <p>The basic functions of the database include browsing records with various display options, filtering records by different categories, and performing complex searches within the database content. The database also allows users to download the entire corpus or selected records.</p>
 <h2 id="browsing-records">Browsing Records</h2>
-<p>Upon entering the corpus, all records (i.e., transcript files) stored in the database are displayed in a clear table. For each transcript file, the table shows, in addition to the file name, the level and identifier of the exam, the task number, the source of the preliminary annotation, the annotator&rsquo;s code, and information on whether the transcript for that recording is canonical. The files in the table can be sorted by the values in a selected column. Records can also be filtered based on any substring in the file name by entering this substring in the &ldquo;Search&rdquo; text box located to the right above the table. Clicking on a specific file will display that file.</p>
+<p>Upon entering the corpus, all records (i.e., transcript files) stored in the database are displayed in a clear table. For each transcript file, the table shows, in addition to the file name, the level and identifier of the exam, the task number, the source of the preliminary annotation, the annotator's code, and information on whether the transcript for that recording is canonical. The files in the table can be sorted by the values in a selected column. Records can also be filtered based on any substring in the file name by entering this substring in the "Search" text box located to the right above the table. Clicking on a specific file will display that file.</p>
 <h2 id="viewing-a-file">Viewing a File</h2>
 <p>The database allows users to view the transcripts of individual turns along with annotations and metadata, and to listen to the corresponding audio recordings. The nature of the displayed information varies according to the selected display mode, which can be switched at the bottom of the page below the transcript.</p>
 <h3 id="text-view-mode">Text View Mode</h3>
-<p>Text View is the basic display mode that appears upon opening a file. At the top of the screen is a header with the title of the transcript and selected metadata. The transcript itself is displayed at the bottom, divided into turns. Each turn is marked with the speaker&rsquo;s identifier (EXAM_1 for the examiner and CAND_1 for the candidate).</p>
-<p>This mode also allows users to view automatic morphological annotation and lemmatization. Hovering the cursor over a specific token will display the corresponding annotation in context. To display a selected attribute for all tokens in the transcript, controls located below the header can be used, which include the following buttons: - PoS: Displays parts of speech. - Tag: Shows morphological tags. - Features: Provides detailed morphological information. - Lemma: Displays base forms of words.</p>
+<p>Text View is the basic display mode that appears upon opening a file. At the top of the screen is a header with the title of the transcript and selected metadata. The transcript itself is displayed at the bottom, divided into turns. Each turn is marked with the speaker's identifier (EXAM_1 for the examiner and CAND_1 for the candidate).</p>
+<p>This mode also allows users to view automatic morphological annotation and lemmatization. Hovering the cursor over a specific token will display the corresponding annotation in context. To display a selected attribute for all tokens in the transcript, controls located below the header can be used, which include the following buttons:</p>
+<ul>
+<li>PoS: Displays parts of speech.</li>
+<li>Tag: Shows morphological tags.</li>
+<li>Features: Provides detailed morphological information.</li>
+<li>Lemma: Displays base forms of words.</li>
+</ul>
 <h3 id="waveform-view-mode">Waveform View Mode</h3>
 <p>At the top of the screen, there is an extended playback control for the recording, which displays a signal graph (i.e., waveform). Below it, the transcripts of individual turns are displayed. Clicking on a specific turn will play that turn.</p>
 <h3 id="dependencies-mode">Dependencies Mode</h3>
-<p>This mode displays syntactic annotation. When clicking on a specific turn, an automatically generated dependency tree is displayed, with details available via mouse hover. In the upper right corner of the tree is a &equiv; button for additional display options for the tree. It is possible to arrange nodes by word order, display punctuation, or save an image of the tree in SVG format.</p>
+<p>This mode displays syntactic annotation. When clicking on a specific turn, an automatically generated dependency tree is displayed, with details available via mouse hover. In the upper right corner of the tree is a ≡ button for additional display options for the tree. It is possible to arrange nodes by word order, display punctuation, or save an image of the tree in SVG format.</p>
 <h2 id="filtering-records-by-categories">Filtering Records by Categories</h2>
 <p>By clicking on the <em>Browse</em> button in the left main menu, users can filter transcripts based on the values of individual categories. For example, it is possible to display only a list of canonical transcripts or transcripts from a specific annotator.</p>
 <h2 id="searching">Searching</h2>
 <p>Searching within the corpus can be done on a page that appears after clicking the <em>Search</em> button in the left main menu. This page allows users to enter queries in CQL (Corpus Query Language) format. For example:</p>
 <blockquote>
-<p><code>[upos = "NUM.*"] [lemma = "ot&aacute;zka"]</code></p>
-<p>to find forms of the word <em>ot&aacute;zka</em> that are preceded by a numeral.</p>
+<p><code>[upos = "NUM.*"] [lemma = "otázka"]</code></p>
+<p>to find forms of the word <em>otázka</em> that are preceded by a numeral.</p>
 </blockquote>
 <p>To facilitate searching, the TEITOK interface provides a query builder tool. This tool allows users to easily define simple queries in CQL through a form. Just click the <em>Query builder</em> icon, define your query, and then press the <em>Create query</em> button, which inserts the query into the CQL text box where it can be further edited if needed.</p>
 <p>By default, TEITOK searches the entire corpus, which may contain multiple transcripts for a single recording. If you want to search only in the part of the corpus where each recording has only a single associated transcript, you must restrict the search to so-called canonical transcripts. For example:</p>
@@ -133,9 +139,10 @@
 <p>The entire corpus, including recordings and documentation, can be downloaded from the main menu on the left.</p>
 <p>A specific transcript can be downloaded in <em>Text view</em> mode by clicking the <em>Download XML</em> button located at the bottom of the page.</p>
 <h2 id="how-to-cite">How to Cite</h2>
-<p>Rysov&aacute; Kateřina, Nov&aacute;k Michal, Rysov&aacute; Magdal&eacute;na, Pol&aacute;k Peter, Bojar Ondřej: <em>Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)</em>. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.</p>
+<p>Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: <em>Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)</em>. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.</p>
 <h2 id="acknowledgment">Acknowledgment</h2>
 <p>The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project <em>Automated Speech Scoring in Czech</em> (DH23P03OVV037).</p>
+
 	</div>
 </div>
 
