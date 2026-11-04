@@ -1,73 +1,213 @@
 # Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic): Technical Documentation
 
-The language corpus of spoken performances by non-native speakers of Czech, focused on the B1 language level (according to the CEFR), required for obtaining citizenship in the Czech Republic, is the result of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The corpus contains recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce) at the B1 level. The recordings include dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). We have provided transcriptions of the recordings, enriched with extensive linguistic annotations. Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcriptions of the same recording and the assessment of the degree of agreement when converting spoken language into written text.
+## a) Basic Information
 
-The corpus is published as a specialized public database and is freely accessible to the general public, the scientific community, educators, and students. The database is integrated into the TEITOK system, managed on the [LINDAT/CLARIAH-CZ](https://lindat.cz/) platform.
+**Result name:** Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)
 
-## TEITOK
+**Result type:** S – specialized public database
 
-[TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. Its web interface is implemented using a combination of PHP and JavaScript. For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment allows us to [create, display, and edit recordings' transcriptions](http://www.teitok.org/index.php?action=help&id=wavesurfer). To work with the recordings themselves, TEITOK utilizes the JavaScript library [wavesurfer](http://wavesurfer-js.org/).
+**Result owner:** Charles University
 
-### Data Storage
-The corpus data is primarily stored in the TEITOK environment in the form of files. In this case, the recordings are in MP3 format, while the main components are TEITOK format files, which contain all transcriptions and annotations, including metadata. These files are interconnected with the corresponding recordings.
+**Database creator and administrator:** Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University.
 
-### Structure of TEITOK Files
-The TEITOK format is an XML format that fully complies with the [Text Encoding Initiative (TEI)](https://www.tei-c.org/) standards, but with a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
+**Database users:** The general public, the scientific and professional communities, educators, and students, especially those interested in Czech as a foreign language and in research on the acquisition of Czech by non-native speakers.
 
-#### Header with Metadata `<teiHeader>`
-1. **`<fileDesc>`** – File description
-    - **`<titleStmt>`**: Contains the title of the file and information about authors and annotators.
-    - **`<editionStmt>`**: Contains version number.
-    - **`<publicationStmt>`**: Publication details, such as publisher, release date, and license.
-    - **`<sourceDesc>`**: Description of the source recording and a link to it.
+**Database location:** The database is integrated into the TEITOK system (<http://teitok.corpuswiki.org/>), which is operated on the LINDAT/CLARIAH-CZ platform (<https://lindat.cz/>).
 
-2. **`<encodingDesc>`** – Description of encoding
-    - **`<projectDesc>`**: A brief description of the project under which the data was created.
-    - **`<annotationDecl>`**: Details of the individual annotation steps (primary, revision, linguistic annotation).
+**Public database address:** <http://hdl.handle.net/11346/H4WT>
 
-3. **`<profileDesc>`** – Profile of the text
-    - **`<langUsage>`**: Language used (Czech).
-    - **`<textClass>`**: Document metadata:
-       - `database`: Database name.
-       - `exam-id`: Exam identifier.
-       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1 level exams.
-       - `task-number`: Task number.
-       - `preannot-source`: Source of preliminary annotation.
-       - `annotator`: Annotator code.
-       - `canonical`: A value of `1` indicates a canonical transcription.
+## b) Purpose of the Result
 
-#### Main Content `<text>`
-The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
-- **`<u>`**: Each `<u>` element represents a segment of speech and has attributes:
-   - `start` and `end`: Start and end time in seconds.
-   - `who`: Speaker (e.g., "EXAM_1" for the examiner and "CAND_1" for the candidate).
-- **`<s>`**: Each sentence is marked with the `<s>` element.
-- **`<tok>`**: Token elements whose attributes describe lemma, part of speech, morphological features, and syntactic relations.
-- **`<anon/>`**: Anonymized segment of the recording.
-- **`<gap reason="unintelligible"/>`**: Unintelligible segment of the recording.
+The purpose of the database is to make available authentic spoken performances by non-native speakers of Czech at the B1 language level according to the Common European Framework of Reference for Languages (CEFR), which is required for obtaining citizenship in the Czech Republic. The database contains recordings of the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/cce) at the B1 level. The recordings include dialogues between the examiner (a native speaker) and the examination candidate (a non-native speaker). The recordings are accompanied by manual transcriptions and rich linguistic annotation.
+
+The database was created as part of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. Its creation builds on previous research within a project focused on linguistic features that make it possible to distinguish individual language levels of spoken performances by non-native speakers of Czech.
+
+The main activities involved in creating the database were the collection and anonymization of audio recordings, creation and revision of manual transcriptions, identification of individual speakers, time alignment of transcriptions with recordings, automatic linguistic annotation, and preparation of structured data for publication in the TEITOK environment.
+
+Extent of work on the result: 0.8 FTE
+
+The database is published as a specialized public database and is freely available to the general public. It is intended primarily for further linguistic research, research on the acquisition of Czech as a foreign language, development and testing of methods for automatic speech processing, and educational purposes. The data can also serve as a basis for machine-learning experiments focused on automatic assessment of the language level of spoken performances.
+
+## c) Data Architecture
+
+### Basic Description of the Database and Data Scope
+
+The database contains audio recordings of the oral part of the Czech Language Certificate Exam at the B1 level and their manual transcriptions in TEITOK (XML) format. Individual TEITOK files are linked to the corresponding MP3 audio recordings.
+
+The provider of the recordings (the Institute for Language and Preparatory Studies of Charles University, ILPS CU, <https://ujop.cuni.cz/UJOP-1.html>) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
+
+**Database scope.** The basic database statistics are summarized below:
+
+- Number of audio recordings: 65
+- Total length of recordings in the database: 4h 51m 48s
+- Number of files with manual transcriptions: 65
+- Number of tokens: 29,572
+- Number of utterances: 3,348
+- Language: Czech
+- Language level: B1 according to the CEFR
+
+### Database Structure
+
+The database consists of the following entities and relationships between them:
+
+1. **Recording** – Represents the original audio recording. In theory, each recording may have multiple transcriptions (in this database, the relationship is 1:1).
+2. **Document** – Corresponds to an individual transcript in TEITOK (XML) format. It contains metadata about the exam (CEFR level, exam ID, task, annotator, etc.) and is linked to a recording.
+3. **Utterance** – Individual utterances within a document. They contain information about the speaker (`who`) and timestamps (`start`, `end`).
+4. **Token** – The basic linguistic unit (word). It contains the form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features, and syntactic dependency (`deprel`).
+    - *Recursive relationship:* A token can refer to itself (`head_token_id`), forming a tree structure of dependency syntax.
+
+**Graphical representation of the structure.** The following E-R diagram provides a more detailed representation of the database structure described above:
+
+![E-R diagram of the database structure](media/database-er-diagram.png)
+
+**Structure of TEITOK files.** The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the Text Encoding Initiative (TEI) standard (<https://www.tei-c.org/>), but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
+
+**Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
+
+1. **`<fileDesc>` – File description**
+    - **`<titleStmt>`:** Contains the title of the file and information about authors and annotators.
+    - **`<editionStmt>`:** Contains the version number.
+    - **`<publicationStmt>`:** Contains publication details such as the publisher, publication date, and license.
+    - **`<sourceDesc>`:** Describes the source recording and links to it.
+2. **`<encodingDesc>` – Description of encoding**
+    - **`<projectDesc>`:** A brief description of the project in which the data was created.
+    - **`<annotationDecl>`:** Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
+3. **`<profileDesc>` – Profile of the text**
+    - **`<langUsage>`:** Language used (Czech).
+    - **`<textClass>`:** Document metadata:
+      - `database`: Database name.
+      - `exam-id`: Exam identifier.
+      - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
+      - `task-number`: Task number.
+      - `preannot-source`: Source of preliminary annotation.
+      - `annotator`: Annotator code.
+      - `canonical`: A value of `1` indicates a canonical transcription.
+
+**Main content `<text>`.** The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
+
+- **`<u>`:** Each element represents a segment of speech and has the following attributes:
+  - `start` and `end`: Start and end time in seconds.
+  - `who`: Speaker (e.g., `EXAM_1` for the examiner and `CAND_1` for the candidate).
+- **`<s>`:** Each sentence is marked with the `<s>` element.
+- **`<tok>`:** Token elements whose attributes describe the lemma, part of speech, morphological features, and syntactic relationship.
+- **`<anon/>`:** An anonymized segment of the recording.
+- **`<gap reason="unintelligible"/>`:** An unintelligible segment of the recording.
+
+**Token annotation in the `<tok>` element.** The `<tok>` element represents a token, which usually corresponds to a word. Each token is further described by the following attributes, corresponding to the standards of the [Universal Dependencies](https://universaldependencies.org/guidelines.html) project:
+
+- **`ord`**: Ordinal number of the token in the sentence.
+- **`lemma`**: Base form of the word.
+- **`upos`**: Universal part-of-speech tag.
+- **`xpos`**: Original morphological tag.
+- **`feats`**: Morphological features.
+- **`head`**: Reference to the parent token.
+- **`deprel`**: Type of the syntactic dependency relation to the parent.
+
+**Completeness of records and metadata.** Individual records contain the corresponding audio recording and its manual transcription. The transcriptions contain speaker identification (examiner vs. examination candidate) and timestamps for individual utterances. They also include automatic linguistic annotation. All records in the database contain this information.
+
+The scope of the published recordings is determined by the consent of the data provider, which permitted only selected tasks to be published. The published recordings therefore do not necessarily contain the original recording of the entire exam.
+
+## d) Working with the Data (Sorting, Filtering, Searching, etc.)
+
+The database provides the following functions:
+
+- Viewing audio recordings and their manual transcriptions.
+- Displaying individual utterances and identifying speakers.
+- Playing recordings and viewing synchronized transcriptions.
+- Displaying the start and end timestamps of individual utterances.
+- Displaying automatic linguistic annotation of individual tokens:
+  - part of speech (PoS),
+  - morphological tag,
+  - detailed morphological features,
+  - lemma (base form of the word).
+- Displaying automatic syntactic analysis as a dependency tree.
+- Searching using the CQL language.
+- Creating search queries through the graphical Query Builder interface.
+- Displaying search results in a clear format.
+- Exporting search results in XML format.
+
+A detailed guide to using the individual functions and examples of searches is provided in a separate user manual.
+
+## e) Software Tools Used
+
+The database is publicly available through the LINDAT/CLARIAH-CZ platform and the TEITOK system. Access is free and does not require registration.
+
+The database data itself is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides secure storage with regular backups and persistent identifiers.
+
+We used additional tools for preparing and processing the data and annotations, described below.
+
+### TEITOK
+
+[TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. It enables all work with the database. Its web interface is implemented using a combination of PHP and JavaScript.
+
+For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to create, display, and edit recordings' transcriptions (<http://www.teitok.org/index.php?action=help&id=wavesurfer>).
+
+TEITOK uses the JavaScript library [WaveSurfer.js](http://wavesurfer-js.org/) to work with the recordings themselves.
+
+**Data storage.** The corpus data is primarily stored in the TEITOK environment in the form of files. In this case, the recordings are in MP3 format, while the main components are TEITOK-format files containing all transcriptions and annotations, including metadata. These files are linked to the corresponding recordings.
+
+In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repository (see below), which provides secure storage with regular backups and persistent identifiers.
+
+**Querying, searching, and filtering.** Rapid querying, searching, and filtering are enabled by the integrated [CQP Query Processor](https://cwb.sourceforge.io/files/CQP_Manual.pdf), a key component of the [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/) toolkit.
+
+CQP converts XML-formatted corpora into binary format and efficiently indexes them.
+
+Querying indexed corpora is performed using the [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf) language, which is a standard in corpus linguistics.
+
+TEITOK also offers a Query Builder, in which users can specify a query by filling out a form. The query result returned by CQP is then processed using TEITOK and presented to the user in a clear format. Query results can be downloaded in XML format.
+
+### LINDAT/CLARIAH-CZ Repository
+
+In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repository (<https://lindat.mff.cuni.cz/repository/>), operated by the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The repository is primarily part of the large LINDAT/CLARIAH-CZ research infrastructure and is also part of the National Repository Platform (NRP), the Czech implementation of the European Open Science Cloud (EOSC). It is based on CLARIN-DSpace software, one of the main systems further developed within the NRP. The repository is also part of the European CLARIN ERIC infrastructure.
+
+The entire repository regularly undergoes CoreTrustSeal certification (<https://www.coretrustseal.org/>). The certification is based on a self-assessment subsequently evaluated by independent reviewers. The self-assessment also describes data storage, backups, and persistent identifiers. The currently valid assessment is available at <http://hdl.handle.net/11234/6-CTS>.
+
+**Data storage and backup.** The repository provides long-term care for stored items and uses automated procedures, including integrity checks, to ensure data integrity and metadata completeness. Disaster recovery is handled by a multi-level backup scheme that includes a weekly backup to external hierarchical storage. Backups are performed automatically on separate servers, and both the hardware platform and service operation are monitored. Details are provided in the CoreTrustSeal document. It is the repository's policy not to delete deposited datasets.
+
+**Protection of persistent identifiers.** Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes. Data from the database described here are available under the following persistent link: <http://hdl.handle.net/11234/1-6311>
+
+**Indexing and searching.** The LINDAT/CLARIAH-CZ repository is based on DSpace 7 software, which [supports indexing](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) content by web search engines, including Google and Google Scholar. The repository publishes XML and HTML sitemaps (`sitemap_index.xml`, `sitemap_index.html`), to which the `robots.txt` file points. The page for each item also contains metadata in Dublin Core format and `citation_*` tags recommended for Google Scholar. Publicly available items, including the data from the database described here, are therefore readily accessible to search engines, including through the persistent Handle link.
 
 ### Preparation of TEITOK Files
+
 The preparation of TEITOK files took place in several phases:
 
-1. **Preliminary Annotation**. In the research associated with the creation of the database, we compared direct manual annotation with manual post-editing of outputs from automatic speech recognition systems. Thus, manual annotation may be based on automatically prepared preliminary annotation. The source of the preliminary annotation is distinguished using the `preannot-source` attribute, which can have the following values:
-    - `from_scratch`: Completely manual annotation, i.e., the preliminary annotation is empty.
-    - `from_whisperX`: Preliminary annotation obtained using the [WhisperX](https://github.com/m-bain/whisperX) system.
-    - `from_mixed`: Preliminary annotation obtained by randomly combining outputs from four systems at the level of utterances.
-When the preliminary annotation was not empty, we converted it into the basic version of the TEITOK format. At the end of this phase, the transcriptions contained segments divided into utterances (the `<u>` elements), assignment of speakers to utterances (the `who` attribute), and time alignment with the recording (the `start` and `end` attributes).
-2. **Manual Annotation**. After uploading the files, trained annotators performed manual annotation in the TEITOK environment, during which they created or corrected transcriptions, assigned speakers to utterances, and aligned utterances with the recording using timestamps. The recordings were anonymized in accordance with the requirements of the Institute for Language and Preparatory Studies of Charles University (ILPS CU), which provided the audio recordings for the corpus. Some annotators, out of caution, anonymized even data that did not need to be anonymized (e.g., fictitious names).
-3. **Revision**. Manual review of the manual annotations by a co-author of the database.
-4. **Normalization**. Automatic adjustment of transcriptions that removes discrepancies in speaker names, orders utterances according to start time, and assigns new sequential IDs to utterances.
-5. **Segmentation by Tasks and Selection**. The provider of the recordings (ILPS CU) permitted the publication of only selected tasks. We had to cut these from the recordings and adjust timestamps in the transcriptions to preserve the alignment of utterances in the transcription with the recording. We used the [FFmpeg](https://www.ffmpeg.org/) tool for cutting the recordings.
-6. **Linguistic Annotation**. Until this phase, the utterances in the transcriptions had not been further structured. In this phase, we divided the text into sentences (the `<s>` element) and then into tokens (the `<tok>` elements). At the token level, the transcriptions are automatically linguistically annotated. Each token is assigned a lemma (the `lemma` attribute), language-specific morphological tag (the `xpos` attribute), part of speech, and morphological properties according to the categorization of the [Universal Dependencies](https://universaldependencies.org/) project (the `upos` and `feats` attributes). Additionally, each token is assigned a reference to the parent ID according to dependency syntax rules (the `head` attribute) and the type of dependency of the token in relation to its parent (the `deprel` attribute). For linguistic annotation, including tokenization, we used the [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2) tool, specifically the model `czech-pdt-ud-2.12-230717` for Czech. Although it is possible to perform tokenization and automatic linguistic annotation directly in the TEITOK environment, we carried out this process separately. The reason is that the tokenization method in the TEITOK environment differs from the one optimized for UDPipe, which could lead to errors when combining these two steps.
-7. **Completion of the TEI Header**. Finally, we supplemented the header according to all available metadata to comply with TEI standards.
+1. **Manual annotation.** All recordings were annotated manually from scratch, without using outputs from automatic speech recognition systems. The annotations were created directly in TEITOK format, which allows transcriptions to be represented as utterances (the `<u>` elements), speakers to be identified (the `who` attribute), and utterances to be time-aligned with the recording (the `start` and `end` attributes).
+
+   After the files were uploaded, trained annotators manually transcribed and anonymized the recordings in the TEITOK environment in accordance with the requirements of the Institute for Language and Preparatory Studies of Charles University (ILPS CU), which provided the audio recordings for the corpus. Out of caution, some annotators anonymized data that did not need to be anonymized (e.g., fictitious names of people).
+
+2. **Revision.** Manual review of the manual annotations by a co-author of the database.
+3. **Normalization.** Automatic adjustment of the transcriptions that removes discrepancies in speaker names, orders utterances according to start time, and assigns new sequential IDs to utterances.
+4. **Segmentation by Tasks and Selection.** The provider of the recordings (ILPS CU) permitted only selected tasks to be published. We had to cut these tasks from the recordings and adjust the timestamps in the transcriptions to preserve the alignment of the utterances in the transcription with the recording. We used the [FFmpeg](https://www.ffmpeg.org/) tool to cut the recordings.
+5. **Linguistic annotation.** Up to this phase, the utterances in the transcriptions had not been further structured. In this phase, we divided the text into sentences (the `<s>` elements) and then into tokens (the `<tok>` elements). At the token level, the transcriptions were automatically linguistically annotated. Each token was assigned a lemma, part of speech, morphological features, and syntactic relations. We used the UDPipe 2 tool, specifically the `czech-pdt-ud-2.12-230717` model.
+6. **Completion of the TEI header.** Finally, we completed the header using all available metadata so that it complied with TEI standards.
 
 All tools and scripts (primarily in Python 3 and BASH) are available in the [public repository of the project](https://github.com/ufal/evaldio) in the `data_preparation` directory.
 
-### Querying, Searching, and Filtering
-Rapid querying, searching, and filtering are enabled by the integrated [CQP Query Processor](https://cwb.sourceforge.io/files/CQP_Manual.pdf), a key component of the [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/) toolkit. CQP converts XML-formatted corpora into binary format and efficiently indexes them. Querying in indexed corpora is conducted using the [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf) language, which is a standard in corpus linguistics. TEITOK also offers a Query Builder, in which users can specify a query by filling out a form. The results of the query returned from CQP are subsequently processed using TEITOK and presented to the user in a clear format. Query results can be downloaded in XML format.
+**Linguistic annotation.** The transcriptions contain automatic linguistic annotation including tokenization, lemmatization, morphological analysis, and dependency syntactic analysis.
+
+For linguistic annotation, including tokenization, we used the [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2) tool, specifically the `czech-pdt-ud-2.12-230717` model for Czech.
+
+Each token is assigned a lemma (the `lemma` attribute), a language-specific morphological tag (the `xpos` attribute), a part of speech, and morphological features according to the categorization of the [Universal Dependencies](https://universaldependencies.org/) project (the `upos` and `feats` attributes). In addition, each token is assigned a reference to its parent ID according to dependency syntax rules (the `head` attribute) and the type of the token's dependency relation to its parent (the `deprel` attribute).
+
+Although tokenization and automatic linguistic annotation can be performed directly in the TEITOK environment, we carried out this process separately. The reason is that the tokenization method in the TEITOK environment differs from the method optimized for UDPipe, which could lead to errors when combining these two steps.
+
+## f) Demonstration of the Novelty and Uniqueness of the Specialized Public Database
+
+The novelty and uniqueness of the database primarily lie in the combination of authentic audio recordings of Czech-as-a-foreign-language oral exams at the B1 level, their manual transcriptions, identification of individual speakers, time alignment of utterances with the recordings, expert assessment of language level, and automatic linguistic annotation.
+
+The database was not created by simply digitizing existing textual materials. Its creation was preceded by research focused on collecting and processing authentic spoken performances, comparing methods for transcribing spoken speech, manually annotating and revising transcriptions, and subsequently performing automatic linguistic annotation.
+
+The specific contribution of the database is the connection of the audio form of spoken performances with their structured textual transcriptions and detailed linguistic annotation. Timestamps for individual utterances enable precise linking of the text to the corresponding part of the recording, as well as further analyses of the temporal characteristics of spoken speech. Automatic morphological and syntactic annotation enables the searching and analysis of linguistic phenomena at different linguistic levels.
+
+The database is intended for further research on Czech as a foreign language, second-language acquisition, language-level assessment, and automatic speech processing. Its structured form and integration into the TEITOK environment enable advanced searching and further use of the data.
+
+A comparable publicly accessible database of authentic spoken performances by non-native speakers of Czech at the B1 level, combining audio recordings, manual transcriptions, speaker identification, time alignment, and automatic linguistic annotation, had not previously been available.
 
 ## How to Cite
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
 
-## Acknowledgment
-The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)*. Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University, Prague 2026. Available at <http://hdl.handle.net/11346/H4WT>.
+
+## Dedication
+
+The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project *Automated Speech Scoring in Czech* (DH23P03OVV037).
