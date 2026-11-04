@@ -14,7 +14,7 @@
 
 **Umístění databáze:** Databáze je integrována do systému TEITOK (<http://teitok.corpuswiki.org/>), který je provozován na platformě LINDAT/CLARIAH-CZ (<https://lindat.cz/>).
 
-**Veřejná adresa databáze:** <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_citizenship>
+**Veřejná adresa databáze:** <http://hdl.handle.net/11346/H4WT>
 
 ## b) Cíl výsledku
 
@@ -166,7 +166,7 @@ Celý repozitář pravidelně prochází certifikací CoreTrustSeal (https://www
 
 **Zabezpečení perzistentních identifikátorů.** Každá položka uložená v repozitáři získává perzistentní identifikátor typu Handle, registrovaný ve spolupráci s konsorciem EPIC. Handle i příslušný URL odkaz zůstávájí funkční i při změně technického umístění či adresy repozitáře. Data ze zde popisované databáze jsou k dispozici pod následujícím perzistentním odkazem: <http://hdl.handle.net/11234/1-6311>
 
-**Indexace a vyhledávání.** Repozitář LINDAT/CLARIAH-CZ je postaven na softwaru DSpace 7, který podporuje indexaci obsahu webovými vyhledávači, včetně Google a Google Scholar. Repozitář zveřejňuje mapy webu ve formátu XML i HTML (sitemap_index.xml, sitemap_index.html), na které odkazuje soubor robots.txt. Stránka každé položky navíc obsahuje metadata ve formátu Dublin Core a značky citation\_\* doporučené pro Google Scholar. Veřejně dostupné položky, včetně dat popisované databáze, jsou tak vyhledávačům snadno dostupné, a to i pod perzistentním odkazem Handle.
+**Indexace a vyhledávání.** Repozitář LINDAT/CLARIAH-CZ je postaven na softwaru DSpace 7, který [podporuje indexaci](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) obsahu webovými vyhledávači, včetně Google a Google Scholar. Repozitář zveřejňuje mapy webu ve formátu XML i HTML (`sitemap_index.xml`, `sitemap_index.html`), na které odkazuje soubor `robots.txt`. Stránka každé položky navíc obsahuje metadata ve formátu Dublin Core a značky `citation\_\*` doporučené pro Google Scholar. Veřejně dostupné položky, včetně dat popisované databáze, jsou tak vyhledávačům snadno dostupné, a to i pod perzistentním odkazem Handle.
 
 ### Příprava souborů TEITOK
 
@@ -206,7 +206,7 @@ Obdobná veřejně přístupná databáze autentických mluvených projevů nero
 
 ## Jak citovat
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)*. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW <https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_citizenship>.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)*. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW <http://hdl.handle.net/11346/H4WT>.
 
 ## Dedikace
 
