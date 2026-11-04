@@ -139,10 +139,10 @@ PREANNOT_SOURCE_NAMES = {
 }
 
 SUBTITLES = {
-    'A1': ['úroveň A1', 'A1 level'],
+    'A1': ['A1', 'A1'],
     'A2': ['trvalý pobyt v ČR', 'Permanent Residency in the Czech Republic'],
-    'B1': ['občanství v ČR', 'Citizenship in the Czech Republic'],
-    'B2': ['úroveň B2', 'B2 level'],
+    'B1': ['státní občanství v ČR', 'Citizenship in the Czech Republic'],
+    'B2': ['B2', 'B2'],
 }
 
 def parse_args():
