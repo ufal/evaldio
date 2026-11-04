@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Evaldio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href='https://fonts.googleapis.com/css?family=Cousine:400|Roboto:300,400,400italic,700,700italic|Roboto+Condensed:400,700&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+<link href='/teitok-dev/teitok/themes/lindat/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+<link rel="stylesheet" type="text/css" href="/teitok-dev/teitok/corplist/lindat-common/lindat-light.css" />
+
+<link rel="stylesheet" type="text/css" href="//lindat.mff.cuni.cz/aai/discojuice/discojuice.css" />
+  <link rel="stylesheet" type="text/css" href="/teitok-dev/teitok/Scripts/teitok.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/teitok-dev/teitok/corplist//Resources/xmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="Resources/xmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/teitok-dev/teitok/corplist/Resources/htmlstyles.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="/teitok-dev/teitok/corplist/Resources/media.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="Resources/htmlstyles.css" media="screen">
+
+<!-- plug-ins dependencies -->
+<script type="text/javascript" src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+<!-- --------------------- -->
+<base href="https://quest.ms.mff.cuni.cz/teitok-dev/teitok/evaldio-clone/">
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg justify-content-between navbar-dark sticky-top " style="padding: 3px;">
+  <div class="block block--clariah-theme-branding">
+  <a href="https://lindat.mff.cuni.cz/" class="navbar-brand d-flex align-items-center " aria-label="">
+            <img src="https://lindat.mff.cuni.cz/repository/xmlui/themes/UFAL/images/lindat/lindat-logo-new-sm.png" width="auto" height="40" alt="LINDAT/CLARIAH-CZ logo" style="margin-left: 30px;">
+  </a>
+  </div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbar-collapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse">
+                  <div class="mr-auto">
+  <div class="block block--clariah-theme-main-menu">
+  <ul class="nav navbar-nav">
+                <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/#search" class="nav-link is-active" data-drupal-link-system-path="<front>">Search</a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/repository/xmlui/?locale-attribute=en" class="nav-link">Catalogue</a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/#education" class="nav-link is-active" data-drupal-link-system-path="<front>">Education</a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/#projects" class="nav-link is-active" data-drupal-link-system-path="<front>">Projects</a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/#tools" class="nav-link is-active" data-drupal-link-system-path="<front>">Tools</a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a href="https://lindat.mff.cuni.cz/en/services" class="nav-link" data-drupal-link-system-path="node/21">Services</a>
+                  </li>
+                                      <li class="nav-item  dropdown">
+                      <a href="https://lindat.mff.cuni.cz/" class="nav-link dropdown-toggle is-active" data-toggle="dropdown" data-drupal-link-system-path="<front>">About</a>
+                          <div class="dropdown-menu">
+          <a href="https://lindat.mff.cuni.cz/partners" class="dropdown-item" data-drupal-link-system-path="node/2">Partners</a>
+          <a href="https://lindat.mff.cuni.cz/files/mission-en.pdf" class="dropdown-item">Mission Statement</a>
+          <a href="https://www.clarin.eu/" class="dropdown-item">CLARIN</a>
+          <a href="https://www.dariah.eu/" class="dropdown-item">DARIAH</a>
+  </div>
+                              </li>
+    </ul>
+  </div>
+        </div>
+  <div class="block block--clariah-theme-account-menu">
+  <ul class="nav navbar-nav">
+                                          <li class="nav-item  ">
+                      <a class="nav-link nav-link-dariah" href="https://www.dariah.eu/"><img src="https://www.dariah.eu/wp-content/uploads/2017/02/logo.png"></a>
+                  </li>
+                                      <li class="nav-item  ">
+                      <a class="nav-link nav-link-clarin" href="https://www.clarin.eu/"><img src="https://www.clarin.eu/themes/custom/CLARIN_Drupal_Bootstrap/logo.png"></a>
+                  </li>
+            </ul>
+  </div>
+  <div class="language-switcher-language-url block block--languageswitcher" role="navigation">
+  <ul class="links nav navbar-nav">
+      <li class="nav-item dropdown nav-link-language">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">English</a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+      <a href="https://lindat.mff.cuni.cz/cs" class="language-link dropdown-item" hreflang="cs" data-drupal-link-system-path="<front>">česky</a>
+    </div>
+  </li>
+    </ul>
+  </div>
+            </div>
+  </nav>
+
+
+<div id="localization-bar"><span class=langon>EN</span> | <span class=langoff><a href='https://quest.ms.mff.cuni.cz/teitok-dev/teitok/evaldio-clone/cs/index.php?action=db_a1_techdoc'>CS</a></span></div>
+<div id="content">
+        	<div id='menubox'>
+        				<p class='header main'><a href='http://lindat.mff.cuni.cz/services/teitok/index.php'>TEITOK</a></p>
+			<ul style='text-align: left' class='teitok'>
+			<li><a href='index.php?action=login'>Login</a></li>
+			<li><a href='http://lindat.mff.cuni.cz/services/teitok/index.php?action=corplist'>Available Corpora</a></li>
+			</ul>
+			<p class='header'><a href='index.php'>Evaldio</a></p><ul style='text-align: left'><li><a href='index.php?action=databases'>Databases</a><li><a href='index.php?action=browser'>Browse</a><li><a href='index.php?action=cqp'>Search</a><li><a target="repository" href='http://hdl.handle.net/11234/1-6310'>Download</a></ul><hr><ul style='text-align: left'><li><a href='http://quest.ms.mff.cuni.cz/teitok-dev/teitok/corplist/index.php'>DEV Home</a></ul><hr style='opacity: 0.5; margin-top: 40px;'><p id=powby style='opacity: 0.5; font-size: smaller;'><span onClick="window.open('http://www.teitok.org/index.php', 'teitok');">Powered by <span style='font-family: Courier;'>&lt;TEI:TOK&gt;</span></span><br><span onClick="window.open('http://www.teitok.org/index.php?action=credits', 'teitok');">Maarten Janssen, 2014-</a></p>
+        	</div>
+    <div id="main">
+		<h1 id="database-of-spoken-czech-as-a-foreign-language-permanent-residency-in-the-czech-republic">Database of Spoken Czech as a Foreign Language (A1): Technical Documentation</h1>
+<p>The language corpus of spoken performances by non-native speakers of Czech, focused on the A2 language level (according to the CEFR), required for obtaining permanent residency in the Czech Republic, is the result of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The corpus contains recordings capturing the oral part of the <a href="https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce">Czech Language Certificate Exam</a> at the A2 level. The recordings include dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). We have provided transcriptions of the recordings, enriched with extensive linguistic annotations. Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcriptions of the same recording and the assessment of the degree of agreement when converting spoken language into written text.</p>
+<p>The corpus is published as a specialized public database and is freely accessible to the general public, the scientific community, educators, and students. The database is integrated into the TEITOK system, managed on the <a href="https://lindat.cz/">LINDAT/CLARIAH-CZ</a> platform.</p>
+<h2 id="teitok">TEITOK</h2>
+<p><a href="http://teitok.corpuswiki.org/">TEITOK</a> is a framework for creating, managing, and publishing annotated corpora. Its web interface is implemented using a combination of PHP and JavaScript. For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment allows us to <a href="http://www.teitok.org/index.php?action=help&amp;id=wavesurfer">create, display, and edit recordings&rsquo; transcriptions</a>. To work with the recordings themselves, TEITOK utilizes the JavaScript library <a href="http://wavesurfer-js.org/">wavesurfer</a>.</p>
+<h3 id="data-storage">Data Storage</h3>
+<p>The corpus data is primarily stored in the TEITOK environment in the form of files. In this case, the recordings are in MP3 format, while the main components are TEITOK format files, which contain all transcriptions and annotations, including metadata. These files are interconnected with the corresponding recordings.</p>
+<h3 id="structure-of-teitok-files">Structure of TEITOK Files</h3>
+<p>The TEITOK format is an XML format that fully complies with the <a href="https://www.tei-c.org/">Text Encoding Initiative (TEI)</a> standards, but with a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:</p>
+<h4>Header with Metadata <em>teiHeader</em></h4>
+<h4 id="header-with-metadata-teiheader"><code></code></h4>
+<ol type="1">
+<li><strong><code></code></strong><em>fileDesc</em> &ndash; File description
+<ul>
+<li><strong><code></code></strong><em>titleStmt</em>: Contains the title of the file and information about authors and annotators.</li>
+<li><strong><code></code></strong><em>editionStmt</em>: Contains version number.</li>
+<li><strong><code></code></strong><em>publicationStmt</em>: Publication details, such as publisher, release date, and license.</li>
+<li><strong><code></code></strong><em>sourceDesc</em>: Description of the source recording and a link to it.</li>
+</ul>
+</li>
+<li><strong><code></code></strong><em>encodingDesc</em> &ndash; Description of encoding
+<ul>
+<li><strong><code></code></strong><em>projectDesc</em>: A brief description of the project under which the data was created.</li>
+<li><strong><code></code></strong><em>annotationDecl</em>: Details of the individual annotation steps (primary, revision, linguistic annotation).</li>
+</ul>
+</li>
+<li><strong><code></code></strong><em>profileDesc</em> &ndash; Profile of the text
+<ul>
+<li><strong><code></code></strong><em>langUsage</em>: Language used (Czech).</li>
+<li><strong><code></code></strong><em>textClass</em>: Document metadata:
+<ul>
+<li><code>database</code>: Database name.</li>
+<li><code>exam-id</code>: Exam identifier.</li>
+<li><code>cefr-level</code>: CEFR level. This database contains recordings exclusively from A2 level exams.</li>
+<li><code>task-number</code>: Task number.</li>
+<li><code>preannot-source</code>: Source of preliminary annotation.</li>
+<li><code>annotator</code>: Annotator code.</li>
+<li><code>canonical</code>: A value of <code>1</code> indicates a canonical transcription.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4>Main Content <em>text</em></h4>
+<h4 id="main-content-text"><code></code></h4>
+<p>The <code></code><em>text</em> section contains individual segments of spoken speech structured using <code></code> <em>u</em> elements: - <em>u</em><strong><code></code></strong>: Each <code></code> <em>u</em> element represents a segment of speech and has attributes: - <code>start</code> and <code>end</code>: Start and end time in seconds. - <code>who</code>: Speaker (e.g., &ldquo;EXAM_1&rdquo; for the examiner and &ldquo;CAND_1&rdquo; for the candidate). - <em>s</em><strong><code></code></strong>: Each sentence is marked with the <em>s</em> <code></code> element. - <strong><code></code></strong><em>tok</em>: Token elements whose attributes describe lemma, part of speech, morphological features, and syntactic relations. - <em>anon</em><strong><code></code></strong>: Anonymized segment of the recording. - <em><strong><code></code></strong>gap reason="unintelligible"</em>: Unintelligible segment of the recording.</p>
+<h3 id="preparation-of-teitok-files">Preparation of TEITOK Files</h3>
+<p>The preparation of TEITOK files took place in several phases:</p>
+<ol type="1">
+<li><strong>Preliminary Annotation</strong>. In the research associated with the creation of the database, we compared direct manual annotation with manual post-editing of outputs from automatic speech recognition systems. Thus, manual annotation may be based on automatically prepared preliminary annotation. The source of the preliminary annotation is distinguished using the <code>preannot-source</code> attribute, which can have the following values:
+<ul>
+<li><code>from_scratch</code>: Completely manual annotation, i.e., the preliminary annotation is empty.</li>
+<li><code>from_whisperX</code>: Preliminary annotation obtained using the <a href="https://github.com/m-bain/whisperX">WhisperX</a> system.</li>
+<li><code>from_mixed</code>: Preliminary annotation obtained by randomly combining outputs from four systems at the level of utterances. When the preliminary annotation was not empty, we converted it into the basic version of the TEITOK format. At the end of this phase, the transcriptions contained segments divided into utterances (the <em><code><u></u></code> u</em> elements), assignment of speakers to utterances (the <code>who</code> attribute), and time alignment with the recording (the <code>start</code> and <code>end</code> attributes).</li>
+</ul>
+</li>
+<li><strong>Manual Annotation</strong>. After uploading the files, trained annotators performed manual annotation in the TEITOK environment, during which they created or corrected transcriptions, assigned speakers to utterances, and aligned utterances with the recording using timestamps. The recordings were anonymized in accordance with the requirements of the Institute for Language and Preparatory Studies of Charles University (ILPS CU), which provided the audio recordings for the corpus. Some annotators, out of caution, anonymized even data that did not need to be anonymized (e.g., fictitious names).</li>
+<li><strong>Revision</strong>. Manual review of the manual annotations by a co-author of the database.</li>
+<li><strong>Normalization</strong>. Automatic adjustment of transcriptions that removes discrepancies in speaker names, orders utterances according to start time, and assigns new sequential IDs to utterances.</li>
+<li><strong>Segmentation by Tasks and Selection</strong>. The provider of the recordings (ILPS CU) permitted the publication of only selected tasks. We had to cut these from the recordings and adjust timestamps in the transcriptions to preserve the alignment of utterances in the transcription with the recording. We used the <a href="https://www.ffmpeg.org/">FFmpeg</a> tool for cutting the recordings.</li>
+<li><strong>Linguistic Annotation</strong>. Until this phase, the utterances in the transcriptions had not been further structured. In this phase, we divided the text into sentences (the <em>s</em> <code><s></s></code> element) and then into tokens (the <em>tok</em> <code></code> elements). At the token level, the transcriptions are automatically linguistically annotated. Each token is assigned a lemma (the <code>lemma</code> attribute), language-specific morphological tag (the <code>xpos</code> attribute), part of speech, and morphological properties according to the categorization of the <a href="https://universaldependencies.org/">Universal Dependencies</a> project (the <code>upos</code> and <code>feats</code> attributes). Additionally, each token is assigned a reference to the parent ID according to dependency syntax rules (the <code>head</code> attribute) and the type of dependency of the token in relation to its parent (the <code>deprel</code> attribute). For linguistic annotation, including tokenization, we used the <a href="https://ufal.mff.cuni.cz/udpipe/2">UDPipe 2</a> tool, specifically the model <code>czech-pdt-ud-2.12-230717</code> for Czech. Although it is possible to perform tokenization and automatic linguistic annotation directly in the TEITOK environment, we carried out this process separately. The reason is that the tokenization method in the TEITOK environment differs from the one optimized for UDPipe, which could lead to errors when combining these two steps.</li>
+<li><strong>Completion of the TEI Header</strong>. Finally, we supplemented the header according to all available metadata to comply with TEI standards.</li>
+</ol>
+<p>All tools and scripts (primarily in Python 3 and BASH) are available in the <a href="https://github.com/ufal/evaldio">public repository of the project</a> in the <code>data_preparation</code> directory.</p>
+<h3 id="querying-searching-and-filtering">Querying, Searching, and Filtering</h3>
+<p>Rapid querying, searching, and filtering are enabled by the integrated <a href="https://cwb.sourceforge.io/files/CQP_Manual.pdf">CQP Query Processor</a>, a key component of the <a href="https://cwb.sourceforge.io/">IMS Open Corpus Workbench (CWB)</a> toolkit. CQP converts XML-formatted corpora into binary format and efficiently indexes them. Querying in indexed corpora is conducted using the <a href="https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf">CQL</a> language, which is a standard in corpus linguistics. TEITOK also offers a Query Builder, in which users can specify a query by filling out a form. The results of the query returned from CQP are subsequently processed using TEITOK and presented to the user in a clear format. Query results can be downloaded in XML format.</p>
+<h2 id="how-to-cite">How to Cite</h2>
+<p>Rysov&aacute; Kateřina, Nov&aacute;k Michal, Rysov&aacute; Magdal&eacute;na, Pol&aacute;k Peter, Bojar Ondřej: <em>Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)</em>. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.</p>
+<h2 id="acknowledgment">Acknowledgment</h2>
+<p>The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project <em>Automated Speech Scoring in Czech</em> (DH23P03OVV037).</p>
+	</div>
+</div>
+
+</div>
+
+
+<footer>
+        <div id="about-lindat">
+      <h4><a href="https://lindat.cz/sites/default/files/2021-01/lindat_clariah_flyer.pdf">LINDAT/CLARIAH-CZ</a></h4>
+    <ul>
+      <li><a href="/files/mission-en.pdf">Mission Statement</a></li>
+      <li><a href="http://lindat.cz/events">Events</a></li>
+      <li><a href="mailto:lindat-help@ufal.mff.cuni.cz">Helpdesk</a></li>
+      <li><a href="/user_feedback">User Feedback Form</a></li>
+      <li><a href="https://www.clarin.eu/">CLARIN Participation</a></li>
+      <li><a href="https://www.dariah.eu/">DARIAH Participation</a></li>
+      <li><a href="/acknowledgement">Acknowledge LINDAT/CLARIAH-CZ</a></li>
+    </ul>
+  </div>
+
+  <div id="about-partners">
+    <h4><a href="/partners">Partners</a></h4>
+    <ul>
+      <li>Charles University
+        <ul>
+          <li><a href="https://lindat.cz/partners/mff-uk">Faculty <i>of</i> Mathematics <i>and</i> Physics</a></li>
+          <li><a href="https://lindat.cz/partners/ff-uk">Faculty <i>of</i> Arts</a></li>
+        </ul>
+      </li>
+      <li>Masaryk University
+        <ul>
+          <li><a href="https://lindat.cz/partners/ff-mu">Faculty <i>of</i> Arts</a></li>
+          <li><a href="https://lindat.cz/partners/fi-mu">Faculty  <i>of</i> Informatics</a></li>
+        </ul>
+      </li>
+      <li>University of West Bohemia
+          <ul>
+            <li><a href="https://lindat.cz/partners/zcu">Faculty <i>of</i> Applied Sciences</a></li>
+          </ul>
+      </li>
+      <li>Czech Academy of Sciences
+        <ul>
+          <li><a href="https://lindat.cz/partners/ujc">Czech Language Institute</a></li>
+          <li><a href="https://lindat.cz/partners/knav">Library <i>of</i> Academy</a></li>
+          <li><a href="https://lindat.cz/partners/hu">Institute <i>of</i> History</a></li>
+          <li><a href="https://lindat.cz/partners/flu">Institute <i>of</i> Philosophy</a></li>
+        </ul>
+      </li>
+      <li>Archives, Libraries and Galleries
+        <ul>
+          <li><a href="https://lindat.cz/partners/nk">National Library <i>of the Czech Republic</i></a></li>
+          <li><a href="https://lindat.cz/partners/mzk">Moravian Library <i>in Brno</i></a></li>
+          <li><a href="https://lindat.cz/partners/ng">National Gallery Prague</a></li>
+          <li><a href="https://lindat.cz/partners/nfa">National Film Archive</a></li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <div id="about-website">
+    <h4><a href="/services">Services</a></h4>
+    <ul>
+      <li><a href="https://lindat.mff.cuni.cz/en/monitoring">Service Status</a></li>
+      <li><a href="https://lindat.mff.cuni.cz/repository/xmlui/page/about?locale-attribute=en">About and Policies</a></li>
+      <li><a href="https://lindat.mff.cuni.cz/en/terms-of-use">Terms of Use</a></li>
+    </ul>
+  </div>
+
+  <div id="badges-a">
+    <a href="https://www.clarin.eu/content/certified-centres"><img src="https://www.clarin.eu/sites/default/files/Clarin_B_Centre_RGB_72dpi_transp.png" alt="CLARIN CENTRE B" height="20px"></a>
+    <a href="https://www.clarin.eu/content/knowledge-centres"><img src="https://trtc.univie.ac.at/fileadmin/_processed_/csm_K-centre_logo_7e1d4aa9e6.jpg" alt="CLARIN CENTRE K" style="filter:brightness(0.88)" height="20px"></a>
+    <a href="https://www.coretrustseal.org/wp-content/uploads/2019/08/LINDAT-CLARIN.pdf"><img src="https://lindat.mff.cuni.cz/images/core-trust-seal-mono.png" alt="CoreTrustSeal Certification"></a>
+  </div>
+
+  <div id="badges-b">
+    <a href="https://twitter.com/lindatclariahcz">Follow us on Twitter <img src="https://www.soroptimistinternational.org/wp-content/uploads/2020/03/251-2517877_tweet-twitter-icon-icon-chirrup-icon-icon-twitter-png-format-twitter-logo-768x524.jpg" alt="Link to Profile"></a>
+    <a href="/user/login"><img src="https://lindat.mff.cuni.cz/repository/xmlui/themes/UFAL/images/lindat/lindat-logo-new-sm.png" alt="Home Page"></a>
+  </div>
+
+  <div id="ack-msmt">
+    THE LINDAT/CLARIAH-CZ PROJECT (LM2018101; formerly LM2010013, LM2015071) IS FULLY SUPPORTED BY THE MINISTRY OF EDUCATION, SPORTS AND YOUTH OF THE CZECH REPUBLIC UNDER THE&nbsp;PROGRAMME LM OF "LARGE INFRASTRUCTURES"
+  </div>
+  <div id="ack-freepik">Icons ©  Smashicons and Freepik from flaticon.com licensed by CC 3.0 BY</div>
+  <div id="ack-ufal">website © 2021 by <a href="https://ufal.mff.cuni.cz/">ÚFAL</a></div>
+
+</footer>
+
+
+
+</body>
+</html>

@@ -101,6 +101,7 @@ copy_finalize_annot : $(BATCH_PATH).exer_numbers.csv runparser.pl
 
 prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md $(TEMPL_DIR)/docs/USER_MANUAL.md $(TEMPL_DIR)/docs/USER_MANUAL-cs.md $(TEMPL_DIR)/docs/TECH_DOC.md $(TEMPL_DIR)/docs/TECH_DOC-cs.md
 	mkdir -p $(RELEASE_TGT_DIR)/docs
+	mkdir -p $(RELEASE_TGT_DIR)/docs/media
 	mkdir -p $(RELEASE_TGT_DIR)/recordings
 	mkdir -p $(RELEASE_TGT_DIR)/annotations/teitok
 	mkdir -p $(RELEASE_TGT_DIR)/annotations/simple
@@ -116,6 +117,8 @@ prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md
 		  $(TEMPL_DIR)/docs/TECH_DOC.md \
 		  $(TEMPL_DIR)/docs/TECH_DOC-cs.md \
 		  $(RELEASE_TGT_DIR)/docs
+	cp -v $(TEMPL_DIR)/docs/media/*.png \
+		  $(RELEASE_TGT_DIR)/docs/media
 
 zip :
 	cd $(TGT_BASEDIR) && \
