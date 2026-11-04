@@ -7,7 +7,7 @@ ROOT_DIR=../..
 SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/70.releasing
 POOL_BASEDIR=$(TGT_BASEDIR)/pool
-BATCH_PATH=
+BATCH_PATH=release_B1_202610
 
 
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
@@ -15,7 +15,8 @@ TGT_DIR=$(POOL_BASEDIR)/$(BATCH_PATH)
 
 RELEASE_DIR=$(ROOT_DIR)/public_html-release
 
-RELEASE_NAME=EvaldioData-1.0
+#RELEASE_NAME=EvaldioData-2.0
+RELEASE_NAME=release_B1_202610
 
 ifeq ($(RELEASE_NAME),$(BATCH_PATH))
 PREPARE_POOL_DIRS=$(TGT_DIR)
