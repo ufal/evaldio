@@ -51,7 +51,7 @@ Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální
 Databáze se skládá z následujících entit a vazeb mezi nimi:
 
 1. **Recording (Nahrávka)** – Představuje původní zvukový záznam. Ke každé nahrávce z databáze existuje její manuální přepis.
-2. **Document (Dokument)** – Odpovídá jednotlivému přepisu ve formátu TEITOK (XML). Obsahuje metadata o zkoušce a jejího přepisu (úroveň CEFR, ID zkoušky, číslo úlohy, kód anotátora přepisu atd.) a je spojen s nahrávkou.
+2. **Document (Dokument)** – Odpovídá jednotlivému přepisu ve formátu TEITOK (XML). Obsahuje metadata o zkoušce a jejím přepisu (úroveň CEFR, ID zkoušky, číslo úlohy, kód anotátora přepisu atd.) a je spojen s nahrávkou.
 3. **Utterance (Replika)** – Jednotlivé repliky uvnitř dokumentu. Obsahují informaci o mluvčím (who) a časových značkách (start, end).
 4. **Token** – Základní jednotka textu (slovní tvar). Každý token je popsán samotným slovním tvarem (form), lemmatem, slovním druhem (upos, xpos), morfologickými rysy (feats) a syntaktickou závislostí (deprel).
     - *Rekurzivní vazba:* Token může odkazovat sám na sebe (head), což tvoří stromovou strukturu závislostního syntaktického popisu.
