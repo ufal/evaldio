@@ -8,9 +8,9 @@
 
 **Result owner:** Charles University
 
-**Database creator and administrator:** Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University.
+**Database creator:** Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University.
 
-**Database users:** The general public, the scientific and professional communities, educators, and students, especially those interested in Czech as a foreign language and in research on the acquisition of Czech by non-native speakers.
+**Database users:** Educators and students, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
 
 **Database location:** The database is integrated into the TEITOK system (<http://teitok.corpuswiki.org/>), which is operated on the LINDAT/CLARIAH-CZ platform (<https://lindat.cz/>).
 
@@ -20,13 +20,11 @@
 
 The purpose of the database is to make available authentic spoken performances by non-native speakers of Czech at the B1 language level according to the Common European Framework of Reference for Languages (CEFR), which is required for obtaining citizenship in the Czech Republic. The database contains recordings of the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/cce) at the B1 level. The recordings include dialogues between the examiner (a native speaker) and the examination candidate (a non-native speaker). The recordings are accompanied by manual transcriptions and rich linguistic annotation.
 
-The database was created as part of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. Its creation builds on previous research within a project focused on linguistic features that make it possible to distinguish individual language levels of spoken performances by non-native speakers of Czech.
-
-The main activities involved in creating the database were the collection and anonymization of audio recordings, creation and revision of manual transcriptions, identification of individual speakers, time alignment of transcriptions with recordings, automatic linguistic annotation, and preparation of structured data for publication in the TEITOK environment.
+The database was created as part of a project implemented at the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. Its creation builds on research conducted within the project. The following research and data-analysis activities were carried out in its preparation: collecting audio recordings; researching spoken performances by non-native speakers of Czech from a linguistic perspective; researching methods for transcribing the collected performances; creating and revising manual transcriptions; identifying individual speakers (examiner vs. examination candidate); time-aligning transcriptions with recordings; automatic linguistic annotation; and preparing structured data for publication in the TEITOK environment.
 
 Extent of work on the result: 0.8 FTE
 
-The database is published as a specialized public database and is freely available to the general public. It is intended primarily for further linguistic research, research on the acquisition of Czech as a foreign language, development and testing of methods for automatic speech processing, and educational purposes. The data can also serve as a basis for machine-learning experiments focused on automatic assessment of the language level of spoken performances.
+**Further plans for the database:** The database is published as a specialized public database and is freely available to the general public. It is also intended as a dataset for developing software to automatically assess spoken performances by non-native speakers of Czech.
 
 ## c) Data Architecture
 
@@ -50,11 +48,11 @@ The provider of the recordings (the Institute for Language and Preparatory Studi
 
 The database consists of the following entities and relationships between them:
 
-1. **Recording** – Represents the original audio recording. In theory, each recording may have multiple transcriptions (in this database, the relationship is 1:1).
-2. **Document** – Corresponds to an individual transcript in TEITOK (XML) format. It contains metadata about the exam (CEFR level, exam ID, task, annotator, etc.) and is linked to a recording.
+1. **Recording** – Represents the original audio recording. Each recording in the database has a manual transcription.
+2. **Document** – Corresponds to an individual transcript in TEITOK (XML) format. It contains metadata about the exam and its transcription (CEFR level, exam ID, task number, transcription annotator code, etc.) and is linked to a recording.
 3. **Utterance** – Individual utterances within a document. They contain information about the speaker (`who`) and timestamps (`start`, `end`).
-4. **Token** – The basic linguistic unit (word). It contains the form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features, and syntactic dependency (`deprel`).
-    - *Recursive relationship:* A token can refer to itself (`head_token_id`), forming a tree structure of dependency syntax.
+4. **Token** – The basic textual unit (word form). Each token is described by its form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
+    - *Recursive relationship:* A token can refer to itself (`head`), forming a tree structure of dependency syntax.
 
 **Graphical representation of the structure.** The following E-R diagram provides a more detailed representation of the database structure described above:
 
@@ -79,9 +77,9 @@ The database consists of the following entities and relationships between them:
       - `exam-id`: Exam identifier.
       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
       - `task-number`: Task number.
-      - `preannot-source`: Source of preliminary annotation.
+      - `preannot-source`: Source of preliminary annotation. Since all transcriptions in this database were created entirely by hand, this value is always `from_scratch`.
       - `annotator`: Annotator code.
-      - `canonical`: A value of `1` indicates a canonical transcription.
+      - `canonical`: A value of `1` indicates a canonical transcription. Since the database contains no duplicate transcriptions, every transcription is canonical.
 
 **Main content `<text>`.** The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
 
@@ -132,13 +130,13 @@ A detailed guide to using the individual functions and examples of searches is p
 
 The database is publicly available through the LINDAT/CLARIAH-CZ platform and the TEITOK system. Access is free and does not require registration.
 
-The database data itself is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides secure storage with regular backups and persistent identifiers.
+The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
 
 We used additional tools for preparing and processing the data and annotations, described below.
 
 ### TEITOK
 
-[TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. It enables all work with the database. Its web interface is implemented using a combination of PHP and JavaScript.
+[TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. It enables the database to be managed, viewed, searched, and made accessible. Its web interface is implemented using a combination of PHP and JavaScript.
 
 For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to create, display, and edit recordings' transcriptions (<http://www.teitok.org/index.php?action=help&id=wavesurfer>).
 
@@ -152,7 +150,7 @@ In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repo
 
 CQP converts XML-formatted corpora into binary format and efficiently indexes them.
 
-Querying indexed corpora is performed using the [CQL](https://www.cambridge.org/sketch/help/userguides/CQL%20Help%201.3.pdf) language, which is a standard in corpus linguistics.
+Querying indexed corpora is performed using the [CQL](https://www.latl.leeds.ac.uk/wp-content/uploads/sites/49/2019/07/CQL-Help-1.3.pdf) language, which is a standard in corpus linguistics.
 
 TEITOK also offers a Query Builder, in which users can specify a query by filling out a form. The query result returned by CQP is then processed using TEITOK and presented to the user in a clear format. Query results can be downloaded in XML format.
 
@@ -164,7 +162,7 @@ The entire repository regularly undergoes CoreTrustSeal certification (<https://
 
 **Data storage and backup.** The repository provides long-term care for stored items and uses automated procedures, including integrity checks, to ensure data integrity and metadata completeness. Disaster recovery is handled by a multi-level backup scheme that includes a weekly backup to external hierarchical storage. Backups are performed automatically on separate servers, and both the hardware platform and service operation are monitored. Details are provided in the CoreTrustSeal document. It is the repository's policy not to delete deposited datasets.
 
-**Protection of persistent identifiers.** Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes. Data from the database described here are available under the following persistent link: <http://hdl.handle.net/11234/1-6311>
+**Protection of persistent identifiers.** Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes.
 
 **Indexing and searching.** The LINDAT/CLARIAH-CZ repository is based on DSpace 7 software, which [supports indexing](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) content by web search engines, including Google and Google Scholar. The repository publishes XML and HTML sitemaps (`sitemap_index.xml`, `sitemap_index.html`), to which the `robots.txt` file points. The page for each item also contains metadata in Dublin Core format and `citation_*` tags recommended for Google Scholar. Publicly available items, including the data from the database described here, are therefore readily accessible to search engines, including through the persistent Handle link.
 
@@ -194,15 +192,11 @@ Although tokenization and automatic linguistic annotation can be performed direc
 
 ## f) Demonstration of the Novelty and Uniqueness of the Specialized Public Database
 
-The novelty and uniqueness of the database primarily lie in the combination of authentic audio recordings of Czech-as-a-foreign-language oral exams at the B1 level, their manual transcriptions, identification of individual speakers, time alignment of utterances with the recordings, expert assessment of language level, and automatic linguistic annotation.
+The database is a unique, previously unpublished linguistic resource: authentic audio recordings of oral exams in Czech as a foreign language at the B1 level, their manual transcriptions, identification of individual speakers (examiner vs. examination candidate), time alignment of utterances with the recordings, and automatic linguistic annotation.
 
-The database was not created by simply digitizing existing textual materials. Its creation was preceded by research focused on collecting and processing authentic spoken performances, comparing methods for transcribing spoken speech, manually annotating and revising transcriptions, and subsequently performing automatic linguistic annotation.
+The creation of the database was preceded by research focused on collecting and processing authentic spoken performances, comparing methods for transcribing spoken speech, manually annotating and revising transcriptions, and subsequently performing automatic linguistic annotation.
 
-The specific contribution of the database is the connection of the audio form of spoken performances with their structured textual transcriptions and detailed linguistic annotation. Timestamps for individual utterances enable precise linking of the text to the corresponding part of the recording, as well as further analyses of the temporal characteristics of spoken speech. Automatic morphological and syntactic annotation enables the searching and analysis of linguistic phenomena at different linguistic levels.
-
-The database is intended for further research on Czech as a foreign language, second-language acquisition, language-level assessment, and automatic speech processing. Its structured form and integration into the TEITOK environment enable advanced searching and further use of the data.
-
-A comparable publicly accessible database of authentic spoken performances by non-native speakers of Czech at the B1 level, combining audio recordings, manual transcriptions, speaker identification, time alignment, and automatic linguistic annotation, had not previously been available.
+The database's specific contribution is the connection of the audio form of spoken performances with their structured textual transcriptions and detailed linguistic annotation. Timestamps for individual utterances enable precise linking of the text to the corresponding part of the recording. Automatic morphological and syntactic annotation facilitates searching for linguistic phenomena and using the database in teaching and studying Czech as a foreign language.
 
 ## How to Cite
 
