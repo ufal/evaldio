@@ -32,11 +32,13 @@ Další záměr příjemce s databází: Databáze je zpřístupněna jako spec
 
 Databáze obsahuje audionahrávky ústní části Certifikované zkoušky z češtiny pro cizince na úrovni B1 a jejich manuální přepisy ve formátu TEITOK (XML). Jednotlivé soubory TEITOK jsou propojeny s odpovídajícími audionahrávkami ve formátu MP3.
 
-Poskytovatel nahrávek (Ústav jazykové a odborné přípravy Univerzity Karlovy, ÚJOP UK, https://ujop.cuni.cz/UJOP-1.html) povolil ke zveřejnění pouze vybrané úlohy. Databáze proto obsahuje pouze ty části nahrávek, jejichž zveřejnění bylo poskytovatelem povoleno.
+Poskytovatel nahrávek, [Ústav jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK)](https://ujop.cuni.cz/UJOP-1.html), povolil ke zveřejnění pouze vybrané úlohy. Databáze proto obsahuje pouze ty části nahrávek, jejichž zveřejnění bylo poskytovatelem povoleno.
 
 Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy zachycují jednotlivé repliky, identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové zarovnání s nahrávkou. Dále obsahují automatickou lingvistickou anotaci.
 
-**Rozsah databáze.** Základní statistiky databáze jsou shrnuty v následujícím přehledu:
+#### Rozsah databáze
+
+Základní statistiky databáze jsou shrnuty v následujícím přehledu:
 
 - Počet audionahrávek: 65
 - Celková délka nahrávek v databázi: 4h 51m 48s
@@ -56,52 +58,56 @@ Databáze se skládá z následujících entit a vazeb mezi nimi:
 4. **Token** – Základní jednotka textu (slovní tvar). Každý token je popsán samotným slovním tvarem (form), lemmatem, slovním druhem (upos, xpos), morfologickými rysy (feats) a syntaktickou závislostí (deprel).
     - *Rekurzivní vazba:* Token může odkazovat sám na sebe (head), což tvoří stromovou strukturu závislostního syntaktického popisu.
 
-**Grafické znázornění struktury databáze.** Následující E-R diagram blíže znázorňuje výše popsanou strukturu databáze:
+#### Grafické znázornění struktury databáze
+
+Následující E-R diagram blíže znázorňuje výše popsanou strukturu databáze:
 
 ![E-R diagram struktury databáze](media/database-er-diagram.png)
 
-**Struktura souborů TEITOK.** Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu Text Encoding Initiative (TEI; <https://www.tei-c.org/>), avšak s mírně odlišným přístupem k tokenizaci. Struktura TEITOK souborů v naší databázi je následující:
+#### Struktura souborů TEITOK
 
-**Hlavička s metadaty \<teiHeader\>.** Hlavička souboru TEITOK se skládá z následujících částí:
+Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), avšak s mírně odlišným přístupem k tokenizaci. Struktura TEITOK souborů v naší databázi je následující:
 
-1. **\<fileDesc\> – Popis souboru**
-    - **\<titleStmt\>:** Obsahuje název souboru a informace o autorech a anotátorech.
-    - **\<editionStmt\>:** Obsahuje číslo verze.
-    - **\<publicationStmt\>:** Publikační detaily, jako je vydavatel, datum vydání a licence.
-    - **\<sourceDesc\>:** Popis zdrojové nahrávky a odkaz na ni.
-2. **\<encodingDesc\> – Popis kódování**
-    - **\<projectDesc\>:** Stručný popis projektu, v rámci něhož data vznikla.
-    - **\<annotationDecl\>:** Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace).
-3. **\<profileDesc\> – Profil textu**
-    - **\<langUsage\>:** Použitý jazyk (čeština).
-    - **\<textClass\>:** Metadata dokumentu:
-      - database: Název databáze.
-      - exam-id: Identifikátor zkoušky.
-      - cefr-level: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně B1.
-      - task-number: Číslo úlohy.
-      - preannot-source: Zdroj předběžné anotace. Jelikož všechny přepisy v této databáze vznikly kompletně manuálně, hodnota je vždy from_scratch.
-      - annotator: Kód anotátora.
-      - canonical: Hodnota 1 značí kanonický přepis. Jelikož databáze neobsahuje duplicitní přepisy, každý přepis je kanonický.
+**Hlavička s metadaty `<teiHeader>`.** Hlavička souboru TEITOK se skládá z následujících částí:
 
-**Hlavní obsah \<text\>.** Sekce \<text\> obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů \<u\>:
+1. `<fileDesc>`: Popis souboru
+    - `<titleStmt>`: Obsahuje název souboru a informace o autorech a anotátorech.
+    - `<editionStmt>`: Obsahuje číslo verze.
+    - `<publicationStmt>`: Publikační detaily, jako je vydavatel, datum vydání a licence.
+    - `<sourceDesc>`: Popis zdrojové nahrávky a odkaz na ni.
+2. `<encodingDesc>`: Popis kódování
+    - `<projectDesc>`: Stručný popis projektu, v rámci něhož data vznikla.
+    - `<annotationDecl>`: Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace).
+3. `<profileDesc>`: Profil textu
+    - `<langUsage>`: Použitý jazyk (čeština).
+    - `<textClass>`: Metadata dokumentu:
+      - `database`: Název databáze.
+      - `exam-id`: Identifikátor zkoušky.
+      - `cefr-level`: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně B1.
+      - `task-number`: Číslo úlohy.
+      - `preannot-source`: Zdroj předběžné anotace. Jelikož všechny přepisy v této databáze vznikly kompletně manuálně, hodnota je vždy from_scratch.
+      - `annotator`: Kód anotátora.
+      - `canonical`: Hodnota 1 značí kanonický přepis. Jelikož databáze neobsahuje duplicitní přepisy, každý přepis je kanonický.
 
-- **\<u\>:** Každý element reprezentuje úsek projevu a má atributy:
-  - start a end: Počáteční a koncový čas v sekundách.
-  - who: Mluvčí (např. EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
-- **\<s\>:** Každá věta je označena elementem \<s\>.
-- **\<tok\>:** Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.
-- **\<anon/\>:** Anonymizovaný úsek nahrávky.
-- **\<gap reason="unintelligible"/\>:** Nesrozumitelný úsek nahrávky.
+**Hlavní obsah `<text>`.** Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
 
-**Anotace tokenu v elementu \<tok\>.** Element \<tok\> reprezentuje token, který většinou odpovídá slovnímu tvaru. Každý token je dále popsán následujícími atributy, které odpovídají standardům z projektu Universal Dependencies (https://universaldependencies.org/guidelines.html):
+- `<u>`: Element reprezentuje úsek projevu a má atributy:
+  - `start` a `end`: Počáteční a koncový čas v sekundách.
+  - `who`: Mluvčí (např. EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).
+- `<s>`: Element ohraničuje větu.
+- `<tok>`: Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.
+- `<anon/>`: Anonymizovaný úsek nahrávky.
+- `<gap reason="unintelligible"/>`: Nesrozumitelný úsek nahrávky.
 
-- **ord**: pořadové číslo tokenu ve větě
-- **lemma**: základní tvar slova
-- **upos**: značka univerzálního slovního druhu
-- **xpos**: originální morfologická značka
-- **feats**: morfologické vlastnosti
-- **head**: odkaz na rodičovský token
-- **deprel**: typ závislostního syntaktického vztahu k rodiči
+**Anotace tokenu v elementu `<tok>`.** Element `<tok>` reprezentuje token, který většinou odpovídá slovnímu tvaru. Každý token je dále popsán následujícími atributy, které odpovídají standardům z projektu [Universal Dependencies](https://universaldependencies.org/guidelines.html):
+
+- `ord`: pořadové číslo tokenu ve větě
+- `lemma`: základní tvar slova
+- `upos`: značka univerzálního slovního druhu
+- `xpos`: originální morfologická značka
+- `feats`: morfologické vlastnosti
+- `head`: odkaz na rodičovský token
+- `deprel`: typ závislostního syntaktického vztahu k rodiči
 
 **Úplnost záznamů.** Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy obsahují identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové značky jednotlivých replik. Součástí přepisů je rovněž automatická lingvistická anotace. Uvedené údaje obsahují všechny záznamy v databázi.
 
