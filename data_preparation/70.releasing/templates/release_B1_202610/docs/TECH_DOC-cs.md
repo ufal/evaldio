@@ -12,13 +12,13 @@
 
 **Uživatelé databáze:** Pedagogové a studenti, instituce zabývající se výukou češtiny jako cizího jazyka nebo zajišťující zkoušky z češtiny jako cizího jazyka a další vzdělávací instituce, široká veřejnost, zejména zájemci o češtinu jako cizí jazyk.
 
-**Umístění databáze:** Databáze je integrována do systému TEITOK (<http://teitok.corpuswiki.org/>), který je provozován na platformě LINDAT/CLARIAH-CZ (<https://lindat.cz/>).
+**Umístění databáze:** Databáze je integrována do systému [TEITOK](http://teitok.corpuswiki.org/), který je provozován na platformě [LINDAT/CLARIAH-CZ](https://lindat.cz/).
 
 **Veřejná adresa databáze:** <http://hdl.handle.net/11346/H4WT>
 
 ## b) Cíl výsledku
 
-Cílem databáze je zpřístupnit autentické mluvené projevy nerodilých mluvčích češtiny na jazykové úrovni B1 podle Společného evropského referenčního rámce pro jazyky (SERR), která je požadována pro udělení státního občanství v České republice. Databáze obsahuje nahrávky zachycující ústní část Certifikované zkoušky z češtiny pro cizince na úrovni B1 (<https://ujop.cuni.cz/cce>). Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Nahrávky jsou opatřeny manuálními přepisy a bohatou lingvistickou anotací.
+Cílem databáze je zpřístupnit autentické mluvené projevy nerodilých mluvčích češtiny na jazykové úrovni B1 podle Společného evropského referenčního rámce pro jazyky (SERR), která je požadována pro udělení státního občanství v České republice. Databáze obsahuje nahrávky zachycující ústní část [Certifikované zkoušky z češtiny pro cizince na úrovni B1](https://ujop.cuni.cz/cce). Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Nahrávky jsou opatřeny manuálními přepisy a bohatou lingvistickou anotací.
 
 Databáze vznikla v rámci projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Vytvoření databáze navazuje na výzkum realizovaný v rámci projektu. Při její přípravě byly provedeny zejména následující výzkumné a datově analytické činnosti: sběr audionahrávek, jejich anonymizace, výzkum mluvených projevů nerodilých mluvčích češtiny v oblasti lingvistiky, výzkum týkající se metodiky přepisu získaných projevů do textové podoby, tvorba a revize manuálních přepisů, identifikace jednotlivých mluvčích (zkoušející vs. kandidát zkoušky), časové zarovnání přepisů s nahrávkami, automatická lingvistická anotace a příprava strukturovaných dat pro zveřejnění v prostředí TEITOK.
 
