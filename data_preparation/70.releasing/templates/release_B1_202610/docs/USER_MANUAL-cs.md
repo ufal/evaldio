@@ -5,9 +5,9 @@ Databáze rovněž umožňuje stáhnout korpus jako celek nebo stáhnout vybran�
 
 ## Prohlížení záznamů
 Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj. soubory transkriptů) uložené v databázi. 
-Pro každý soubor s transkriptem tabulka kromě názvu souboru zobrazuje v dalších sloupcích úroveň a identifikátor zkoušky, číslo úlohy, zdroj předběžné anotace, kód anotátora a informaci o tom, zda je přepis pro danou nahrávku kanonický.
-Soubory v tabulce je možné třídit podle hodnot vybraného sloupce. 
-Záznamy lze také filtrovat na základě libovolného podřetězce v názvu souboru zadáním tohoto podřetězce do textového pole "Search" umístěného vpravo nad tabulkou. Kliknutím na konkrétní soubor se tento soubor zobrazí.
+Pro každý soubor s transkriptem tabulka kromě názvu souboru zobrazuje v dalších sloupcích úroveň a identifikátor zkoušky, číslo úlohy, zdroj předběžné anotace (v této databázi vždy hodnota `from_scratch`), kód anotátora a informaci o tom, zda je přepis pro danou nahrávku kanonický (v této databázi vždy hodnota `1`).
+Soubory v tabulce je možné třídit podle hodnot vybraného sloupce.
+Záznamy lze také filtrovat na základě libovolného podřetězce v názvu souboru zadáním tohoto podřetězce do textového pole *Search* umístěného vpravo nad tabulkou. Kliknutím na konkrétní soubor se tento soubor zobrazí.
 
 ## Zobrazení souboru
 Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s anotacemi a metadaty a také poslouchat příslušné zvukové nahrávky. 
