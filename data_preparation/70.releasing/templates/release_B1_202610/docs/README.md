@@ -3,8 +3,7 @@
 Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic) is the language corpus of spoken performances by non-native speakers of Czech focused on B1 level (according to the CEFR), which is required for the granting of citizenship in the Czech Republic. 
 It includes recordings capturing the oral part of the [Czech Language Certificate Exam](https://ujop.cuni.cz/UJOPEN-70.html?ujopcmsid=12:czech-language-certificate-exam-cce). 
 The recordings consist of dialogues between the examiner (a native speaker) and the candidate (a non-native speaker). 
-In addition to the recordings, the corpus also contains their transcriptions, which are richly linguistically annotated. 
-Some recordings are accompanied by multiple transcriptions from different annotators, allowing for comparisons of various transcripts of the same recording and evaluations of the degree of consistency in converting spoken language into written text.
+In addition to the recordings, the corpus also contains their transcriptions, which are richly linguistically annotated.
 
 The corpus is published as a specialized public database aimed at providing a structured and easily accessible source of authentic spoken data for linguists, educators, students, the scientific community, and the general public.
 
@@ -16,9 +15,9 @@ Audio recordings were provided by the [Institute for Language and Preparatory St
 The database contains 65 recordings.
 It captures 36 exams and the same number of non-native speakers.
 The total length of all recordings is 4h 51m 48s.
-The table below shows the transcription statistics, with one canonical transcription selected for each recording.
+The table below shows the transcription statistics.
 
-|             | All     |
+|             | Count   |
 | ------------|--------:|
 | Files       |   65    |
 | Utterances  | 3,348   |
@@ -43,4 +42,4 @@ The authors of the database sincerely thank PhDr. Pavel Pečený, Ph.D., from th
 
 ## How to Cite
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)*. Institute of Formal and Applied Linguistics MFF UK, Prague 2026. Available at [http://hdl.handle.net/11346/H4WT](http://hdl.handle.net/11346/H4WT).

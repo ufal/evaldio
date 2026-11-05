@@ -3,7 +3,7 @@
 The basic functions of the database include browsing records with various display options, filtering records by different categories, and performing complex searches within the database content. The database also allows users to download the entire corpus or selected records.
 
 ## Browsing Records
-Upon entering the corpus, all records (i.e., transcript files) stored in the database are displayed in a clear table. For each transcript file, the table shows, in addition to the file name, the level and identifier of the exam, the task number, the source of the preliminary annotation, the annotator's code, and information on whether the transcript for that recording is canonical. The files in the table can be sorted by the values in a selected column. Records can also be filtered based on any substring in the file name by entering this substring in the "Search" text box located to the right above the table. Clicking on a specific file will display that file.
+Upon entering the corpus, all records (i.e., transcript files) stored in the database are displayed in a clear table. For each transcript file, the table shows, in addition to the file name, the level and identifier of the exam, the task number, the source of the preliminary annotation (always `from_scratch` in this database), the annotator's code, and whether the transcript for that recording is canonical (always `1` in this database). The files in the table can be sorted by the values in a selected column. Records can also be filtered based on any substring in the file name by entering this substring in the "Search" text box located to the right above the table. Clicking on a specific file will display that file.
 
 ## Viewing a File
 The database allows users to view the transcripts of individual turns along with annotations and metadata, and to listen to the corresponding audio recordings. The nature of the displayed information varies according to the selected display mode, which can be switched at the bottom of the page below the transcript.
@@ -47,8 +47,7 @@ The entire corpus, including recordings and documentation, can be downloaded fro
 A specific transcript can be downloaded in _Text view_ mode by clicking the _Download XML_ button located at the bottom of the page.
 
 ## How to Cite
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Database of Spoken Czech as a Foreign Language (Permanent Residency in the Czech Republic)_. Institute of Formal and Applied Linguistics MFF UK, Prague 2024. Available from WWW https://lindat.mff.cuni.cz/services/teitok-live/evaldio/en/index.php?action=db_residency.
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)*. Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University, Prague 2026. Available at <http://hdl.handle.net/11346/H4WT>.
 
 ## Acknowledgment
 The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
-
