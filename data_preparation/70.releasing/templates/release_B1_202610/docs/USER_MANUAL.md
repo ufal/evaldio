@@ -49,5 +49,5 @@ A specific transcript can be downloaded in _Text view_ mode by clicking the _Dow
 ## How to Cite
 Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Database of Spoken Czech as a Foreign Language (Citizenship in the Czech Republic)*. Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University, Prague 2026. Available at <http://hdl.handle.net/11346/H4WT>.
 
-## Dedication
+## Acknowledgment
 The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).

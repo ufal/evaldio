@@ -32,11 +32,11 @@ The table below shows the transcription statistics.
 
 The corpus is published under the CC BY-NC-SA 4.0 license.
 
-## Funding
+## Acknowledgment
 
 The database was funded by the Programme to Support Applied Research in the Area of the National and Cultural Identity for the Years 2023 to 2030 (NAKI III) of the Ministry of Culture of the Czech Republic within the project _Automated Speech Scoring in Czech_ (DH23P03OVV037).
 
-## Acknowledgments
+## Special Thanks
 
 The authors of the database sincerely thank PhDr. Pavel Pečený, Ph.D., from the Institute for Language and Preparatory Studies, Charles University for providing audio data.
 
