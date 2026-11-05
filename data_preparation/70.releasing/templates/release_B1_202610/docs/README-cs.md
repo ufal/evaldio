@@ -45,4 +45,4 @@ Autoři databáze srdečně děkují PhDr. Pavlovi Pečenému, Ph.D., z Ústavu 
 
 ## Jak citovat
 
-Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: _Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)_. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW [http://hdl.handle.net/11346/H4WT](http://hdl.handle.net/11346/H4WT).
+Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: *Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)*. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW [http://hdl.handle.net/11346/H4WT](http://hdl.handle.net/11346/H4WT).
