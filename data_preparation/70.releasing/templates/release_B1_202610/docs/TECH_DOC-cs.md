@@ -140,6 +140,8 @@ Databáze je veřejně dostupná prostřednictvím platformy LINDAT/CLARIAH-CZ a
 
 Data tvořící obsah databáze jsou současně uložena v certifikovaném repozitáři LINDAT/CLARIAH-CZ, který zajišťuje jejich dlouhodobé uchovávání, pravidelné zálohování a opatření persistentním identifikátorem typu Handle. Datová sada odpovídající této databázi je dostupná prostřednictvím identifikátoru Handle: <http://hdl.handle.net/11234/1-6311>
 
+Repozitář LINDAT/CLARIAH-CZ v současné době nepřiděluje persistentní identifikátory typu DOI. Z toho důvodu je záznam o databázi evidován i v Datovém Catch-all repozitáři, který však v současné době nemá plnou certifikaci. Záznam je k dispozici zde: [https://doi.org/10.48700/hftww-b2k53](https://doi.org/10.48700/hftww-b2k53)
+
 Pro přípravu a zpracování dat a anotací jsme použili další nástroje, které popisujeme níže.
 
 ### TEITOK
@@ -178,11 +180,15 @@ Repozitář dlouhodobě pečuje o uložené položky a využívá automatizovan�
 
 #### Zabezpečení perzistentních identifikátorů
 
-Každá položka uložená v repozitáři získává perzistentní identifikátor typu Handle, registrovaný ve spolupráci s konsorciem EPIC. Handle i příslušný URL odkaz zůstávají funkční i při změně technického umístění či adresy repozitáře.
+Každá položka uložená v repozitáři získává perzistentní identifikátor typu Handle, registrovaný ve spolupráci s konsorciem EPIC. Handle i příslušný URL odkaz zůstávají funkční i při změně technického umístění či adresy repozitáře. V současné době LINDAT/CLARIAH-CZ nepřiděluje persistentní identifikátory typu DOI. Z toho důvodu záznam o databázi evidujeme i v Datovém Catch-all repozitáři (viz níže).
 
 #### Indexace a vyhledávání
 
 Repozitář LINDAT/CLARIAH-CZ je postaven na softwaru DSpace 7, který [podporuje indexaci](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) obsahu webovými vyhledávači, včetně Google a Google Scholar. Repozitář zveřejňuje mapy webu ve formátu XML i HTML (`sitemap_index.xml`, `sitemap_index.html`), na které odkazuje soubor `robots.txt`. Stránka každé položky navíc obsahuje metadata ve formátu Dublin Core a značky `citation\_\*` doporučené pro Google Scholar. Veřejně dostupné položky, včetně dat popisované databáze, jsou tak vyhledávačům snadno dostupné, a to i pod perzistentním odkazem Handle.
+
+### Datový Catch-all repozitář
+
+Záznam o databázi je evidován i v [Datovém Catch-all repozitáři](https://datarepo.eosc.cz/), který je rovněž součástí Národní repozitářové platformy (NRP). Na rozdíl od LINDAT/CLARIAH-CZ tento repozitář přiděluje persistentní identifikátory typu DOI. Na druhou stranu tento repozitář zatím nemá plnou certifikaci.
 
 ### Příprava souborů TEITOK
 
