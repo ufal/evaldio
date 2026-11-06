@@ -132,6 +132,8 @@ The database is publicly available through the LINDAT/CLARIAH-CZ platform and th
 
 The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
 
+The LINDAT/CLARIAH-CZ repository does not currently assign DOI-type persistent identifiers. For this reason, a record for the database is also registered in the Data Catch-all Repository, which is not yet fully certified. The record is available at [https://doi.org/10.48700/hftww-b2k53](https://doi.org/10.48700/hftww-b2k53).
+
 We used additional tools for preparing and processing the data and annotations, described below.
 
 ### TEITOK
@@ -164,7 +166,13 @@ The entire repository regularly undergoes CoreTrustSeal certification (<https://
 
 **Protection of persistent identifiers.** Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes.
 
+LINDAT/CLARIAH-CZ does not currently assign DOI-type persistent identifiers. For this reason, the database record is also registered in the Data Catch-all Repository (see below).
+
 **Indexing and searching.** The LINDAT/CLARIAH-CZ repository is based on DSpace 7 software, which [supports indexing](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) content by web search engines, including Google and Google Scholar. The repository publishes XML and HTML sitemaps (`sitemap_index.xml`, `sitemap_index.html`), to which the `robots.txt` file points. The page for each item also contains metadata in Dublin Core format and `citation_*` tags recommended for Google Scholar. Publicly available items, including the data from the database described here, are therefore readily accessible to search engines, including through the persistent Handle link.
+
+### Data Catch-all Repository
+
+The database record is also registered in the [Data Catch-all Repository](https://datarepo.eosc.cz/), which is also part of the National Repository Platform (NRP). Unlike LINDAT/CLARIAH-CZ, this repository assigns DOI-type persistent identifiers. However, it is not yet fully certified.
 
 ### Preparation of TEITOK Files
 
