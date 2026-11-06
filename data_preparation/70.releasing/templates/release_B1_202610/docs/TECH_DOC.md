@@ -12,7 +12,7 @@
 
 **Database users:** Educators and students, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
 
-**Database location:** The database is integrated into the TEITOK system (<http://teitok.corpuswiki.org/>), which is operated on the LINDAT/CLARIAH-CZ platform (<https://lindat.cz/>).
+**Database location:** The database is integrated into the [TEITOK](http://teitok.corpuswiki.org/) system, which is operated on the [LINDAT/CLARIAH-CZ](https://lindat.cz/) platform.
 
 **Public database address:** <http://hdl.handle.net/11346/H4WT>
 
@@ -32,7 +32,7 @@ Extent of work on the result: 0.8 FTE
 
 The database contains audio recordings of the oral part of the Czech Language Certificate Exam at the B1 level and their manual transcriptions in TEITOK (XML) format. Individual TEITOK files are linked to the corresponding MP3 audio recordings.
 
-The provider of the recordings (the Institute for Language and Preparatory Studies of Charles University, ILPS CU, <https://ujop.cuni.cz/UJOP-1.html>) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
+The provider of the recordings ([the Institute for Language and Preparatory Studies of Charles University (ILPS CU)](https://ujop.cuni.cz/UJOP-1.html)) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
 
 Each record contains the corresponding audio recording and its manual transcription. The transcriptions capture individual utterances, identify the speakers (examiner vs. examination candidate), and align them with the recording. They also include automatic linguistic annotation.
 
@@ -58,25 +58,29 @@ The database consists of the following entities and relationships between them:
 4. **Token** – The basic textual unit (word form). Each token is described by its form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
     - *Recursive relationship:* A token can refer to itself (`head`), forming a tree structure of dependency syntax.
 
-**Graphical representation of the structure.** The following E-R diagram provides a more detailed representation of the database structure described above:
+#### Graphical representation of the structure
+
+The following E-R diagram provides a more detailed representation of the database structure described above:
 
 ![E-R diagram of the database structure](media/database-er-diagram.png)
 
-**Structure of TEITOK files.** The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the Text Encoding Initiative (TEI) standard (<https://www.tei-c.org/>), but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
+#### Structure of TEITOK files
+
+The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the [Text Encoding Initiative (TEI)](https://www.tei-c.org/) standard, but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
 
 **Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
 
-1. **`<fileDesc>` – File description**
-    - **`<titleStmt>`:** Contains the title of the file and information about authors and annotators.
-    - **`<editionStmt>`:** Contains the version number.
-    - **`<publicationStmt>`:** Contains publication details such as the publisher, publication date, and license.
-    - **`<sourceDesc>`:** Describes the source recording and links to it.
-2. **`<encodingDesc>` – Description of encoding**
-    - **`<projectDesc>`:** A brief description of the project in which the data was created.
-    - **`<annotationDecl>`:** Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
-3. **`<profileDesc>` – Profile of the text**
-    - **`<langUsage>`:** Language used (Czech).
-    - **`<textClass>`:** Document metadata:
+1. `<fileDesc>` – File description
+    - `<titleStmt>`: Contains the title of the file and information about authors and annotators.
+    - `<editionStmt>`: Contains the version number.
+    - `<publicationStmt>`: Contains publication details such as the publisher, publication date, and license.
+    - `<sourceDesc>`: Describes the source recording and links to it.
+2. `<encodingDesc>` – Description of encoding
+    - `<projectDesc>`: A brief description of the project in which the data was created.
+    - `<annotationDecl>`: Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
+3. `<profileDesc>` – Profile of the text
+    - `<langUsage>`: Language used (Czech).
+    - `<textClass>`: Document metadata:
       - `database`: Database name.
       - `exam-id`: Exam identifier.
       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
@@ -87,23 +91,23 @@ The database consists of the following entities and relationships between them:
 
 **Main content `<text>`.** The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
 
-- **`<u>`:** Each element represents a segment of speech and has the following attributes:
+- `<u>`: Each element represents a segment of speech and has the following attributes:
   - `start` and `end`: Start and end time in seconds.
   - `who`: Speaker (e.g., `EXAM_1` for the examiner and `CAND_1` for the candidate).
-- **`<s>`:** Each sentence is marked with the `<s>` element.
-- **`<tok>`:** Token elements whose attributes describe the lemma, part of speech, morphological features, and syntactic relationship.
-- **`<anon/>`:** An anonymized segment of the recording.
-- **`<gap reason="unintelligible"/>`:** An unintelligible segment of the recording.
+- `<s>`: Each sentence is marked with the `<s>` element.
+- `<tok>`: Token elements whose attributes describe the lemma, part of speech, morphological features, and syntactic relationship.
+- `<anon/>`: An anonymized segment of the recording.
+- `<gap reason="unintelligible"/>`: An unintelligible segment of the recording.
 
 **Token annotation in the `<tok>` element.** The `<tok>` element represents a token, which usually corresponds to a word. Each token is further described by the following attributes, corresponding to the standards of the [Universal Dependencies](https://universaldependencies.org/guidelines.html) project:
 
-- **`ord`**: Ordinal number of the token in the sentence.
-- **`lemma`**: Base form of the word.
-- **`upos`**: Universal part-of-speech tag.
-- **`xpos`**: Original morphological tag.
-- **`feats`**: Morphological features.
-- **`head`**: Reference to the parent token.
-- **`deprel`**: Type of the syntactic dependency relation to the parent.
+- `ord`: Ordinal number of the token in the sentence.
+- `lemma`: Base form of the word.
+- `upos`: Universal part-of-speech tag.
+- `xpos`: Original morphological tag.
+- `feats`: Morphological features.
+- `head`: Reference to the parent token.
+- `deprel`: Type of the syntactic dependency relation to the parent.
 
 **Completeness of records and metadata.** Individual records contain the corresponding audio recording and its manual transcription. The transcriptions contain speaker identification (examiner vs. examination candidate) and timestamps for individual utterances. They also include automatic linguistic annotation. All records in the database contain this information.
 
@@ -144,15 +148,19 @@ We used additional tools for preparing and processing the data and annotations, 
 
 [TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. It enables the database to be managed, viewed, searched, and made accessible. Its web interface is implemented using a combination of PHP and JavaScript.
 
-For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to create, display, and edit recordings' transcriptions (<http://www.teitok.org/index.php?action=help&id=wavesurfer>).
+For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to [create, display, and edit recordings' transcriptions](http://www.teitok.org/index.php?action=help&id=wavesurfer).
 
 TEITOK uses the JavaScript library [WaveSurfer.js](http://wavesurfer-js.org/) to work with the recordings themselves.
 
-**Data storage.** The corpus data is primarily stored in the TEITOK environment in the form of files. In this case, the recordings are in MP3 format, while the main components are TEITOK-format files containing all transcriptions and annotations, including metadata. These files are linked to the corresponding recordings.
+#### Data storage
+
+The corpus data is primarily stored in the TEITOK environment in the form of files. In this case, the recordings are in MP3 format, while the main components are TEITOK-format files containing all transcriptions and annotations, including metadata. These files are linked to the corresponding recordings.
 
 In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repository (see below), which provides secure storage with regular backups and persistent identifiers.
 
-**Querying, searching, and filtering.** Rapid querying, searching, and filtering are enabled by the integrated [CQP Query Processor](https://cwb.sourceforge.io/files/CQP_Manual.pdf), a key component of the [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/) toolkit.
+#### Querying, searching, and filtering
+
+Rapid querying, searching, and filtering are enabled by the integrated [CQP Query Processor](https://cwb.sourceforge.io/files/CQP_Manual.pdf), a key component of the [IMS Open Corpus Workbench (CWB)](https://cwb.sourceforge.io/) toolkit.
 
 CQP converts XML-formatted corpora into binary format and efficiently indexes them.
 
@@ -162,17 +170,23 @@ TEITOK also offers a Query Builder, in which users can specify a query by fillin
 
 ### LINDAT/CLARIAH-CZ Repository
 
-In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repository (<https://lindat.mff.cuni.cz/repository/>), operated by the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The repository is primarily part of the large LINDAT/CLARIAH-CZ research infrastructure and is also part of the National Repository Platform (NRP), the Czech implementation of the European Open Science Cloud (EOSC). It is based on CLARIN-DSpace software, one of the main systems further developed within the NRP. The repository is also part of the European CLARIN ERIC infrastructure.
+In addition, the database data is stored in the certified [LINDAT/CLARIAH-CZ repository](https://lindat.mff.cuni.cz/repository/), operated by the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The repository is primarily part of the large LINDAT/CLARIAH-CZ research infrastructure and is also part of the National Repository Platform (NRP), the Czech implementation of the European Open Science Cloud (EOSC). It is based on CLARIN-DSpace software, one of the main systems further developed within the NRP. The repository is also part of the European CLARIN ERIC infrastructure.
 
-The entire repository regularly undergoes CoreTrustSeal certification (<https://www.coretrustseal.org/>). The certification is based on a self-assessment subsequently evaluated by independent reviewers. The self-assessment also describes data storage, backups, and persistent identifiers. The currently valid assessment is available at <http://hdl.handle.net/11234/6-CTS>.
+The entire repository regularly undergoes [CoreTrustSeal](https://www.coretrustseal.org/) certification. The certification is based on a self-assessment subsequently evaluated by independent reviewers. The self-assessment also describes data storage, backups, and persistent identifiers. The currently valid assessment is available [here](http://hdl.handle.net/11234/6-CTS).
 
-**Data storage and backup.** The repository provides long-term care for stored items and uses automated procedures, including integrity checks, to ensure data integrity and metadata completeness. Disaster recovery is handled by a multi-level backup scheme that includes a weekly backup to external hierarchical storage. Backups are performed automatically on separate servers, and both the hardware platform and service operation are monitored. Details are provided in the CoreTrustSeal document. It is the repository's policy not to delete deposited datasets.
+#### Data storage and backup
 
-**Protection of persistent identifiers.** Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes.
+The repository provides long-term care for stored items and uses automated procedures, including integrity checks, to ensure data integrity and metadata completeness. Disaster recovery is handled by a multi-level backup scheme that includes a weekly backup to external hierarchical storage. Backups are performed automatically on separate servers, and both the hardware platform and service operation are monitored. Details are provided in the CoreTrustSeal document. It is the repository's policy not to delete deposited datasets.
+
+#### Protection of persistent identifiers
+
+Each item stored in the repository receives a Handle-type persistent identifier, registered in cooperation with the EPIC consortium. The Handle and its corresponding URL remain functional even if the repository's technical location or address changes.
 
 LINDAT/CLARIAH-CZ does not currently assign DOI-type persistent identifiers. For this reason, the database record is also registered in the Data Catch-all Repository (see below).
 
-**Indexing and searching.** The LINDAT/CLARIAH-CZ repository is based on DSpace 7 software, which [supports indexing](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) content by web search engines, including Google and Google Scholar. The repository publishes XML and HTML sitemaps (`sitemap_index.xml`, `sitemap_index.html`), to which the `robots.txt` file points. The page for each item also contains metadata in Dublin Core format and `citation_*` tags recommended for Google Scholar. Publicly available items, including the data from the database described here, are therefore readily accessible to search engines, including through the persistent Handle link.
+#### Indexing and searching
+
+The LINDAT/CLARIAH-CZ repository is based on DSpace 7 software, which [supports indexing](https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization) content by web search engines, including Google and Google Scholar. The repository publishes XML and HTML sitemaps (`sitemap_index.xml`, `sitemap_index.html`), to which the `robots.txt` file points. The page for each item also contains metadata in Dublin Core format and `citation_*` tags recommended for Google Scholar. Publicly available items, including the data from the database described here, are therefore readily accessible to search engines, including through the persistent Handle link.
 
 ### Data Catch-all Repository
 
