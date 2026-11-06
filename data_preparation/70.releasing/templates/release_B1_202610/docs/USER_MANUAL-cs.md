@@ -46,20 +46,14 @@ Například je tak možné zobrazit si pouze seznam kanonických přepisů nebo 
 Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po klinutí na tlačítko *Hledat* v levém hlavním menu.
 Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Např.
 
-> `[upos = "NUM.*"] [lemma = "otázka"]`
+> `[upos = "NUM.*"] [lemma = "otázka"] :: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"`
 >
 > pro nalezení tvarů slova *otázka*, jimž předchází číslovka.
-    
+
+Dotaz je pokaždé nutné doplnit příkazem `:: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"`, aby se zajistilo vyhledávání jenom v této databázi.
 
 Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL prostřednictvím formuláře. 
 Stačí kliknout na ikonu *Query builder*, definovat svůj dotaz a poté stisknout tlačítko *Create query*, čímž se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.
-
-V základním nastavení TEITOK provádí vyhledávání v celém korpusu, který může obsahovat k jedné nahrávce více přepisů. 
-Pokud chcete vyhledávat pouze v té části korpusu, v níž je ke každé nahrávce přiřazený jen jediný přepis, je nutné omezit hledání na tzv. kanonické přepisy. Např.
-
-> `[lemma = "situace"] :: match.text_canonical = "1"`
->
->  vyhledává lemma *situace* jenom v kanonických přepisech.
 
 ## Stahování
 Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního menu vlevo.
