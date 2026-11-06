@@ -12,7 +12,7 @@
 
 **Database users:** Educators and students, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
 
-**Database location:** The database is integrated into the TEITOK system (<http://teitok.corpuswiki.org/>), which is operated on the LINDAT/CLARIAH-CZ platform (<https://lindat.cz/>).
+**Database location:** The database is integrated into the [TEITOK](http://teitok.corpuswiki.org/) system, which is operated on the [LINDAT/CLARIAH-CZ](https://lindat.cz/) platform.
 
 **Public database address:** <http://hdl.handle.net/11346/H4WT>
 
@@ -32,7 +32,7 @@ Extent of work on the result: 0.8 FTE
 
 The database contains audio recordings of the oral part of the Czech Language Certificate Exam at the B1 level and their manual transcriptions in TEITOK (XML) format. Individual TEITOK files are linked to the corresponding MP3 audio recordings.
 
-The provider of the recordings (the Institute for Language and Preparatory Studies of Charles University, ILPS CU, <https://ujop.cuni.cz/UJOP-1.html>) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
+The provider of the recordings ([the Institute for Language and Preparatory Studies of Charles University (ILPS CU)](https://ujop.cuni.cz/UJOP-1.html)) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
 
 Each record contains the corresponding audio recording and its manual transcription. The transcriptions capture individual utterances, identify the speakers (examiner vs. examination candidate), and align them with the recording. They also include automatic linguistic annotation.
 
@@ -66,7 +66,7 @@ The following E-R diagram provides a more detailed representation of the databas
 
 #### Structure of TEITOK files
 
-The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the Text Encoding Initiative (TEI) standard (<https://www.tei-c.org/>), but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
+The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the [Text Encoding Initiative (TEI)](https://www.tei-c.org/) standard, but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
 
 **Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
 
@@ -148,7 +148,7 @@ We used additional tools for preparing and processing the data and annotations, 
 
 [TEITOK](http://teitok.corpuswiki.org/) is a framework for creating, managing, and publishing annotated corpora. It enables the database to be managed, viewed, searched, and made accessible. Its web interface is implemented using a combination of PHP and JavaScript.
 
-For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to create, display, and edit recordings' transcriptions (<http://www.teitok.org/index.php?action=help&id=wavesurfer>).
+For our project, which combines recordings of spoken speech and their transcriptions, the key functionality of the TEITOK environment is the ability to [create, display, and edit recordings' transcriptions](http://www.teitok.org/index.php?action=help&id=wavesurfer).
 
 TEITOK uses the JavaScript library [WaveSurfer.js](http://wavesurfer-js.org/) to work with the recordings themselves.
 
@@ -170,9 +170,9 @@ TEITOK also offers a Query Builder, in which users can specify a query by fillin
 
 ### LINDAT/CLARIAH-CZ Repository
 
-In addition, the database data is stored in the certified LINDAT/CLARIAH-CZ repository (<https://lindat.mff.cuni.cz/repository/>), operated by the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The repository is primarily part of the large LINDAT/CLARIAH-CZ research infrastructure and is also part of the National Repository Platform (NRP), the Czech implementation of the European Open Science Cloud (EOSC). It is based on CLARIN-DSpace software, one of the main systems further developed within the NRP. The repository is also part of the European CLARIN ERIC infrastructure.
+In addition, the database data is stored in the certified [LINDAT/CLARIAH-CZ repository](https://lindat.mff.cuni.cz/repository/), operated by the Institute of Formal and Applied Linguistics of the Faculty of Mathematics and Physics, Charles University. The repository is primarily part of the large LINDAT/CLARIAH-CZ research infrastructure and is also part of the National Repository Platform (NRP), the Czech implementation of the European Open Science Cloud (EOSC). It is based on CLARIN-DSpace software, one of the main systems further developed within the NRP. The repository is also part of the European CLARIN ERIC infrastructure.
 
-The entire repository regularly undergoes CoreTrustSeal certification (<https://www.coretrustseal.org/>). The certification is based on a self-assessment subsequently evaluated by independent reviewers. The self-assessment also describes data storage, backups, and persistent identifiers. The currently valid assessment is available at <http://hdl.handle.net/11234/6-CTS>.
+The entire repository regularly undergoes [CoreTrustSeal](https://www.coretrustseal.org/) certification. The certification is based on a self-assessment subsequently evaluated by independent reviewers. The self-assessment also describes data storage, backups, and persistent identifiers. The currently valid assessment is available [here](http://hdl.handle.net/11234/6-CTS).
 
 #### Data storage and backup
 
