@@ -29,17 +29,13 @@ By clicking on the _Browse_ button in the left main menu, users can filter trans
 ## Searching
 Searching within the corpus can be done on a page that appears after clicking the _Search_ button in the left main menu. This page allows users to enter queries in CQL (Corpus Query Language) format. For example:
 
-> `[upos = "NUM.*"] [lemma = "otázka"]`
+> `[upos = "NUM.*"] [lemma = "otázka"] :: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"`
 >
 > to find forms of the word _otázka_ that are preceded by a numeral.
 
+Every query must be supplemented with the command `:: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"` to ensure that the search is limited to this database.
+
 To facilitate searching, the TEITOK interface provides a query builder tool. This tool allows users to easily define simple queries in CQL through a form. Just click the _Query builder_ icon, define your query, and then press the _Create query_ button, which inserts the query into the CQL text box where it can be further edited if needed.
-
-By default, TEITOK searches the entire corpus, which may contain multiple transcripts for a single recording. If you want to search only in the part of the corpus where each recording has only a single associated transcript, you must restrict the search to so-called canonical transcripts. For example:
-
-> `[lemma = "situace"] :: match.text_canonical = "1"`
->
-> searches for the lemma _situace_ only in canonical transcripts.
 
 ## Downloading
 The entire corpus, including recordings and documentation, can be downloaded from the main menu on the left.
