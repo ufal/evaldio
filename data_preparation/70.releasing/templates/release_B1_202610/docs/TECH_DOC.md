@@ -34,7 +34,11 @@ The database contains audio recordings of the oral part of the Czech Language Ce
 
 The provider of the recordings (the Institute for Language and Preparatory Studies of Charles University, ILPS CU, <https://ujop.cuni.cz/UJOP-1.html>) permitted only selected tasks to be published. The database therefore contains only those parts of the recordings whose publication was permitted by the provider.
 
-**Database scope.** The basic database statistics are summarized below:
+Each record contains the corresponding audio recording and its manual transcription. The transcriptions capture individual utterances, identify the speakers (examiner vs. examination candidate), and align them with the recording. They also include automatic linguistic annotation.
+
+#### Database Scope
+
+The basic database statistics are summarized below:
 
 - Number of audio recordings: 65
 - Total length of recordings in the database: 4h 51m 48s
@@ -178,9 +182,9 @@ The database record is also registered in the [Data Catch-all Repository](https:
 
 The preparation of TEITOK files took place in several phases:
 
-1. **Manual annotation.** All recordings were annotated manually from scratch, without using outputs from automatic speech recognition systems. The annotations were created directly in TEITOK format, which allows transcriptions to be represented as utterances (the `<u>` elements), speakers to be identified (the `who` attribute), and utterances to be time-aligned with the recording (the `start` and `end` attributes).
+1. **Manual transcription.** All recordings were transcribed manually from scratch, without using outputs from automatic speech recognition systems. The transcriptions were created directly in TEITOK format, which allows utterances to be marked (the `<u>` elements), speakers to be identified (the `who` attribute), and utterances to be time-aligned with the recording (the `start` and `end` attributes).
 
-   After the files were uploaded, trained annotators manually transcribed and anonymized the recordings in the TEITOK environment in accordance with the requirements of the Institute for Language and Preparatory Studies of Charles University (ILPS CU), which provided the audio recordings for the corpus. Out of caution, some annotators anonymized data that did not need to be anonymized (e.g., fictitious names of people).
+Manual transcriptions of the recordings were prepared by trained annotators, who also anonymized them in accordance with the requirements of the Institute for Language and Preparatory Studies of Charles University (ILPS CU), which provided the audio recordings for the corpus. Some annotators also anonymized data as a precaution even when it did not need to be anonymized (e.g., fictitious names of people).
 
 2. **Revision.** Manual review of the manual annotations by a co-author of the database.
 3. **Normalization.** Automatic adjustment of the transcriptions that removes discrepancies in speaker names, orders utterances according to start time, and assigns new sequential IDs to utterances.
