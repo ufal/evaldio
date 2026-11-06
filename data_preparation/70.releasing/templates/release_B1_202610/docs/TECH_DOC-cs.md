@@ -77,7 +77,7 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
     - `<sourceDesc>`: Popis zdrojové nahrávky a odkaz na ni.
 2. `<encodingDesc>`: Popis kódování
     - `<projectDesc>`: Stručný popis projektu, v rámci něhož data vznikla.
-    - `<annotationDecl>`: Detaily o jednotlivých krocích anotace (primární, revize, lingvistická anotace).
+    - `<annotationDecl>`: Detaily o jednotlivých krocích přepisu a anotace (primární transkripce, revize, lingvistická anotace).
 3. `<profileDesc>`: Profil textu
     - `<langUsage>`: Použitý jazyk (čeština).
     - `<textClass>`: Metadata dokumentu:
@@ -85,7 +85,7 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
       - `exam-id`: Identifikátor zkoušky.
       - `cefr-level`: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně B1.
       - `task-number`: Číslo úlohy.
-      - `preannot-source`: Zdroj předběžné anotace. Jelikož všechny přepisy v této databáze vznikly kompletně manuálně, hodnota je vždy from_scratch.
+      - `preannot-source`: Zdroj předběžné transkripce. Jelikož všechny přepisy v této databázi vznikly kompletně manuálně, hodnota je vždy `from_scratch`.
       - `annotator`: Kód anotátora.
       - `canonical`: Hodnota 1 značí kanonický přepis. Jelikož databáze neobsahuje duplicitní přepisy, každý přepis je kanonický.
 
@@ -138,15 +138,15 @@ Podrobný návod k používání jednotlivých funkcí a příklady vyhledáván
 
 Databáze je veřejně dostupná prostřednictvím platformy LINDAT/CLARIAH-CZ a systému TEITOK. Přístup k ní je bezplatný a nevyžaduje registraci.
 
-Data tvořící obsah databáze jsou současně uložena v certifikovaném repozitáři LINDAT/CLARIAH-CZ, který zajišťuje jejich dlouhodobé uchovávání, pravidelné zálohování a opatření persistentním identifikátorem typu Handle. Datová sada odpovídající této databázi je dostupná prostřednictvím identifikátoru Handle: <http://hdl.handle.net/11234/1-6311>
+Data tvořící obsah databáze jsou současně uložena v certifikovaném repozitáři LINDAT/CLARIAH-CZ, který zajišťuje jejich dlouhodobé uchovávání, pravidelné zálohování a opatření persistentním identifikátorem typu Handle. Záznamy repozitáře LINDAT/CLARIAH-CZ jsou indexovány internetovými vyhledávači (včetně Google) a související metadata jsou zpřístupněna také v katalogu CLARIN Virtual Language Observatory (VLO). Záznam lze tak nalézt běžným vyhledáváním. Datová sada odpovídající této databázi je dostupná prostřednictvím identifikátoru Handle: <http://hdl.handle.net/11234/1-6311>
 
 Repozitář LINDAT/CLARIAH-CZ v současné době nepřiděluje persistentní identifikátory typu DOI. Z toho důvodu je záznam o databázi evidován i v Datovém Catch-all repozitáři, který však v současné době nemá plnou certifikaci. Záznam je k dispozici zde: [https://doi.org/10.48700/hftww-b2k53](https://doi.org/10.48700/hftww-b2k53)
 
-Pro přípravu a zpracování dat a anotací jsme použili další nástroje, které popisujeme níže.
+Pro přípravu a zpracování dat, transkripcí a anotací jsme použili další nástroje, které popisujeme níže.
 
 ### TEITOK
 
-[TEITOK](http://teitok.corpuswiki.org/) je framework pro vytváření, správu a zveřejňování anotovaných korpusů. Umožňuje spravovat, prohlížet, prohledávat a zpřístupnit databázi. Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.
+[TEITOK](https://www.teitok.org/) je framework pro vytváření, správu a zveřejňování anotovaných korpusů. Umožňuje spravovat, prohlížet, prohledávat a zpřístupnit databázi. Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.
 
 Pro náš projekt, který kombinuje nahrávky mluveného projevu a jejich přepisy, je stěžejní funkcionalita prostředí TEITOK, která umožňuje [vytvářet, zobrazovat a upravovat přepisy nahrávek](http://www.teitok.org/index.php?action=help&id=wavesurfer).
 
@@ -194,11 +194,11 @@ Záznam o databázi je evidován i v [Datovém Catch-all repozitáři](https://d
 
 Příprava souborů TEITOK probíhala v několika fázích:
 
-1. **Manuální anotace.** Všechny nahrávky byly anotovány manuálně od začátku (from scratch), bez využití výstupů systémů pro automatické rozpoznávání řeči. Anotace byly vytvářeny přímo ve formátu TEITOK, který umožňuje zachytit přepisy rozdělené do replik (elementy `<u>`), identifikaci mluvčích (atribut `who`) a časové zarovnání replik s nahrávkou (atributy `start` a `end`).
+1. **Manuální transkripce.** Všechny nahrávky byly transkribovány manuálně od začátku (from scratch), bez využití výstupů systémů pro automatické rozpoznávání řeči. Transkripce byly vytvářeny přímo ve formátu TEITOK, který umožňuje zachytit přepisy rozdělené do replik (elementy `<u>`), identifikaci mluvčích (atribut `who`) a časové zarovnání replik s nahrávkou (atributy `start` a `end`).
 
-   Po nahrání souborů provedly zaškolené anotátorky v prostředí TEITOK manuální přepis nahrávek a jejich anonymizaci v souladu s požadavky ÚJOP UK, který audionahrávky pro korpus poskytl. Některé anotátorky z opatrnosti anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
+Manuální přepisy nahrávek provedly zaškolené anotátorky spolu s jejich anonymizací v souladu s požadavky ÚJOP UK, který audionahrávky pro korpus poskytl. Některé anotátorky preventivně anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
 
-2. **Revize.** Ruční kontrola manuálních anotací spoluautorkou databáze.
+2. **Revize.** Ruční kontrola manuálních přepisů spoluautorkou databáze.
 3. **Normalizace.** Automatická úprava přepisů, která odstraní odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nová sekvenční ID.
 4. **Rozdělení na úlohy a selekce.** ÚJOP UK povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro stříhání nahrávek jsme použili nástroj [FFmpeg](https://www.ffmpeg.org/).
 5. **Lingvistická anotace.** Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (elementy `<s>`) a následně věty na tokeny (elementy `<tok>`). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma, slovní druh, morfologické vlastnosti a syntaktické vztahy.
