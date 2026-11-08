@@ -134,7 +134,7 @@ A detailed guide to using the individual functions and examples of searches is p
 
 The database is publicly available through the LINDAT/CLARIAH-CZ platform and the TEITOK system. Access is free and does not require registration.
 
-The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
+The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. LINDAT/CLARIAH-CZ repository records are indexed by internet search engines (including Google), and the associated metadata are also made available in the CLARIN Virtual Language Observatory (VLO) catalog. The record can thus be found through a standard search. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
 
 The LINDAT/CLARIAH-CZ repository does not currently assign DOI-type persistent identifiers. For this reason, a record for the database is also registered in the Data Catch-all Repository, which is not yet fully certified. The record is available at [https://doi.org/10.48700/hftww-b2k53](https://doi.org/10.48700/hftww-b2k53).
 
