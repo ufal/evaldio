@@ -10,7 +10,7 @@
 
 **Database creator:** Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University.
 
-**Database users:** Educators and students, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
+**Database users:** Educators and students, scientific and scholarly community, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
 
 **Database location:** The database is integrated into the TEITOK system (<http://teitok.corpuswiki.org/>), which is operated on the LINDAT/CLARIAH-CZ platform (<https://lindat.cz/>).
 
