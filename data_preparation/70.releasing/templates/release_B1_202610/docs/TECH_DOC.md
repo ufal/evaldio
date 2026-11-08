@@ -81,7 +81,7 @@ The database consists of the following entities and relationships between them:
       - `exam-id`: Exam identifier.
       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
       - `task-number`: Task number.
-      - `preannot-source`: Source of preliminary annotation. Since all transcriptions in this database were created entirely by hand, this value is always `from_scratch`.
+      - `preannot-source`: Source of preliminary transcription. Since all transcriptions in this database were created entirely by hand, this value is always `from_scratch`.
       - `annotator`: Annotator code.
       - `canonical`: A value of `1` indicates a canonical transcription. Since the database contains no duplicate transcriptions, every transcription is canonical.
 
