@@ -76,7 +76,7 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
     - `<publicationStmt>`: Publikační detaily, jako je vydavatel, datum vydání a licence.
     - `<sourceDesc>`: Popis zdrojové nahrávky a odkaz na ni.
 2. `<encodingDesc>`: Popis kódování
-    - `<projectDesc>`: Stručný popis projektu, v rámci něhož data vznikla.
+    - `<projectDesc>`: Stručný popis projektu, v jehož rámci data vznikla.
     - `<annotationDecl>`: Detaily o jednotlivých krocích přepisu a anotace (primární transkripce, revize, lingvistická anotace).
 3. `<profileDesc>`: Profil textu
     - `<langUsage>`: Použitý jazyk (čeština).
@@ -124,7 +124,7 @@ Databáze umožňuje následující funkce:
 - Zobrazení automatické lingvistické anotace jednotlivých tokenů:
   - slovní druh (PoS),
   - morfologický tag,
-  - podrobné morfologické příznaky (Features),
+  - podrobné morfologické příznaky (features),
   - lemma (základní tvar slova).
 - Zobrazení automatické syntaktické analýzy ve formě závislostního stromu.
 - Vyhledávání pomocí jazyka CQL.
