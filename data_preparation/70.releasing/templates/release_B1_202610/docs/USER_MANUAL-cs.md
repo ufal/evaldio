@@ -11,7 +11,7 @@ Záznamy lze také filtrovat na základě libovolného podřetězce v názvu sou
 
 ## Zobrazení souboru
 Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s anotacemi a metadaty a také poslouchat příslušné zvukové nahrávky. 
-Charakter zobrazených informací se liší podle zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod samotným přepisem.
+Charakter zobrazených informací se liší podle zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod přepisem.
 
 ### Režim *Text View*
 Text View je základní režim zobrazení, který se objeví po otevření souboru. 
@@ -43,7 +43,7 @@ Po kliknutí na tlačítko *Kategorie* v levém hlavním menu je možné filtrov
 Například je tak možné zobrazit si pouze seznam kanonických přepisů nebo přepisů od konkrétního anotátora. 
 
 ## Vyhledávání
-Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po klinutí na tlačítko *Hledat* v levém hlavním menu.
+Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po kliknutí na tlačítko *Hledat* v levém hlavním menu.
 Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Např.
 
 > `[upos = "NUM.*"] [lemma = "otázka"] :: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"`
