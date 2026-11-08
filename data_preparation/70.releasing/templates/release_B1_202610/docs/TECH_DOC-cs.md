@@ -10,7 +10,7 @@
 
 **Tvůrce databáze:** Ústav formální a aplikované lingvistiky, Matematicko-fyzikální fakulta, Univerzita Karlova.
 
-**Uživatelé databáze:** Pedagogové a studenti, instituce zabývající se výukou češtiny jako cizího jazyka nebo zajišťující zkoušky z češtiny jako cizího jazyka a další vzdělávací instituce, široká veřejnost, zejména zájemci o češtinu jako cizí jazyk.
+**Uživatelé databáze:** Pedagogové a studenti, vědecká a odborná komunita, instituce zabývající se výukou češtiny jako cizího jazyka nebo zajišťující zkoušky z češtiny jako cizího jazyka a další vzdělávací instituce, široká veřejnost, zejména zájemci o češtinu jako cizí jazyk.
 
 **Umístění databáze:** Databáze je integrována do systému [TEITOK](http://teitok.corpuswiki.org/), který je provozován na platformě [LINDAT/CLARIAH-CZ](https://lindat.cz/).
 
