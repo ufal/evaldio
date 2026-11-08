@@ -55,7 +55,7 @@ The database consists of the following entities and relationships between them:
 1. **Recording** – Represents the original audio recording. Each recording in the database has a manual transcription.
 2. **Document** – Corresponds to an individual transcript in TEITOK (XML) format. It contains metadata about the exam and its transcription (CEFR level, exam ID, task number, transcription annotator code, etc.) and is linked to a recording.
 3. **Utterance** – Individual utterances within a document. They contain information about the speaker (`who`) and timestamps (`start`, `end`).
-4. **Token** – The basic textual unit (word form). Each token is described by its form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
+4. **Token** – The basic textual unit (word form). Each token is described by its form (`form`), lemma (`lemma`), part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
     - *Recursive relationship:* A token can refer to itself (`head`), forming a tree structure of dependency syntax.
 
 **Graphical representation of the structure.** The following E-R diagram provides a more detailed representation of the database structure described above:
