@@ -66,7 +66,7 @@ Následující E-R diagram blíže znázorňuje výše popsanou strukturu datab�
 
 #### Struktura souborů TEITOK
 
-Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), avšak s mírně odlišným přístupem k tokenizaci. Struktura TEITOK souborů v naší databázi je následující:
+Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), avšak s mírně odlišným přístupem k tokenizaci. Struktura souborů TEITOK v naší databázi je následující:
 
 **Hlavička s metadaty `<teiHeader>`.** Hlavička souboru TEITOK se skládá z následujících částí:
 
