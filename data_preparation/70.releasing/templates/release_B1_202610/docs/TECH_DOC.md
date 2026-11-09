@@ -66,17 +66,17 @@ The database consists of the following entities and relationships between them:
 
 **Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
 
-1. **`<fileDesc>` – File description**
-    - **`<titleStmt>`:** Contains the title of the file and information about authors and annotators.
-    - **`<editionStmt>`:** Contains the version number.
-    - **`<publicationStmt>`:** Contains publication details such as the publisher, publication date, and license.
-    - **`<sourceDesc>`:** Describes the source recording and links to it.
-2. **`<encodingDesc>` – Description of encoding**
-    - **`<projectDesc>`:** A brief description of the project in which the data was created.
-    - **`<annotationDecl>`:** Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
-3. **`<profileDesc>` – Profile of the text**
-    - **`<langUsage>`:** Language used (Czech).
-    - **`<textClass>`:** Document metadata:
+1. `<fileDesc>` – File description
+    - `<titleStmt>`: Contains the title of the file and information about authors and annotators.
+    - `<editionStmt>`: Contains the version number.
+    - `<publicationStmt>`: Contains publication details such as the publisher, publication date, and license.
+    - `<sourceDesc>`: Describes the source recording and links to it.
+2. `<encodingDesc>` – Description of encoding
+    - `<projectDesc>`: A brief description of the project in which the data was created.
+    - `<annotationDecl>`: Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
+3. `<profileDesc>` – Profile of the text
+    - `<langUsage>`: Language used (Czech).
+    - `<textClass>`: Document metadata:
       - `database`: Database name.
       - `exam-id`: Exam identifier.
       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
@@ -87,23 +87,23 @@ The database consists of the following entities and relationships between them:
 
 **Main content `<text>`.** The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
 
-- **`<u>`:** Each element represents a segment of speech and has the following attributes:
+- `<u>`: Each element represents a segment of speech and has the following attributes:
   - `start` and `end`: Start and end time in seconds.
   - `who`: Speaker (e.g., `EXAM_1` for the examiner and `CAND_1` for the candidate).
-- **`<s>`:** Each sentence is marked with the `<s>` element.
-- **`<tok>`:** Token elements whose attributes describe the lemma, part of speech, morphological features, and syntactic relationship.
-- **`<anon/>`:** An anonymized segment of the recording.
-- **`<gap reason="unintelligible"/>`:** An unintelligible segment of the recording.
+- `<s>`: Each sentence is marked with the `<s>` element.
+- `<tok>`: Token elements whose attributes describe the lemma, part of speech, morphological features, and syntactic relationship.
+- `<anon/>`: An anonymized segment of the recording.
+- `<gap reason="unintelligible"/>`: An unintelligible segment of the recording.
 
 **Token annotation in the `<tok>` element.** The `<tok>` element represents a token, which usually corresponds to a word. Each token is further described by the following attributes, corresponding to the standards of the [Universal Dependencies](https://universaldependencies.org/guidelines.html) project:
 
-- **`ord`**: Ordinal number of the token in the sentence.
-- **`lemma`**: Base form of the word.
-- **`upos`**: Universal part-of-speech tag.
-- **`xpos`**: Original morphological tag.
-- **`feats`**: Morphological features.
-- **`head`**: Reference to the parent token.
-- **`deprel`**: Type of the syntactic dependency relation to the parent.
+- `ord`: Ordinal number of the token in the sentence.
+- `lemma`: Base form of the word.
+- `upos`: Universal part-of-speech tag.
+- `xpos`: Original morphological tag.
+- `feats`: Morphological features.
+- `head`: Reference to the parent token.
+- `deprel`: Type of the syntactic dependency relation to the parent.
 
 **Completeness of records and metadata.** Individual records contain the corresponding audio recording and its manual transcription. The transcriptions contain speaker identification (examiner vs. examination candidate) and timestamps for individual utterances. They also include automatic linguistic annotation. All records in the database contain this information.
 
