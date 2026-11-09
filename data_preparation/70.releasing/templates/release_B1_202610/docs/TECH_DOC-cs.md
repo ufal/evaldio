@@ -64,11 +64,13 @@ Následující E-R diagram blíže znázorňuje výše popsanou strukturu datab�
 
 ![E-R diagram struktury databáze](media/database-er-diagram.png)
 
-#### Struktura souborů TEITOK
+### Struktura souborů TEITOK
 
 Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu [Text Encoding Initiative (TEI)](https://www.tei-c.org/), avšak s mírně odlišným přístupem k tokenizaci. Struktura souborů TEITOK v naší databázi je následující:
 
-**Hlavička s metadaty `<teiHeader>`.** Hlavička souboru TEITOK se skládá z následujících částí:
+#### Hlavička s metadaty `<teiHeader>`
+
+Hlavička souboru TEITOK se skládá z následujících částí:
 
 1. `<fileDesc>`: Popis souboru
     - `<titleStmt>`: Obsahuje název souboru a informace o autorech a anotátorech.
@@ -89,7 +91,9 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
       - `annotator`: Kód anotátora.
       - `canonical`: Hodnota 1 značí kanonický přepis. Jelikož databáze neobsahuje duplicitní přepisy, každý přepis je kanonický.
 
-**Hlavní obsah `<text>`.** Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
+#### Hlavní obsah `<text>`
+
+Sekce `<text>` obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů `<u>`:
 
 - `<u>`: Element reprezentuje úsek projevu a má atributy:
   - `start` a `end`: Počáteční a koncový čas v sekundách.
@@ -99,7 +103,9 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
 - `<anon/>`: Anonymizovaný úsek nahrávky.
 - `<gap reason="unintelligible"/>`: Nesrozumitelný úsek nahrávky.
 
-**Anotace tokenu v elementu `<tok>`.** Element `<tok>` reprezentuje token, který většinou odpovídá slovnímu tvaru. Každý token je dále popsán následujícími atributy, které odpovídají standardům z projektu [Universal Dependencies](https://universaldependencies.org/guidelines.html):
+#### Anotace tokenu v elementu `<tok>`
+
+Element `<tok>` reprezentuje token, který většinou odpovídá slovnímu tvaru. Každý token je dále popsán následujícími atributy, které odpovídají standardům z projektu [Universal Dependencies](https://universaldependencies.org/guidelines.html):
 
 - `ord`: pořadové číslo tokenu ve větě
 - `lemma`: základní tvar slova
@@ -109,7 +115,9 @@ Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEI
 - `head`: odkaz na rodičovský token
 - `deprel`: typ závislostního syntaktického vztahu k rodiči
 
-**Úplnost záznamů.** Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy obsahují identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové značky jednotlivých replik. Součástí přepisů je rovněž automatická lingvistická anotace. Uvedené údaje obsahují všechny záznamy v databázi.
+### Úplnost záznamů
+
+Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy obsahují identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové značky jednotlivých replik. Součástí přepisů je rovněž automatická lingvistická anotace. Uvedené údaje obsahují všechny záznamy v databázi.
 
 Rozsah zveřejněných nahrávek je dán souhlasem poskytovatele dat, který povolil zveřejnění pouze vybraných úloh. Zveřejněné nahrávky proto nemusí obsahovat původní záznam celého průběhu zkoušky.
 
@@ -196,7 +204,7 @@ Příprava souborů TEITOK probíhala v několika fázích:
 
 1. **Manuální transkripce.** Všechny nahrávky byly transkribovány manuálně od začátku (from scratch), bez využití výstupů systémů pro automatické rozpoznávání řeči. Transkripce byly vytvářeny přímo ve formátu TEITOK, který umožňuje zachytit přepisy rozdělené do replik (elementy `<u>`), identifikaci mluvčích (atribut `who`) a časové zarovnání replik s nahrávkou (atributy `start` a `end`).
 
-Manuální přepisy nahrávek provedly zaškolené anotátorky spolu s jejich anonymizací v souladu s požadavky ÚJOP UK, který audionahrávky pro korpus poskytl. Některé anotátorky preventivně anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
+   Manuální přepisy nahrávek provedly zaškolené anotátorky spolu s jejich anonymizací v souladu s požadavky ÚJOP UK, který audionahrávky pro korpus poskytl. Některé anotátorky preventivně anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).
 
 2. **Revize.** Ruční kontrola manuálních přepisů spoluautorkou databáze.
 3. **Normalizace.** Automatická úprava přepisů, která odstraní odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nová sekvenční ID.
@@ -206,7 +214,9 @@ Manuální přepisy nahrávek provedly zaškolené anotátorky spolu s jejich an
 
 Všechny nástroje a skripty (převážně v jazycích Python 3 a BASH) jsou k dispozici ve [veřejném repozitáři projektu](https://github.com/ufal/evaldio) v adresáři `data_preparation`.
 
-**Lingvistická anotace.** Přepisy obsahují automatickou lingvistickou anotaci zahrnující tokenizaci, lemmatizaci, morfologickou analýzu a závislostní syntaktickou analýzu.
+#### Lingvistická anotace
+
+Přepisy obsahují automatickou lingvistickou anotaci zahrnující tokenizaci, lemmatizaci, morfologickou analýzu a závislostní syntaktickou analýzu.
 
 Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2), konkrétně model `czech-pdt-ud-2.12-230717` pro češtinu.
 
