@@ -21,7 +21,7 @@ This mode also allows users to view automatic morphological annotation and lemma
 At the top of the screen, there is an extended playback control for the recording, which displays a signal graph (i.e., waveform). Below it, the transcripts of individual turns are displayed. Clicking on a specific turn will play that turn.
 
 ### Dependencies Mode
-This mode displays syntactic annotation. When clicking on a specific turn, an automatically generated dependency tree is displayed, with details available via mouse hover. In the upper right corner of the tree is a ≡ button for additional display options for the tree. It is possible to arrange nodes by word order, display punctuation, or save an image of the tree in SVG format.
+This mode displays syntactic annotation. When clicking on a specific turn, an automatically generated dependency tree is displayed, with details available via mouse hover. In the upper right corner of the tree is a $\equiv$ button for additional display options for the tree. It is possible to arrange nodes by word order, display punctuation, or save an image of the tree in SVG format.
 
 ## Filtering Records by Categories
 By clicking on the _Browse_ button in the left main menu, users can filter transcripts based on the values of individual categories. For example, it is possible to display only a list of canonical transcripts or transcripts from a specific annotator.

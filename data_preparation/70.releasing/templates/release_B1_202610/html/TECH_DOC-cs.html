@@ -1,0 +1,179 @@
+<h1 id="databáze-mluvených-projevů-v-češtině-jako-cizím-jazyce-státní-občanství-v-čr-technická-dokumentace">Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR): technická dokumentace</h1>
+<h2 id="a-základní-údaje">a) Základní údaje</h2>
+<p><strong>Název výsledku:</strong> Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)</p>
+<p><strong>Typ výsledku:</strong> S – specializovaná veřejná databáze</p>
+<p><strong>Vlastník výsledku:</strong> Univerzita Karlova</p>
+<p><strong>Tvůrce databáze:</strong> Ústav formální a aplikované lingvistiky, Matematicko-fyzikální fakulta, Univerzita Karlova.</p>
+<p><strong>Uživatelé databáze:</strong> Pedagogové a studenti, vědecká a odborná komunita, instituce zabývající se výukou češtiny jako cizího jazyka nebo zajišťující zkoušky z češtiny jako cizího jazyka a další vzdělávací instituce, široká veřejnost, zejména zájemci o češtinu jako cizí jazyk.</p>
+<p><strong>Umístění databáze:</strong> Databáze je integrována do systému <a href="http://teitok.corpuswiki.org/">TEITOK</a>, který je provozován na platformě <a href="https://lindat.cz/">LINDAT/CLARIAH-CZ</a>.</p>
+<p><strong>Veřejná adresa databáze:</strong> <a href="http://hdl.handle.net/11346/H4WT" class="uri">http://hdl.handle.net/11346/H4WT</a></p>
+<h2 id="b-cíl-výsledku">b) Cíl výsledku</h2>
+<p>Cílem databáze je zpřístupnit veřejnosti autentické mluvené projevy nerodilých mluvčích češtiny na jazykové úrovni B1 podle Společného evropského referenčního rámce pro jazyky (SERR), která je požadována pro udělení státního občanství v České republice. Databáze obsahuje nahrávky zachycující ústní část <a href="https://ujop.cuni.cz/cce">Certifikované zkoušky z češtiny pro cizince</a> na úrovni B1. Nahrávky zahrnují dialogy mezi zkoušejícím (rodilým mluvčím) a kandidátem zkoušky (nerodilým mluvčím). Nahrávky jsou opatřeny manuálními přepisy a bohatou lingvistickou anotací.</p>
+<p>Databáze vznikla v rámci projektu realizovaného v Ústavu formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy. Vytvoření databáze navazuje na výzkum realizovaný v rámci projektu. Při její přípravě byly provedeny zejména následující výzkumné a datově analytické činnosti: sběr audionahrávek, jejich anonymizace, výzkum mluvených projevů nerodilých mluvčích češtiny v oblasti lingvistiky, výzkum týkající se metodiky přepisu získaných projevů do textové podoby, tvorba a revize manuálních přepisů, identifikace jednotlivých mluvčích (zkoušející vs. kandidát zkoušky), časové zarovnání přepisů s nahrávkami, automatická lingvistická anotace a příprava strukturovaných dat pro zveřejnění v prostředí TEITOK.</p>
+<p>Rozsah prací na výsledku: 0,8 FTE</p>
+<p><strong>Další záměr příjemce s databází:</strong> Databáze je zpřístupněna jako specializovaná veřejná databáze a je volně a bezplatně dostupná široké veřejnosti. Databáze je zároveň zamýšlena jako datový podklad pro naprogramování softwaru na automatické hodnocení mluvených projevů nerodilých mluvčích češtiny.</p>
+<h2 id="c-architektura-údajů">c) Architektura údajů</h2>
+<h3 id="základní-popis-databáze-a-rozsah-dat">Základní popis databáze a rozsah dat</h3>
+<p>Databáze obsahuje audionahrávky ústní části Certifikované zkoušky z češtiny pro cizince na úrovni B1 a jejich manuální přepisy ve formátu TEITOK (XML). Jednotlivé soubory TEITOK jsou propojeny s odpovídajícími audionahrávkami ve formátu MP3.</p>
+<p>Poskytovatel nahrávek, <a href="https://ujop.cuni.cz/UJOP-1.html">Ústav jazykové a odborné přípravy Univerzity Karlovy (ÚJOP UK)</a>, povolil ke zveřejnění pouze vybrané úlohy. Databáze proto obsahuje pouze ty části nahrávek, jejichž zveřejnění bylo poskytovatelem povoleno.</p>
+<p>Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy zachycují jednotlivé repliky, identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové zarovnání s nahrávkou. Dále obsahují automatickou lingvistickou anotaci.</p>
+<h4 id="rozsah-databáze">Rozsah databáze</h4>
+<p>Základní statistiky databáze jsou shrnuty v následujícím přehledu:</p>
+<ul>
+<li>Počet audionahrávek: 65</li>
+<li>Celková délka nahrávek v databázi: 4h 51m 48s</li>
+<li>Počet souborů s manuálními přepisy: 65</li>
+<li>Počet tokenů: 29 572</li>
+<li>Počet replik: 3 348</li>
+<li>Jazyk: čeština</li>
+<li>Jazyková úroveň: B1 podle SERR</li>
+</ul>
+<h3 id="struktura-databáze">Struktura databáze</h3>
+<p>Databáze se skládá z následujících entit a vazeb mezi nimi:</p>
+<ol type="1">
+<li><strong>Recording (Nahrávka)</strong> – Představuje původní zvukový záznam. Ke každé nahrávce z databáze existuje její manuální přepis.</li>
+<li><strong>Document (Dokument)</strong> – Odpovídá jednotlivému přepisu ve formátu TEITOK (XML). Obsahuje metadata o zkoušce a jejím přepisu (úroveň CEFR, ID zkoušky, číslo úlohy, kód anotátora přepisu atd.) a je spojen s nahrávkou.</li>
+<li><strong>Utterance (Replika)</strong> – Jednotlivé repliky uvnitř dokumentu. Obsahují informaci o mluvčím (<code>who</code>) a časových značkách (<code>start</code>, <code>end</code>).</li>
+<li><strong>Token</strong> – Základní jednotka textu (slovní tvar). Každý token je specifikován svou textovou realizací (<code>form</code>), lemmatem (<code>lemma</code>), slovním druhem (<code>upos</code>, <code>xpos</code>), morfologickými rysy (<code>feats</code>) a syntaktickou závislostí (<code>deprel</code>).
+<ul>
+<li><em>Rekurzivní vazba:</em> Token může odkazovat sám na sebe (<code>head</code>), což tvoří stromovou strukturu závislostního syntaktického popisu.</li>
+</ul></li>
+</ol>
+<h4 id="grafické-znázornění-struktury-databáze">Grafické znázornění struktury databáze</h4>
+<p>Následující E-R diagram blíže znázorňuje výše popsanou strukturu databáze:</p>
+<figure>
+<img src="media/database-er-diagram.png" alt="" /><figcaption>E-R diagram struktury databáze</figcaption>
+</figure>
+<h3 id="struktura-souborů-teitok">Struktura souborů TEITOK</h3>
+<p>Databáze je tvořena soubory, které obsahují přepisy ve formátu TEITOK. TEITOK je formát XML, který odpovídá standardu <a href="https://www.tei-c.org/">Text Encoding Initiative (TEI)</a>, avšak s mírně odlišným přístupem k tokenizaci. Struktura souborů TEITOK v naší databázi je následující:</p>
+<h4 id="hlavička-s-metadaty-teiheader">Hlavička s metadaty <code>&lt;teiHeader&gt;</code></h4>
+<p>Hlavička souboru TEITOK se skládá z následujících částí:</p>
+<ol type="1">
+<li><code>&lt;fileDesc&gt;</code>: Popis souboru
+<ul>
+<li><code>&lt;titleStmt&gt;</code>: Obsahuje název souboru a informace o autorech a anotátorech.</li>
+<li><code>&lt;editionStmt&gt;</code>: Obsahuje číslo verze.</li>
+<li><code>&lt;publicationStmt&gt;</code>: Publikační detaily, jako je vydavatel, datum vydání a licence.</li>
+<li><code>&lt;sourceDesc&gt;</code>: Popis zdrojové nahrávky a odkaz na ni.</li>
+</ul></li>
+<li><code>&lt;encodingDesc&gt;</code>: Popis kódování
+<ul>
+<li><code>&lt;projectDesc&gt;</code>: Stručný popis projektu, v jehož rámci data vznikla.</li>
+<li><code>&lt;annotationDecl&gt;</code>: Detaily o jednotlivých krocích přepisu a anotace (primární transkripce, revize, lingvistická anotace).</li>
+</ul></li>
+<li><code>&lt;profileDesc&gt;</code>: Profil textu
+<ul>
+<li><code>&lt;langUsage&gt;</code>: Použitý jazyk (čeština).</li>
+<li><code>&lt;textClass&gt;</code>: Metadata dokumentu:
+<ul>
+<li><code>database</code>: Název databáze.</li>
+<li><code>exam-id</code>: Identifikátor zkoušky.</li>
+<li><code>cefr-level</code>: Úroveň podle SERR. Tato databáze obsahuje výhradně nahrávky zkoušek úrovně B1.</li>
+<li><code>task-number</code>: Číslo úlohy.</li>
+<li><code>preannot-source</code>: Zdroj předběžné transkripce. Jelikož všechny přepisy v této databázi vznikly kompletně manuálně, hodnota je vždy <code>from_scratch</code>.</li>
+<li><code>annotator</code>: Kód anotátora.</li>
+<li><code>canonical</code>: Hodnota 1 značí kanonický přepis. Jelikož databáze neobsahuje duplicitní přepisy, každý přepis je kanonický.</li>
+</ul></li>
+</ul></li>
+</ol>
+<h4 id="hlavní-obsah-text">Hlavní obsah <code>&lt;text&gt;</code></h4>
+<p>Sekce <code>&lt;text&gt;</code> obsahuje jednotlivé úseky mluveného projevu strukturované pomocí elementů <code>&lt;u&gt;</code>:</p>
+<ul>
+<li><code>&lt;u&gt;</code>: Element reprezentuje úsek projevu a má atributy:
+<ul>
+<li><code>start</code> a <code>end</code>: Počáteční a koncový čas v sekundách.</li>
+<li><code>who</code>: Mluvčí (např. EXAM_1 pro zkoušejícího a CAND_1 pro kandidáta).</li>
+</ul></li>
+<li><code>&lt;s&gt;</code>: Element ohraničuje větu.</li>
+<li><code>&lt;tok&gt;</code>: Elementy tokenů, jejichž atributy popisují lemma, slovní druh, morfologické rysy a syntaktický vztah.</li>
+<li><code>&lt;anon/&gt;</code>: Anonymizovaný úsek nahrávky.</li>
+<li><code>&lt;gap reason="unintelligible"/&gt;</code>: Nesrozumitelný úsek nahrávky.</li>
+</ul>
+<h4 id="anotace-tokenu-v-elementu-tok">Anotace tokenu v elementu <code>&lt;tok&gt;</code></h4>
+<p>Element <code>&lt;tok&gt;</code> reprezentuje token, který většinou odpovídá slovnímu tvaru. Každý token je dále popsán následujícími atributy, které odpovídají standardům z projektu <a href="https://universaldependencies.org/guidelines.html">Universal Dependencies</a>:</p>
+<ul>
+<li><code>ord</code>: pořadové číslo tokenu ve větě</li>
+<li><code>lemma</code>: základní tvar slova</li>
+<li><code>upos</code>: značka univerzálního slovního druhu</li>
+<li><code>xpos</code>: originální morfologická značka</li>
+<li><code>feats</code>: morfologické vlastnosti</li>
+<li><code>head</code>: odkaz na rodičovský token</li>
+<li><code>deprel</code>: typ závislostního syntaktického vztahu k rodiči</li>
+</ul>
+<h3 id="úplnost-záznamů">Úplnost záznamů</h3>
+<p>Jednotlivé záznamy obsahují odpovídající audionahrávku a její manuální přepis. Přepisy obsahují identifikaci mluvčích (zkoušející vs. kandidát zkoušky) a časové značky jednotlivých replik. Součástí přepisů je rovněž automatická lingvistická anotace. Uvedené údaje obsahují všechny záznamy v databázi.</p>
+<p>Rozsah zveřejněných nahrávek je dán souhlasem poskytovatele dat, který povolil zveřejnění pouze vybraných úloh. Zveřejněné nahrávky proto nemusí obsahovat původní záznam celého průběhu zkoušky.</p>
+<h2 id="d-práce-s-údaji-třídění-filtrování-vyhledávání-atd.">d) Práce s údaji (třídění, filtrování, vyhledávání atd.)</h2>
+<p>Databáze umožňuje následující funkce:</p>
+<ul>
+<li>Prohlížení audionahrávek a jejich manuálních přepisů.</li>
+<li>Zobrazení jednotlivých replik a identifikace mluvčích.</li>
+<li>Přehrávání nahrávek a synchronizované prohlížení přepisů.</li>
+<li>Zobrazení časových značek začátku a konce jednotlivých replik.</li>
+<li>Zobrazení automatické lingvistické anotace jednotlivých tokenů:
+<ul>
+<li>slovní druh (PoS),</li>
+<li>morfologický tag,</li>
+<li>podrobné morfologické příznaky (features),</li>
+<li>lemma (základní tvar slova).</li>
+</ul></li>
+<li>Zobrazení automatické syntaktické analýzy ve formě závislostního stromu.</li>
+<li>Vyhledávání pomocí jazyka CQL.</li>
+<li>Sestavování vyhledávacích dotazů prostřednictvím grafického rozhraní Query Builder.</li>
+<li>Zobrazování výsledků vyhledávání v přehledné podobě.</li>
+<li>Export výsledků vyhledávání ve formátu XML.</li>
+</ul>
+<p>Podrobný návod k používání jednotlivých funkcí a příklady vyhledávání jsou uvedeny v samostatné uživatelské příručce.</p>
+<h2 id="e-použité-softwarové-nástroje">e) Použité softwarové nástroje</h2>
+<p>Databáze je veřejně dostupná prostřednictvím platformy LINDAT/CLARIAH-CZ a systému TEITOK. Přístup k ní je bezplatný a nevyžaduje registraci.</p>
+<p>Data tvořící obsah databáze jsou současně uložena v certifikovaném repozitáři LINDAT/CLARIAH-CZ, který zajišťuje jejich dlouhodobé uchovávání, pravidelné zálohování a opatření persistentním identifikátorem typu Handle. Záznamy repozitáře LINDAT/CLARIAH-CZ jsou indexovány internetovými vyhledávači (včetně Google) a související metadata jsou zpřístupněna také v katalogu CLARIN Virtual Language Observatory (VLO). Záznam lze tak nalézt běžným vyhledáváním. Datová sada odpovídající této databázi je dostupná prostřednictvím identifikátoru Handle: <a href="http://hdl.handle.net/11234/1-6311" class="uri">http://hdl.handle.net/11234/1-6311</a></p>
+<p>Repozitář LINDAT/CLARIAH-CZ v současné době nepřiděluje persistentní identifikátory typu DOI. Z toho důvodu je záznam o databázi evidován i v Datovém Catch-all repozitáři, který však v současné době nemá plnou certifikaci. Záznam je k dispozici zde: <a href="https://doi.org/10.48700/hftww-b2k53">https://doi.org/10.48700/hftww-b2k53</a></p>
+<p>Pro přípravu a zpracování dat, transkripcí a anotací jsme použili další nástroje, které popisujeme níže.</p>
+<h3 id="teitok">TEITOK</h3>
+<p><a href="https://www.teitok.org/">TEITOK</a> je framework pro vytváření, správu a zveřejňování anotovaných korpusů. Umožňuje spravovat, prohlížet, prohledávat a zpřístupnit databázi. Jeho webové rozhraní je implementováno v kombinaci jazyků PHP a JavaScript.</p>
+<p>Pro náš projekt, který kombinuje nahrávky mluveného projevu a jejich přepisy, je stěžejní funkcionalita prostředí TEITOK, která umožňuje <a href="http://www.teitok.org/index.php?action=help&amp;id=wavesurfer">vytvářet, zobrazovat a upravovat přepisy nahrávek</a>.</p>
+<p>K práci se samotnou nahrávkou TEITOK využívá JavaScriptovou knihovnu <a href="http://wavesurfer-js.org/">WaveSurfer.js</a>.</p>
+<h4 id="uložení-dat">Uložení dat</h4>
+<p>Data korpusu jsou v prostředí TEITOK primárně uložena ve formě souborů. V tomto případě se jedná o nahrávky ve formátu MP3, hlavní části jsou však soubory ve formátu TEITOK, které obsahují všechny přepisy a anotace včetně metadat. Tyto soubory jsou navzájem provázány s odpovídajícími nahrávkami.</p>
+<p>Kromě toho jsou data z databáze uložena v repozitáři LINDAT/CLARIAH-CZ (viz níže), který zabezpečuje spolehlivé úložiště s pravidelným zálohováním a persistentními identifikátory.</p>
+<h4 id="dotazování-vyhledávání-a-filtrování">Dotazování, vyhledávání a filtrování</h4>
+<p>Rychlé dotazování, vyhledávání a filtrace jsou umožněny integrovaným <a href="https://cwb.sourceforge.io/files/CQP_Manual.pdf">procesorem dotazů CQP</a>, klíčovou komponentou sady nástrojů <a href="https://cwb.sourceforge.io/">IMS Open Corpus Workbench (CWB)</a>.</p>
+<p>CQP převádí korpusy ve formátu XML do binární podoby a efektivně je indexuje.</p>
+<p>Dotazování v indexovaných korpusech probíhá pomocí jazyka <a href="https://www.latl.leeds.ac.uk/wp-content/uploads/sites/49/2019/07/CQL-Help-1.3.pdf">CQL</a>, který je standardem v korpusové lingvistice.</p>
+<p>TEITOK také nabízí Query Builder, v němž může uživatel specifikovat dotaz vyplněním formuláře. Výsledek dotazu vrácený z CQP je následně zpracován pomocí TEITOKu a zobrazen uživateli v přehledné formě. Výsledky dotazů je možné stáhnout ve formátu XML.</p>
+<h3 id="repozitář-lindatclariah-cz">Repozitář LINDAT/CLARIAH-CZ</h3>
+<p>Kromě výše uvedeného jsou data z databáze uložena v repozitáři <a href="https://lindat.mff.cuni.cz/repository/">LINDAT/CLARIAH-CZ</a>, který provozuje Ústav formální a aplikované lingvistiky Matematicko-fyzikální fakulty Univerzity Karlovy (ÚFAL MFF UK). Repozitář je primárně součástí velké výzkumné infrastruktury LINDAT/CLARIAH-CZ a zároveň je součástí Národní repozitářové platformy (NRP), která představuje českou implementaci iniciativy European Open Science Cloud (EOSC). Je postaven na softwaru CLARIN-DSpace, který patří mezi hlavní systémy dále vyvíjené v rámci NRP. Repozitář je rovněž součástí evropské infrastruktury CLARIN ERIC.</p>
+<p>Celý repozitář pravidelně prochází certifikací <a href="https://www.coretrustseal.org/">CoreTrustSeal</a>. Certifikace vychází ze sebehodnocení, které následně posuzují nezávislí recenzenti. Součástí sebehodnocení je také popis ukládání dat, zálohování a perzistentních identifikátorů. Aktuálně platné hodnocení je dostupné <a href="http://hdl.handle.net/11234/6-CTS">zde</a>.</p>
+<h4 id="uložení-a-zálohovaní-dat">Uložení a zálohovaní dat</h4>
+<p>Repozitář dlouhodobě pečuje o uložené položky a využívá automatizované postupy, včetně kontrol integrity, které zajišťují neporušenost dat a úplnost metadat. Obnova po havárii je řešena vícestupňovým schématem záloh, jehož součástí je týdenní záloha na externím hierarchickém úložišti. Zálohy se provádějí automaticky na samostatné servery a hardwarová platforma i provoz služeb jsou monitorovány. Podrobnosti jsou uvedeny v dokumentu CoreTrustSeal. Zásadou repozitáře je uložené datové sady nemazat.</p>
+<h4 id="zabezpečení-perzistentních-identifikátorů">Zabezpečení perzistentních identifikátorů</h4>
+<p>Každá položka uložená v repozitáři získává perzistentní identifikátor typu Handle, registrovaný ve spolupráci s konsorciem EPIC. Handle i příslušný URL odkaz zůstávají funkční i při změně technického umístění či adresy repozitáře. V současné době LINDAT/CLARIAH-CZ nepřiděluje persistentní identifikátory typu DOI. Z toho důvodu záznam o databázi evidujeme i v Datovém Catch-all repozitáři (viz níže).</p>
+<h4 id="indexace-a-vyhledávání">Indexace a vyhledávání</h4>
+<p>Repozitář LINDAT/CLARIAH-CZ je postaven na softwaru DSpace 7, který <a href="https://wiki.lyrasis.org/spaces/DSDOC7x/pages/104566800/Search+Engine+Optimization">podporuje indexaci</a> obsahu webovými vyhledávači, včetně Google a Google Scholar. Repozitář zveřejňuje mapy webu ve formátu XML i HTML (<code>sitemap_index.xml</code>, <code>sitemap_index.html</code>), na které odkazuje soubor <code>robots.txt</code>. Stránka každé položky navíc obsahuje metadata ve formátu Dublin Core a značky <code>citation\_\*</code> doporučené pro Google Scholar. Veřejně dostupné položky, včetně dat popisované databáze, jsou tak vyhledávačům snadno dostupné, a to i pod perzistentním odkazem Handle.</p>
+<h3 id="datový-catch-all-repozitář">Datový Catch-all repozitář</h3>
+<p>Záznam o databázi je evidován i v <a href="https://datarepo.eosc.cz/">Datovém Catch-all repozitáři</a>, který je rovněž součástí Národní repozitářové platformy (NRP). Na rozdíl od LINDAT/CLARIAH-CZ tento repozitář přiděluje persistentní identifikátory typu DOI. Na druhou stranu tento repozitář zatím nemá plnou certifikaci.</p>
+<h3 id="příprava-souborů-teitok">Příprava souborů TEITOK</h3>
+<p>Příprava souborů TEITOK probíhala v několika fázích:</p>
+<ol type="1">
+<li><p><strong>Manuální transkripce.</strong> Všechny nahrávky byly transkribovány manuálně od začátku (from scratch), bez využití výstupů systémů pro automatické rozpoznávání řeči. Transkripce byly vytvářeny přímo ve formátu TEITOK, který umožňuje zachytit přepisy rozdělené do replik (elementy <code>&lt;u&gt;</code>), identifikaci mluvčích (atribut <code>who</code>) a časové zarovnání replik s nahrávkou (atributy <code>start</code> a <code>end</code>).</p>
+<p>Manuální přepisy nahrávek provedly zaškolené anotátorky spolu s jejich anonymizací v souladu s požadavky ÚJOP UK, který audionahrávky pro korpus poskytl. Některé anotátorky preventivně anonymizovaly i údaje, které anonymizovány být nemusely (např. smyšlená jména osob).</p></li>
+<li><p><strong>Revize.</strong> Ruční kontrola manuálních přepisů spoluautorkou databáze.</p></li>
+<li><p><strong>Normalizace.</strong> Automatická úprava přepisů, která odstraní odchylky ve jménech mluvčích, seřadí repliky podle počátečního času a přidělí replikám nová sekvenční ID.</p></li>
+<li><p><strong>Rozdělení na úlohy a selekce.</strong> ÚJOP UK povolil ke zveřejnění pouze vybrané úlohy. Ty jsme museli z nahrávek vystřihnout a upravit časové značky v přepisech, aby se zachovalo zarovnání replik v přepisu s nahrávkou. Pro stříhání nahrávek jsme použili nástroj <a href="https://www.ffmpeg.org/">FFmpeg</a>.</p></li>
+<li><p><strong>Lingvistická anotace.</strong> Až do této fáze nebyly repliky v přepisech dále strukturovány. V této fázi jsme text rozdělili na věty (elementy <code>&lt;s&gt;</code>) a následně věty na tokeny (elementy <code>&lt;tok&gt;</code>). Na úrovni tokenů jsou přepisy automaticky lingvisticky anotovány. Každému tokenu je přiděleno lemma, slovní druh, morfologické vlastnosti a syntaktické vztahy.</p></li>
+<li><p><strong>Doplnění hlavičky TEI.</strong> Na závěr jsme doplnili hlavičku podle všech dostupných metadat, aby odpovídala standardům TEI.</p></li>
+</ol>
+<p>Všechny nástroje a skripty (převážně v jazycích Python 3 a BASH) jsou k dispozici ve <a href="https://github.com/ufal/evaldio">veřejném repozitáři projektu</a> v adresáři <code>data_preparation</code>.</p>
+<h4 id="lingvistická-anotace">Lingvistická anotace</h4>
+<p>Přepisy obsahují automatickou lingvistickou anotaci zahrnující tokenizaci, lemmatizaci, morfologickou analýzu a závislostní syntaktickou analýzu.</p>
+<p>Pro lingvistickou anotaci, včetně tokenizace, jsme použili nástroj <a href="https://ufal.mff.cuni.cz/udpipe/2">UDPipe 2</a>, konkrétně model <code>czech-pdt-ud-2.12-230717</code> pro češtinu.</p>
+<p>Každému tokenu je přiděleno lemma (atribut <code>lemma</code>), jazykově specifická morfologická značka (atribut <code>xpos</code>), slovní druh a morfologické vlastnosti dle kategorizace projektu <a href="https://universaldependencies.org/">Universal Dependencies</a> (atributy <code>upos</code> a <code>feats</code>). Dále je každému tokenu přiřazen odkaz na ID rodiče podle pravidel závislostní syntaxe (atribut <code>head</code>) a typ závislosti tokenu ve vztahu k jeho rodiči (atribut <code>deprel</code>).</p>
+<p>Ačkoli je možné provádět tokenizaci a automatickou lingvistickou anotaci přímo v prostředí TEITOK, my jsme tento proces realizovali samostatně. Důvodem je, že metoda tokenizace v prostředí TEITOK se liší od té, která je optimalizována pro UDPipe, což by mohlo způsobovat chyby při spojování těchto dvou kroků.</p>
+<h2 id="f-prokázání-novosti-a-unikátnosti-specializované-veřejné-databáze">f) Prokázání novosti a unikátnosti specializované veřejné databáze</h2>
+<p>Databáze představuje unikátní, dosud nepublikovaný jazykový materiál – autentické audionahrávky ústních zkoušek z češtiny jako cizího jazyka na úrovni B1, jejich manuální přepisy, identifikaci jednotlivých mluvčích (zkoušející vs. kandidát zkoušky), časové zarovnání replik s nahrávkami a automatické lingvistické anotace.</p>
+<p>Vytvoření databáze předcházel výzkum zaměřený na sběr a zpracování autentických mluvených projevů, porovnávání metod přepisu mluvené řeči, manuální anotaci a revizi přepisů a také na následnou automatickou lingvistickou anotaci.</p>
+<p>Specifickým přínosem databáze je propojení zvukové podoby mluvených projevů s jejich strukturovaným textovým přepisem a podrobnou lingvistickou anotací. Časové značky jednotlivých replik umožňují přesné propojení textu s odpovídající částí nahrávky. Automatická morfologická a syntaktická anotace usnadňuje vyhledávání jazykových jevů a využití databáze při výuce a studiu češtiny jako cizího jazyka.</p>
+<h2 id="jak-citovat">Jak citovat</h2>
+<p>Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: <em>Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)</em>. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW <a href="http://hdl.handle.net/11346/H4WT" class="uri">http://hdl.handle.net/11346/H4WT</a></p>
+<h2 id="dedikace">Dedikace</h2>
+<p>Vznik databáze byl financován z prostředků Programu na podporu aplikovaného výzkumu v oblasti národní a kulturní identity na léta 2023 až 2030 (NAKI III) Ministerstva kultury ČR v rámci projektu <em>Automatické hodnocení mluveného projevu v češtině</em> (DH23P03OVV037).</p>
