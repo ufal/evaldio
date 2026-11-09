@@ -29,6 +29,7 @@ endif
 RELEASE_TGT_DIR=$(TGT_BASEDIR)/$(RELEASE_NAME)
 
 TEMPL_DIR=templates/$(RELEASE_NAME)
+PDF_FILES=$(patsubst $(TEMPL_DIR)/docs/%.md,$(TEMPL_DIR)/pdf/%.pdf,$(wildcard $(TEMPL_DIR)/docs/*.md))
 
 FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
 
@@ -121,6 +122,14 @@ prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md
 		cp -v $(TEMPL_DIR)/docs/media/*.png \
 		  $(RELEASE_TGT_DIR)/docs/media; \
 	fi
+
+pdf : $(PDF_FILES)
+
+$(TEMPL_DIR)/pdf:
+	mkdir -p $@
+
+$(TEMPL_DIR)/pdf/%.pdf : $(TEMPL_DIR)/docs/%.md | $(TEMPL_DIR)/pdf
+	cd $(TEMPL_DIR) && pandoc docs/$*.md -o pdf/$*.pdf --pdf-engine=pdflatex -V links-as-notes --resource-path=docs -V lang=$(if $(filter %-cs,$*),cs,en)
 
 zip :
 	cd $(TGT_BASEDIR) && \
