@@ -35,7 +35,7 @@ Kliknutím na konkrétní repliku se tato replika přehraje.
 ### Režim *Dependencies*
 Tento režim zobrazuje syntaktickou anotaci.
 Po kliknutí na konkrétní repliku se zobrazí automaticky vygenerovaný závislostní strom, u nějž je možné zobrazit detaily pomocí myši.
-Vpravo nahoře od stromu se nachází tlačítko ≡ pro další možnosti zobrazení stromu.
+Vpravo nahoře od stromu se nachází tlačítko $\equiv$ pro další možnosti zobrazení stromu.
 Je tak možné uspořádat uzly podle slovosledu, zobrazit interpunkci nebo uložit obrázek stromu ve formátu SVG.
 
 ## Filtrování záznamů přes kategorie
