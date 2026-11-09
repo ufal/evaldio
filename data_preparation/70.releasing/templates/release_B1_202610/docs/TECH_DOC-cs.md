@@ -24,7 +24,7 @@ Databáze vznikla v rámci projektu realizovaného v Ústavu formální a apliko
 
 Rozsah prací na výsledku: 0,8 FTE
 
-Další záměr příjemce s databází: Databáze je zpřístupněna jako specializovaná veřejná databáze a je volně a bezplatně dostupná široké veřejnosti. Databáze je zároveň zamýšlena jako datový podklad pro naprogramování softwaru na automatické hodnocení mluvených projevů nerodilých mluvčích češtiny.
+**Další záměr příjemce s databází:** Databáze je zpřístupněna jako specializovaná veřejná databáze a je volně a bezplatně dostupná široké veřejnosti. Databáze je zároveň zamýšlena jako datový podklad pro naprogramování softwaru na automatické hodnocení mluvených projevů nerodilých mluvčích češtiny.
 
 ## c) Architektura údajů
 
