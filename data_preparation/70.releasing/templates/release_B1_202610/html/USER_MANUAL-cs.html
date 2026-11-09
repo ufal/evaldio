@@ -1,0 +1,30 @@
+<h1 id="databáze-mluvených-projevů-v-češtině-jako-cizím-jazyce-státní-občanství-v-čr-uživatelská-příručka">Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR): uživatelská příručka</h1>
+<p>Základní funkce databáze zahrnuje prohlížení záznamů s různými způsoby jejich zobrazení, filtrování záznamů podle různých kategorií a komplexní vyhledávání v obsahu databáze. Databáze rovněž umožňuje stáhnout korpus jako celek nebo stáhnout vybrané záznamy.</p>
+<h2 id="prohlížení-záznamů">Prohlížení záznamů</h2>
+<p>Po vstupu do korpusu se v přehledné tabulce zobrazí všechny záznamy (tj. soubory transkriptů) uložené v databázi. Pro každý soubor s transkriptem tabulka kromě názvu souboru zobrazuje v dalších sloupcích úroveň a identifikátor zkoušky, číslo úlohy, zdroj předběžné anotace (v této databázi vždy hodnota <code>from_scratch</code>), kód anotátora a informaci o tom, zda je přepis pro danou nahrávku kanonický (v této databázi vždy hodnota <code>1</code>). Soubory v tabulce je možné třídit podle hodnot vybraného sloupce. Záznamy lze také filtrovat na základě libovolného podřetězce v názvu souboru zadáním tohoto podřetězce do textového pole <em>Search</em> umístěného vpravo nad tabulkou. Kliknutím na konkrétní soubor se tento soubor zobrazí.</p>
+<h2 id="zobrazení-souboru">Zobrazení souboru</h2>
+<p>Databáze umožňuje prohlížet přepisy jednotlivých replik spolu s anotacemi a metadaty a také poslouchat příslušné zvukové nahrávky. Charakter zobrazených informací se liší podle zvoleného režimu zobrazení, mezi kterými lze přepínat v dolní části stránky pod přepisem.</p>
+<h3 id="režim-text-view">Režim <em>Text View</em></h3>
+<p>Text View je základní režim zobrazení, který se objeví po otevření souboru. V horní části obrazovky se nachází hlavička s názvem přepisu a vybranými metadaty. V dolní části je zobrazen samotný přepis, rozdělený na repliky. Každá replika je označena identifikátorem mluvčího (<code>EXAM_1</code> pro zkoušejícího a <code>CAND_1</code> pro kandidáta).</p>
+<p>Tento režim rovněž umožňuje zobrazit automatickou morfologickou anotaci a lemmatizaci. Po najetí kurzorem na konkrétní token se zobrazí příslušná anotace v kontextu. Pro zobrazení vybraného atributu pro všechny tokeny v přepisu lze využít ovládací prvky umístěné pod hlavičkou, které obsahují následující tlačítka: - <em>PoS</em>: Zobrazí slovní druhy. - <em>Tag</em>: Ukáže morfologické tagy. - <em>Features</em>: Poskytne podrobné morfologické informace. - <em>Lemma</em>: Zobrazí základní tvary slov.</p>
+<h3 id="režim-waveform-view">Režim <em>Waveform View</em></h3>
+<p>V horní části obrazovky se nachází rozšířený ovládací prvek pro přehrávání nahrávky, který zobrazuje graf signálu (tzv. waveform). Pod ním jsou zobrazeny přepisy jednotlivých replik. Kliknutím na konkrétní repliku se tato replika přehraje.</p>
+<h3 id="režim-dependencies">Režim <em>Dependencies</em></h3>
+<p>Tento režim zobrazuje syntaktickou anotaci. Po kliknutí na konkrétní repliku se zobrazí automaticky vygenerovaný závislostní strom, u nějž je možné zobrazit detaily pomocí myši. Vpravo nahoře od stromu se nachází tlačítko <span class="math inline">\(\equiv\)</span> pro další možnosti zobrazení stromu. Je tak možné uspořádat uzly podle slovosledu, zobrazit interpunkci nebo uložit obrázek stromu ve formátu SVG.</p>
+<h2 id="filtrování-záznamů-přes-kategorie">Filtrování záznamů přes kategorie</h2>
+<p>Po kliknutí na tlačítko <em>Kategorie</em> v levém hlavním menu je možné filtrovat přepisy na základě hodnot jednotlivých kategorií. Například je tak možné zobrazit si pouze seznam kanonických přepisů nebo přepisů od konkrétního anotátora.</p>
+<h2 id="vyhledávání">Vyhledávání</h2>
+<p>Vyhledávání v korpusu lze provádět na stránce, která se zobrazí po kliknutí na tlačítko <em>Hledat</em> v levém hlavním menu. Stránka umožňuje zadávat dotazy ve formátu CQL (Corpus Query Language). Např.</p>
+<blockquote>
+<p><code>[upos = "NUM.*"] [lemma = "otázka"] :: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"</code></p>
+<p>pro nalezení tvarů slova <em>otázka</em>, jimž předchází číslovka.</p>
+</blockquote>
+<p>Dotaz je pokaždé nutné doplnit příkazem <code>:: match.text_database = "Databáze mluvených projevů v češtině jako cizím jazyce [(]státní občanství v ČR[)]"</code>, aby se zajistilo vyhledávání jenom v této databázi.</p>
+<p>Pro usnadnění vyhledávání nabízí rozhraní TEITOK nástroj pro sestavování dotazů. Tento nástroj umožňuje snadno definovat jednoduché dotazy v CQL prostřednictvím formuláře. Stačí kliknout na ikonu <em>Query builder</em>, definovat svůj dotaz a poté stisknout tlačítko <em>Create query</em>, čímž se dotaz vloží do textového pole CQL, kde jej můžete případně upravit.</p>
+<h2 id="stahování">Stahování</h2>
+<p>Celý korpus včetně nahrávek a dokumentace je možné stáhnout z hlavního menu vlevo.</p>
+<p>Konkrétní přepis lze stáhnout v režimu <em>Text view</em> kliknutím na tlačítko <em>Download XML</em> umístěné v dolní části stránky.</p>
+<h2 id="jak-citovat">Jak citovat</h2>
+<p>Rysová Kateřina, Novák Michal, Rysová Magdaléna, Polák Peter, Bojar Ondřej: <em>Databáze mluvených projevů v češtině jako cizím jazyce (státní občanství v ČR)</em>. Ústav formální a aplikované lingvistiky MFF UK, Praha 2026. Dostupná z WWW <a href="http://hdl.handle.net/11346/H4WT">http://hdl.handle.net/11346/H4WT</a>.</p>
+<h2 id="dedikace">Dedikace</h2>
+<p>Vznik databáze byl financován z prostředků Programu na podporu aplikovaného výzkumu v oblasti národní a kulturní identity na léta 2023 až 2030 (NAKI III) Ministerstva kultury ČR v rámci projektu <em>Automatické hodnocení mluveného projevu v češtině</em> (DH23P03OVV037).</p>
