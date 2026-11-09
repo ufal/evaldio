@@ -124,12 +124,9 @@ prepare : LICENSE.txt $(TEMPL_DIR)/docs/README.md $(TEMPL_DIR)/docs/README-cs.md
 	fi
 
 pdf : $(PDF_FILES)
-
-$(TEMPL_DIR)/pdf:
-	mkdir -p $@
-
-$(TEMPL_DIR)/pdf/%.pdf : $(TEMPL_DIR)/docs/%.md | $(TEMPL_DIR)/pdf
-	cd $(TEMPL_DIR) && pandoc docs/$*.md -o pdf/$*.pdf --pdf-engine=pdflatex -V links-as-notes --resource-path=docs -V lang=$(if $(filter %-cs,$*),cs,en)
+$(TEMPL_DIR)/pdf/%.pdf : $(TEMPL_DIR)/docs/%.md
+	mkdir -p $(dir $@)
+	pandoc $< -o $@ --pdf-engine=xelatex -V links-as-notes --resource-path=$(dir $<) -V lang=$(if $(filter %-cs,$*),cs,en)
 
 zip :
 	cd $(TGT_BASEDIR) && \
