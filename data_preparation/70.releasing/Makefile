@@ -30,6 +30,7 @@ RELEASE_TGT_DIR=$(TGT_BASEDIR)/$(RELEASE_NAME)
 
 TEMPL_DIR=templates/$(RELEASE_NAME)
 PDF_FILES=$(patsubst $(TEMPL_DIR)/docs/%.md,$(TEMPL_DIR)/pdf/%.pdf,$(wildcard $(TEMPL_DIR)/docs/*.md))
+HTML_FILES=$(patsubst $(TEMPL_DIR)/docs/%.md,$(TEMPL_DIR)/html/%.html,$(wildcard $(TEMPL_DIR)/docs/*.md))
 
 FORMAT_SIMPLE_SCRIPT=../60.format_simple/format_simple.sh
 
@@ -127,6 +128,11 @@ pdf : $(PDF_FILES)
 $(TEMPL_DIR)/pdf/%.pdf : $(TEMPL_DIR)/docs/%.md
 	mkdir -p $(dir $@)
 	pandoc $< -o $@ --pdf-engine=xelatex -V links-as-notes --resource-path=$(dir $<) -V lang=$(if $(filter %-cs,$*),cs,en)
+
+html : $(HTML_FILES)
+$(TEMPL_DIR)/html/%.html : $(TEMPL_DIR)/docs/%.md
+	mkdir -p $(dir $@)
+	pandoc $< -o $@ --mathjax
 
 zip :
 	cd $(TGT_BASEDIR) && \
