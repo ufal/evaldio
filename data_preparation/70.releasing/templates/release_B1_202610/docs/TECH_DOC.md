@@ -10,7 +10,7 @@
 
 **Database creator:** Institute of Formal and Applied Linguistics, Faculty of Mathematics and Physics, Charles University.
 
-**Database users:** Educators and students, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
+**Database users:** Educators and students, scientific and scholarly community, institutions involved in teaching Czech as a foreign language or administering Czech-as-a-foreign-language exams, other educational institutions, and the general public, especially those interested in Czech as a foreign language.
 
 **Database location:** The database is integrated into the [TEITOK](http://teitok.corpuswiki.org/) system, which is operated on the [LINDAT/CLARIAH-CZ](https://lindat.cz/) platform.
 
@@ -55,7 +55,7 @@ The database consists of the following entities and relationships between them:
 1. **Recording** – Represents the original audio recording. Each recording in the database has a manual transcription.
 2. **Document** – Corresponds to an individual transcript in TEITOK (XML) format. It contains metadata about the exam and its transcription (CEFR level, exam ID, task number, transcription annotator code, etc.) and is linked to a recording.
 3. **Utterance** – Individual utterances within a document. They contain information about the speaker (`who`) and timestamps (`start`, `end`).
-4. **Token** – The basic textual unit (word form). Each token is described by its form, lemma, part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
+4. **Token** – The basic unit of text (word form). Each token is specified by its textual realization (`form`), lemma (`lemma`), part-of-speech tags (`upos`, `xpos`), morphological features (`feats`), and syntactic dependency (`deprel`).
     - *Recursive relationship:* A token can refer to itself (`head`), forming a tree structure of dependency syntax.
 
 #### Graphical representation of the structure
@@ -64,32 +64,36 @@ The following E-R diagram provides a more detailed representation of the databas
 
 ![E-R diagram of the database structure](media/database-er-diagram.png)
 
-#### Structure of TEITOK files
+### Structure of TEITOK files
 
 The basic building blocks of the database are files representing transcripts in TEITOK format. TEITOK is an XML format that complies with the [Text Encoding Initiative (TEI)](https://www.tei-c.org/) standard, but uses a slightly different approach to tokenization. The structure of TEITOK files in our database is as follows:
 
-**Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
+#### Header with metadata `<teiHeader>`
 
-1. `<fileDesc>` – File description
+The TEITOK file header consists of the following parts:
+
+1. `<fileDesc>`: File description
     - `<titleStmt>`: Contains the title of the file and information about authors and annotators.
     - `<editionStmt>`: Contains the version number.
     - `<publicationStmt>`: Contains publication details such as the publisher, publication date, and license.
     - `<sourceDesc>`: Describes the source recording and links to it.
-2. `<encodingDesc>` – Description of encoding
+2. `<encodingDesc>`: Description of encoding
     - `<projectDesc>`: A brief description of the project in which the data was created.
     - `<annotationDecl>`: Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
-3. `<profileDesc>` – Profile of the text
+3. `<profileDesc>`: Profile of the text
     - `<langUsage>`: Language used (Czech).
     - `<textClass>`: Document metadata:
       - `database`: Database name.
       - `exam-id`: Exam identifier.
       - `cefr-level`: CEFR level. This database contains recordings exclusively from B1-level exams.
       - `task-number`: Task number.
-      - `preannot-source`: Source of preliminary annotation. Since all transcriptions in this database were created entirely by hand, this value is always `from_scratch`.
+      - `preannot-source`: Source of preliminary transcription. Since all transcriptions in this database were created entirely by hand, this value is always `from_scratch`.
       - `annotator`: Annotator code.
       - `canonical`: A value of `1` indicates a canonical transcription. Since the database contains no duplicate transcriptions, every transcription is canonical.
 
-**Main content `<text>`.** The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
+#### Main content `<text>`
+
+The `<text>` section contains individual segments of spoken speech structured using `<u>` elements:
 
 - `<u>`: Each element represents a segment of speech and has the following attributes:
   - `start` and `end`: Start and end time in seconds.
@@ -99,7 +103,9 @@ The basic building blocks of the database are files representing transcripts in 
 - `<anon/>`: An anonymized segment of the recording.
 - `<gap reason="unintelligible"/>`: An unintelligible segment of the recording.
 
-**Token annotation in the `<tok>` element.** The `<tok>` element represents a token, which usually corresponds to a word. Each token is further described by the following attributes, corresponding to the standards of the [Universal Dependencies](https://universaldependencies.org/guidelines.html) project:
+#### Token annotation in the `<tok>` element
+
+The `<tok>` element represents a token, which usually corresponds to a word. Each token is further described by the following attributes, corresponding to the standards of the [Universal Dependencies](https://universaldependencies.org/guidelines.html) project:
 
 - `ord`: Ordinal number of the token in the sentence.
 - `lemma`: Base form of the word.
@@ -109,7 +115,9 @@ The basic building blocks of the database are files representing transcripts in 
 - `head`: Reference to the parent token.
 - `deprel`: Type of the syntactic dependency relation to the parent.
 
-**Completeness of records and metadata.** Individual records contain the corresponding audio recording and its manual transcription. The transcriptions contain speaker identification (examiner vs. examination candidate) and timestamps for individual utterances. They also include automatic linguistic annotation. All records in the database contain this information.
+### Completeness of records and metadata
+
+Individual records contain the corresponding audio recording and its manual transcription. The transcriptions contain speaker identification (examiner vs. examination candidate) and timestamps for individual utterances. They also include automatic linguistic annotation. All records in the database contain this information.
 
 The scope of the published recordings is determined by the consent of the data provider, which permitted only selected tasks to be published. The published recordings therefore do not necessarily contain the original recording of the entire exam.
 
@@ -138,7 +146,7 @@ A detailed guide to using the individual functions and examples of searches is p
 
 The database is publicly available through the LINDAT/CLARIAH-CZ platform and the TEITOK system. Access is free and does not require registration.
 
-The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
+The data comprising the database is also stored in the certified LINDAT/CLARIAH-CZ repository, which provides long-term preservation, regular backups, and a Handle-type persistent identifier. LINDAT/CLARIAH-CZ repository records are indexed by internet search engines (including Google), and the associated metadata are also made available in the CLARIN Virtual Language Observatory (VLO) catalog. The record can thus be found through a standard search. The dataset corresponding to this database is available at <http://hdl.handle.net/11234/1-6311>.
 
 The LINDAT/CLARIAH-CZ repository does not currently assign DOI-type persistent identifiers. For this reason, a record for the database is also registered in the Data Catch-all Repository, which is not yet fully certified. The record is available at [https://doi.org/10.48700/hftww-b2k53](https://doi.org/10.48700/hftww-b2k53).
 
@@ -208,7 +216,9 @@ Manual transcriptions of the recordings were prepared by trained annotators, who
 
 All tools and scripts (primarily in Python 3 and BASH) are available in the [public repository of the project](https://github.com/ufal/evaldio) in the `data_preparation` directory.
 
-**Linguistic annotation.** The transcriptions contain automatic linguistic annotation including tokenization, lemmatization, morphological analysis, and dependency syntactic analysis.
+#### Linguistic annotation
+
+The transcriptions contain automatic linguistic annotation including tokenization, lemmatization, morphological analysis, and dependency syntactic analysis.
 
 For linguistic annotation, including tokenization, we used the [UDPipe 2](https://ufal.mff.cuni.cz/udpipe/2) tool, specifically the `czech-pdt-ud-2.12-230717` model for Czech.
 
