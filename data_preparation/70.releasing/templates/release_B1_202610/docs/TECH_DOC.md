@@ -66,15 +66,15 @@ The database consists of the following entities and relationships between them:
 
 **Header with metadata `<teiHeader>`.** The TEITOK file header consists of the following parts:
 
-1. `<fileDesc>` – File description
+1. `<fileDesc>`: File description
     - `<titleStmt>`: Contains the title of the file and information about authors and annotators.
     - `<editionStmt>`: Contains the version number.
     - `<publicationStmt>`: Contains publication details such as the publisher, publication date, and license.
     - `<sourceDesc>`: Describes the source recording and links to it.
-2. `<encodingDesc>` – Description of encoding
+2. `<encodingDesc>`: Description of encoding
     - `<projectDesc>`: A brief description of the project in which the data was created.
     - `<annotationDecl>`: Details of the individual annotation steps (primary annotation, revision, and linguistic annotation).
-3. `<profileDesc>` – Profile of the text
+3. `<profileDesc>`: Profile of the text
     - `<langUsage>`: Language used (Czech).
     - `<textClass>`: Document metadata:
       - `database`: Database name.
