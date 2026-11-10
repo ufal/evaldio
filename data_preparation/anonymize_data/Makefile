@@ -6,13 +6,40 @@ ROOT_DIR=../..
 
 SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/anonymize_data
-BATCH_PATH=
+BATCH_PATH=release_B1_202610
 
 SRC_DIR=$(SRC_BASEDIR)/$(BATCH_PATH)
 TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
+ANONYMIZE_TIMES_FILE=$(BATCH_PATH).anonymize_times.csv
+AUDIO_FILES=$(shell awk -F '\t' '{print $$1}' $(ANONYMIZE_TIMES_FILE))
+TGT_AUDIO_FILES=$(addprefix $(TGT_DIR)/,$(AUDIO_FILES))
 
+.PHONY: all
+all: $(TGT_AUDIO_FILES)
 
 ########### SPLIT OF RECORDINGS ############
 
-$(TGT_DIR)/%.mp3 : $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt
+$(TGT_DIR)/%.anonymize_times.txt: $(ANONYMIZE_TIMES_FILE)
+	mkdir -p $(TGT_DIR)
+	awk -F '\t' -v filename='$*.mp3' '$$1 == filename { print $$2 }' $< > $@
 
+$(TGT_DIR)/%.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt
+	mkdir -p $(TGT_DIR)
+	ranges=$$(cat $(word 2,$^)); \
+	if [ -z "$$ranges" ]; then \
+		ffmpeg -nostdin -y -i "$<" -map 0:a:0 -c:a copy "$@"; \
+	else \
+		expression=; \
+		for range in $$ranges; do \
+			start=$${range%-*}; \
+			end=$${range#*-}; \
+			if [ "$$start" = "$$range" ] || [ "$$end" = "$$range" ]; then \
+				echo "Invalid anonymization timeframe: $$range" >&2; \
+				exit 1; \
+			fi; \
+			if [ -n "$$expression" ]; then expression="$$expression+"; fi; \
+			expression="$${expression}between(t,$$start,$$end)"; \
+		done; \
+		filter="[0:a]volume='if($$expression,0,1)'[voice];sine=frequency=1000:sample_rate=44100,volume='if($$expression,1,0)'[beep];[voice][beep]amix=inputs=2:duration=first:dropout_transition=0[audio]"; \
+		ffmpeg -nostdin -y -i "$<" -filter_complex "$$filter" -map "[audio]" -c:a libmp3lame -q:a 2 "$@"; \
+	fi
