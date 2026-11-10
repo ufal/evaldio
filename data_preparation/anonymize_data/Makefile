@@ -13,9 +13,20 @@ TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 ANONYMIZE_TIMES_FILE=$(BATCH_PATH).anonymize_times.csv
 AUDIO_FILES=$(shell awk -F '\t' '{print $$1}' $(ANONYMIZE_TIMES_FILE))
 TGT_AUDIO_FILES=$(addprefix $(TGT_DIR)/,$(AUDIO_FILES))
+ANONYMIZED_AUDIO_FILES=$(shell awk -F '\t' 'NF > 1 && $$2 != "" {print $$1}' $(ANONYMIZE_TIMES_FILE))
+VERIFY_FILES=$(addsuffix .verify.mp3,$(addprefix $(TGT_DIR)/,$(basename $(ANONYMIZED_AUDIO_FILES))))
+VERIFY_BEFORE=10
+VERIFY_AFTER=2
+VERIFY_SILENCE=1
 
-.PHONY: all
+.PHONY: all verify_anonymization
 all: $(TGT_AUDIO_FILES)
+
+verify_anonymization: $(VERIFY_FILES)
+
+$(TGT_DIR)/%.verify.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt verify_anonymization.sh
+	mkdir -p $(TGT_DIR)
+	./verify_anonymization.sh "$<" "$(TGT_DIR)/$*.anonymize_times.txt" "$@" $(VERIFY_BEFORE) $(VERIFY_AFTER) $(VERIFY_SILENCE)
 
 ########### SPLIT OF RECORDINGS ############
 
