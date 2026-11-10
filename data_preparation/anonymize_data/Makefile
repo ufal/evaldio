@@ -24,7 +24,7 @@ all: $(TGT_AUDIO_FILES)
 
 verify_anonymization: $(VERIFY_FILES)
 
-$(TGT_DIR)/%.verify.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt verify_anonymization.sh
+$(TGT_DIR)/%.verify.mp3: $(TGT_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt verify_anonymization.sh
 	mkdir -p $(TGT_DIR)
 	./verify_anonymization.sh "$<" "$(TGT_DIR)/$*.anonymize_times.txt" "$@" $(VERIFY_BEFORE) $(VERIFY_AFTER) $(VERIFY_SILENCE)
 
