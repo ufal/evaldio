@@ -22,13 +22,8 @@ VERIFY_SILENCE=1
 .PHONY: all verify_anonymization
 all: $(TGT_AUDIO_FILES)
 
-verify_anonymization: $(VERIFY_FILES)
 
-$(TGT_DIR)/%.verify.mp3: $(TGT_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt verify_anonymization.sh
-	mkdir -p $(TGT_DIR)
-	./verify_anonymization.sh "$<" "$(TGT_DIR)/$*.anonymize_times.txt" "$@" $(VERIFY_BEFORE) $(VERIFY_AFTER) $(VERIFY_SILENCE)
-
-########### SPLIT OF RECORDINGS ############
+########### ANONYMIZE AUDIO ############
 
 $(TGT_DIR)/%.anonymize_times.txt: $(ANONYMIZE_TIMES_FILE)
 	mkdir -p $(TGT_DIR)
@@ -54,3 +49,11 @@ $(TGT_DIR)/%.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt
 		filter="[0:a]volume=enable='$${expression}':volume=0[muted];[1:a]volume=enable='$${expression}':volume=0.3,volume=enable='not($${expression})':volume=0[beep];[muted][beep]amix=inputs=2:duration=first:normalize=0[out]"; \
 		ffmpeg -nostdin -y -i "$<" -f lavfi -i "sine=frequency=1000:sample_rate=44100" -filter_complex "$$filter" -map "[out]" -c:a libmp3lame -q:a 2 "$@"; \
 	fi
+
+########### VERIFY AUDIO ANONYMIZATION ############
+
+verify_anonymization: $(VERIFY_FILES)
+
+$(TGT_DIR)/%.verify.mp3: $(TGT_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt verify_anonymization.sh
+	mkdir -p $(TGT_DIR)
+	./verify_anonymization.sh "$<" "$(TGT_DIR)/$*.anonymize_times.txt" "$@" $(VERIFY_BEFORE) $(VERIFY_AFTER) $(VERIFY_SILENCE)
