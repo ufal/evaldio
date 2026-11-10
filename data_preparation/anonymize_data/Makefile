@@ -27,10 +27,6 @@ all: $(TGT_AUDIO_FILES) $(TGT_TRANSCRIPT_FILES)
 
 ########### ANONYMIZE AUDIO ############
 
-$(TGT_DIR)/%.xml: $(SRC_DIR)/%.xml
-	mkdir -p $(TGT_DIR)
-	cp "$<" "$@"
-
 $(TGT_DIR)/%.anonymize_times.txt: $(ANONYMIZE_TIMES_FILE)
 	mkdir -p $(TGT_DIR)
 	awk -F '\t' -v filename='$*.mp3' '$$1 == filename { print $$2 }' $< > $@
@@ -55,6 +51,13 @@ $(TGT_DIR)/%.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt
 		filter="[0:a]volume=enable='$${expression}':volume=0[muted];[1:a]volume=enable='$${expression}':volume=0.3,volume=enable='not($${expression})':volume=0[beep];[muted][beep]amix=inputs=2:duration=first:normalize=0[out]"; \
 		ffmpeg -nostdin -y -i "$<" -f lavfi -i "sine=frequency=1000:sample_rate=44100" -filter_complex "$$filter" -map "[out]" -c:a libmp3lame -q:a 2 "$@"; \
 	fi
+
+########### COPY TRANSCRIPTS (THEY SHOULD BE ALREADY ANONYMIZED) ############
+
+$(TGT_DIR)/%.xml: $(SRC_DIR)/%.xml
+	mkdir -p $(TGT_DIR)
+	cp "$<" "$@"
+
 
 ########### VERIFY AUDIO ANONYMIZATION ############
 
