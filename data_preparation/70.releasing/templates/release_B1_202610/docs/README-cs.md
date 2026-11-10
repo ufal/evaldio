@@ -11,16 +11,16 @@ Audionahrávky poskytl [Ústav jazykové a odborné přípravy Univerzity Karlov
 
 ## Statistiky
 
-Databáze obsahuje 65 nahrávek.
+Databáze obsahuje 64 nahrávek.
 Zachycuje 36 zkoušek a stejný počet nerodilých mluvčích.
-Celková délka všech nahrávek je 4h 51min 48s.
+Celková délka všech nahrávek je 4h 46min 48s.
 Tabulka níže ukazuje statistiky přepisů.
 
 |             | Počet   |
 | ------------|--------:|
-| Soubory     |   65    |
-| Repliky     |  3 348  |
-| Tokeny      | 29 572  |
+| Soubory     |   64    |
+| Repliky     |  3 316  |
+| Tokeny      | 29 038  |
 
 
 ## Dokumentace
