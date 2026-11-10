@@ -13,6 +13,8 @@ TGT_DIR=$(TGT_BASEDIR)/$(BATCH_PATH)
 ANONYMIZE_TIMES_FILE=$(BATCH_PATH).anonymize_times.csv
 AUDIO_FILES=$(shell awk -F '\t' '{print $$1}' $(ANONYMIZE_TIMES_FILE))
 TGT_AUDIO_FILES=$(addprefix $(TGT_DIR)/,$(AUDIO_FILES))
+SRC_TRANSCRIPT_FILES=$(wildcard $(SRC_DIR)/*.xml)
+TGT_TRANSCRIPT_FILES=$(patsubst $(SRC_DIR)/%.xml,$(TGT_DIR)/%.xml,$(SRC_TRANSCRIPT_FILES))
 ANONYMIZED_AUDIO_FILES=$(shell awk -F '\t' 'NF > 1 && $$2 != "" {print $$1}' $(ANONYMIZE_TIMES_FILE))
 VERIFY_FILES=$(addsuffix .verify.mp3,$(addprefix $(TGT_DIR)/,$(basename $(ANONYMIZED_AUDIO_FILES))))
 VERIFY_BEFORE=10
@@ -20,10 +22,14 @@ VERIFY_AFTER=2
 VERIFY_SILENCE=1
 
 .PHONY: all verify_anonymization
-all: $(TGT_AUDIO_FILES)
+all: $(TGT_AUDIO_FILES) $(TGT_TRANSCRIPT_FILES)
 
 
 ########### ANONYMIZE AUDIO ############
+
+$(TGT_DIR)/%.xml: $(SRC_DIR)/%.xml
+	mkdir -p $(TGT_DIR)
+	cp "$<" "$@"
 
 $(TGT_DIR)/%.anonymize_times.txt: $(ANONYMIZE_TIMES_FILE)
 	mkdir -p $(TGT_DIR)
