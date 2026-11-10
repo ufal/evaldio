@@ -40,6 +40,6 @@ $(TGT_DIR)/%.mp3: $(SRC_DIR)/%.mp3 $(TGT_DIR)/%.anonymize_times.txt
 			if [ -n "$$expression" ]; then expression="$$expression+"; fi; \
 			expression="$${expression}between(t,$$start,$$end)"; \
 		done; \
-		filter="[0:a]volume='if($$expression,0,1)'[voice];sine=frequency=1000:sample_rate=44100,volume='if($$expression,1,0)'[beep];[voice][beep]amix=inputs=2:duration=first:dropout_transition=0[audio]"; \
-		ffmpeg -nostdin -y -i "$<" -filter_complex "$$filter" -map "[audio]" -c:a libmp3lame -q:a 2 "$@"; \
+		filter="[0:a]volume=enable='$${expression}':volume=0[muted];[1:a]volume=enable='$${expression}':volume=0.3,volume=enable='not($${expression})':volume=0[beep];[muted][beep]amix=inputs=2:duration=first:normalize=0[out]"; \
+		ffmpeg -nostdin -y -i "$<" -f lavfi -i "sine=frequency=1000:sample_rate=44100" -filter_complex "$$filter" -map "[out]" -c:a libmp3lame -q:a 2 "$@"; \
 	fi
