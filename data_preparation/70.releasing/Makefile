@@ -4,7 +4,7 @@ SHELL=/bin/bash
 
 ROOT_DIR=../..
 
-SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/separate_exercises
+SRC_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/anonymize_data
 TGT_BASEDIR=$(ROOT_DIR)/tmp/data_preparation/70.releasing
 POOL_BASEDIR=$(TGT_BASEDIR)/pool
 BATCH_PATH=release_B1_202610
