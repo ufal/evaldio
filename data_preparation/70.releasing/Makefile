@@ -137,7 +137,14 @@ $(TEMPL_DIR)/html/%.html : $(TEMPL_DIR)/docs/%.md
 		*/README*.md) \
 			sed -i 's|USER_MANUAL.*\.md|index.php?action=db_citizenship_manual|g' $@; \
 			sed -i 's|TECH_DOC.*\.md|index.php?action=db_citizenship_techdoc|g' $@; \
-			sed -i '/<\/h1>/a <p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28trval&yacute;+pobyt+v+ČR%29">&gt;&gt;&gt; Vstup do korpusu &ndash; prohl&iacute;žen&iacute; &lt;&lt;&lt;</a></p>' $@; \
+			case "$<" in \
+				*/README-cs.md) \
+					sed -i '/<\/h1>/a <p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28trval&yacute;+pobyt+v+ČR%29">&gt;&gt;&gt; Vstup do korpusu &ndash; prohl&iacute;žen&iacute; &lt;&lt;&lt;</a></p>' $@; \
+					;; \
+				*) \
+					sed -i '/<\/h1>/a <p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28trval&yacute;+pobyt+v+ČR%29">&gt;&gt;&gt; Enter the Corpus &lt;&lt;&lt;</a></p>' $@; \
+					;; \
+			esac; \
 			;; \
 	esac
 
