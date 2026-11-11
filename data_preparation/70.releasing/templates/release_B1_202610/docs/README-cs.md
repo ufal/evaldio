@@ -20,7 +20,7 @@ Tabulka níže ukazuje statistiky přepisů.
 | ------------|--------:|
 | Soubory     |   64    |
 | Repliky     |  3 316  |
-| Tokeny      | 29 038  |
+| Tokeny      | 28 986  |
 
 
 ## Dokumentace

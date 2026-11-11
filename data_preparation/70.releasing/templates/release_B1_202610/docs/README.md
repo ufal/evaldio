@@ -21,7 +21,7 @@ The table below shows the transcription statistics.
 | ------------|--------:|
 | Files       |   64    |
 | Utterances  | 3,316   |
-| Tokens      | 29,038  |
+| Tokens      | 28,986  |
 
 ## Documentation
 

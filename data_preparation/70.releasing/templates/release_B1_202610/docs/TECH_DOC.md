@@ -43,7 +43,7 @@ The basic database statistics are summarized below:
 - Number of audio recordings: 64
 - Total length of recordings in the database: 4h 46m 48s
 - Number of files with manual transcriptions: 64
-- Number of tokens: 29,038
+- Number of tokens: 28,986
 - Number of utterances: 3,316
 - Language: Czech
 - Language level: B1 according to the CEFR

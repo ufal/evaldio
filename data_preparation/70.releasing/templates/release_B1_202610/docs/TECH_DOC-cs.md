@@ -43,7 +43,7 @@ Základní statistiky databáze jsou shrnuty v následujícím přehledu:
 - Počet audionahrávek: 64
 - Celková délka nahrávek v databázi: 4h 46m 48s
 - Počet souborů s manuálními přepisy: 64
-- Počet tokenů: 29 038
+- Počet tokenů: 28 986
 - Počet replik: 3 316
 - Jazyk: čeština
 - Jazyková úroveň: B1 podle SERR
