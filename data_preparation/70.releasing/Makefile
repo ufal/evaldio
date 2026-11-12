@@ -137,6 +137,7 @@ README_HTML_POSTPROCESS = \
 
 $(TEMPL_DIR)/html/README.html: HTML_POSTPROCESS = $(README_HTML_POSTPROCESS) sed -i '/<\/h1>/a <p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28st&aacute;tn&iacute;+ob&ccaron;anstv&iacute;+v+ČR%29">&gt;&gt;&gt; Enter the Corpus &lt;&lt;&lt;</a></p>' $@
 $(TEMPL_DIR)/html/README-cs.html: HTML_POSTPROCESS = $(README_HTML_POSTPROCESS) sed -i '/<\/h1>/a <p><a href="index.php?action=browser&amp;class=database&amp;val=Datab&aacute;ze+mluven&yacute;ch+projevů+v+če&scaron;tině+jako+ciz&iacute;m+jazyce+%28st&aacute;tn&iacute;+ob&ccaron;anstv&iacute;+v+ČR%29">&gt;&gt;&gt; Vstup do korpusu &ndash; prohl&iacute;žen&iacute; &lt;&lt;&lt;</a></p>' $@
+$(TEMPL_DIR)/html/TECH_DOC.html $(TEMPL_DIR)/html/TECH_DOC-cs.html: HTML_POSTPROCESS = sed -i 's|<img |<img style="width: 100%; height: auto; display: block;" |g' $@
 
 $(TEMPL_DIR)/html/%.html : $(TEMPL_DIR)/docs/%.md
 	mkdir -p $(dir $@)
